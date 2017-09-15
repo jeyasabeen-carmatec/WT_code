@@ -1,0 +1,49 @@
+PODS:
+  - Braintree/Card (4.8.4):
+    - Braintree/Core
+  - Braintree/Core (4.8.4)
+  - Braintree/PayPal (4.8.4):
+    - Braintree/Core
+    - Braintree/PayPalOneTouch
+  - Braintree/PayPalDataCollector (4.8.4):
+    - Braintree/Core
+    - Braintree/PayPalUtils
+  - Braintree/PayPalOneTouch (4.8.4):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+    - Braintree/PayPalUtils
+  - Braintree/PayPalUtils (4.8.4)
+  - Braintree/UnionPay (4.8.4):
+    - Braintree/Card
+    - Braintree/Core
+  - BraintreeDropIn (5.2.1):
+    - BraintreeDropIn/DropIn (= 5.2.1)
+  - BraintreeDropIn/DropIn (5.2.1):
+    - Braintree/Card (~> 4.0)
+    - Braintree/Core (~> 4.0)
+    - Braintree/UnionPay (~> 4.0)
+    - BraintreeDropIn/UIKit
+  - BraintreeDropIn/UIKit (5.2.1)
+  - GoogleMaps (2.3.1):
+    - GoogleMaps/Maps (= 2.3.1)
+  - GoogleMaps/Base (2.3.1)
+  - GoogleMaps/Maps (2.3.1):
+    - GoogleMaps/Base
+  - GooglePlaces (2.3.1):
+    - GoogleMaps/Base (= 2.3.1)
+
+DEPENDENCIES:
+  - Braintree/PayPal
+  - BraintreeDropIn
+  - GoogleMaps
+  - GooglePlaces
+
+SPEC CHECKSUMS:
+  Braintree: b14041582732676facd0b7237bc08cfdc0cbf988
+  BraintreeDropIn: e9cecf2ec946f084476f007a7e91925016b77e91
+  GoogleMaps: c66a71058b9b1294bcdd5463a68e357fa50c079f
+  GooglePlaces: 4a7b22debfa1af65017b82943431822607e45201
+
+PODFILE CHECKSUM: d483e00a620fcebb660cc2c76a7e85ffcc5e1bfe
+
+COCOAPODS: 1.2.0

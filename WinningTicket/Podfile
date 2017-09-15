@@ -1,0 +1,9 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'WinningTicket_Universal' do
+  pod 'BraintreeDropIn'
+  pod 'Braintree/PayPal'
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
+end

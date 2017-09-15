@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gotham Bold Regular.ttf">
+            <string>GothamBold</string>
+        </array>
+        <array key="gotham-pro-medium.otf">
+            <string>GothamPro-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="59" id="KGk-i7-Jjw" customClass="TBL_VW_Cell_EVENTS">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="58.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test testTest testTest testTest testTest test" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Jy-mm-amf" customClass="CSTM_cell_LBL">
+                        <rect key="frame" x="8" y="8" width="138" height="43"/>
+                        <fontDescription key="fontDescription" name="GothamPro-Medium" family="Gotham Pro" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="myLineSpacing">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mar 31,2017 11:00AM EST" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVB-Mv-Xkd" customClass="CSTM_cell_LBL">
+                        <rect key="frame" x="154" y="8" width="112" height="43"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="112" id="ZGJ-Ge-qVV"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="GothamPro-Medium" family="Gotham Pro" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="myLineSpacing">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fE0-zS-O2b" customClass="BTN_Winnig_TKT">
+                        <rect key="frame" x="268" y="15" width="48" height="29"/>
+                        <color key="backgroundColor" red="0.01176470588" green="0.69019607839999997" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="48" id="PPL-0E-M6R"/>
+                            <constraint firstAttribute="height" constant="29" id="RGD-Vv-neq"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="14"/>
+                        <state key="normal" title="VIEW">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="uVB-Mv-Xkd" firstAttribute="leading" secondItem="0Jy-mm-amf" secondAttribute="trailing" constant="8" symbolic="YES" id="3RZ-Za-XhO"/>
+                    <constraint firstItem="0Jy-mm-amf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="5HI-es-udh"/>
+                    <constraint firstItem="fE0-zS-O2b" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="6tR-Re-UcB"/>
+                    <constraint firstItem="uVB-Mv-Xkd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ah6-C8-J3n"/>
+                    <constraint firstItem="uVB-Mv-Xkd" firstAttribute="centerY" secondItem="fE0-zS-O2b" secondAttribute="centerY" id="K3E-H0-MDl"/>
+                    <constraint firstItem="0Jy-mm-amf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Uzs-kT-4Pc"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="fE0-zS-O2b" secondAttribute="trailing" constant="-4" id="VKy-3Z-m6B"/>
+                    <constraint firstItem="0Jy-mm-amf" firstAttribute="firstBaseline" secondItem="uVB-Mv-Xkd" secondAttribute="firstBaseline" id="Vy6-0V-9Fj"/>
+                    <constraint firstItem="0Jy-mm-amf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="bMa-mb-yaq"/>
+                    <constraint firstItem="fE0-zS-O2b" firstAttribute="leading" secondItem="uVB-Mv-Xkd" secondAttribute="trailing" constant="2" id="kOW-PF-0Sx"/>
+                    <constraint firstItem="0Jy-mm-amf" firstAttribute="baseline" secondItem="uVB-Mv-Xkd" secondAttribute="baseline" id="rsU-C2-R6r"/>
+                    <constraint firstAttribute="bottom" secondItem="0Jy-mm-amf" secondAttribute="bottom" constant="8" id="ve7-Rt-i6G"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="BTN_View_detail" destination="fE0-zS-O2b" id="qAH-h8-0kI"/>
+                <outlet property="lbl_event_name" destination="0Jy-mm-amf" id="Jno-Ij-8ik"/>
+                <outlet property="lbl_event_time" destination="uVB-Mv-Xkd" id="o2N-eo-rCl"/>
+            </connections>
+            <point key="canvasLocation" x="25" y="59.5"/>
+        </tableViewCell>
+    </objects>
+</document>
