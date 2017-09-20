@@ -32,7 +32,7 @@
 
 @property (weak, nonatomic) IBOutlet TAPageControl *customStoryboardPageControl;
 
-@property (strong, nonatomic) NSArray *imagesData;
+@property (strong, nonatomic) NSMutableArray *imagesData;
 
 
 @end
@@ -134,7 +134,7 @@
     VW_overlay.hidden = NO;
     [activityIndicatorView startAnimating];
     [self performSelector:@selector(GETAuction_Item_details) withObject:activityIndicatorView afterDelay:0.01];
-    [_collection_similar_item reloadData];
+//    [_collection_similar_item reloadData];
     
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -299,6 +299,8 @@
 
 -(void) setup_Values
 {
+   
+    
     [golfTimer invalidate];
     golfTimer = nil;
     
@@ -309,32 +311,6 @@
     
 //    NSString *STR_titl_iten_des = @"Item Description";
     NSString *STR_descrip_detail = [NSString stringWithFormat:@"%@",[auction_item valueForKey:@"description"]];
-//    NSString *text2 = [NSString stringWithFormat:@"%@",STR_descrip_detail];
-//    self.lbl_item_descrip.numberOfLines = 0;
-//    if ([self.lbl_item_descrip respondsToSelector:@selector(setAttributedText:)]) {
-//        NSDictionary *attribs = @{
-//                                  NSForegroundColorAttributeName: self.lbl_item_descrip.textColor,
-//                                  NSFontAttributeName: self.lbl_item_descrip.font
-//                                  };
-//        NSMutableAttributedString *attributedText =
-//        [[NSMutableAttributedString alloc] initWithString:text2
-//                                               attributes:attribs];
-//        NSRange cmp = [text2 rangeOfString:STR_titl_iten_des];
-//        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-//        {
-//            [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Bold" size:21.0]}
-//                                    range:cmp];
-//        }
-//        else
-//        {
-//            [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Bold" size:17.0]}
-//                                    range:cmp];
-//        }
-//        self.lbl_item_descrip.attributedText = attributedText;
-//        
-//    }
-//    else
-//    {
     
     self.lbl_item_descrip.text = STR_descrip_detail;
     CGRect txt_frame = _lbl_item_descrip.frame;
@@ -367,7 +343,11 @@
         [temp_arr addObject:STR_image_url];
     }
     
+    //[_imagesData removeAllObjects];
     self.imagesData = [temp_arr copy];
+    [self.customStoryboardPageControl setNumberOfPages:[temp_arr count]]; //.numberOfPages = [temp_arr count];
+    [_collection_IMG reloadData];
+    
     NSString *STR_bidSTAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"STR_bidSTAT"];
     NSString *STR_event_name = [auction_item valueForKey:@"name"];
     NSString *winner_status = [NSString stringWithFormat:@"%@",[jsonReponse valueForKey:@"winner_status"]];
@@ -401,11 +381,11 @@
                   NSString *STR_bid = [NSString stringWithFormat:@"%@",[auction_item valueForKey:@"current_bid_amount"]];
                   if ([STR_bid isEqualToString:@"<null>"])
                   {
-                      STR_price = [NSString stringWithFormat:@"%.2f",[[auction_item valueForKey:@"starting_bid"] floatValue]];
+                      STR_price = [NSString stringWithFormat:@"US $%.2f",[[auction_item valueForKey:@"starting_bid"] floatValue]];
                   }
                   else
                   {
-                      STR_price = [NSString stringWithFormat:@"%.2f",[[auction_item valueForKey:@"current_bid_amount"] floatValue]];
+                      STR_price = [NSString stringWithFormat:@"US $%.2f",[[auction_item valueForKey:@"current_bid_amount"] floatValue]];
                   }
                   
               
@@ -704,11 +684,7 @@
             new_frame.origin.y = 0;
             _collection_IMG.frame=new_frame;
         }
-        
-        
-       
-        
-        [_collection_IMG reloadData];
+    
         
         NSLog(@"the collection view frame:%@",NSStringFromCGRect(_collection_IMG.frame));
         
@@ -875,6 +851,7 @@
         {
             
             _collection_similar_item.hidden = NO;
+            [_collection_similar_item reloadData];
 
             LBL_stat.hidden = YES;
             new_frame = _collection_similar_item.frame;
@@ -891,10 +868,7 @@
         
         
         [_scroll_contents addSubview:_VW_contents];
-        
         [self viewDidLayoutSubviews];
-        
-        self.customStoryboardPageControl.numberOfPages = self.imagesData.count;
     }
     else
     {
@@ -1044,6 +1018,7 @@
         else
         {
              _collection_similar_item.hidden = NO;
+            [_collection_similar_item reloadData];
             LBL_stat.hidden = YES;
             new_frame = _collection_similar_item.frame;
             new_frame.origin.y = _lbl_title_silar_item.frame.origin.y + _lbl_title_silar_item.frame.size.height + 10;
@@ -1060,6 +1035,7 @@
 
         [_scroll_contents addSubview:_VW_contents];
         [self viewDidLayoutSubviews];
+        
     }
     
 }
@@ -1123,9 +1099,10 @@
     {
         return self.imagesData.count;
     }
-    else {
+    else
+    {
         
-         return [similar_ARR count];
+        return [similar_ARR count];
     }
    
 }
@@ -1145,13 +1122,11 @@
        cell_auction_item_detail *cell = (cell_auction_item_detail *)[collectionView dequeueReusableCellWithReuseIdentifier:@"item_detail_identifier" forIndexPath:indexPath];
         
 
-      //  cell.auction_image.image =[UIImage imageNamed:[self.imagesData objectAtIndex:indexPath.row]];
        [ cell.auction_image sd_setImageWithURL:[NSURL URLWithString:[_imagesData objectAtIndex:indexPath.row]]
                                               placeholderImage:[UIImage imageNamed:@"Logo_WT.png"]];
         cell.auction_image.contentMode = UIViewContentModeScaleAspectFit;
         
-//        self.customStoryboardPageControl.currentPage = indexPath.row;
-//        _lbl_count.text = [NSString stringWithFormat:@"%lu of %lu",indexPath.row + 1,(unsigned long)_imagesData.count];
+
         
         return cell;
         
@@ -1290,6 +1265,8 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(collectionView == _collection_similar_item)
     {
         NSDictionary *cpy_dict = [similar_ARR objectAtIndex:indexPath.row];
         NSString *STR_Expired = [NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"is_expired?"]];
@@ -1316,8 +1293,9 @@
         VW_overlay.hidden = NO;
         [activityIndicatorView startAnimating];
         [self performSelector:@selector(GETAuction_Item_details) withObject:activityIndicatorView afterDelay:0.01];
-        
     }
+    
+}
 
     
     
@@ -2293,7 +2271,7 @@ self.countdownLabel.text = [NSString stringWithFormat:@"%@/%@/%@ %@:%@:%@", days
     {
         scrollView = scroll;
     }
-    
+
     if (scrollView) {
         float pageWidth = _collection_IMG.frame.size.width; // width + space
         
@@ -2313,16 +2291,13 @@ self.countdownLabel.text = [NSString stringWithFormat:@"%@/%@/%@ %@:%@:%@", days
         
         targetContentOffset->x = currentOffset;
         [_collection_IMG setContentOffset:CGPointMake(newTargetOffset  , _collection_IMG.contentOffset.y) animated:YES];
-//        CGRect visibleRect = (CGRect){.origin = self.collection_IMG.contentOffset, .size = self.collection_IMG.bounds.size};
+        //        CGRect visibleRect = (CGRect){.origin = self.collection_IMG.contentOffset, .size = self.collection_IMG.bounds.size};
         CGPoint visiblePoint = CGPointMake(newTargetOffset, _collection_IMG.contentOffset.y);
         NSIndexPath *visibleIndexPath = [self.collection_IMG indexPathForItemAtPoint:visiblePoint];
         
         
         self.customStoryboardPageControl.currentPage = visibleIndexPath.row;
         _lbl_count.text = [NSString stringWithFormat:@"%lu of %lu",(long)self.customStoryboardPageControl.currentPage + 1,(unsigned long)_imagesData.count];
-
-      
-
     }
     
 }

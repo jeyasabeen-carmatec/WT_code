@@ -239,16 +239,20 @@ static CGSize const kDefaultDotSize = {8, 8};
  */
 - (void)changeActivity:(BOOL)active atIndex:(NSInteger)index
 {
-    if (self.dotViewClass) {
-        TAAbstractDotView *abstractDotView = (TAAbstractDotView *)[self.dots objectAtIndex:index];
-        if ([abstractDotView respondsToSelector:@selector(changeActivityState:)]) {
-            [abstractDotView changeActivityState:active];
-        } else {
-            NSLog(@"Custom view : %@ must implement an 'changeActivityState' method or you can subclass %@ to help you.", self.dotViewClass, [TAAbstractDotView class]);
+    @try {
+        if (self.dotViewClass) {
+            TAAbstractDotView *abstractDotView = (TAAbstractDotView *)[self.dots objectAtIndex:index];
+            if ([abstractDotView respondsToSelector:@selector(changeActivityState:)]) {
+                [abstractDotView changeActivityState:active];
+            } else {
+                NSLog(@"Custom view : %@ must implement an 'changeActivityState' method or you can subclass %@ to help you.", self.dotViewClass, [TAAbstractDotView class]);
+            }
+        } else if (self.dotImage && self.currentDotImage) {
+            UIImageView *dotView = (UIImageView *)[self.dots objectAtIndex:index];
+            dotView.image = (active) ? self.currentDotImage : self.dotImage;
         }
-    } else if (self.dotImage && self.currentDotImage) {
-        UIImageView *dotView = (UIImageView *)[self.dots objectAtIndex:index];
-        dotView.image = (active) ? self.currentDotImage : self.dotImage;
+    } @catch (NSException *exception) {
+        NSLog(@"Exception custom page %@",exception);
     }
 }
 
