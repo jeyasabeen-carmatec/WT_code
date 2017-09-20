@@ -11,6 +11,7 @@
 //#import "DGActivityIndicatorView.h"
 
 #import "ViewController.h"
+#import "STR_payment_mode.h"
 
 #pragma mark - Image Cache
 #import "SDWebImage/UIImageView+WebCache.h"
@@ -304,8 +305,17 @@
             frame_rect.origin.y = _lbl_address.frame.origin.y + _lbl_address.frame.size.height + 10;
             _lbl_titl_payment_info.frame = frame_rect;
             
+//            NSString *STR_pay_typ = [[NSUserDefaults standardUserDefaults] valueForKey:@"paymentTYPE"];
+//            
+//            if ([STR_pay_typ isEqualToString:@"13"]) {
+//                STR_pay_typ = @"PayPal";
+//            }
+//            else
+//            {
+//                STR_pay_typ = @"Credit / Debit Card";
+//            }
             
-            _lbl_data_payment_info.text = @"Credit / Debit Card";
+            _lbl_data_payment_info.text = [STR_payment_mode PaymentTYPE].STR_paymentTYPE; //[[NSUserDefaults standardUserDefaults] valueForKey:@"paymentTYPE"];//STR_pay_typ;//@"Credit / Debit Card";
             frame_rect = _lbl_data_payment_info.frame;
             frame_rect.origin.y = _lbl_titl_payment_info.frame.origin.y + _lbl_titl_payment_info.frame.size.height + 10;
             _lbl_data_payment_info.frame = frame_rect;
