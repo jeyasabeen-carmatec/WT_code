@@ -395,6 +395,10 @@
     }
     
     
+//    if ([ARR_near_courselist count] != 0) {
+        [_tbl_nearbycourse reloadData];
+//    }
+    
     NSLog(@"Value from VC couse detail nearby courses = \n%@",temp_dictin);
     
     NSString *selected_coursename = [selected_course valueForKey:@"name"];
@@ -830,6 +834,7 @@
     layout_height = initial_frame.size.height;
     [_BTN_swipeUP_DN setTitle:@"" forState:UIControlStateNormal];
     
+    
    /* NSLog(@"Cell selected at indexpath %ld",(long)indexPath.row);
     NSDictionary *temp_dictin = [ARR_near_courselist objectAtIndex:indexPath.row];
     VW_overlay.hidden = NO;
@@ -844,6 +849,7 @@
     [activityIndicatorView startAnimating];
     [self performSelector:@selector(get_selectedCourse:) withObject:cell.lbl_id.text afterDelay:0.01];
    //  [_BTN_more setTitle:@"MORE " forState:UIControlStateNormal];
+    [self.mapView clear];
     [self mydirection_map];
 }
 

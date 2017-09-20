@@ -10,6 +10,7 @@
 //#import "DejalActivityView.h"
 //#import "DGActivityIndicatorView.h"
 #import "ViewController.h"
+#import "STR_payment_mode.h"
 
 #pragma mark - Image Cache
 #import "SDWebImage/UIImageView+WebCache.h"
@@ -313,7 +314,7 @@
     _lbl_titl_payment_info.frame = frame_rect;
     
     
-    _lbl_data_payment_info.text = @"Credit / Debit Card";
+    _lbl_data_payment_info.text = [STR_payment_mode PaymentTYPE].STR_paymentTYPE;//[[NSUserDefaults standardUserDefaults] valueForKey:@"paymentTYPE"];//@"Credit / Debit Card";
     frame_rect = _lbl_data_payment_info.frame;
     frame_rect.origin.y = _lbl_titl_payment_info.frame.origin.y + _lbl_titl_payment_info.frame.size.height + 10;
     _lbl_data_payment_info.frame = frame_rect;
