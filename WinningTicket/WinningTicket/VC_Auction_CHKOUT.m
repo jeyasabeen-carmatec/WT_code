@@ -1287,7 +1287,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
     // [self dismissViewControllerAnimated:YES completion:NULL];
     
     NSError *error;
-    NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"QUANTITY"] options:NSASCIIStringEncoding error:&error];
+    NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"checkout_data"] options:NSASCIIStringEncoding error:&error];
     
     @try
     {
