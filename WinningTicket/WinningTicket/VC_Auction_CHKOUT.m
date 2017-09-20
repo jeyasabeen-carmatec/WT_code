@@ -8,6 +8,7 @@
 
 #import "VC_Auction_CHKOUT.h"
 #import "ViewController.h"
+#import "STR_payment_mode.h"
 
 #import "BraintreeCore.h"
 #import "BraintreeDropIn.h"
@@ -764,6 +765,8 @@
         
         if(total == 0.00 && [switch_STAT isEqualToString:@"SWITCH_ON"])
         {
+            STR_payment_mode *payment_mode = [STR_payment_mode PaymentTYPE];
+            payment_mode.STR_paymentTYPE = @"Wallet";
             [self performSelector:@selector(billing_Address) withObject:activityIndicatorView afterDelay:0.01];
         }
         else
@@ -873,6 +876,22 @@
                 //                [self performSelector:@selector(dismiss_BT)
                 //                           withObject:nil
                 //                           afterDelay:0.0];
+//                NSLog(@"Payment type = %@",result);
+//                [[NSUserDefaults standardUserDefaults] setValue:result.paymentMethod.type forKey:@"paymentTYPE"];
+//                [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                STR_payment_mode *payment_mode = [STR_payment_mode PaymentTYPE];
+                NSString *switch_STAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
+                
+                if(total != 0.00 && [switch_STAT isEqualToString:@"SWITCH_ON"])
+                {
+                    payment_mode.STR_paymentTYPE = [NSString stringWithFormat:@"Wallet & %@",result.paymentMethod.type];
+                }
+                else
+                {
+                    payment_mode.STR_paymentTYPE = result.paymentMethod.type;
+                }
+                
                 [self postNonceToServer:result.paymentMethod.nonce];
                 [self dismissViewControllerAnimated:YES completion:NULL];
             }

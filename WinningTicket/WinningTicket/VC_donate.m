@@ -13,6 +13,7 @@
 //#import "DejalActivityView.h"
 
 #import "ViewController.h"
+#import "STR_payment_mode.h"
 
 @interface VC_donate ()<UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate,UITextViewDelegate,BTViewControllerPresentingDelegate>
 {
@@ -1481,11 +1482,7 @@
     NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
     NSDictionary *parameters;
     
-    NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
-    [fmt setPositiveFormat:@"0.##"];
-    float Float_amt = [[fmt numberFromString:_TXT_getamount.text] floatValue];
-    
-    if ([_SWITCH_wallet isOn] && (Float_amt != 0)) {
+    if ([_SWITCH_wallet isOn] && (number_amount != 0)) {
         parameters = @{ @"billing_address":@{@"first_name":fname,@"last_name":lastName,@"address_line1":address1,@"address_line2":address2,@"city":city,@"country":contry_Code,@"zip_code":zip,@"state":state_code,@"phone":phonenumber},@"event_id":number_eventID,@"price":number_amount,@"fund_amount":@"yes"};
     }
     else
@@ -1516,6 +1513,7 @@
         NSMutableDictionary *json_DATA_one = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
         NSLog(@"Data from Donate VC:%@",json_DATA_one);
         
+        
         @try
         {
             NSString *STR_error = [json_DATA_one valueForKey:@"error"];
@@ -1542,7 +1540,10 @@
                     if ([_SWITCH_wallet isOn] && (Float_wallet_val > Float_amt)) {
                         VW_overlay.hidden = NO;
                         [activityIndicatorView startAnimating];
+                        STR_payment_mode *payment_mode = [STR_payment_mode PaymentTYPE];
+                        payment_mode.STR_paymentTYPE = @"Wallet";
                         [self performSelector:@selector(create_payment) withObject:activityIndicatorView afterDelay:0.01];
+//                        [self performSelector:@selector(billing_Address) withObject:activityIndicatorView afterDelay:0.01];
                     }
                     else
                     {
@@ -1570,6 +1571,76 @@
         [alert show];
     }
 }
+
+-(void) billing_Address
+{
+    // [self dismissViewControllerAnimated:YES completion:NULL];
+    
+    NSString *fname = _TXT_firstname.text;
+    NSString *lastName= _TXT_lastname.text;
+    NSString *address1 = _TXT_address1.text;
+    NSString *address2 = _TXT_address2.text;
+    NSString *city = _TXT_city.text;
+    NSString *country = _TXT_country.text;
+    NSString *zip = _TXT_zip.text;
+    NSString *state = _TXT_state.text;
+    NSString *phonenumber = _TXT_phonenumber.text;
+    
+    NSString *contry_Code = [countryS valueForKey:country];
+    NSString *state_code = [states valueForKey:state];
+    if (!state_code) {
+        state_code = @"";
+    }
+    
+    NSString *amount = _TXT_getamount.text;
+    amount = [amount stringByReplacingOccurrencesOfString:@"," withString:@""];
+    NSString *eventid=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"event_id_donate"]];
+    
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *number_amount = [f numberFromString:amount];
+    NSNumber *number_eventID = [f numberFromString:eventid];
+    
+    NSError *error;
+    NSHTTPURLResponse *response = nil;
+    NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+    NSDictionary *parameters;
+    
+    
+    if ([_SWITCH_wallet isOn] && (number_amount != 0)) {
+        parameters = @{ @"billing_address":@{@"first_name":fname,@"last_name":lastName,@"address_line1":address1,@"address_line2":address2,@"city":city,@"country":contry_Code,@"zip_code":zip,@"state":state_code,@"phone":phonenumber},@"event_id":number_eventID,@"price":number_amount,@"fund_amount":@"yes"};
+    }
+    else
+    {
+        parameters = @{ @"billing_address":@{@"first_name":fname,@"last_name":lastName,@"address_line1":address1,@"address_line2":address2,@"city":city,@"country":contry_Code,@"zip_code":zip,@"state":state_code,@"phone":phonenumber},@"event_id":number_eventID,@"price":number_amount};
+    }
+    
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
+    NSString *urlGetuser =[NSString stringWithFormat:@"%@events/billing_address",SERVER_URL];
+    NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:urlProducts];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setHTTPBody:postData];
+    [request setHTTPShouldHandleCookies:NO];
+    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if (aData)
+    {
+        [self create_payment];
+    }
+    else
+    {
+        [activityIndicatorView stopAnimating];
+        VW_overlay.hidden = YES;
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Error" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [alert show];
+    }
+}
+
+
+
 
 
 
@@ -1660,6 +1731,28 @@
                             //                    [self performSelector:@selector(dismiss_BT)
                             //                               withObject:nil
                             //                               afterDelay:1.0];
+                            
+//                            [[NSUserDefaults standardUserDefaults] setValue:result.paymentMethod.type forKey:@"paymentTYPE"];
+//                            [[NSUserDefaults standardUserDefaults] synchronize];
+                            
+                            STR_payment_mode *payment_mode = [STR_payment_mode PaymentTYPE];
+                            
+                            NSString *amount = _TXT_getamount.text;
+                            amount = [amount stringByReplacingOccurrencesOfString:@"," withString:@""];
+                            
+                            NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+                            f.numberStyle = NSNumberFormatterDecimalStyle;
+                            NSNumber *number_amount = [f numberFromString:amount];
+                            
+                            if(number_amount != 0 && [_SWITCH_wallet isOn])
+                            {
+                                payment_mode.STR_paymentTYPE = [NSString stringWithFormat:@"Wallet & %@",result.paymentMethod.type];
+                            }
+                            else
+                            {
+                                payment_mode.STR_paymentTYPE = result.paymentMethod.type;
+                            }
+                            
                             [self postNonceToServer:result.paymentMethod.nonce];
                             [self dismissViewControllerAnimated:YES completion:NULL];
                         }
@@ -1731,8 +1824,13 @@
     NSHTTPURLResponse *response = nil;
     NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
     NSString *naunce_STR = [[NSUserDefaults standardUserDefaults] valueForKey:@"NAUNCETOK"];
-    NSDictionary *parameters = @{ @"nonce":naunce_STR};
-    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
+    
+    NSArray *ARR_tmp = [_LBLwallet_balence.text componentsSeparatedByString:@"$"];
+    NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+    [fmt setPositiveFormat:@"0.##"];
+    float Float_amt = [[fmt numberFromString:_TXT_getamount.text] floatValue];
+    float Float_wallet_val = [[NSNumber numberWithFloat:[[ARR_tmp objectAtIndex:[ARR_tmp count]-1] floatValue]] floatValue];
+    
     NSString *urlGetuser =[NSString stringWithFormat:@"%@payments/create",SERVER_URL];
     NSLog(@"The url iS:%@",urlGetuser);
     
@@ -1744,26 +1842,38 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
     
-    NSArray *ARR_tmp = [_LBLwallet_balence.text componentsSeparatedByString:@"$"];
-    NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
-    [fmt setPositiveFormat:@"0.##"];
-    float Float_amt = [[fmt numberFromString:_TXT_getamount.text] floatValue];
-    float Float_wallet_val = [[NSNumber numberWithFloat:[[ARR_tmp objectAtIndex:[ARR_tmp count]-1] floatValue]] floatValue];
+   
     
-    if ([_SWITCH_wallet isOn]) {
+   /* if ([_SWITCH_wallet isOn]) {
     
         if (Float_wallet_val < Float_amt) {
             [request setHTTPBody:postData];
         }
 
+    }*/
+//    else
+//    {
+//        [request setHTTPBody:postData];
+//    }
+    
+    if ([_SWITCH_wallet isOn] && (Float_wallet_val > Float_amt))
+    {
+        NSDictionary *parameters = @{ @"nonce":@""};
+        NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
+        [request setHTTPBody:postData];
+    }
+    else if ([_SWITCH_wallet isOn] && (Float_wallet_val < Float_amt) && (Float_wallet_val != 0.00))
+    {
+        NSDictionary *parameters = @{ @"nonce":naunce_STR};
+        NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
+        [request setHTTPBody:postData];
     }
     else
     {
+        NSDictionary *parameters = @{ @"nonce":naunce_STR};
+        NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
         [request setHTTPBody:postData];
     }
-    
-    
-    
     
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -1772,6 +1882,7 @@
         [activityIndicatorView stopAnimating];
         VW_overlay.hidden = YES;
         NSMutableDictionary *json_DATA_one = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
+        
         
 //        @try
 //        {
@@ -1786,7 +1897,7 @@
                 NSLog(@"Final Payment data : \n%@",json_DATA_one);
                 if([str isEqualToString:@"Failure"])
                 {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:[json_DATA_one valueForKey:@"message"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Failed to create payment" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
                     [alert show];
                     
                 }
