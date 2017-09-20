@@ -1531,13 +1531,19 @@
                     [[NSUserDefaults standardUserDefaults] setObject:json_DATA_one forKey:@"donate_Deatils"];
                     [[NSUserDefaults standardUserDefaults]synchronize];
                     
-                    NSArray *ARR_tmp = [_LBLwallet_balence.text componentsSeparatedByString:@"$"];
-                    NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
-                    [fmt setPositiveFormat:@"0.##"];
-                    float Float_amt = [[fmt numberFromString:_TXT_getamount.text] floatValue];
-                    float Float_wallet_val = [[NSNumber numberWithFloat:[[ARR_tmp objectAtIndex:[ARR_tmp count]-1] floatValue]] floatValue];
                     
-                    if ([_SWITCH_wallet isOn] && (Float_wallet_val > Float_amt)) {
+                    
+                    NSArray *ARR_tmp = [_LBLwallet_balence.text componentsSeparatedByString:@"$"];
+                    NSNumberFormatter *f1 = [[NSNumberFormatter alloc] init];
+                    f1.numberStyle = NSNumberFormatterDecimalStyle;
+                    NSNumber *wallet_val = [f1 numberFromString:[NSString stringWithFormat:@"%@",[ARR_tmp objectAtIndex:[ARR_tmp count]-1]]];
+                                               
+//                    NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+//                    [fmt setPositiveFormat:@"0.##"];
+//                    float Float_amt = [[fmt numberFromString:_TXT_getamount.text] floatValue];
+//                    float Float_wallet_val = [[NSNumber numberWithFloat: floatValue]] floatValue];
+                    
+                    if ([_SWITCH_wallet isOn] && (wallet_val > number_amount)) {
                         VW_overlay.hidden = NO;
                         [activityIndicatorView startAnimating];
                         STR_payment_mode *payment_mode = [STR_payment_mode PaymentTYPE];
