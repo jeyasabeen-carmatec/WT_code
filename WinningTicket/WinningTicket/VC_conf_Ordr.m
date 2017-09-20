@@ -892,10 +892,15 @@
     
     
 }
--(void)checkout_action
+-(void) checkout_action
 {
-    [self performSegueWithIdentifier:@"auction_checkout_to_auction_biling" sender:self];
+    
+    
+[self performSegueWithIdentifier:@"auction_checkout_to_auction_biling" sender:self];
+    
 }
+
+
 
 
 #pragma mark - Session OUT

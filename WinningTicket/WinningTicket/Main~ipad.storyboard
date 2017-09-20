@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" colorMatched="YES" initialViewController="2gX-Fs-HNE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" colorMatched="YES" initialViewController="2gX-Fs-HNE">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -2530,7 +2530,7 @@ Team1</string>
                                         <rect key="frame" x="0.0" y="28" width="768" height="117"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e1A-3E-1Mk" id="hKj-fQ-7x2">
-                                            <rect key="frame" x="0.0" y="0.0" width="768" height="117"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="116.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="HD4-cg-qgb">
@@ -2679,10 +2679,10 @@ Team1</string>
                             <nil key="highlightedColor"/>
                             <size key="shadowOffset" width="0.0" height="0.0"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumFontSize="8" id="bbC-pl-5XD">
-                            <rect key="frame" x="20" y="660" width="750" height="31"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="8" id="bbC-pl-5XD">
+                            <rect key="frame" x="20" y="659" width="750" height="31"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="20"/>
+                            <fontDescription key="fontDescription" name="GothamMedium" family="GothamMedium" pointSize="20"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                             <size key="shadowOffset" width="0.0" height="0.0"/>
@@ -2747,7 +2747,7 @@ Team1</string>
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </collectionViewFlowLayout>
                             <cells>
-                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellIdentifier" id="Dgn-dY-Cnb">
+                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellIdentifier" id="Dgn-dY-Cnb" customClass="similar_collectioncell">
                                     <rect key="frame" x="0.0" y="4" width="350" height="483"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -2758,15 +2758,15 @@ Team1</string>
                                                 <rect key="frame" x="0.0" y="0.0" width="350" height="295"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label abelLabelLabel Label abelLabelLabel Label abelLabelLabel Label abelLabelLabel Label abelLabelLabel Label abelLabelLabel " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fYs-te-4Dd">
-                                                <rect key="frame" x="8" y="306" width="334" height="67"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label abelLabelLabel Label abelLabelLabel Label abelLabelLabel Label abelLabelLabel Label abelLabelLabel Label abelLabelLabel " textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" id="fYs-te-4Dd">
+                                                <rect key="frame" x="8" y="306" width="334" height="89"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mc4-6G-u23">
-                                                <rect key="frame" x="8" y="384" width="334" height="79"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" id="Mc4-6G-u23">
+                                                <rect key="frame" x="8" y="368" width="334" height="80"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="GothamMedium" family="GothamMedium" pointSize="26"/>
                                                 <nil key="textColor"/>
@@ -2774,6 +2774,11 @@ Team1</string>
                                             </label>
                                         </subviews>
                                     </view>
+                                    <connections>
+                                        <outlet property="IMG_similar" destination="e9q-by-w5e" id="YsN-Z5-h5J"/>
+                                        <outlet property="LBl_item_name" destination="fYs-te-4Dd" id="lXr-fW-IU4"/>
+                                        <outlet property="price" destination="Mc4-6G-u23" id="8IC-6m-y6A"/>
+                                    </connections>
                                 </collectionViewCell>
                             </cells>
                             <connections>
@@ -3672,7 +3677,6 @@ Team1</string>
                                             <rect key="frame" x="639" y="25" width="122" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="23"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" misplaced="YES" id="IGR-N3-mdv">
