@@ -127,7 +127,7 @@
                 
                 NSString *des = [[dict valueForKey:@"name"] capitalizedString];
                 NSString *code = [NSString stringWithFormat:@"%@",[dict valueForKey:@"code"]];
-                NSString *text = [NSString stringWithFormat:@"%@\n%@",code,des];
+                NSString *text = [NSString stringWithFormat:@"%@ - %@",code,des];
                 NSDictionary *attribs = @{
                                           NSForegroundColorAttributeName:[UIColor darkGrayColor],
                                           NSFontAttributeName: [UIFont fontWithName:@"Gotham-Book" size:17]
@@ -152,16 +152,16 @@
                 [self.des_cription sizeToFit];
                 
                 frame_rect = _des_cription.frame;
-                
+                NSString *amount = [[NSUserDefaults standardUserDefaults] valueForKey:@"price"];
                 
                 frame_rect.origin.y = _name_ticket.frame.origin.y + _name_ticket.frame.size.height + 5;
                 frame_rect.size.width = orginal_width;
                 _des_cription.frame = frame_rect;
                 
-                _amount.text = [NSString stringWithFormat:@"$%.2f",[[dict valueForKey:@"price"] floatValue]];
+                _amount.text = [NSString stringWithFormat:@"$%.2f",[amount floatValue]];
                 
                 frame_rect = _amount.frame;
-                frame_rect.origin.y = _name_ticket.frame.origin.y + _name_ticket.frame.size.height + 10;
+                frame_rect.origin.y = _name_ticket.frame.origin.y  + 10;
                 _amount.frame = frame_rect;
                 
                 frame_rect = _pur_view.frame;
@@ -172,7 +172,7 @@
                 frame_rect.origin.y = _pur_view.frame.origin.y + _pur_view.frame.size.height + 5;
                 _sub_total.frame = frame_rect;
                 
-                _sub_amount.text = [NSString stringWithFormat:@"$%.2f",[[dict valueForKey:@"price"] floatValue]];
+                _sub_amount.text = [NSString stringWithFormat:@"$%.2f",[amount floatValue]];
                 frame_rect = _sub_amount.frame;
                 frame_rect.origin.y = _pur_view.frame.origin.y + _pur_view.frame.size.height + 5;
                 _sub_amount.frame = frame_rect;
@@ -185,7 +185,7 @@
                 frame_rect.origin.y = _sec_vw.frame.origin.y + _sec_vw.frame.size.height + 5;
                 _total.frame = frame_rect;
                 
-                _total_amount.text = [NSString stringWithFormat:@"$%.2f",[[dict valueForKey:@"price"] floatValue]];
+                _total_amount.text = [NSString stringWithFormat:@"$%.2f",[amount floatValue]];
                 frame_rect = _total_amount.frame;
                 frame_rect.origin.y = _sec_vw.frame.origin.y + _sec_vw.frame.size.height + 5;
                 _total_amount.frame = frame_rect;
