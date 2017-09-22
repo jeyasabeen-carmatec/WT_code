@@ -144,7 +144,8 @@
 //                                                      cancelButtonTitle:@"OK"
 //                                                      otherButtonTitles:nil];
 //                [alert show];
-        [self performSegueWithIdentifier:@"start_score_segue" sender:self];
+//        [self performSegueWithIdentifier:@"start_score_segue" sender:self];
+        [self performSegueWithIdentifier:@"enter_GAME" sender:self];
 
     }
 }

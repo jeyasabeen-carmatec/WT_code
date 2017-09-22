@@ -55,6 +55,8 @@ typedef enum {
 @property (nonatomic, strong) NSArray *sectionImages;
 @property (nonatomic, strong) NSArray *sectionSelectedImages;
 
+@property (nonatomic, readwrite) NSArray *segmentWidthsArray;
+
 /**
  Provide a block to be executed when selected index is changed.
  
