@@ -571,8 +571,11 @@
     NSHTTPURLResponse *response = nil;
     
     NSMutableDictionary *temp_resp = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"CHKOUTDETAIL"] options:NSASCIIStringEncoding error:&error];
+    [[NSUserDefaults standardUserDefaults] setValue:[temp_resp valueForKey:@"price"] forKey:@"price"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     float total = [[temp_resp valueForKey:@"price"] floatValue];
+    
     NSString *a = [NSString stringWithFormat:@"%.2f", total];
     
     NSString *nanunce = [[NSUserDefaults standardUserDefaults] valueForKey:@"NAUNCETOK"];
@@ -632,11 +635,11 @@
                     }
                     else
                     {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Payment successful" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-                        [alert show];
-                        [self.navigationController popToRootViewControllerAnimated:YES];
+//                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Payment successful" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+//                        [alert show];
+//                        [self.navigationController popToRootViewControllerAnimated:YES];
 
-                     //  [self performSegueWithIdentifier:@"place_order_to_purchse" sender:self];
+                       [self performSegueWithIdentifier:@"place_order_to_purchse" sender:self];
                     }
                 }
             }
