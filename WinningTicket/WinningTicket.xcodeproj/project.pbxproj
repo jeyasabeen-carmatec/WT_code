@@ -19,6 +19,7 @@
 		BE20AD5D1F31957D002C166B /* TXT_clear_BTN.m in Sources */ = {isa = PBXBuildFile; fileRef = BE20AD5C1F31957D002C166B /* TXT_clear_BTN.m */; };
 		BE20AD611F31F8BE002C166B /* VC_transDeatail.m in Sources */ = {isa = PBXBuildFile; fileRef = BE20AD601F31F8BE002C166B /* VC_transDeatail.m */; };
 		BE20AD6A1F348339002C166B /* NEWCurrencyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BE20AD691F348339002C166B /* NEWCurrencyTextField.m */; };
+		BE2DC75E1F6FD6170097443E /* STR_payment_mode.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2DC75D1F6FD6170097443E /* STR_payment_mode.m */; };
 		BE3721E91F177327001DA70A /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3721E81F177327001DA70A /* HMSegmentedControl.m */; };
 		BE3721ED1F17920A001DA70A /* Course_tblCELL.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3721EB1F17920A001DA70A /* Course_tblCELL.swift */; };
 		BE3721EE1F17920A001DA70A /* Course_tblCELL.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE3721EC1F17920A001DA70A /* Course_tblCELL.xib */; };
@@ -305,6 +306,8 @@
 		BE20AD601F31F8BE002C166B /* VC_transDeatail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VC_transDeatail.m; sourceTree = "<group>"; };
 		BE20AD681F348339002C166B /* NEWCurrencyTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NEWCurrencyTextField.h; sourceTree = "<group>"; };
 		BE20AD691F348339002C166B /* NEWCurrencyTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NEWCurrencyTextField.m; sourceTree = "<group>"; };
+		BE2DC75C1F6FD6170097443E /* STR_payment_mode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STR_payment_mode.h; sourceTree = "<group>"; };
+		BE2DC75D1F6FD6170097443E /* STR_payment_mode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STR_payment_mode.m; sourceTree = "<group>"; };
 		BE3721E71F177327001DA70A /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
 		BE3721E81F177327001DA70A /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
 		BE3721EB1F17920A001DA70A /* Course_tblCELL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course_tblCELL.swift; sourceTree = "<group>"; };
@@ -713,6 +716,15 @@
 				BE20AD601F31F8BE002C166B /* VC_transDeatail.m */,
 			);
 			name = TransactionDeatail;
+			sourceTree = "<group>";
+		};
+		BE2DC75B1F6FD58E0097443E /* SingleTON_PaymentStat */ = {
+			isa = PBXGroup;
+			children = (
+				BE2DC75C1F6FD6170097443E /* STR_payment_mode.h */,
+				BE2DC75D1F6FD6170097443E /* STR_payment_mode.m */,
+			);
+			name = SingleTON_PaymentStat;
 			sourceTree = "<group>";
 		};
 		BE3721BA1F175CD5001DA70A /* CustomSegmentedControl */ = {
@@ -1521,6 +1533,7 @@
 				BE0055D21EC2DA1100E95941 /* ViewController.m */,
 				BE37FC361F596C7F0070EBB7 /* Main.storyboard */,
 				BEB745471F44290100C39359 /* Main~ipad.storyboard */,
+				BE2DC75B1F6FD58E0097443E /* SingleTON_PaymentStat */,
 				BED71F861EEA8C5000492E97 /* Swift_codes */,
 				BED71F2C1EE7CB4400492E97 /* Required_IMG */,
 				BEC548631EA719A100FF2114 /* Affiliate */,
@@ -2107,6 +2120,7 @@
 				BEC548621EA4D9A500FF2114 /* auction_CellTableViewCell.m in Sources */,
 				BEE6C3981F386C0D0001F00A /* ALScrollViewPaging.m in Sources */,
 				BEA875B81E8CE01000EFBB7F /* cellACCOUNTS.m in Sources */,
+				BE2DC75E1F6FD6170097443E /* STR_payment_mode.m in Sources */,
 				BED71F6D1EE91FED00492E97 /* UIImage+GIF.m in Sources */,
 				BE37FC541F5E70210070EBB7 /* VC_biddingHistory.m in Sources */,
 				BEB49E171F3B1A240087E5BE /* VC_billingAddr.m in Sources */,

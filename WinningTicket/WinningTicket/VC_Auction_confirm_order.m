@@ -11,6 +11,7 @@
 //#import "DGActivityIndicatorView.h"
 
 #import "ViewController.h"
+#import "STR_payment_mode.h"
 
 #pragma mark - Image Cache
 #import "SDWebImage/UIImageView+WebCache.h"
@@ -304,8 +305,7 @@
             frame_rect.origin.y = _lbl_address.frame.origin.y + _lbl_address.frame.size.height + 10;
             _lbl_titl_payment_info.frame = frame_rect;
             
-            
-            _lbl_data_payment_info.text = @"Credit / Debit Card";
+            _lbl_data_payment_info.text = [STR_payment_mode PaymentTYPE].STR_paymentTYPE;//[[NSUserDefaults standardUserDefaults] valueForKey:@"paymentTYPE"];// @"Credit / Debit Card";
             frame_rect = _lbl_data_payment_info.frame;
             frame_rect.origin.y = _lbl_titl_payment_info.frame.origin.y + _lbl_titl_payment_info.frame.size.height + 10;
             _lbl_data_payment_info.frame = frame_rect;
@@ -571,8 +571,11 @@
     NSHTTPURLResponse *response = nil;
     
     NSMutableDictionary *temp_resp = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"CHKOUTDETAIL"] options:NSASCIIStringEncoding error:&error];
+    [[NSUserDefaults standardUserDefaults] setValue:[temp_resp valueForKey:@"price"] forKey:@"price"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     float total = [[temp_resp valueForKey:@"price"] floatValue];
+    
     NSString *a = [NSString stringWithFormat:@"%.2f", total];
     
     NSString *nanunce = [[NSUserDefaults standardUserDefaults] valueForKey:@"NAUNCETOK"];
@@ -632,11 +635,11 @@
                     }
                     else
                     {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Payment successful" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-                        [alert show];
-                        [self.navigationController popToRootViewControllerAnimated:YES];
+//                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Payment successful" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+//                        [alert show];
+//                        [self.navigationController popToRootViewControllerAnimated:YES];
 
-                     //  [self performSegueWithIdentifier:@"place_order_to_purchse" sender:self];
+                       [self performSegueWithIdentifier:@"place_order_to_purchse" sender:self];
                     }
                 }
             }
