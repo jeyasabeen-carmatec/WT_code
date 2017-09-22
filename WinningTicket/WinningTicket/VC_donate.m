@@ -1543,13 +1543,13 @@
 //                    float Float_amt = [[fmt numberFromString:_TXT_getamount.text] floatValue];
 //                    float Float_wallet_val = [[NSNumber numberWithFloat: floatValue]] floatValue];
                     
-                    if ([_SWITCH_wallet isOn] && (wallet_val > number_amount)) {
+                    if ([_SWITCH_wallet isOn] && ([wallet_val doubleValue] > [number_amount doubleValue])) {
                         VW_overlay.hidden = NO;
                         [activityIndicatorView startAnimating];
                         STR_payment_mode *payment_mode = [STR_payment_mode PaymentTYPE];
                         payment_mode.STR_paymentTYPE = @"Wallet";
-                        [self performSelector:@selector(create_payment) withObject:activityIndicatorView afterDelay:0.01];
-//                        [self performSelector:@selector(billing_Address) withObject:activityIndicatorView afterDelay:0.01];
+//                        [self performSelector:@selector(create_payment) withObject:activityIndicatorView afterDelay:0.01];
+                        [self performSelector:@selector(billing_Address) withObject:activityIndicatorView afterDelay:0.01];
                     }
                     else
                     {
@@ -1831,11 +1831,11 @@
     NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
     NSString *naunce_STR = [[NSUserDefaults standardUserDefaults] valueForKey:@"NAUNCETOK"];
     
-    NSArray *ARR_tmp = [_LBLwallet_balence.text componentsSeparatedByString:@"$"];
-    NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
-    [fmt setPositiveFormat:@"0.##"];
-    float Float_amt = [[fmt numberFromString:_TXT_getamount.text] floatValue];
-    float Float_wallet_val = [[NSNumber numberWithFloat:[[ARR_tmp objectAtIndex:[ARR_tmp count]-1] floatValue]] floatValue];
+//    NSArray *ARR_tmp = [_LBLwallet_balence.text componentsSeparatedByString:@"$"];
+//    NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+//    [fmt setPositiveFormat:@"0.##"];
+//    float Float_amt = [[fmt numberFromString:_TXT_getamount.text] floatValue];
+//    float Float_wallet_val = [[NSNumber numberWithFloat:[[ARR_tmp objectAtIndex:[ARR_tmp count]-1] floatValue]] floatValue];
     
     NSString *urlGetuser =[NSString stringWithFormat:@"%@payments/create",SERVER_URL];
     NSLog(@"The url iS:%@",urlGetuser);
@@ -1862,13 +1862,31 @@
 //        [request setHTTPBody:postData];
 //    }
     
-    if ([_SWITCH_wallet isOn] && (Float_wallet_val > Float_amt))
+    NSString *amount = _TXT_getamount.text;
+    amount = [amount stringByReplacingOccurrencesOfString:@"," withString:@""];
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    [f setPositiveFormat:@"0.##"];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *number_amount = [f numberFromString:amount];
+    
+    NSArray *ARR_tmp = [_LBLwallet_balence.text componentsSeparatedByString:@"$"];
+    NSNumberFormatter *f1 = [[NSNumberFormatter alloc] init];
+    [f1 setPositiveFormat:@"0.##"];
+    f1.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *wallet_val = [f1 numberFromString:[NSString stringWithFormat:@"%@",[ARR_tmp objectAtIndex:[ARR_tmp count]-1]]];
+    
+    //                    NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+    //                    [fmt setPositiveFormat:@"0.##"];
+    //                    float Float_amt = [[fmt numberFromString:_TXT_getamount.text] floatValue];
+    //                    float Float_wallet_val = [[NSNumber numberWithFloat: floatValue]] floatValue];
+    
+    if ([_SWITCH_wallet isOn] && ([wallet_val doubleValue] > [number_amount doubleValue]))
     {
         NSDictionary *parameters = @{ @"nonce":@""};
         NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
         [request setHTTPBody:postData];
     }
-    else if ([_SWITCH_wallet isOn] && (Float_wallet_val < Float_amt) && (Float_wallet_val != 0.00))
+    else if ([_SWITCH_wallet isOn] && ([wallet_val doubleValue] < [number_amount doubleValue]) && (number_amount != 0))
     {
         NSDictionary *parameters = @{ @"nonce":naunce_STR};
         NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
@@ -1999,7 +2017,8 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
         
         VW_overlay.hidden = NO;
         [activityIndicatorView startAnimating];
-        [self performSelector:@selector(create_payment) withObject:activityIndicatorView afterDelay:0.01];
+        [self performSelector:@selector(billing_Address) withObject:activityIndicatorView afterDelay:0.01];
+//        [self performSelector:@selector(create_payment) withObject:activityIndicatorView afterDelay:0.01];
     }
     else
     {
