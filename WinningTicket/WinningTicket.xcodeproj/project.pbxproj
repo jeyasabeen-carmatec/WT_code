@@ -239,6 +239,12 @@
 		BED71F941EEABC7D00492E97 /* gotham-pro-medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = BED71F931EEABC7D00492E97 /* gotham-pro-medium.otf */; };
 		BED71F971EEABFEB00492E97 /* CSTM_cell_LBL.m in Sources */ = {isa = PBXBuildFile; fileRef = BED71F961EEABFEB00492E97 /* CSTM_cell_LBL.m */; };
 		BED71F9B1EEACF0700492E97 /* TBL_VW_Cell_EVENTS.xib in Resources */ = {isa = PBXBuildFile; fileRef = BED71F9A1EEACF0700492E97 /* TBL_VW_Cell_EVENTS.xib */; };
+		BEE643AD1F753694006D28FD /* Score_cell1.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE643AB1F753694006D28FD /* Score_cell1.m */; };
+		BEE643AE1F753694006D28FD /* Score_cell1.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEE643AC1F753694006D28FD /* Score_cell1.xib */; };
+		BEE643B31F7536C8006D28FD /* Score_cell1~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEE643B11F7536C8006D28FD /* Score_cell1~iPad.xib */; };
+		BEE643B71F79168D006D28FD /* ScoreCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE643B51F79168D006D28FD /* ScoreCell2.m */; };
+		BEE643B81F79168D006D28FD /* ScoreCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEE643B61F79168D006D28FD /* ScoreCell2.xib */; };
+		BEE643BD1F7916AF006D28FD /* ScoreCell2~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEE643BB1F7916AF006D28FD /* ScoreCell2~iPad.xib */; };
 		BEE6C3941F386BBF0001F00A /* LIve_scoring_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE6C3931F386BBE0001F00A /* LIve_scoring_VC.m */; };
 		BEE6C3981F386C0D0001F00A /* ALScrollViewPaging.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE6C3971F386C0D0001F00A /* ALScrollViewPaging.m */; };
 		BEE6C39B1F386CC80001F00A /* VC_initial_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE6C39A1F386CC80001F00A /* VC_initial_VC.m */; };
@@ -632,6 +638,14 @@
 		BED71F951EEABFEB00492E97 /* CSTM_cell_LBL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSTM_cell_LBL.h; sourceTree = "<group>"; };
 		BED71F961EEABFEB00492E97 /* CSTM_cell_LBL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSTM_cell_LBL.m; sourceTree = "<group>"; };
 		BED71F9A1EEACF0700492E97 /* TBL_VW_Cell_EVENTS.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TBL_VW_Cell_EVENTS.xib; sourceTree = "<group>"; };
+		BEE643AA1F753694006D28FD /* Score_cell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score_cell1.h; sourceTree = "<group>"; };
+		BEE643AB1F753694006D28FD /* Score_cell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score_cell1.m; sourceTree = "<group>"; };
+		BEE643AC1F753694006D28FD /* Score_cell1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Score_cell1.xib; sourceTree = "<group>"; };
+		BEE643B11F7536C8006D28FD /* Score_cell1~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Score_cell1~iPad.xib"; sourceTree = "<group>"; };
+		BEE643B41F79168D006D28FD /* ScoreCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreCell2.h; sourceTree = "<group>"; };
+		BEE643B51F79168D006D28FD /* ScoreCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreCell2.m; sourceTree = "<group>"; };
+		BEE643B61F79168D006D28FD /* ScoreCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoreCell2.xib; sourceTree = "<group>"; };
+		BEE643BB1F7916AF006D28FD /* ScoreCell2~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ScoreCell2~iPad.xib"; sourceTree = "<group>"; };
 		BEE6657F1E5D90EC00DF9235 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BEE665811E5D90EC00DF9235 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BEE665821E5D90EC00DF9235 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -733,6 +747,7 @@
 		BE2DC7611F7290C40097443E /* ScoreBoard */ = {
 			isa = PBXGroup;
 			children = (
+				BEE643A41F753528006D28FD /* Custom_cell_scoreboard */,
 				BE2DC7621F7291210097443E /* VC_scoreBoard.h */,
 				BE2DC7631F7291210097443E /* VC_scoreBoard.m */,
 			);
@@ -1484,6 +1499,21 @@
 			name = Swift_codes;
 			sourceTree = "<group>";
 		};
+		BEE643A41F753528006D28FD /* Custom_cell_scoreboard */ = {
+			isa = PBXGroup;
+			children = (
+				BEE643AA1F753694006D28FD /* Score_cell1.h */,
+				BEE643AB1F753694006D28FD /* Score_cell1.m */,
+				BEE643AC1F753694006D28FD /* Score_cell1.xib */,
+				BEE643B11F7536C8006D28FD /* Score_cell1~iPad.xib */,
+				BEE643B41F79168D006D28FD /* ScoreCell2.h */,
+				BEE643B51F79168D006D28FD /* ScoreCell2.m */,
+				BEE643B61F79168D006D28FD /* ScoreCell2.xib */,
+				BEE643BB1F7916AF006D28FD /* ScoreCell2~iPad.xib */,
+			);
+			name = Custom_cell_scoreboard;
+			sourceTree = "<group>";
+		};
 		BEE665721E5D90EB00DF9235 = {
 			isa = PBXGroup;
 			children = (
@@ -1891,6 +1921,7 @@
 				BEFC20631F0619290067717D /* Montserrat-Medium.ttf in Resources */,
 				BECD7C931EF142A70037A968 /* gotham-light-italic.otf in Resources */,
 				BEFCD31B1F1C93860005D82D /* courseCollectionCELL.xib in Resources */,
+				BEE643B31F7536C8006D28FD /* Score_cell1~iPad.xib in Resources */,
 				BEA875D41E8CEB5A00EFBB7F /* sec1_0.png in Resources */,
 				BE3721F61F179287001DA70A /* Course_tblCELL~iPad.xib in Resources */,
 				BEA875F01E8D0C2600EFBB7F /* GothamMedium Regular.otf in Resources */,
@@ -1901,6 +1932,7 @@
 				BE37FC4A1F5E6F430070EBB7 /* Bidding _history~ipad.xib in Resources */,
 				BEFC20681F0619290067717D /* Montserrat-Thin.ttf in Resources */,
 				BEB702F61ECEE6CB004CB729 /* blueArrow@2x.png in Resources */,
+				BEE643BD1F7916AF006D28FD /* ScoreCell2~iPad.xib in Resources */,
 				BEFC20641F0619290067717D /* Montserrat-MediumItalic.ttf in Resources */,
 				BEFC20601F0619290067717D /* Montserrat-Italic.ttf in Resources */,
 				BEB49DCF1E76B3A900209E63 /* Course-24X24.png in Resources */,
@@ -1913,10 +1945,12 @@
 				BEFC205A1F0619290067717D /* Montserrat-Bold.ttf in Resources */,
 				BE5F8DE61F0E66DF00280683 /* WinningTicket_Universal-Info.plist in Resources */,
 				BE60C1A01EB1CC4000C4B522 /* left_arrow.png in Resources */,
+				BEE643B81F79168D006D28FD /* ScoreCell2.xib in Resources */,
 				BE4EEEBC1ED2AAB9003C1C24 /* dotInactive@2x.png in Resources */,
 				BEFC20581F0619290067717D /* Montserrat-Black.ttf in Resources */,
 				BEA875E71E8D06CA00EFBB7F /* sec0_1.png in Resources */,
 				BE0056061EC44C3600E95941 /* purchase_Cell~iPad.xib in Resources */,
+				BEE643AE1F753694006D28FD /* Score_cell1.xib in Resources */,
 				BEA875D61E8CEB5A00EFBB7F /* sec1_2.png in Resources */,
 				BEFC205D1F0619290067717D /* Montserrat-ExtraBoldItalic.ttf in Resources */,
 				BEB702C51ECDC24C004CB729 /* LaunchScreen.storyboard in Resources */,
@@ -2086,11 +2120,13 @@
 				BEB49E191F3B1AF80087E5BE /* VC_checkoutdetail.m in Sources */,
 				BED71F971EEABFEB00492E97 /* CSTM_cell_LBL.m in Sources */,
 				BEFC203A1EFD34D60067717D /* VC_contactUS.m in Sources */,
+				BEE643AD1F753694006D28FD /* Score_cell1.m in Sources */,
 				BED71F8B1EEA8CEE00492E97 /* cell_EMPTY_val.swift in Sources */,
 				BED71F6F1EE91FED00492E97 /* UIImage+WebP.m in Sources */,
 				BECD7CB81EF404EB0037A968 /* TSCurrencyTextField.m in Sources */,
 				BED71F6A1EE91FED00492E97 /* SDWebImageManager.m in Sources */,
 				BED71F621EE91FED00492E97 /* NSData+ImageContentType.m in Sources */,
+				BEE643B71F79168D006D28FD /* ScoreCell2.m in Sources */,
 				BEB7457E1F4AB2A700C39359 /* VC_score_collection.m in Sources */,
 				BECD7CCB1EF78CF90037A968 /* donate_purchase_VC.m in Sources */,
 				BE812A821E9673A600D58DDA /* similar_collectioncell.m in Sources */,

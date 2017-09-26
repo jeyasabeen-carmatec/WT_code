@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VC_scoreBoard : UIViewController
+@interface VC_scoreBoard : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, retain) IBOutlet UIView *VW_navBAR;
 @property (nonatomic,weak) IBOutlet UILabel *lbl_navTITLE;
 @property (nonatomic,weak) IBOutlet UIButton *BTN_leaveGame;
 
 @property (nonatomic, retain) IBOutlet UIView *VW_segment;
 @property (nonatomic,weak) IBOutlet UIButton *BTN_viewonMAP;
+
+@property (nonatomic, retain) IBOutlet UITableView *TBL_scores;
 
 @end
