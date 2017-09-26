@@ -272,18 +272,52 @@
             
             NSString *STR_Expired = [NSString stringWithFormat:@"%@",[cpy_dict valueForKey:@"is_expired?"]];
             NSString *STR_live = [NSString stringWithFormat:@"%@",[cpy_dict valueForKey:@"is_live?"]];
+//
+//            if ([STR_live isEqualToString:@"0"] && [STR_Expired isEqualToString:@"0"]) {
+//                auc_cell.bid_Lbl.text = @"Starting Bid";
+//                auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
+//            }
+//            else if ([STR_live isEqualToString:@"1"])
+//            {
+//                auc_cell.bid_Lbl.text = @"Current Bid";
+//                @try {
+//                    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"current_bid_amount"] floatValue]];
+//                } @catch (NSException *exception) {
+//                    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
+//                }
+//            }
+//            else
+//            {
+//                auc_cell.bid_Lbl.textColor = [UIColor redColor];
+//                auc_cell.bid_Lbl.text = @"Sold";
+//                
+//                @try {
+//                    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"current_bid_amount"] floatValue]];
+//                } @catch (NSException *exception) {
+//                    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
+//                }
+//            }
+//            
+//            NSString *tmp_bid = [cpy_dict valueForKey:@"current_bid_amount"];
+//            if (!tmp_bid) {
+//                auc_cell.bid_Lbl.text = @"Starting Bid";
+//            }
             
-            if ([STR_live isEqualToString:@"0"] && [STR_Expired isEqualToString:@"0"]) {
+            
+            if ([[NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"bid_count"]] isEqualToString:@"0"] && [STR_live isEqualToString:@"1"]) {
                 auc_cell.bid_Lbl.text = @"Starting Bid";
                 auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
+
             }
-            else if ([STR_live isEqualToString:@"1"])
+            else if (![[NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"bid_count"]] isEqualToString:@"0"] && [STR_live isEqualToString:@"1"])
             {
                 auc_cell.bid_Lbl.text = @"Current Bid";
                 @try {
-                    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"current_bid_amount"] floatValue]];
-                } @catch (NSException *exception) {
-                    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
+                        auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"current_bid_amount"] floatValue]];
+                     }
+                @catch (NSException *exception)
+                {
+                         auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
                 }
             }
             else
@@ -291,18 +325,43 @@
                 auc_cell.bid_Lbl.textColor = [UIColor redColor];
                 auc_cell.bid_Lbl.text = @"Sold";
                 
-                @try {
+                @try
+                {
+                       auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"current_bid_amount"] floatValue]];
+                }
+                @catch (NSException *exception)
+                {
+                        auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
+                }
+            }
+            
+            if ([STR_Expired isEqualToString:@"1"]) {
+                auc_cell.bid_Lbl.textColor = [UIColor redColor];
+                auc_cell.bid_Lbl.text = @"Sold";
+                
+                @try
+                {
                     auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"current_bid_amount"] floatValue]];
-                } @catch (NSException *exception) {
+                }
+                @catch (NSException *exception)
+                {
                     auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
                 }
             }
             
-            NSString *tmp_bid = [cpy_dict valueForKey:@"current_bid_amount"];
-            if (!tmp_bid) {
-                auc_cell.bid_Lbl.text = @"Starting Bid";
+            if ([[cpy_dict objectForKey:@"payment_status"] isEqualToString:@"paid"]) {
+                auc_cell.bid_Lbl.textColor = [UIColor redColor];
+                auc_cell.bid_Lbl.text = @"Sold";
+                
+                @try
+                {
+                    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"current_bid_amount"] floatValue]];
+                }
+                @catch (NSException *exception)
+                {
+                    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
+                }
             }
-            
             
         } @catch (NSException *exception) {
             NSLog(@"Exception %@",exception);
@@ -381,15 +440,36 @@
         NSString *STR_live = [NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"is_live?"]];
         NSString *STR_bidSTAT;
         
-        if ([STR_live isEqualToString:@"0"] && [STR_Expired isEqualToString:@"0"]) {
+//        if ([STR_live isEqualToString:@"0"] && [STR_Expired isEqualToString:@"0"]) {
+//            STR_bidSTAT = @"Starting Bid";
+//        }
+//        else if ([STR_live isEqualToString:@"1"])
+//        {
+//            STR_bidSTAT = @"Current Bid";
+//        }
+//        else
+//        {
+//            STR_bidSTAT = @"Closed";
+//        }
+        
+        
+        if ([[NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"bid_count"]] isEqualToString:@"0"] && [STR_live isEqualToString:@"1"]) {
             STR_bidSTAT = @"Starting Bid";
         }
-        else if ([STR_live isEqualToString:@"1"])
+        else if (![[NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"bid_count"]] isEqualToString:@"0"] && [STR_live isEqualToString:@"1"])
         {
             STR_bidSTAT = @"Current Bid";
         }
         else
         {
+            STR_bidSTAT = @"Closed";
+        }
+        
+        if ([STR_Expired isEqualToString:@"1"]) {
+            STR_bidSTAT = @"Closed";
+        }
+        
+        if ([[cpy_dict objectForKey:@"payment_status"] isEqualToString:@"paid"]) {
             STR_bidSTAT = @"Closed";
         }
         

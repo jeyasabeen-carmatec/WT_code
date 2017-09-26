@@ -924,8 +924,8 @@
 //    NSHTTPURLResponse *response = nil;
 //    NSError *error;
     
-    NSString *lat_STR = @"26.7307";//[NSString stringWithFormat:@"%f",get_LOC.coordinate.latitude];
-    NSString *long_STR = @"-80.1001";//[NSString stringWithFormat:@"%f",get_LOC.coordinate.longitude];
+    NSString *lat_STR = [NSString stringWithFormat:@"%f",get_LOC.coordinate.latitude]; //@"26.7307";//
+    NSString *long_STR = [NSString stringWithFormat:@"%f",get_LOC.coordinate.longitude]; //@"-80.1001";//
     
     double latitude_val = [[NSString stringWithFormat:@"%@",lat_STR] doubleValue];
     double longitude_val = [[NSString stringWithFormat:@"%@",long_STR] doubleValue];

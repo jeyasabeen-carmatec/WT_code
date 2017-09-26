@@ -97,9 +97,9 @@
 //    [_TXT_courses setRightView:clearButton_courses];
     /*Add clear button in text field*/
     
-    VW_overlay.hidden = NO;
-    [activityIndicatorView startAnimating];
-    [self performSelector:@selector(API_searchbylocation) withObject:activityIndicatorView afterDelay:0.01];
+//    VW_overlay.hidden = NO;
+//    [activityIndicatorView startAnimating];
+//    [self performSelector:@selector(API_searchbylocation) withObject:activityIndicatorView afterDelay:0.01];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -199,15 +199,11 @@
 }
 -(void)buttonClick_places
 {
-    
     _TXT_places.text = @"";
-
-    
 }
 -(void)buttonClick_courses
 {
     _TXT_courses.text = @"";
-
 }
 -(void) API_search_BTN
 {
@@ -255,7 +251,28 @@
         }
         else
         {
-            [self TXT_Place_change];
+//            [self TXT_Place_change];
+            if (string.length == 1 && textField.text.length == 0)
+            {
+                if ([_TXT_courses.text length] == 0)
+                {
+                    NSDictionary *Dictin_temp = [NSDictionary dictionaryWithObjectsAndKeys:_TXT_places.text,@"places",@"",@"courses", nil];
+                    VW_overlay.hidden = NO;
+                    [activityIndicatorView startAnimating];
+                    [self performSelector:@selector(API_autosuggest_location:) withObject:Dictin_temp afterDelay:0.01];
+                }
+                else
+                {
+                    NSDictionary *Dictin_temp = [NSDictionary dictionaryWithObjectsAndKeys:_TXT_places.text,@"places",_TXT_courses.text,@"courses", nil];
+                    VW_overlay.hidden = NO;
+                    [activityIndicatorView startAnimating];
+                    [self performSelector:@selector(API_autosuggest_location:) withObject:Dictin_temp afterDelay:0.01];
+                }
+            }
+            else
+            {
+                [self TXT_Place_change];
+            }
             return YES;
         }
     }
@@ -274,7 +291,28 @@
         }
         else
         {
-            [self TXT_Course_chage];
+//            [self TXT_Course_chage];
+            if (string.length == 1 && textField.text.length == 0)
+            {
+                if ([_TXT_places.text length] == 0)
+                {
+                    NSDictionary *Dictin_temp = [NSDictionary dictionaryWithObjectsAndKeys:@"",@"places",_TXT_courses.text,@"courses", nil];
+                    VW_overlay.hidden = NO;
+                    [activityIndicatorView startAnimating];
+                    [self performSelector:@selector(API_autosuggest_course:) withObject:Dictin_temp afterDelay:0.01];
+                }
+                else
+                {
+                    NSDictionary *Dictin_temp = [NSDictionary dictionaryWithObjectsAndKeys:_TXT_places.text,@"places",_TXT_courses.text,@"courses", nil];
+                    VW_overlay.hidden = NO;
+                    [activityIndicatorView startAnimating];
+                    [self performSelector:@selector(API_autosuggest_course:) withObject:Dictin_temp afterDelay:0.01];
+                }
+            }
+            else
+            {
+                [self TXT_Course_chage];
+            }
             return YES;
         }
     }
@@ -368,7 +406,7 @@
 
 #pragma mark - Api calling 
 //search_by_location
--(void) API_searchbylocation
+/*-(void) API_searchbylocation
 {
     NSHTTPURLResponse *response = nil;
     NSError *error;
@@ -423,10 +461,10 @@
     
     [activityIndicatorView stopAnimating];
     VW_overlay.hidden = YES;
-}
+}*/
 
 //Search by course name
--(void) API_searchbycourse
+/*-(void) API_searchbycourse
 {
     NSHTTPURLResponse *response = nil;
     NSError *error;
@@ -472,7 +510,7 @@
         
         NSLog(@"Course array from VC Search Course= %@",ARR_courses);
     }
-}
+}*/
 
 //Search Auto prediction
 -(void) API_autosuggest_location :(NSDictionary *)Dictin_autosuggest
@@ -838,11 +876,11 @@
             _TBL_courses.hidden = YES;
             ARR_sorted_states = ARR_states;
             
-            if ([ARR_sorted_states count] == 0) {
-                VW_overlay.hidden = NO;
-                [activityIndicatorView startAnimating];
-                [self performSelector:@selector(API_searchbylocation) withObject:activityIndicatorView afterDelay:0.01];
-            }
+//            if ([ARR_sorted_states count] == 0) {
+//                VW_overlay.hidden = NO;
+//                [activityIndicatorView startAnimating];
+//                [self performSelector:@selector(API_searchbylocation) withObject:activityIndicatorView afterDelay:0.01];
+//            }
             
             [_TBL_places reloadData];
         }
@@ -861,11 +899,11 @@
             _TBL_courses.hidden = NO;
             ARR_sorted_courses = ARR_courses;
             
-            if ([ARR_sorted_courses count] == 0) {
-                VW_overlay.hidden = NO;
-                [activityIndicatorView startAnimating];
-                [self performSelector:@selector(API_searchbycourse) withObject:activityIndicatorView afterDelay:0.01];
-            }
+//            if ([ARR_sorted_courses count] == 0) {
+//                VW_overlay.hidden = NO;
+//                [activityIndicatorView startAnimating];
+//                [self performSelector:@selector(API_searchbycourse) withObject:activityIndicatorView afterDelay:0.01];
+//            }
             [_TBL_courses reloadData];
         }
         else

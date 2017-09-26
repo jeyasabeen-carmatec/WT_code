@@ -243,10 +243,13 @@
             
            // NSString *location=[NSString stringWithFormat:@"%@",[checkout_data valueForKey:@"location"]];
          //   location = [location stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
-            NSString *organization_name = [checkout_data valueForKey:@"organization_name"];
+            NSString *organization_name = [NSString stringWithFormat:@"%@",[checkout_data valueForKey:@"organization_name"]];
             organization_name = [organization_name stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
+            
+            NSString *STR_code = [NSString stringWithFormat:@"%@",[checkout_data valueForKey:@"code"]];
+            STR_code = [STR_code stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
  
-            NSString *text = [NSString stringWithFormat:@"%@ - %@",organization_name,item_name];
+            NSString *text = [NSString stringWithFormat:@"%@\n%@ - %@",organization_name,STR_code,item_name];
             
             text = [text stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
             
@@ -272,6 +275,8 @@
                 NSRange palce = [text rangeOfString:item_name];
                 [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:15.0]}range:palce];
                 
+                NSRange code = [text rangeOfString:STR_code];
+                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:15.0]}range:code];
 //                
 //                NSRange codeR = [text rangeOfString:location];
 //                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:15.0]}range:codeR];

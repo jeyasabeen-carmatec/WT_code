@@ -1474,6 +1474,7 @@
     
     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
     f.numberStyle = NSNumberFormatterDecimalStyle;
+    [f setPositiveFormat:@"0.##"];
     NSNumber *number_amount = [f numberFromString:amount];
     NSNumber *number_eventID = [f numberFromString:eventid];
     
@@ -1536,6 +1537,7 @@
                     NSArray *ARR_tmp = [_LBLwallet_balence.text componentsSeparatedByString:@"$"];
                     NSNumberFormatter *f1 = [[NSNumberFormatter alloc] init];
                     f1.numberStyle = NSNumberFormatterDecimalStyle;
+                    [f1 setPositiveFormat:@"0.##"];
                     NSNumber *wallet_val = [f1 numberFromString:[NSString stringWithFormat:@"%@",[ARR_tmp objectAtIndex:[ARR_tmp count]-1]]];
                                                
 //                    NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];

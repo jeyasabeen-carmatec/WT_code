@@ -161,8 +161,10 @@
            
 //            _TXT_qty.text = @"1";
             NSString *show = @"Silent Auction";
-            NSString *place = [checkout_data valueForKey:@"item_name"];
-            NSString *organization_name = [checkout_data valueForKey:@"organization_name"];
+            NSString *place = [NSString stringWithFormat:@"%@",[checkout_data valueForKey:@"item_name"]];
+            NSString *organization_name = [NSString stringWithFormat:@"%@",[checkout_data valueForKey:@"organization_name"]];
+            NSString *STR_code = [NSString stringWithFormat:@"%@",[checkout_data valueForKey:@"code"]];
+            STR_code = [STR_code stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
             
             place = [place stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
             organization_name = [organization_name stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
@@ -189,7 +191,7 @@
             
             _lbl_datasubtotal.text = [NSString stringWithFormat:@"$%.02f",[[arr objectAtIndex:1] floatValue]];
             
-            NSString *text = [NSString stringWithFormat:@"%@\n%@ - %@\n",show,organization_name,place];
+            NSString *text = [NSString stringWithFormat:@"%@\n%@\n%@ - %@\n",show,organization_name,STR_code,place];
             
             text = [text stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
             text = [text stringByReplacingOccurrencesOfString:@"(null)" withString:@"Not Mentioned"];
@@ -233,6 +235,10 @@
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:15.0],NSParagraphStyleAttributeName:paragraphStyle3}
                                             range:plce];
                     
+                    NSRange plce1 = [text rangeOfString:STR_code];
+                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:15.0],NSParagraphStyleAttributeName:paragraphStyle3}
+                                            range:plce1];
+                    
 //                    NSMutableParagraphStyle *paragraphStyle4  = [[NSMutableParagraphStyle alloc] init];
 //                    paragraphStyle3.lineSpacing = 0;
 //                    NSRange tkt_num_range = [text rangeOfString:STR_tkt_num_club];
@@ -258,6 +264,10 @@
                     paragraphStyle2.lineSpacing = 2;
                     NSRange palce = [text rangeOfString:place];// * Notice that usage of rangeOfString in this case may cause some bugs - I use it here only for demonstration
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:15.0],NSParagraphStyleAttributeName:paragraphStyle3}range:palce];
+                    
+                    NSRange plce1 = [text rangeOfString:STR_code];
+                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:15.0],NSParagraphStyleAttributeName:paragraphStyle3}
+                                            range:plce1];
                     
 //                    NSMutableParagraphStyle *paragraphStyle4  = [[NSMutableParagraphStyle alloc] init];
 //                    paragraphStyle3.lineSpacing = 0;
@@ -887,20 +897,21 @@
         original_height = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 40;
         [self viewDidLayoutSubviews];
         
-        
     }
-    
-    
 }
 -(void) checkout_action
 {
-    
-    
-[self performSegueWithIdentifier:@"auction_checkout_to_auction_biling" sender:self];
-    
+    VW_overlay.hidden = NO;
+    [activityIndicatorView startAnimating];
+    [self performSelector:@selector(next_VC) withObject:activityIndicatorView afterDelay:0.01];
 }
 
-
+-(void) next_VC
+{
+    [self performSegueWithIdentifier:@"auction_checkout_to_auction_biling" sender:self];
+    [activityIndicatorView stopAnimating];
+    VW_overlay.hidden = YES;
+}
 
 
 #pragma mark - Session OUT

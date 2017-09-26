@@ -2403,11 +2403,25 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oeF-eP-9VW">
-                                        <rect key="frame" x="139" y="7" width="491" height="49"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your Scorecard" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oeF-eP-9VW">
+                                        <rect key="frame" x="139" y="7" width="491" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="GothamMedium" family="GothamMedium" pointSize="17"/>
                                         <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ARl-xE-JK6">
+                                        <rect key="frame" x="683" y="8" width="77" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="7" id="1RQ-Lm-xca">
+                                        <rect key="frame" x="93" y="35" width="582" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="GothamBook" family="GothamBook" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -2435,8 +2449,10 @@
                     <connections>
                         <outlet property="BTN_leaveGame" destination="YVL-bl-oFK" id="i0D-kw-ZyF"/>
                         <outlet property="BTN_viewonMAP" destination="ROr-ER-6o6" id="QlT-F7-zlj"/>
+                        <outlet property="TBL_scores" destination="eZP-tj-spV" id="4d7-4d-jNN"/>
+                        <outlet property="VW_navBAR" destination="pY0-0b-1Ug" id="NS2-jK-220"/>
                         <outlet property="VW_segment" destination="IZq-2k-SIy" id="KgZ-SY-5fw"/>
-                        <outlet property="lbl_navTITLE" destination="oeF-eP-9VW" id="qVm-2z-QPv"/>
+                        <outlet property="lbl_navTITLE" destination="1RQ-Lm-xca" id="hkJ-pZ-DTZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2PH-kX-cqi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2725,7 +2741,7 @@ Team1</string>
                             </connections>
                         </collectionView>
                         <view contentMode="scaleToFill" misplaced="YES" id="NAT-c4-yYt" customClass="TAPageControl">
-                            <rect key="frame" x="8" y="545" width="760" height="72"/>
+                            <rect key="frame" x="8" y="533" width="760" height="72"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7 of 7" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="beT-a9-DVR">
