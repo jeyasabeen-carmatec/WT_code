@@ -8,6 +8,7 @@
 
 #import "VC_score_update.h"
 #import "VC_score_collection.h"
+#import "ARR_grossScore.h"
 
 @interface VC_score_update ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
@@ -84,6 +85,17 @@
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     //cell.layer.cornerRadius = cell.contentView.frame.size.width / 2;
     cell.contentView.backgroundColor = _name_vw.backgroundColor;
+    
+    ARR_grossScore *store_ARR = [ARR_grossScore ARR_values];
+    [store_ARR.ARR_score addObject:[collection_arr objectAtIndex:indexPath.row]];
+    
+    if(_delegate && [_delegate respondsToSelector:@selector(get_SCORE:)])
+    {
+        [_delegate get_SCORE:[NSString stringWithFormat:@"%@",[collection_arr objectAtIndex:indexPath.row]]]; //[ARR_grossScore ARR_values].ARR_score
+    }
+    
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Update_Score.h"
 
 
 @interface VC_score_update : UIViewController
+
+@property (nonatomic, assign) id<Update_Score> delegate;
 
 @property (nonatomic,weak) IBOutlet UICollectionView *num_vw;
 @property (nonatomic,weak) IBOutlet UIView *name_vw,*vw_nav;

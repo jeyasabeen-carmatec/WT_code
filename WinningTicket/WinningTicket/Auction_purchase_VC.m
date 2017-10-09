@@ -125,9 +125,11 @@
                 
                 
                 
-                NSString *des = [[dict valueForKey:@"name"] capitalizedString];
-                NSString *code = [NSString stringWithFormat:@"%@",[dict valueForKey:@"code"]];
-                NSString *text = [NSString stringWithFormat:@"%@ - %@",code,des];
+//                NSString *STR_title = @"Silent Auction";
+                NSString *STR_orgname = [NSString stringWithFormat:@"%@",[[dict valueForKey:@"organization_name"] capitalizedString]];
+                NSString *des = [NSString stringWithFormat:@"%@",[[dict valueForKey:@"name"] capitalizedString]];
+                NSString *code = [NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%@",[dict valueForKey:@"code"]]];
+                NSString *text = [NSString stringWithFormat:@"%@\n%@ - %@",STR_orgname,code,des];
                 NSDictionary *attribs = @{
                                           NSForegroundColorAttributeName:[UIColor darkGrayColor],
                                           NSFontAttributeName: [UIFont fontWithName:@"Gotham-Book" size:17]
@@ -145,6 +147,12 @@
                 [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-Book" size:17.0]}
                                         range:greenTextRange];
                 
+                NSRange rangeCODE = [text rangeOfString:STR_orgname];
+                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:17]} range:rangeCODE];
+                
+//                NSRange rangetitl = [text rangeOfString:STR_title];
+//                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:17]} range:rangetitl];
+                
                 orginal_width = _des_cription.frame.size.width;
                 
                 self.des_cription.attributedText = attributedText;
@@ -154,7 +162,7 @@
                 frame_rect = _des_cription.frame;
                 NSString *amount = [[NSUserDefaults standardUserDefaults] valueForKey:@"price"];
                 
-                frame_rect.origin.y = _name_ticket.frame.origin.y + _name_ticket.frame.size.height + 5;
+                frame_rect.origin.y = _name_ticket.frame.origin.y + _name_ticket.frame.size.height;
                 frame_rect.size.width = orginal_width;
                 _des_cription.frame = frame_rect;
                 
