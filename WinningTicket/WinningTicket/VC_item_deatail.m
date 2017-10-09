@@ -13,6 +13,8 @@
 #import "ViewController.h"
 #import "cell_auction_item_detail.h"
 
+#import "currentDATE.h"
+
 #import <QuartzCore/CAAnimation.h>
 
 #pragma mark - Image Cache
@@ -289,6 +291,7 @@
 -(void) setup_VIEW
 {
         [self setup_Values];
+    [self setup_Values];
 }
 //- (void)viewDidUnload {
 //    // Release any retained subviews of the main view.
@@ -300,9 +303,6 @@
 -(void) setup_Values
 {
    
-    
-    [golfTimer invalidate];
-    golfTimer = nil;
     
     NSDictionary *auction_item = [jsonReponse valueForKey:@"auction_item"];
     
@@ -347,6 +347,26 @@
     self.imagesData = [temp_arr copy];
     [self.customStoryboardPageControl setNumberOfPages:[temp_arr count]]; //.numberOfPages = [temp_arr count];
     [_collection_IMG reloadData];
+    
+    _customStoryboardPageControl.center = _collection_IMG.center;
+    
+    NSLog(@"the collection view frame:%@",NSStringFromCGRect(_collection_IMG.frame));
+    
+    CGRect frame_page = _customStoryboardPageControl.frame;
+    
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        frame_page.origin.y = _collection_IMG.frame.origin.y + _collection_IMG.frame.size.height - 100;
+    }
+    else
+    {
+        frame_page.origin.y = _lbl_itemNAME.frame.origin.y - 50;
+    }
+    
+    //        frame_page.origin.x = 0;
+    //        frame_page.size.width = _collection_IMG.frame.size.width;
+    
+    _customStoryboardPageControl.frame = frame_page;
     
     NSString *STR_bidSTAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"STR_bidSTAT"];
     NSString *STR_event_name = [auction_item valueForKey:@"name"];
@@ -663,15 +683,18 @@
         [_BTN_watech setTitle:@"WATCH" forState:UIControlStateNormal];
     }
     
-    if ([STR_bidSTAT isEqualToString:@"Starting Bid"])
-    {
+    
+    NSString *STR_Expired = [NSString stringWithFormat:@"%@",[auction_item valueForKey:@"is_expired?"]];
+    NSString *STR_live = [NSString stringWithFormat:@"%@",[auction_item valueForKey:@"is_live?"]];
+    
+    if ([STR_live isEqualToString:@"0"] && [STR_Expired isEqualToString:@"0"]) {
         [[NSUserDefaults standardUserDefaults] setValue:[auction_item valueForKey:@"event_start_date"] forKey:@"bid_date"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         golfTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target: self selector: @selector(count_downTimer) userInfo: nil repeats: YES];
-        
     }
-    else if ([STR_bidSTAT isEqualToString:@"Current Bid"])
+    else if ([STR_live isEqualToString:@"1"])
     {
+        _BTN_place_BID.hidden = NO;
         [_BTN_place_BID setTitle:@"PLACE BID" forState:UIControlStateNormal];
         [_BTN_place_BID addTarget:self action:@selector(place_BID_VW) forControlEvents:UIControlEventTouchUpInside];
         [[NSUserDefaults standardUserDefaults] setValue:[auction_item valueForKey:@"event_end_date"] forKey:@"bid_date"];
@@ -681,7 +704,7 @@
     else
     {
         _lbl_CountDown.backgroundColor = [UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1.0];
-
+        
         
         if([winner_status isEqualToString:@"1"])
         {
@@ -714,7 +737,7 @@
             else  if([pay_status isEqualToString:@"paid"])
             {
                 _lbl_CountDown.text = [NSString stringWithFormat:@"Sold out.Final Bid : $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
-                 _lbl_CountDown.textColor = [UIColor redColor];
+                _lbl_CountDown.textColor = [UIColor redColor];
             }
             
             else
@@ -727,12 +750,24 @@
         _lbl_CountDown.layer.borderColor = [UIColor blackColor].CGColor;
         self.lbl_CountDown.numberOfLines = 0;
         [self.lbl_CountDown sizeToFit];
-
     }
+    
+//    if ([STR_bidSTAT isEqualToString:@"Starting Bid"])
+//    {
+//        
+//        
+//    }
+//    else if ([STR_bidSTAT isEqualToString:@"Current Bid"])
+//    {
+//        
+//    }
+//    else
+//    {
+//        
+//
+//    }
 
-   
-    
-    
+
        if ([winner_status isEqualToString:@"1"])
        {
         [_BTN_place_BID setTitle:@"CHECKOUT" forState:UIControlStateNormal];
@@ -741,8 +776,8 @@
     
     NSString *Initial_STAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"Initial_STAT"];
     if (Initial_STAT) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Initial_STAT"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Initial_STAT"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
         
         _lbl_count.layer.cornerRadius = 5.0f;
         _lbl_count.layer.masksToBounds = YES;
@@ -763,25 +798,7 @@
             _collection_IMG.frame=new_frame;
         }
     
-        _customStoryboardPageControl.center = _collection_IMG.center;
         
-        NSLog(@"the collection view frame:%@",NSStringFromCGRect(_collection_IMG.frame));
-        
-        CGRect frame_page = _customStoryboardPageControl.frame;
-        
-        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-        {
-            frame_page.origin.y = _collection_IMG.frame.origin.y + _collection_IMG.frame.size.height - 100;
-        }
-        else
-        {
-            frame_page.origin.y = _lbl_itemNAME.frame.origin.y - 50;
-        }
-        
-//        frame_page.origin.x = 0;
-        frame_page.size.width = _collection_IMG.frame.size.width;
-        
-        _customStoryboardPageControl.frame = frame_page;
         
         new_frame=self.lbl_itemNAME.frame;
         new_frame.origin.y = self.collection_IMG.frame.origin.y + self.collection_IMG.frame.size.height + 10;
@@ -794,7 +811,7 @@
         if ([STR_bidSTAT isEqualToString:@"Starting Bid"] || [STR_bidSTAT isEqualToString:@"Current Bid"])
         {
             new_frame = _lbl_CountDown.frame;
-            new_frame.origin.y = _lbl_itemNAME.frame.origin.y + _lbl_itemNAME.frame.size.height;
+            new_frame.origin.y = _lbl_itemNAME.frame.origin.y + _lbl_itemNAME.frame.size.height - 3;
             _lbl_CountDown.frame = new_frame;
             _lbl_CountDown.textAlignment = NSTextAlignmentLeft;
 
@@ -818,6 +835,7 @@
         
         
         new_frame = _BTN_place_BID.frame;
+        
         if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
         {
             new_frame.origin.y = _lbl_CountDown.frame.origin.y + _lbl_CountDown.frame.size.height + 15;
@@ -839,18 +857,22 @@
         
         new_frame = _VW_line1.frame;
         
-        if ([STR_bidSTAT isEqualToString:@"Current Bid"])
-        {
-            _BTN_watech.hidden = NO;
-            _BTN_place_BID.hidden = NO;
-            new_frame.origin.y = _BTN_watech.frame.origin.y + _BTN_watech.frame.size.height + 10;
-//            new_frame.origin.y = _lbl_CountDown.frame.origin.y + _lbl_CountDown.frame.size.height + 10;
-        }
-        else if ([STR_bidSTAT isEqualToString:@"Starting Bid"])
+        if ([STR_live isEqualToString:@"0"] && [STR_Expired isEqualToString:@"0"])//([STR_bidSTAT isEqualToString:@"Current Bid"])
         {
             _BTN_watech.hidden = YES;
             _BTN_place_BID.hidden = YES;
             new_frame.origin.y = _lbl_CountDown.frame.origin.y + _lbl_CountDown.frame.size.height + 10;
+            
+//            new_frame.origin.y = _lbl_CountDown.frame.origin.y + _lbl_CountDown.frame.size.height + 10;
+        }
+        else if ([STR_live isEqualToString:@"1"])//([STR_bidSTAT isEqualToString:@"Starting Bid"])
+        {
+            [_BTN_place_BID setTitle:@"PLACE BID" forState:UIControlStateNormal];
+            [_BTN_place_BID addTarget:self action:@selector(place_BID_VW) forControlEvents:UIControlEventTouchUpInside];
+            _BTN_watech.hidden = NO;
+            _BTN_place_BID.hidden = NO;
+            new_frame.origin.y = _BTN_watech.frame.origin.y + _BTN_watech.frame.size.height + 10;
+            
         }
         else
         {
@@ -893,6 +915,24 @@
         else
         {
             new_frame.origin.y = _BTN_watech.frame.origin.y + _BTN_watech.frame.size.height + 10;
+        }*/
+        
+       /* if ([STR_live isEqualToString:@"0"] && [STR_Expired isEqualToString:@"0"]) {
+            [[NSUserDefaults standardUserDefaults] setValue:[auction_item valueForKey:@"event_start_date"] forKey:@"bid_date"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            golfTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target: self selector: @selector(count_downTimer) userInfo: nil repeats: YES];
+        }
+        else if ([STR_live isEqualToString:@"1"])
+        {
+            _BTN_place_BID.hidden = NO;
+            [_BTN_place_BID setTitle:@"PLACE BID" forState:UIControlStateNormal];
+            [_BTN_place_BID addTarget:self action:@selector(place_BID_VW) forControlEvents:UIControlEventTouchUpInside];
+            [[NSUserDefaults standardUserDefaults] setValue:[auction_item valueForKey:@"event_end_date"] forKey:@"bid_date"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            golfTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target: self selector: @selector(count_downTimer) userInfo: nil repeats: YES];
+        }
+        else
+        {
         }*/
         
         _VW_line1.frame = new_frame;
@@ -978,7 +1018,7 @@
         if ([STR_bidSTAT isEqualToString:@"Starting Bid"] || [STR_bidSTAT isEqualToString:@"Current Bid"])
         {
             new_frame = _lbl_CountDown.frame;
-            new_frame.origin.y = _lbl_itemNAME.frame.origin.y + _lbl_itemNAME.frame.size.height;
+            new_frame.origin.y = _lbl_itemNAME.frame.origin.y + _lbl_itemNAME.frame.size.height - 3;
             _lbl_CountDown.frame = new_frame;
             _lbl_CountDown.textAlignment = NSTextAlignmentLeft;
             
@@ -1257,8 +1297,6 @@
         else if ([STR_live isEqualToString:@"1"])
         {
             STR_stat = @"Current Bid";
-            
-                
                 NSString *STR_bid = [NSString stringWithFormat:@"%@",[similar_Dict valueForKey:@"current_bid_amount"]];
                 if ([STR_bid isEqualToString:@"<null>"])
                 {
@@ -1372,23 +1410,21 @@
         NSString *STR_live = [NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"is_live?"]];
         NSString *STR_bidSTAT;
         
-        if ([[NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"bid_count"]] isEqualToString:@"0"] && [STR_live isEqualToString:@"1"]) {
-            STR_bidSTAT = @"Starting Bid";
-        }
-        else if (![[NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"bid_count"]] isEqualToString:@"0"] && [STR_live isEqualToString:@"1"])
+        if (![[NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"bid_count"]] isEqualToString:@"0"] && [STR_live isEqualToString:@"1"])
         {
             STR_bidSTAT = @"Current Bid";
         }
         else
         {
-            STR_bidSTAT = @"Closed";
+            STR_bidSTAT = @"Starting Bid";
         }
         
-        if ([STR_Expired isEqualToString:@"1"]) {
+        
+        
+        if ([[cpy_dict objectForKey:@"payment_status"] isEqualToString:@"paid"] && [STR_Expired isEqualToString:@"1"]) {
             STR_bidSTAT = @"Closed";
         }
-        
-        if ([[cpy_dict objectForKey:@"payment_status"] isEqualToString:@"paid"]) {
+        if ([STR_Expired isEqualToString:@"1"] && [[cpy_dict objectForKey:@"payment_status"] isEqualToString:@"not_paid"]) {
             STR_bidSTAT = @"Closed";
         }
         
@@ -1665,6 +1701,32 @@ self.countdownLabel.text = [NSString stringWithFormat:@"%@/%@/%@ %@:%@:%@", days
 }
 
  */
+-(void)Timer_Stopped
+{
+    [[NSUserDefaults standardUserDefaults] setValue:@"Closed" forKey:@"STR_bidSTAT"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSLog(@"Timer Stopped");
+}
+
+-(NSDate *)_dateFromUtcString:(NSString *)utcString{
+    if(!utcString){
+        return nil;
+    }
+    static NSDateFormatter *df = nil;
+    if (df == nil) {
+        df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        [df setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    }
+    
+    NSArray* parts = [utcString componentsSeparatedByString:@"."];
+    NSDate *utcDate = [df dateFromString:parts[0]];
+    if(parts.count > 1){
+        double microseconds = [parts[1] doubleValue];
+        utcDate = [utcDate dateByAddingTimeInterval:microseconds / 1000000];
+    }
+    return utcDate;
+}
 
 #pragma mark - Countdown timer
 -(void)count_downTimer
@@ -1688,7 +1750,32 @@ self.countdownLabel.text = [NSString stringWithFormat:@"%@/%@/%@ %@:%@:%@", days
     NSDateFormatter *labelFormatter = [[NSDateFormatter alloc] init];
     [labelFormatter setDateFormat:@"HH-dd-MM"];
     
-    NSDate* currentDate = [NSDate date];
+    
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+//    NSTimeZone *destinationTimeZone = [NSTimeZone systemTimeZone];
+//    dateFormatter.timeZone = destinationTimeZone;
+//    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    // or @"yyyy-MM-dd hh:mm:ss a" if you prefer the time with AM/PM
+    
+//    NSString *STR_date = [dateFormatter stringFromDate:[NSDate date]];
+//    NSLog(@"%@",[dateFormatter stringFromDate:[NSDate date]]);
+    
+//    currentDATE *get_DATE = [[currentDATE alloc] init];
+    
+    
+//    NSDateFormatter *dateFormatter1=[[NSDateFormatter alloc] init];
+//    NSTimeZone *destinationTimeZone = [NSTimeZone systemTimeZone];
+//    dateFormatter1.timeZone = destinationTimeZone;
+//    [dateFormatter1 setDateStyle:NSDateFormatterLongStyle];
+//    [dateFormatter1 setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+//    [dateFormatter1 dateFromString:[dateFormatter stringFromDate:[NSDate date]]];
+    
+//    NSLog(@"Before convert %@ After convert %@",[dateFormatter stringFromDate:[NSDate date]],[dateFormatter dateFromString:STR_date]);
+    
+    NSDate* currentDate = [NSDate date];//[self _dateFromUtcString:STR_date];//[dateFormatter dateFromString:STR_date];//[NSDate date];
+    
 //    NSTimeZone* currentTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
 //    NSTimeZone* nowTimeZone = [NSTimeZone systemTimeZone];
 //    
@@ -1711,7 +1798,11 @@ self.countdownLabel.text = [NSString stringWithFormat:@"%@/%@/%@ %@:%@:%@", days
     //Starting Bid,Current Bid,Closed
     
     if ([breakdownInfo day] <= 0 && [breakdownInfo hour] <= 0 && [breakdownInfo minute] <= 0 && [breakdownInfo second] <= 0) {
-        
+
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//                golfTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target: self selector: @selector(Timer_Stopped) userInfo: nil repeats: NO];
+//            });
+        [self Timer_Stopped];
         [self GETAuction_Item_details];
     }
     else
@@ -1777,31 +1868,29 @@ self.countdownLabel.text = [NSString stringWithFormat:@"%@/%@/%@ %@:%@:%@", days
         NSString *STR_live = [NSString stringWithFormat:@"%@",[auction_item objectForKey:@"is_live?"]];
         NSString *STR_bidSTAT;
         
-        if ([[NSString stringWithFormat:@"%@",[auction_item objectForKey:@"bid_count"]] isEqualToString:@"0"] && [STR_live isEqualToString:@"1"]) {
-            STR_bidSTAT = @"Starting Bid";
-        }
-        else if (![[NSString stringWithFormat:@"%@",[auction_item objectForKey:@"bid_count"]] isEqualToString:@"0"] && [STR_live isEqualToString:@"1"])
+    
+        
+        if (![[NSString stringWithFormat:@"%@",[auction_item objectForKey:@"bid_count"]] isEqualToString:@"0"] && [STR_live isEqualToString:@"1"])
         {
             STR_bidSTAT = @"Current Bid";
         }
         else
         {
-            STR_bidSTAT = @"Closed";
+            STR_bidSTAT = @"Starting Bid";
         }
         
-        if ([STR_Expired isEqualToString:@"1"]) {
+        
+        
+        if ([[auction_item objectForKey:@"payment_status"] isEqualToString:@"paid"] && [STR_Expired isEqualToString:@"1"]) {
             STR_bidSTAT = @"Closed";
         }
-        
-        if ([[auction_item objectForKey:@"payment_status"] isEqualToString:@"paid"]) {
+        if ([STR_Expired isEqualToString:@"1"] && [[auction_item objectForKey:@"payment_status"] isEqualToString:@"not_paid"]) {
             STR_bidSTAT = @"Closed";
         }
     
         [[NSUserDefaults standardUserDefaults] setValue:STR_bidSTAT forKey:@"STR_bidSTAT"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        [golfTimer invalidate];
-        golfTimer = nil;
     }
     
     [activityIndicatorView stopAnimating];
@@ -1838,7 +1927,7 @@ self.countdownLabel.text = [NSString stringWithFormat:@"%@/%@/%@ %@:%@:%@", days
 #pragma mark - Place Bid
 -(void) place_BID_VW
 {
-    NSString *STR_bidSTAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"STR_bidSTAT"];
+//    NSString *STR_bidSTAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"STR_bidSTAT"];
     
     //Starting Bid,Current Bid,Closed
     
@@ -1848,12 +1937,12 @@ self.countdownLabel.text = [NSString stringWithFormat:@"%@/%@/%@ %@:%@:%@", days
     
     NSString *alert_title = [NSString stringWithFormat:@"Amount should be increment of $%.2f",[minimum_bid_increment floatValue]];
     
-    if ([STR_bidSTAT isEqualToString:@"Starting Bid"]) {
-        NSLog(@"Bid Not yet started");
-    }
-    else if ([STR_bidSTAT isEqualToString:@"Current Bid"])
-    {
-        NSLog(@"Bid open");
+//    if ([STR_bidSTAT isEqualToString:@"Starting Bid"]) {
+//        NSLog(@"Bid Not yet started");
+//    }
+//    else if ([STR_bidSTAT isEqualToString:@"Current Bid"])
+//    {
+//        NSLog(@"Bid open");
         alertController = [UIAlertController alertControllerWithTitle: @"Place Bid Amount"
                                                               message: alert_title
                                                        preferredStyle:UIAlertControllerStyleAlert];
@@ -1884,11 +1973,12 @@ self.countdownLabel.text = [NSString stringWithFormat:@"%@/%@/%@ %@:%@:%@", days
             
         }]];
         [self presentViewController:alertController animated:YES completion:nil];
-    }
-    else
-    {
+//    }
+//    else
+//    {
         NSLog(@"Bid closed");
-    }
+//    }
+    [self.view endEditing:YES];
 }
 
 -(void)textDidChange:(UITextField *)textField {

@@ -14,7 +14,9 @@
 @property (nonatomic,weak) IBOutlet UILabel *lbl_distance;
 @property (nonatomic,weak) IBOutlet UILabel *lbl_gross_score;
 @property (nonatomic,weak) IBOutlet UIView *VW_grossScore;
+
 @property (nonatomic,weak) IBOutlet UILabel *lbl_net_score;
 @property (nonatomic,weak) IBOutlet UILabel *lbl_handicap;
+
 
 @end

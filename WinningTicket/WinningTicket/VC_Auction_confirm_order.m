@@ -323,7 +323,12 @@
             NSString *org_name = [[temp_resp valueForKey:@"organization_name"] capitalizedString];
            // NSString *qty = [NSString stringWithFormat:@"Qty : 1"];
             
-            NSString *text = [NSString stringWithFormat:@"%@\n%@ - %@\n",show,org_name,club_name];
+            NSString *STR_code = [NSString stringWithFormat:@"%@",[temp_resp valueForKey:@"code"]];
+            STR_code = [STR_code stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
+            
+//            NSString *text = [NSString stringWithFormat:@"%@\n%@ - %@\n",show,org_name,club_name];
+//             NSString *text = [NSString stringWithFormat:@"%@\n%@ - %@",organization_name,STR_code,item_name];
+            NSString *text = [NSString stringWithFormat:@"%@\n%@\n%@ - %@",show,org_name,STR_code,club_name];
             
             text = [text stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
             text = [text stringByReplacingOccurrencesOfString:@"(null)" withString:@"Not Mentioned"];
@@ -349,6 +354,10 @@
                 NSRange org = [text rangeOfString:org_name];
                 [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamMedium" size:15.0]}
                                         range:org];
+                
+                NSRange code = [text rangeOfString:STR_code];
+                [attributedText setAttributes:@{NSFontAttributeName:_lbl_address.font}
+                                        range:code];
                 
                 NSRange qt = [text rangeOfString:club_name];// * Notice that usage of rangeOfString in this case may cause some bugs - I use it here only for demonstration
                 [attributedText setAttributes:@{NSFontAttributeName:_lbl_address.font}
