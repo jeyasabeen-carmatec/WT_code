@@ -254,6 +254,9 @@
 		BEE6449C1F878ECA006D28FD /* cell_player.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE6449A1F878ECA006D28FD /* cell_player.m */; };
 		BEE6449D1F878ECA006D28FD /* cell_player.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEE6449B1F878ECA006D28FD /* cell_player.xib */; };
 		BEE644A21F878EF1006D28FD /* cell_player~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEE644A01F878EF1006D28FD /* cell_player~iPad.xib */; };
+		BEE644FB1F8BA99C006D28FD /* CELL_leader.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE644F91F8BA999006D28FD /* CELL_leader.m */; };
+		BEE644FC1F8BA99C006D28FD /* CELL_leader.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEE644FA1F8BA999006D28FD /* CELL_leader.xib */; };
+		BEE645011F8BAA09006D28FD /* CELL_leader~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEE644FF1F8BAA09006D28FD /* CELL_leader~iPad.xib */; };
 		BEE6C3941F386BBF0001F00A /* LIve_scoring_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE6C3931F386BBE0001F00A /* LIve_scoring_VC.m */; };
 		BEE6C3981F386C0D0001F00A /* ALScrollViewPaging.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE6C3971F386C0D0001F00A /* ALScrollViewPaging.m */; };
 		BEE6C39B1F386CC80001F00A /* VC_initial_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE6C39A1F386CC80001F00A /* VC_initial_VC.m */; };
@@ -670,6 +673,10 @@
 		BEE6449A1F878ECA006D28FD /* cell_player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cell_player.m; sourceTree = "<group>"; };
 		BEE6449B1F878ECA006D28FD /* cell_player.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = cell_player.xib; sourceTree = "<group>"; };
 		BEE644A01F878EF1006D28FD /* cell_player~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "cell_player~iPad.xib"; sourceTree = "<group>"; };
+		BEE644F81F8BA999006D28FD /* CELL_leader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CELL_leader.h; sourceTree = "<group>"; };
+		BEE644F91F8BA999006D28FD /* CELL_leader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CELL_leader.m; sourceTree = "<group>"; };
+		BEE644FA1F8BA999006D28FD /* CELL_leader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CELL_leader.xib; sourceTree = "<group>"; };
+		BEE644FF1F8BAA09006D28FD /* CELL_leader~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CELL_leader~iPad.xib"; sourceTree = "<group>"; };
 		BEE6657F1E5D90EC00DF9235 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BEE665811E5D90EC00DF9235 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BEE665821E5D90EC00DF9235 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1557,6 +1564,10 @@
 				BEE6449A1F878ECA006D28FD /* cell_player.m */,
 				BEE6449B1F878ECA006D28FD /* cell_player.xib */,
 				BEE644A01F878EF1006D28FD /* cell_player~iPad.xib */,
+				BEE644F81F8BA999006D28FD /* CELL_leader.h */,
+				BEE644F91F8BA999006D28FD /* CELL_leader.m */,
+				BEE644FA1F8BA999006D28FD /* CELL_leader.xib */,
+				BEE644FF1F8BAA09006D28FD /* CELL_leader~iPad.xib */,
 			);
 			name = customCell_leaderBoard;
 			sourceTree = "<group>";
@@ -1928,6 +1939,7 @@
 				BEB49DC71E76B3A900209E63 /* User-36X36.png in Resources */,
 				BEA875DC1E8CEB5A00EFBB7F /* sec1_8.png in Resources */,
 				BEC3E8641F22160E000ACB97 /* Clock.png in Resources */,
+				BEE645011F8BAA09006D28FD /* CELL_leader~iPad.xib in Resources */,
 				BEA875E01E8CEE6300EFBB7F /* Gotham Bold Regular.ttf in Resources */,
 				BEE6449D1F878ECA006D28FD /* cell_player.xib in Resources */,
 				BECD7C801EF141990037A968 /* cell_add_referral.xib in Resources */,
@@ -2050,6 +2062,7 @@
 				BEFC205C1F0619290067717D /* Montserrat-ExtraBold.ttf in Resources */,
 				BE4EEEBB1ED2AAB9003C1C24 /* dotInactive.png in Resources */,
 				BE1F1DC61F135FFA00B06903 /* referal_cell_ipad.xib in Resources */,
+				BEE644FC1F8BA99C006D28FD /* CELL_leader.xib in Resources */,
 				BEFC20611F0619290067717D /* Montserrat-Light.ttf in Resources */,
 				BEB702C21ECDC135004CB729 /* TBL_VW_Cell_EVENTS~iPad.xib in Resources */,
 				BEB49DD51E76B3A900209E63 /* BG_WT.png in Resources */,
@@ -2198,6 +2211,7 @@
 				BE37FC4F1F5E6F9D0070EBB7 /* cell_auction_item_detail.m in Sources */,
 				BEFC20311EFD23860067717D /* VC_changePWD.m in Sources */,
 				BE4F35211F0B5C4700FD9CE5 /* TXT_float_BOLD.m in Sources */,
+				BEE644FB1F8BA99C006D28FD /* CELL_leader.m in Sources */,
 				BE37FBD71F4ECC170070EBB7 /* UILabel+verticalAlighn.m in Sources */,
 				BE37FC3C1F596CB40070EBB7 /* VC_Auction_CHKOUT.m in Sources */,
 				BEB702C91ECDC289004CB729 /* VC_home.m in Sources */,

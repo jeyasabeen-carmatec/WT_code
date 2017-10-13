@@ -19,5 +19,6 @@
 @property (nonatomic,weak) IBOutlet UILabel *LBL_gross;
 @property (nonatomic,weak) IBOutlet UILabel *LBL_Heading;
 
+@property (strong) NSString *STR_parSTR;
 
 @end

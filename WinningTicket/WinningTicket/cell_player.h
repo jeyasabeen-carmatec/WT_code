@@ -10,4 +10,9 @@
 
 @interface cell_player : UITableViewCell
 
+@property (nonatomic,weak) IBOutlet UILabel *lbl_Position;
+@property (nonatomic,weak) IBOutlet UILabel *lbl_playerNAme;
+@property (nonatomic,weak) IBOutlet UILabel *lbl_Score;
+@property (nonatomic,weak) IBOutlet UILabel *lbl_Topar;
+
 @end

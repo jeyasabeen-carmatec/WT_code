@@ -12,7 +12,7 @@
 
 @interface VC_score_update ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
-    NSArray *collection_arr,*collection_dat;
+    NSArray *collection_arr;
 }
 
 @end
@@ -23,11 +23,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
    
-  
 
+    NSLog(@"Data from prev vc %@",_STR_parSTR);
     
     collection_arr = [NSArray arrayWithObjects:@"12",@"11",@"10",@"9",@"8",@"7",@"6",@"5",@"4",@"3",@"2",@"1",@"12",@"11",@"10",@"9",@"8",@"7",@"6",@"5",@"4",@"3",@"2",@"1",nil];//
-    collection_dat = [NSArray arrayWithObjects:@"",@"",@"",@"",@"",@"",@"Eagle",@"Birdie",@"parrot",@"Bogey",@"DoubleBogey",@"",@"",@"",@"",@"",@"",@"",@"Eagle",@"Birdie",@"parrot",@"Bogey",@"DoubleBogey",@"",nil];//
+//    collection_dat = [NSArray arrayWithObjects:@"",@"",@"",@"",@"",@"",@"Eagle",@"Birdie",@"parrot",@"Bogey",@"DoubleBogey",@"",@"",@"",@"",@"",@"",@"",@"Eagle",@"Birdie",@"parrot",@"Bogey",@"DoubleBogey",@"",nil];//
     
     
     [_num_vw reloadData];
@@ -48,7 +48,7 @@
 #pragma mark - COllection view
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 15;
+    return 12;
     
 }
 
@@ -56,7 +56,36 @@
 {
     VC_score_collection *cell = (VC_score_collection *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     cell.num_label.text = [collection_arr objectAtIndex:indexPath.row];
-    cell.des_lbl.text = [collection_dat objectAtIndex:indexPath.row];
+    
+    int par_VAL = [_STR_parSTR intValue];
+    int hole_vAL = [[collection_arr objectAtIndex:indexPath.row] intValue];
+    
+    if (par_VAL-2 == hole_vAL)
+    {
+        cell.des_lbl.text = @"Eagle";
+    }
+    else if (par_VAL-1 == hole_vAL)
+    {
+        cell.des_lbl.text = @"Birdie";
+    }
+    else if (par_VAL == hole_vAL)
+    {
+        cell.des_lbl.text = @"Par";
+    }
+    else if (par_VAL + 1 == hole_vAL)
+    {
+        cell.des_lbl.text = @"Bogey";
+    }
+    else if (par_VAL +2 == hole_vAL)
+    {
+        cell.des_lbl.text = @"Double Bogey";
+    }
+    else
+    {
+        cell.des_lbl.text = @"";
+    }
+    
+    //= [collection_dat objectAtIndex:indexPath.row];
     
     
     cell.transform = CGAffineTransformMakeRotation(-M_PI);
