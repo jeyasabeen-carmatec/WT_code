@@ -13,6 +13,10 @@
 #import "SDWebImage/UIImageView+WebCache.h"
 
 @interface VC_orderdetail ()
+{
+    UIView *VW_overlay;
+    UIActivityIndicatorView *activityIndicatorView;
+}
 
 @end
 
@@ -414,8 +418,79 @@
 #pragma mark - Button Methods
 -(void)live_score_page
 {
-    [self performSegueWithIdentifier:@"live_scrore_identifier" sender:self];
+
+    VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    
+    activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
+    
+    activityIndicatorView.center = VW_overlay.center;
+    [VW_overlay addSubview:activityIndicatorView];
+    VW_overlay.center = self.view.center;
+    [self.view addSubview:VW_overlay];
+    
+    VW_overlay.hidden = NO;
+    
+    [self performSelector:@selector(get_EVENT_STAT) withObject:activityIndicatorView afterDelay:0.01];
+    
 }
+
+-(void) get_EVENT_STAT
+{
+    NSError *error;
+    NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"upcoming_events"] options:NSASCIIStringEncoding error:&error];
+    
+    NSDictionary *event = [dict valueForKey:@"event"];
+    
+    NSHTTPURLResponse *response = nil;
+    
+//    NSDictionary *parameters = @{ @"handicap":  [NSString stringWithFormat:@"%@",_TXT_Handicap.text]};
+//    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
+    
+    NSURL *urlProducts=[NSURL URLWithString:[NSString stringWithFormat:@"%@hole_info/check_hole_info/%@",SERVER_URL,[event valueForKey:@"id"]]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:urlProducts];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPShouldHandleCookies:NO];
+    NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+//    [request setHTTPBody:postData];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    
+    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSMutableDictionary *dict1;
+    if(aData)
+    {
+        dict1 = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
+        
+        NSLog(@"Json response check Game stat VC Order detail = %@",dict1);
+
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection error" message:@"" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [alert show];
+    }
+    
+    @try {
+        if ([[dict1 valueForKey:@"status"]isEqualToString:@"Success"]) {
+            [self performSegueWithIdentifier:@"live_scrore_identifier" sender:self];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"There is no course information available for this event" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+            [alert show];
+        }
+    } @catch (NSException *exception) {
+        NSLog(@"Exception = %@",exception);
+    }
+    
+    
+    [activityIndicatorView stopAnimating];
+    VW_overlay.hidden = YES;
+}
+
 -(void) Btn_liveAction
 {
     [self performSegueWithIdentifier:@"liveauctionIdentifier" sender:self];
