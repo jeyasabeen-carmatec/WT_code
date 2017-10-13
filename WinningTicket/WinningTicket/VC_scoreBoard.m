@@ -50,6 +50,12 @@
 
 @implementation VC_scoreBoard
 
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleDefault];
+    [super viewWillAppear:YES];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -82,8 +88,6 @@
 #pragma mark - Setup View
 -(void) setup_View
 {
-    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleDefault];
-    
     //    NSString *STR_title = @"VIEW\nCOURSE\nMAP";
     //    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:STR_title];
     //    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -2246,6 +2250,18 @@
                 cell.lbl_Position.text = [NSString stringWithFormat:@" %ld",(long)[theIndexPath row]];
                 cell.lbl_playerNAme.text = [NSString stringWithFormat:@"  %@",[Dictn_contents valueForKey:@"user_name"]];
                 
+                NSString *str_01,*STR_02;
+                
+                str_01 = [NSString stringWithFormat:@" %@",[Dictn_contents valueForKey:@"total_net_score"]];
+                str_01 = [str_01 stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                
+                cell.lbl_Score.text = str_01;
+                
+                STR_02 = [NSString stringWithFormat:@" %@",[Dictn_contents valueForKey:@"total_score"]];
+                STR_02 = [STR_02 stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                
+                cell.lbl_Topar.text = STR_02;
+                
                 return cell;
             }
         }
@@ -2679,6 +2695,18 @@
         }
     }
 }
+
+/*-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == _TBL_leaderboard) {
+        if (indexPath.row % 2 == 0)
+        {
+            cell.backgroundColor = [UIColor lightGrayColor];
+        } else {
+            cell.backgroundColor =[UIColor whiteColor];
+        }
+    }
+}*/
 -(void) update_tableView :(NSIndexPath *)indexPath
 {
     // deselect row
