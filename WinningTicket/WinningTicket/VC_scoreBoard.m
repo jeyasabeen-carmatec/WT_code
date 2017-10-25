@@ -2311,6 +2311,7 @@
             
             cell.lbl_score.text = STR_total;
             
+            
             NSString *text = [NSString stringWithFormat:@"%@\n%@ %@",STR_playerName,STR_team,STR_HCP];
                         
             // If attributed text is supported (iOS6+)
@@ -2331,14 +2332,14 @@
                 
                 if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
                 {
-                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-MediumItalic" size:12.0]}
+                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"FontAwesome" size:16.0]}
                                             range:cmp];
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-MediumItalic" size:14.0]}
                                             range:range_HCP];
                 }
                 else
                 {
-                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-MediumItalic" size:10.0]}
+                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"FontAwesome" size:14.0]}
                                             range:cmp];
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-MediumItalic" size:12.0]}
                                             range:range_HCP];
@@ -2841,7 +2842,7 @@
         
         NSLog(@"Json response UPDATE_handicap = %@",dict);
         
-        DICTIN_PlayerINfo = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSString stringWithFormat:@"%@",[dict valueForKey:@"name"]],@"STR_playerName",@"Team 1",@"STR_team",[NSString stringWithFormat:@"%@",_TXT_Handicap.text],@"STR_HCP",[NSString stringWithFormat:@"%@",[dict valueForKey:@"total_score"]],@"Total", nil];
+        DICTIN_PlayerINfo = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSString stringWithFormat:@"%@",[dict valueForKey:@"name"]],@"STR_playerName",@"",@"STR_team",[NSString stringWithFormat:@"%@",_TXT_Handicap.text],@"STR_HCP",[NSString stringWithFormat:@"%@",[dict valueForKey:@"total_score"]],@"Total", nil];
         
         
         if ([ARR_grossScore count] == 0) {

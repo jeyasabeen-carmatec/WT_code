@@ -790,7 +790,7 @@
             cell.IMG_privacy.image = newImage;
         }
         
-        cell.lbl_privacy.text = [course_type uppercaseString];
+      //  cell.lbl_privacy.text = [course_type uppercaseString];
         
         NSString *website_url = [temp_dictin valueForKey:@"course_image"];
         if (website_url)

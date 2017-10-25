@@ -659,6 +659,14 @@
 //    }
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (string.length != 0) {
+        [textField becomeFirstResponder];
+    }
+    return YES;
+}
+
 //-(void) check_TXT_stat :(id)sender
 //{
 ////    NSString *str = _TXT_amount.text;

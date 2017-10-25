@@ -234,8 +234,8 @@
             
             [self.navigationController.navigationBar setTitleTextAttributes:
              @{NSForegroundColorAttributeName:[UIColor whiteColor],
-               NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Medium" size:22.0f]}];
-            self.navigationItem.title = @"Billing Address";
+               NSFontAttributeName:FONT_NAV_TITLE}];
+            self.navigationItem.title = @"BILLING ADDRESS";
             
             self.lbl_name_ticket.text = @"Silent Auction";
             
@@ -955,6 +955,10 @@
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    if (string.length != 0) {
+        [textField becomeFirstResponder];
+    }
+    
     if(textField.tag==1)
     {
         NSInteger inte = textField.text.length;

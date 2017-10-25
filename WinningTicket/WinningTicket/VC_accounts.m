@@ -86,8 +86,20 @@
 
 -(void) setup_VIEW
 {
+    [[UIView appearanceWhenContainedIn:[UITabBar class], nil] setTintColor:[UIColor blackColor]];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
     
-
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: _tab_HOME.tintColor, NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
+    
+    
+    UIView *topShadowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _tab_HOME.bounds.size.width, 2)];
+    CAGradientLayer *topShadow = [CAGradientLayer layer];
+    topShadow.frame = CGRectMake(0, -1, _tab_HOME.bounds.size.width, 2);
+    topShadow.colors = [NSArray arrayWithObjects:(id)[UIColor blackColor], (id)[[UIColor blackColor] CGColor], nil];
+    [topShadowView.layer insertSublayer:topShadow atIndex:0];
+    
+    [_tab_HOME addSubview:topShadowView];
+    
     [_segment_bottom setSelectedSegmentIndex:2];
     [_tab_HOME setSelectedItem:[_tab_HOME.items objectAtIndex:2]];
     for (int i=0; i<[self.segment_bottom.subviews count]; i++)

@@ -11,6 +11,7 @@
 @interface Cell_notifications : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *lbl_title;
-@property (weak, nonatomic) IBOutlet UISwitch *SWICTCH_toggle;
+@property (weak, nonatomic) IBOutlet UISwitch *SWICTCH_text;
+@property (weak, nonatomic) IBOutlet UISwitch *SWICTCH_email;
 
 @end

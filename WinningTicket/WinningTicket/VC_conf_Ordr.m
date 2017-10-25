@@ -104,8 +104,8 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Medium" size:22.0f]}];
-    self.navigationItem.title = @"Check Out";
+       NSFontAttributeName:FONT_NAV_TITLE}];
+    self.navigationItem.title = @"CHECK OUT";
     
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];

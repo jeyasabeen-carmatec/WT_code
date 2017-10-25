@@ -110,8 +110,8 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Medium" size:22.0f]}];
-    self.navigationItem.title = @"Event Detail";
+       NSFontAttributeName:FONT_NAV_TITLE}];
+    self.navigationItem.title = @"EVENT DETAIL";
 }
 
 -(void) backAction

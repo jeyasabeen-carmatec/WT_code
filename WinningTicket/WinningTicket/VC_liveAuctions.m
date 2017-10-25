@@ -154,8 +154,8 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Medium" size:22.0f]}];
-    self.navigationItem.title = @"Silent Auctions";
+       NSFontAttributeName:FONT_NAV_TITLE}];
+    self.navigationItem.title = @"SILENT AUCTIONS";
     
 //    UIBarButtonItem *anotherButton1 = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain
 //                                                                     target:self action:@selector(more_ACTION)];

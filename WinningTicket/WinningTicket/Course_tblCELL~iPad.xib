@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,8 +13,8 @@
         <array key="Gotham Bold Regular.ttf">
             <string>GothamBold</string>
         </array>
-        <array key="GothamMedium Regular.otf">
-            <string>GothamMedium</string>
+        <array key="Montserrat-Medium.ttf">
+            <string>Montserrat-Medium</string>
         </array>
     </customFonts>
     <objects>
@@ -27,6 +27,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="768" height="92.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3X-VP-Ass">
+                        <rect key="frame" x="688" y="73" width="59" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84l-3U-O1x">
                         <rect key="frame" x="8" y="16" width="42" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -35,47 +42,36 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="buM-LL-Lgf">
-                        <rect key="frame" x="8" y="15" width="62" height="62"/>
+                        <rect key="frame" x="8" y="16" width="62" height="62"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="62" id="85u-0J-y20"/>
-                            <constraint firstAttribute="width" constant="62" id="gtS-oR-gzT"/>
+                            <constraint firstAttribute="height" constant="62" id="0EX-7s-DUp"/>
+                            <constraint firstAttribute="width" constant="62" id="grM-xm-SkJ"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="private.png" translatesAutoresizingMaskIntoConstraints="NO" id="FHz-fl-50Y">
-                        <rect key="frame" x="625" y="0.0" width="143" height="68"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PRIVATE_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="FHz-fl-50Y">
+                        <rect key="frame" x="700" y="16" width="60" height="60"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="68" id="Cbe-xF-awM"/>
-                            <constraint firstAttribute="width" constant="143" id="ttM-64-Ern"/>
+                            <constraint firstAttribute="height" constant="60" id="X7U-zT-dL5"/>
+                            <constraint firstAttribute="width" constant="60" id="cpl-PA-SY8"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMu-1p-dMc">
-                        <rect key="frame" x="78" y="29" width="602" height="14"/>
+                        <rect key="frame" x="78" y="39" width="602" height="13"/>
                         <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PRIVATE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3X-VP-Ass">
-                        <rect key="frame" x="702" y="15" width="59" height="18"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="18" id="SFo-iO-o7M"/>
-                            <constraint firstAttribute="width" constant="59" id="ZVb-5d-rlF"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="GothamMedium" family="GothamMedium" pointSize="13"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="v3X-VP-Ass" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="2Ik-1T-pWX"/>
-                    <constraint firstItem="OMu-1p-dMc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="21" id="3Ua-zU-iSm"/>
-                    <constraint firstItem="buM-LL-Lgf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="5QA-Fw-kSG"/>
-                    <constraint firstItem="v3X-VP-Ass" firstAttribute="leading" secondItem="OMu-1p-dMc" secondAttribute="trailing" constant="22" id="7JN-Nr-OEh"/>
-                    <constraint firstItem="OMu-1p-dMc" firstAttribute="leading" secondItem="buM-LL-Lgf" secondAttribute="trailing" constant="8" id="LjM-FX-yl3"/>
-                    <constraint firstAttribute="trailing" secondItem="FHz-fl-50Y" secondAttribute="trailing" id="O0w-Tm-tHX"/>
-                    <constraint firstAttribute="trailing" secondItem="v3X-VP-Ass" secondAttribute="trailing" constant="7" id="QkQ-KJ-eO5"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="buM-LL-Lgf" secondAttribute="bottom" constant="7.5" id="Rxb-60-30Z"/>
-                    <constraint firstItem="FHz-fl-50Y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="S6A-cO-pNg"/>
-                    <constraint firstItem="buM-LL-Lgf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Vks-jb-iRh"/>
+                    <constraint firstItem="OMu-1p-dMc" firstAttribute="leading" secondItem="buM-LL-Lgf" secondAttribute="trailing" constant="8" id="08v-go-lOy"/>
+                    <constraint firstItem="FHz-fl-50Y" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="98R-hE-leK"/>
+                    <constraint firstItem="OMu-1p-dMc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="MLg-A6-Lie"/>
+                    <constraint firstItem="buM-LL-Lgf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZDk-97-J4B"/>
+                    <constraint firstItem="FHz-fl-50Y" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bQL-XH-Em6"/>
+                    <constraint firstItem="FHz-fl-50Y" firstAttribute="leading" secondItem="OMu-1p-dMc" secondAttribute="trailing" constant="20" id="gae-e7-26v"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="buM-LL-Lgf" secondAttribute="bottom" constant="6.5" id="hf6-1D-CiO"/>
+                    <constraint firstItem="buM-LL-Lgf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="ns2-LB-v1l"/>
+                    <constraint firstItem="buM-LL-Lgf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="yla-iv-usL"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -89,6 +85,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="private.png" width="100" height="51"/>
+        <image name="PRIVATE_1.png" width="174" height="165"/>
     </resources>
 </document>

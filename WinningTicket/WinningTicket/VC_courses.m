@@ -110,6 +110,20 @@
 
 -(void) setup_VIEW
 {
+    [[UIView appearanceWhenContainedIn:[UITabBar class], nil] setTintColor:[UIColor blackColor]];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: _tab_HOME.tintColor, NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
+    
+    
+    UIView *topShadowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _tab_HOME.bounds.size.width, 2)];
+    CAGradientLayer *topShadow = [CAGradientLayer layer];
+    topShadow.frame = CGRectMake(0, -1, _tab_HOME.bounds.size.width, 2);
+    topShadow.colors = [NSArray arrayWithObjects:(id)[UIColor blackColor], (id)[[UIColor blackColor] CGColor], nil];
+    [topShadowView.layer insertSublayer:topShadow atIndex:0];
+    
+    [_tab_HOME addSubview:topShadowView];
+    
     [_segment_bottom setSelectedSegmentIndex:1];
     [_tab_HOME setSelectedItem:[_tab_HOME.items objectAtIndex:1]];
     for (int i=0; i<[self.segment_bottom.subviews count]; i++)
@@ -390,13 +404,17 @@
     NSLog(@"OldLocation %f %f", oldLocation.coordinate.latitude, oldLocation.coordinate.longitude);
     NSLog(@"NewLocation %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
     
-//    LOC_user = newLocation;
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%f",newLocation.coordinate.latitude] forKey:@"lat_STR"];
+    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%f",newLocation.coordinate.longitude] forKey:@"long_STR"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     manager.delegate = nil;
+    
     
     
     VW_overlay.hidden = NO;
     [activityIndicatorView startAnimating];
-    [self performSelector:@selector(API_getCOURSES:) withObject:newLocation afterDelay:0.01];
+    [self performSelector:@selector(API_getCOURSES) withObject:activityIndicatorView afterDelay:0.01];
     
    /* GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:newLocation.coordinate.latitude
                                                             longitude:newLocation.coordinate.longitude
@@ -595,13 +613,38 @@
     NSString *address = [temp_dictin valueForKey:@"address"];
     address = [address stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
     address = [address stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
+    
+    CLLocation *location2 = [[CLLocation alloc] initWithLatitude:[[temp_dictin valueForKey:@"lat"] doubleValue] longitude:[[temp_dictin valueForKey:@"lng"] doubleValue]];
+    CLLocation *LOC_main = [[CLLocation alloc] initWithLatitude:[[[NSUserDefaults standardUserDefaults] valueForKey:@"lat_STR"] doubleValue] longitude:[[[NSUserDefaults standardUserDefaults] valueForKey:@"long_STR"] doubleValue]];
+    
+    CLLocationDistance distance = [LOC_main distanceFromLocation:location2];
+    
+    NSLog(@"Distance in miles %f",distance * 0.000621371);
+    
+    
+    CLLocationCoordinate2D c2D_from;
+    c2D_from.latitude = [[[NSUserDefaults standardUserDefaults] valueForKey:@"lat_STR"] doubleValue];
+    c2D_from.longitude = [[[NSUserDefaults standardUserDefaults] valueForKey:@"long_STR"] doubleValue];
+    
+    CLLocationCoordinate2D c2D_to;
+    c2D_to.latitude = [[temp_dictin valueForKey:@"lat"] doubleValue];
+    c2D_to.longitude = [[temp_dictin valueForKey:@"lng"] doubleValue];
+    
+    
+    
+    NSNumber *new_distance = [self calculateDistanceInMetersBetweenCoord:c2D_from coord:c2D_to];
+    double disT = ([new_distance doubleValue] * 0.000621371f) - 0.4f;
+    
+    NSString *miles = [NSString stringWithFormat:@"%.1f MILES",disT];
    
-    NSString *text = [NSString stringWithFormat:@"%@\n%@",course_name,address];
+    NSString *text = [NSString stringWithFormat:@"%@\n%@ %@",course_name,address,miles];
+    UIImage *newImage = [UIImage alloc];// = [cell.IMG_privacy.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     
     // If attributed text is supported (iOS6+)
     if ([cell.lbl_courseName respondsToSelector:@selector(setAttributedText:)]) {
         // Define general attributes for the entire text
+        
         NSDictionary *attribs = @{
                                   NSForegroundColorAttributeName: cell.lbl_courseName.textColor,
                                   NSFontAttributeName: cell.lbl_courseName.font
@@ -613,14 +656,84 @@
         // Red text attributes
         //            UIColor *redColor = [UIColor redColor];
         NSRange cmp = [text rangeOfString:address];// * Notice that usage of rangeOfString in this case may cause some bugs - I use it here only for demonstration
+        NSRange RAN_miles = [text rangeOfString:miles];
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
+            if ([course_type isEqualToString:@"private"])
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.09 green:0.64 blue:0.91 alpha:1.0]}
+                                        range:RAN_miles];
+                
+               // UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+              //  [[UIColor colorWithRed:0.00 green:0.00 blue:1.00 alpha:1.0] set];
+               // [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                newImage = [UIImage imageNamed:@"PRIVATE_1.png"];// UIGraphicsGetImageFromCurrentImageContext();
+               // UIGraphicsEndImageContext();
+                
+            }
+            else if ([course_type isEqualToString:@"public"])
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.00 green:0.67 blue:0.20 alpha:1.0]}
+                                        range:RAN_miles];
+                
+//                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+//                [[UIColor colorWithRed:0.00 green:0.65 blue:0.32 alpha:1.0] set];
+//                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                newImage = [UIImage imageNamed:@"PUBLIC.png"];//UIGraphicsGetImageFromCurrentImageContext();
+//                UIGraphicsEndImageContext();
+            }
+            else
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.74 green:0.74 blue:0.75 alpha:1.0]}
+                                        range:RAN_miles];
+                
+//                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+//                [[UIColor whiteColor] set];
+//                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                newImage = [UIImage new];//UIGraphicsGetImageFromCurrentImageContext();
+//                UIGraphicsEndImageContext();
+            }
             [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-MediumItalic" size:15.0]}
                                     range:cmp];
+            
         }
         else
         {
+            if ([course_type isEqualToString:@"private"])
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.09 green:0.64 blue:0.91 alpha:1.0]}
+                                        range:RAN_miles];
+
+//                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+//                [[UIColor colorWithRed:0.00 green:0.00 blue:1.00 alpha:1.0] set];
+//                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                newImage = [UIImage imageNamed:@"PRIVATE_1.png"]; //UIGraphicsGetImageFromCurrentImageContext();
+//                UIGraphicsEndImageContext();
+                
+            }
+            else if ([course_type isEqualToString:@"public"])
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.00 green:0.67 blue:0.20 alpha:1.0]}
+                                        range:RAN_miles];
+                
+//                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+//                [[UIColor colorWithRed:0.00 green:0.65 blue:0.32 alpha:1.0] set];
+//                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                newImage = [UIImage imageNamed:@"PUBLIC.png"]; //UIGraphicsGetImageFromCurrentImageContext();
+//                UIGraphicsEndImageContext();
+            }
+            else
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.74 green:0.74 blue:0.75 alpha:1.0]}
+                                        range:RAN_miles];
+                
+//                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+//                [[UIColor whiteColor] set];
+//                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                newImage = [UIImage new]; //UIGraphicsGetImageFromCurrentImageContext();
+//                UIGraphicsEndImageContext();
+            }
             [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-MediumItalic" size:12.0]}
                                     range:cmp];
         }
@@ -630,42 +743,13 @@
     {
         cell.lbl_courseName.text = text;
     }
+
     
     cell.lbl_courseName.numberOfLines = 0;
     [cell.lbl_courseName sizeToFit];
     
-    if ([course_type isEqualToString:@"private"])
-    {
-        UIImage *newImage = [cell.IMG_privacy.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
-        [[UIColor colorWithRed:0.00 green:0.00 blue:1.00 alpha:1.0] set];
-        [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
-        newImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        cell.IMG_privacy.image = newImage;
-    }
-    else if ([course_type isEqualToString:@"public"])
-    {
-        UIImage *newImage = [cell.IMG_privacy.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
-        [[UIColor colorWithRed:0.00 green:0.65 blue:0.32 alpha:1.0] set];
-        [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
-        newImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        cell.IMG_privacy.image = newImage;
-    }
-    else
-    {
-        UIImage *newImage = [cell.IMG_privacy.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
-        [[UIColor whiteColor] set];
-        [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
-        newImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        cell.IMG_privacy.image = newImage;
-    }
-    
-    cell.lbl_privacy.text = [course_type uppercaseString];
+    cell.IMG_privacy.image = newImage;
+    //cell.lbl_privacy.text = @"";
     
     NSString *website_url = [temp_dictin valueForKey:@"course_image"];
     if (website_url)
@@ -695,10 +779,18 @@
     return cell;
 }
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return 100;
-//}
+- (NSNumber*)calculateDistanceInMetersBetweenCoord:(CLLocationCoordinate2D)coord1 coord:(CLLocationCoordinate2D)coord2 {
+    NSInteger nRadius = 6371; // Earth's radius in Kilometers
+    double latDiff = (coord2.latitude - coord1.latitude) * (M_PI/180);
+    double lonDiff = (coord2.longitude - coord1.longitude) * (M_PI/180);
+    double lat1InRadians = coord1.latitude * (M_PI/180);
+    double lat2InRadians = coord2.latitude * (M_PI/180);
+    double nA = pow ( sin(latDiff/2), 2 ) + cos(lat1InRadians) * cos(lat2InRadians) * pow ( sin(lonDiff/2), 2 );
+    double nC = 2 * atan2( sqrt(nA), sqrt( 1 - nA ));
+    double nD = nRadius * nC;
+    // convert to meters
+    return @(nD*1000);
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -753,11 +845,35 @@
     address = [address stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
     address = [address stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
     
-    NSString *text = [NSString stringWithFormat:@"%@\n%@",course_name,address];
+    CLLocation *location2 = [[CLLocation alloc] initWithLatitude:[[temp_dictin valueForKey:@"lat"] doubleValue] longitude:[[temp_dictin valueForKey:@"lng"] doubleValue]];
+    CLLocation *LOC_main = [[CLLocation alloc] initWithLatitude:[[[NSUserDefaults standardUserDefaults] valueForKey:@"lat_STR"] doubleValue] longitude:[[[NSUserDefaults standardUserDefaults] valueForKey:@"long_STR"] doubleValue]];
+    
+    CLLocationDistance distance = [LOC_main distanceFromLocation:location2];
+    
+    NSLog(@"Distance in miles %f",distance * 0.000621371);
+    
+    
+    CLLocationCoordinate2D c2D_from;
+    c2D_from.latitude = [[[NSUserDefaults standardUserDefaults] valueForKey:@"lat_STR"] doubleValue];
+    c2D_from.longitude = [[[NSUserDefaults standardUserDefaults] valueForKey:@"long_STR"] doubleValue];
+    
+    CLLocationCoordinate2D c2D_to;
+    c2D_to.latitude = [[temp_dictin valueForKey:@"lat"] doubleValue];
+    c2D_to.longitude = [[temp_dictin valueForKey:@"lng"] doubleValue];
+    
+    
+    
+    NSNumber *new_distance = [self calculateDistanceInMetersBetweenCoord:c2D_from coord:c2D_to];
+    double disT = ([new_distance doubleValue] * 0.000621371f) - 0.4f;
+    
+    NSString *miles = [NSString stringWithFormat:@"%.1f MILES",disT];
+    
+    NSString *text = [NSString stringWithFormat:@"%@\n%@ %@",course_name,address,miles];
+    UIImage *newImage = [UIImage alloc]; //= [cell.IMG_privacy.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     
     // If attributed text is supported (iOS6+)
-//    if ([cell.lbl_courseName respondsToSelector:@selector(setAttributedText:)]) {
+    if ([cell.lbl_courseName respondsToSelector:@selector(setAttributedText:)]) {
         // Define general attributes for the entire text
         NSDictionary *attribs = @{
                                   NSForegroundColorAttributeName: cell.lbl_courseName.textColor,
@@ -770,75 +886,100 @@
         // Red text attributes
         //            UIColor *redColor = [UIColor redColor];
         NSRange cmp = [text rangeOfString:address];// * Notice that usage of rangeOfString in this case may cause some bugs - I use it here only for demonstration
+        NSRange RAN_miles = [text rangeOfString:miles];
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
+            if ([course_type isEqualToString:@"private"])
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.09 green:0.64 blue:0.91 alpha:1.0]}
+                                        range:RAN_miles];
+                
+                // UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+                //  [[UIColor colorWithRed:0.00 green:0.00 blue:1.00 alpha:1.0] set];
+                // [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                newImage = [UIImage imageNamed:@"PRIVATE_1.png"];// UIGraphicsGetImageFromCurrentImageContext();
+                // UIGraphicsEndImageContext();
+                
+            }
+            else if ([course_type isEqualToString:@"public"])
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.00 green:0.67 blue:0.20 alpha:1.0]}
+                                        range:RAN_miles];
+                
+                //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+                //                [[UIColor colorWithRed:0.00 green:0.65 blue:0.32 alpha:1.0] set];
+                //                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                newImage = [UIImage imageNamed:@"PUBLIC.png"];//UIGraphicsGetImageFromCurrentImageContext();
+                //                UIGraphicsEndImageContext();
+            }
+            else
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.74 green:0.74 blue:0.75 alpha:1.0]}
+                                        range:RAN_miles];
+                
+                //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+                //                [[UIColor whiteColor] set];
+                //                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                newImage = [UIImage new];//UIGraphicsGetImageFromCurrentImageContext();
+                //                UIGraphicsEndImageContext();
+            }
             [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-MediumItalic" size:15.0]}
                                     range:cmp];
+            
         }
         else
         {
+            if ([course_type isEqualToString:@"private"])
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.09 green:0.64 blue:0.91 alpha:1.0]}
+                                        range:RAN_miles];
+                
+                //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+                //                [[UIColor colorWithRed:0.00 green:0.00 blue:1.00 alpha:1.0] set];
+                //                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                newImage = [UIImage imageNamed:@"PRIVATE_1.png"]; //UIGraphicsGetImageFromCurrentImageContext();
+                //                UIGraphicsEndImageContext();
+                
+            }
+            else if ([course_type isEqualToString:@"public"])
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.00 green:0.67 blue:0.20 alpha:1.0]}
+                                        range:RAN_miles];
+                
+                //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+                //                [[UIColor colorWithRed:0.00 green:0.65 blue:0.32 alpha:1.0] set];
+                //                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                newImage = [UIImage imageNamed:@"PUBLIC.png"]; //UIGraphicsGetImageFromCurrentImageContext();
+                //                UIGraphicsEndImageContext();
+            }
+            else
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.74 green:0.74 blue:0.75 alpha:1.0]}
+                                        range:RAN_miles];
+                
+                //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+                //                [[UIColor whiteColor] set];
+                //                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                newImage = [UIImage new]; //UIGraphicsGetImageFromCurrentImageContext();
+                //                UIGraphicsEndImageContext();
+            }
             [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-MediumItalic" size:12.0]}
                                     range:cmp];
         }
         cell.lbl_courseName.attributedText = attributedText;
-//    }
-//    else
-//    {
-//        cell.lbl_courseName.text = text;
-//    }
+    }
+    else
+    {
+        cell.lbl_courseName.text = text;
+    }
+    
     
     cell.lbl_courseName.numberOfLines = 0;
     [cell.lbl_courseName sizeToFit];
     
-    float heiht_p = cell.lbl_courseName.frame.size.height;
-    
-    CGRect frame_lbl = cell.lbl_courseName.frame;
-    frame_lbl.size.width = cell.layer.frame.size.width - 70;
-    if (heiht_p > 47) {
-        frame_lbl.origin.y = 20;
-        frame_lbl.size.height = 66;
-    }
-    else
-    {
-        frame_lbl.origin.y = 39;
-        frame_lbl.size.height = 47;
-    }
-    
-    cell.lbl_courseName.frame = frame_lbl;
-    
-    if ([course_type isEqualToString:@"private"])
-    {
-        UIImage *newImage = [cell.IMG_privacy.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
-        [[UIColor colorWithRed:0.00 green:0.00 blue:1.00 alpha:1.0] set];
-        [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
-        newImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        cell.IMG_privacy.image = newImage;
-    }
-    else if ([course_type isEqualToString:@"public"])
-    {
-        UIImage *newImage = [cell.IMG_privacy.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
-        [[UIColor colorWithRed:0.00 green:0.65 blue:0.32 alpha:1.0] set];
-        [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
-        newImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        cell.IMG_privacy.image = newImage;
-    }
-    else
-    {
-        UIImage *newImage = [cell.IMG_privacy.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
-        [[UIColor whiteColor] set];
-        [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
-        newImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        cell.IMG_privacy.image = newImage;
-    }
-    
-    cell.lbl_privacy.text = [course_type uppercaseString];
+    cell.IMG_privacy.image = newImage;
+   // cell.lbl_privacy.text = @"";
     
     NSString *website_url = [temp_dictin valueForKey:@"course_image"];
     if (website_url)
@@ -919,16 +1060,13 @@
 }
 
 #pragma mark - API Calling
--(void) API_getCOURSES :(CLLocation *) get_LOC
+-(void) API_getCOURSES
 {
 //    NSHTTPURLResponse *response = nil;
-//    NSError *error;
-    
-    NSString *lat_STR = [NSString stringWithFormat:@"%f",get_LOC.coordinate.latitude]; //@"26.7307";//
-    NSString *long_STR = [NSString stringWithFormat:@"%f",get_LOC.coordinate.longitude]; //@"-80.1001";//
-    
-    double latitude_val = [[NSString stringWithFormat:@"%@",lat_STR] doubleValue];
-    double longitude_val = [[NSString stringWithFormat:@"%@",long_STR] doubleValue];
+//    NSError *error; //@"26.7307";// //@"-80.1001";//
+
+    double latitude_val = [[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"lat_STR"]] doubleValue];
+    double longitude_val = [[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"long_STR"]] doubleValue];
     
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:latitude_val
                                                             longitude:longitude_val
@@ -937,7 +1075,7 @@
     [self.mapView animateToCameraPosition:camera];
     self.mapView.settings.compassButton = YES;
     
-    NSString *urlGetuser =[NSString stringWithFormat:@"%@golfcourse/search_courses?lat=%@&lng=%@",SERVER_URL,lat_STR,long_STR];
+    NSString *urlGetuser =[NSString stringWithFormat:@"%@golfcourse/search_courses?lat=%@&lng=%@",SERVER_URL,[[NSUserDefaults standardUserDefaults] valueForKey:@"lat_STR"],[[NSUserDefaults standardUserDefaults] valueForKey:@"long_STR"]];
     
     
     course_service *API_course = [[course_service alloc]init];
@@ -1094,7 +1232,7 @@
         
         NSString *address = [NSString stringWithFormat:@"%@, %@",[temp_dictin valueForKey:@"city"],[temp_dictin valueForKey:@"state_or_province"]];
         
-        NSDictionary *store_val = [NSDictionary dictionaryWithObjectsAndKeys:[temp_dictin valueForKey:@"course_type"],@"course_type",[temp_dictin valueForKey:@"name"],@"name",address,@"address",[temp_dictin valueForKey:@"course_image"],@"course_image",[temp_dictin valueForKey:@"id"],@"id", nil];
+        NSDictionary *store_val = [NSDictionary dictionaryWithObjectsAndKeys:[temp_dictin valueForKey:@"course_type"],@"course_type",[temp_dictin valueForKey:@"name"],@"name",address,@"address",[temp_dictin valueForKey:@"course_image"],@"course_image",[temp_dictin valueForKey:@"id"],@"id",[temp_dictin valueForKey:@"lat"],@"lat",[temp_dictin valueForKey:@"lng"],@"lng", nil];
         
         [globals.ARR_list_data addObject:store_val];
         [globals.ARR_colection_data addObject:store_val];

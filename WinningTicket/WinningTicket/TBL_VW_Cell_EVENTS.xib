@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -28,6 +28,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="58.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cQK-bX-TGE">
+                        <rect key="frame" x="0.0" y="58" width="320" height="1"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tMZ-Eh-1z5">
+                        <rect key="frame" x="146" y="0.0" width="1" height="60"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rzs-gp-XY1">
+                        <rect key="frame" x="0.0" y="1" width="146" height="56"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test testTest testTest testTest testTest test" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Jy-mm-amf" customClass="CSTM_cell_LBL">
                         <rect key="frame" x="8" y="8" width="138" height="43"/>
                         <fontDescription key="fontDescription" name="GothamPro-Medium" family="Gotham Pro" pointSize="16"/>
@@ -85,6 +100,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="BTN_View_detail" destination="fE0-zS-O2b" id="qAH-h8-0kI"/>
+                <outlet property="VW_leftBG" destination="rzs-gp-XY1" id="DFA-Vq-4Qu"/>
                 <outlet property="lbl_event_name" destination="0Jy-mm-amf" id="Jno-Ij-8ik"/>
                 <outlet property="lbl_event_time" destination="uVB-Mv-Xkd" id="o2N-eo-rCl"/>
             </connections>

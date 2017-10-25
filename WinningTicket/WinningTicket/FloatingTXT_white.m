@@ -427,7 +427,14 @@
     
 }
 
+
 #pragma mark  Float & Resign
+
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
+//{
+//    NSLog(@"Working range %@",NSStringFromRange(range));
+//    return YES;
+//}
 
 -(void)floatTheLabel{
     

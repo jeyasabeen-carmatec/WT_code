@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FloatingTXT_white.h"
 
 @interface ViewController : UIViewController <UITextFieldDelegate,UIAlertViewDelegate>
 
@@ -14,8 +15,8 @@
 @property (nonatomic, weak) IBOutlet UIView *VW_holdCNT;
 @property (nonatomic, weak) IBOutlet UIView *VW_content;
 
-@property (nonatomic, weak) IBOutlet UITextField *TXT_username;
-@property (nonatomic, weak) IBOutlet UITextField *TXT_password;
+@property (nonatomic, weak) IBOutlet FloatingTXT_white *TXT_username;
+@property (nonatomic, weak) IBOutlet FloatingTXT_white *TXT_password;
 
 //Buttons Used
 @property (nonatomic, weak) IBOutlet UIButton *BTN_login;

@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbl_event_time;
 
 @property (weak, nonatomic) IBOutlet UIButton *BTN_View_detail;
+@property (weak, nonatomic) IBOutlet UIView *VW_leftBG;
 
 @end
