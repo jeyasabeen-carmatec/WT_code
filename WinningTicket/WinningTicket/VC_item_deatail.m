@@ -86,8 +86,8 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Medium" size:22.0f]}];
-    self.navigationItem.title = @"Item";
+       NSFontAttributeName:FONT_NAV_TITLE}];
+    self.navigationItem.title = @"ITEM";
     
     
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];

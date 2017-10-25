@@ -8,6 +8,7 @@
 
 #import "VC_notificationsettings.h"
 #import "Cell_notifications.h"
+#import "Cell_headerSection.h"
 
 @interface VC_notificationsettings ()
 {
@@ -21,6 +22,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setup_VIEW];
+    
+    
+    _tbl_contents.estimatedSectionHeaderHeight = 40.0f;
+    _tbl_contents.sectionHeaderHeight = UITableViewAutomaticDimension;
+    _tbl_contents.estimatedRowHeight = 10.0f;
+    _tbl_contents.rowHeight = UITableViewAutomaticDimension;
     
 //    [_tbl_contents reloadData];
 //    [_tbl_contents sizeToFit];
@@ -73,23 +80,56 @@
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UILabel *label = [[UILabel alloc] init];
+    /*UILabel *label = [[UILabel alloc] init];
     label.textColor = [UIColor blackColor];
     
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-    {
-        label.font = [UIFont fontWithName:@"Gotham-Book" size:22.0];
-    }
-    else
-    {
-        label.font = [UIFont fontWithName:@"Gotham-Book" size:17.0];
-    }
+    
     
     label.backgroundColor = [UIColor colorWithRed:0.93 green:0.94 blue:0.96 alpha:1.0];
     
     label.text = [NSString stringWithFormat:@"    %@",[[ARR_title objectAtIndex:section] uppercaseString]];
     
-    return label;
+    return label;*/
+    
+    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    
+    Cell_headerSection *cell = (Cell_headerSection *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    if (cell == nil)
+    {
+        NSArray *nib;
+        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+        {
+            nib = [[NSBundle mainBundle] loadNibNamed:@"Cell_headerSection~iPad" owner:self options:nil];
+        }
+        else
+        {
+            nib = [[NSBundle mainBundle] loadNibNamed:@"Cell_headerSection" owner:self options:nil];
+        }
+        cell = [nib objectAtIndex:0];
+    }
+    
+    if (section == 0) {
+        cell.lbl_text.text = @"TEXT";
+        cell.lbl_email.text = @"EMAIL";
+    }
+    else
+    {
+        cell.lbl_text.text = @"";
+        cell.lbl_email.text = @"";
+    }
+    
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    {
+        cell.lbl_title.font = [UIFont fontWithName:@"Gotham-Book" size:20.0];
+    }
+    else
+    {
+        cell.lbl_title.font = [UIFont fontWithName:@"Gotham-Book" size:15.0];
+    }
+    
+    cell.lbl_title.text = [NSString stringWithFormat:@"%@",[[ARR_title objectAtIndex:section] uppercaseString]];
+    
+    return cell;
 }
 
 //-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -137,17 +177,17 @@
     
     cell.lbl_title.text = icon_name;
     cell.lbl_title.numberOfLines = 0;
-    [cell.lbl_title sizeToFit];
+//    [cell.lbl_title sizeToFit];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     return cell;
 }
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+/*-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 40.0f;
-}
+}*/
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+/*-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 //    NSDictionary *temp_DICN = [ARR_allevent objectAtIndex:indexPath.row];
     NSString *str; //= [NSString stringWithFormat:@"%@",[temp_DICN valueForKey:@"Event_Name"]];
@@ -180,7 +220,7 @@
     int calculatedHeight = textRect.size.height + 10;
     
     return calculatedHeight + 30;
-}
+}*/
 
 #pragma mark - BTN Actions
 -(IBAction)BTN_close:(id)sender

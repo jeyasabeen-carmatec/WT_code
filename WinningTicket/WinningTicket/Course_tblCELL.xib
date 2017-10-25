@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,9 +13,6 @@
         <array key="Gotham Bold Regular.ttf">
             <string>GothamBold</string>
         </array>
-        <array key="GothamMedium Regular.otf">
-            <string>GothamMedium</string>
-        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -27,55 +24,45 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="92.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQ0-ya-Ytd">
-                        <rect key="frame" x="8" y="16" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NQ0-ya-Ytd">
+                        <rect key="frame" x="8" y="14" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LZ0-XB-ukf">
-                        <rect key="frame" x="8" y="15" width="62" height="62"/>
+                        <rect key="frame" x="8" y="15.5" width="62" height="62"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="62" id="1FY-4T-9ct"/>
-                            <constraint firstAttribute="height" constant="62" id="Na2-on-3Lg"/>
+                            <constraint firstAttribute="width" constant="62" id="991-aA-9ZB"/>
+                            <constraint firstAttribute="height" constant="62" id="OIX-kD-ni9"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="private.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zws-op-v1i">
-                        <rect key="frame" x="183" y="0.0" width="137" height="66"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PRIVATE_1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zws-op-v1i">
+                        <rect key="frame" x="251" y="18" width="60" height="60"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="137" id="FY9-Hq-5Vn"/>
-                            <constraint firstAttribute="height" constant="66" id="RFW-md-n6L"/>
+                            <constraint firstAttribute="width" constant="60" id="BKQ-UA-fnR"/>
+                            <constraint firstAttribute="height" constant="60" id="M31-cB-SHd"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PRIVATE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHH-GO-Uq1">
-                        <rect key="frame" x="254" y="16" width="59" height="14.5"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="14.5" id="ULO-bN-lGJ"/>
-                            <constraint firstAttribute="width" constant="59" id="ijn-gI-PFN"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="GothamMedium" family="GothamMedium" pointSize="13"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukq-do-ib8">
-                        <rect key="frame" x="78" y="30" width="165" height="13.5"/>
+                        <rect key="frame" x="78" y="40" width="165" height="13.5"/>
                         <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ukq-do-ib8" firstAttribute="leading" secondItem="LZ0-XB-ukf" secondAttribute="trailing" constant="8" id="499-WY-dgn"/>
-                    <constraint firstItem="ukq-do-ib8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="22" id="4X9-j7-caB"/>
-                    <constraint firstItem="LZ0-XB-ukf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="7MS-I6-o21"/>
-                    <constraint firstItem="hHH-GO-Uq1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="bNZ-hf-lpj"/>
-                    <constraint firstAttribute="trailing" secondItem="hHH-GO-Uq1" secondAttribute="trailing" constant="7" id="eE2-34-NI0"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="LZ0-XB-ukf" secondAttribute="bottom" constant="7.5" id="eHy-Et-J6B"/>
-                    <constraint firstItem="Zws-op-v1i" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="tHY-lo-OLF"/>
-                    <constraint firstItem="LZ0-XB-ukf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="tZc-Zn-3sT"/>
-                    <constraint firstAttribute="trailing" secondItem="Zws-op-v1i" secondAttribute="trailing" id="u4f-lR-E09"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="ukq-do-ib8" secondAttribute="trailing" constant="69" id="wNf-TE-ceI"/>
+                    <constraint firstItem="LZ0-XB-ukf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7.5" id="0RL-lK-RWW"/>
+                    <constraint firstAttribute="trailing" secondItem="Zws-op-v1i" secondAttribute="trailing" constant="9" id="0m1-bB-JrT"/>
+                    <constraint firstItem="Zws-op-v1i" firstAttribute="top" secondItem="NQ0-ya-Ytd" secondAttribute="top" constant="4" id="4i0-jo-jl4"/>
+                    <constraint firstItem="ukq-do-ib8" firstAttribute="centerY" secondItem="LZ0-XB-ukf" secondAttribute="centerY" id="9g2-e9-7Rh"/>
+                    <constraint firstItem="NQ0-ya-Ytd" firstAttribute="leading" secondItem="LZ0-XB-ukf" secondAttribute="leading" id="9pD-9f-1x4"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="LZ0-XB-ukf" secondAttribute="bottom" constant="7.5" id="JLi-mN-pXn"/>
+                    <constraint firstItem="ukq-do-ib8" firstAttribute="leading" secondItem="LZ0-XB-ukf" secondAttribute="trailing" constant="8" id="OdP-3J-OwJ"/>
+                    <constraint firstItem="Zws-op-v1i" firstAttribute="leading" secondItem="ukq-do-ib8" secondAttribute="trailing" constant="8" id="SRE-1X-Q88"/>
+                    <constraint firstItem="LZ0-XB-ukf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="UL3-qu-XGo"/>
+                    <constraint firstItem="ukq-do-ib8" firstAttribute="centerY" secondItem="Zws-op-v1i" secondAttribute="centerY" constant="-1.5" id="ZNp-eI-eHO"/>
+                    <constraint firstItem="LZ0-XB-ukf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="uwa-IS-0bp"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -83,12 +70,11 @@
                 <outlet property="IMG_privacy" destination="Zws-op-v1i" id="69J-Dz-IoY"/>
                 <outlet property="lbl_courseName" destination="ukq-do-ib8" id="rNE-JL-nXW"/>
                 <outlet property="lbl_id" destination="NQ0-ya-Ytd" id="XVi-GM-MNq"/>
-                <outlet property="lbl_privacy" destination="hHH-GO-Uq1" id="HaQ-aQ-pwA"/>
             </connections>
             <point key="canvasLocation" x="33" y="108.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="private.png" width="100" height="51"/>
+        <image name="PRIVATE_1.png" width="174" height="165"/>
     </resources>
 </document>

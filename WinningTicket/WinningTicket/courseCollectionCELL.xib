@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,9 +11,6 @@
     <customFonts key="customFonts">
         <array key="Gotham Bold Regular.ttf">
             <string>GothamBold</string>
-        </array>
-        <array key="GothamMedium Regular.otf">
-            <string>GothamMedium</string>
         </array>
     </customFonts>
     <objects>
@@ -29,43 +26,40 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3EJ-0W-YCp">
                         <rect key="frame" x="8" y="22" width="62" height="62"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="62" id="Xq8-yT-5W7"/>
-                            <constraint firstAttribute="width" constant="62" id="jm6-d5-JKN"/>
+                            <constraint firstAttribute="width" constant="62" id="vaQ-4u-MSX"/>
+                            <constraint firstAttribute="height" constant="62" id="xTZ-L3-whL"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="private.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jsm-99-J3e">
-                        <rect key="frame" x="189" y="0.0" width="131" height="72"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PRIVATE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvP-QM-aSB">
-                        <rect key="frame" x="250" y="15" width="64" height="15"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="GothamMedium" family="GothamMedium" pointSize="13"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9k-aW-huR">
-                        <rect key="frame" x="72" y="46" width="189" height="13.5"/>
+                        <rect key="frame" x="72" y="46.5" width="173" height="13.5"/>
                         <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="private.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jsm-99-J3e">
+                        <rect key="frame" x="253" y="22" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="6az-a7-lDI"/>
+                            <constraint firstAttribute="height" constant="60" id="f0J-b3-bWy"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="l9k-aW-huR" secondAttribute="trailing" constant="59" id="2ea-rZ-n5n"/>
-                <constraint firstItem="3EJ-0W-YCp" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="CXa-iw-8l6"/>
-                <constraint firstItem="l9k-aW-huR" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Dwr-Gr-8uv"/>
-                <constraint firstItem="l9k-aW-huR" firstAttribute="leading" secondItem="3EJ-0W-YCp" secondAttribute="trailing" constant="2" id="YTU-lb-QaT"/>
-                <constraint firstItem="3EJ-0W-YCp" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="eJT-Ws-cUw"/>
+                <constraint firstAttribute="trailing" secondItem="Jsm-99-J3e" secondAttribute="trailing" constant="7" id="0ev-L7-3Wh"/>
+                <constraint firstItem="l9k-aW-huR" firstAttribute="leading" secondItem="3EJ-0W-YCp" secondAttribute="trailing" constant="2" id="3T7-0T-imL"/>
+                <constraint firstItem="l9k-aW-huR" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="FCS-Ny-nxF"/>
+                <constraint firstItem="3EJ-0W-YCp" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="R4S-2N-hYg"/>
+                <constraint firstItem="Jsm-99-J3e" firstAttribute="leading" secondItem="l9k-aW-huR" secondAttribute="trailing" constant="8" id="SOh-ZQ-Fgs"/>
+                <constraint firstItem="Jsm-99-J3e" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="sEr-6Z-c0p"/>
+                <constraint firstItem="3EJ-0W-YCp" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="vtn-eK-tgq"/>
             </constraints>
             <size key="customSize" width="320" height="105"/>
             <connections>
                 <outlet property="IMG_courseimage" destination="3EJ-0W-YCp" id="Yin-qu-1jS"/>
                 <outlet property="IMG_privacy" destination="Jsm-99-J3e" id="h87-fm-WIU"/>
                 <outlet property="lbl_courseName" destination="l9k-aW-huR" id="xjf-mf-cba"/>
-                <outlet property="lbl_privacy" destination="RvP-QM-aSB" id="DVb-hs-Sg3"/>
             </connections>
             <point key="canvasLocation" x="33" y="92.5"/>
         </collectionViewCell>

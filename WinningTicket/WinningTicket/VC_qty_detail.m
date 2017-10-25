@@ -89,8 +89,8 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Medium" size:22.0f]}];
-    self.navigationItem.title = @"Add Recipients";
+       NSFontAttributeName:FONT_NAV_TITLE}];
+    self.navigationItem.title = @"ADD RECIPIENTS";
 }
 
 /*
@@ -511,7 +511,7 @@
     [pu_cell.email setTag:indexPath.row];
     [pu_cell.email addTarget:self action:@selector(TXT_Email:) forControlEvents:UIControlEventEditingChanged];
     
-    pu_cell.stat_lbl.text=[NSString stringWithFormat:@"Extra Ticket  %d",indexPath.row + 1];
+    pu_cell.stat_lbl.text=[NSString stringWithFormat:@"Extra Ticket  %ld",indexPath.row + 1];
     
     return pu_cell;
 }

@@ -142,6 +142,10 @@
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    if (string.length != 0) {
+        [textField becomeFirstResponder];
+    }
+    
     if (textField == _TXT_currentPWD)
     {
         NSInteger inte = textField.text.length;

@@ -1,19 +1,72 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Gotham Bold Regular.ttf">
+            <string>GothamBold</string>
+        </array>
+        <array key="GothamBook Regular.otf">
+            <string>GothamBook</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="Cell_headerSection_iPad">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="Cell_headerSection">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQ5-cp-UXL">
+                        <rect key="frame" x="25" y="11" width="621" height="18.5"/>
+                        <fontDescription key="fontDescription" name="GothamBook" family="GothamBook" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NxK-Fr-9vY">
+                        <rect key="frame" x="654" y="12" width="42" height="11"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="42" id="mAl-Kd-XXp"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aR-2x-pMH">
+                        <rect key="frame" x="710" y="11" width="42" height="11"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="42" id="peS-eM-8gB"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="6aR-2x-pMH" firstAttribute="leading" secondItem="NxK-Fr-9vY" secondAttribute="trailing" constant="14" id="8VY-vd-KzB"/>
+                    <constraint firstItem="6aR-2x-pMH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="Atx-de-CoJ"/>
+                    <constraint firstItem="gQ5-cp-UXL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="QeR-tr-dUm"/>
+                    <constraint firstItem="gQ5-cp-UXL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="17" id="edN-bB-gsQ"/>
+                    <constraint firstItem="NxK-Fr-9vY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="o5b-Ra-X4H"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="6aR-2x-pMH" secondAttribute="trailing" constant="8" id="u82-qZ-4J1"/>
+                    <constraint firstItem="NxK-Fr-9vY" firstAttribute="leading" secondItem="gQ5-cp-UXL" secondAttribute="trailing" constant="8" id="uRG-bS-meF"/>
+                </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="lbl_email" destination="6aR-2x-pMH" id="24N-RX-s2H"/>
+                <outlet property="lbl_text" destination="NxK-Fr-9vY" id="tbg-vY-JRn"/>
+                <outlet property="lbl_title" destination="gQ5-cp-UXL" id="gKq-64-cH5"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

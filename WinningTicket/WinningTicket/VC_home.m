@@ -60,10 +60,14 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     
+    _tbl_all_event.layer.borderWidth = 1.0f;
+    _tbl_all_event.layer.borderColor = [UIColor blackColor].CGColor;
     _tbl_all_event.estimatedRowHeight = 10.0;
     _tbl_all_event.rowHeight = UITableViewAutomaticDimension;
     _tbl_all_event.allowsSelection = NO;
     
+    _tbl_upcomming_event.layer.borderWidth = 1.0f;
+    _tbl_upcomming_event.layer.borderColor = [UIColor blackColor].CGColor;
     _tbl_upcomming_event.estimatedRowHeight = 10.0;
     _tbl_upcomming_event.rowHeight = UITableViewAutomaticDimension;
     _tbl_upcomming_event.allowsSelection = NO;
@@ -121,16 +125,40 @@
 #pragma mark - Customise view
 -(void) setup_VIEW
 {
+    [[UIView appearanceWhenContainedIn:[UITabBar class], nil] setTintColor:[UIColor blackColor]];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: _tab_HOME.tintColor, NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
+    
+    
+    UIView *topShadowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _tab_HOME.bounds.size.width, 2)];
+    CAGradientLayer *topShadow = [CAGradientLayer layer];
+    topShadow.frame = CGRectMake(0, -1, _tab_HOME.bounds.size.width, 2);
+    topShadow.colors = [NSArray arrayWithObjects:(id)[UIColor blackColor], (id)[[UIColor blackColor] CGColor], nil];
+    [topShadowView.layer insertSublayer:topShadow atIndex:0];
+    
+    [_tab_HOME addSubview:topShadowView];
+    
     [_tab_HOME setSelectedItem:[_tab_HOME.items objectAtIndex:0]];
     [_segment_bottom setSelectedSegmentIndex:0];
 
     
     _lbl_titl_event_code.hidden = YES;
     _VW_hold_code.hidden = YES;
+    
+    _BTN_cancel.layer.borderWidth = 1.0f;
+    _BTN_cancel.layer.borderColor = [UIColor blackColor].CGColor;
     _BTN_cancel.hidden = YES;
+    
+    _BTN_enter_event_code.layer.borderWidth = 1.0f;
+    _BTN_enter_event_code.layer.borderColor = [UIColor blackColor].CGColor;
     _BTN_enter_event_code.hidden = YES;
     _BTN_enter_event_code.enabled = NO;
 //    _BTN_enter_event_code.alpha = 0.5;
+    
+    _BTN_view_all_event.layer.borderWidth = 1.0f;
+    _BTN_view_all_event.layer.borderColor = [UIColor blackColor].CGColor;
+    
     [_BTN_view_all_event addTarget:self action:@selector(BTN_enter_event_code:) forControlEvents:UIControlEventTouchUpInside];
     [_BTN_cancel addTarget:self action:@selector(BTN_cancel:) forControlEvents:UIControlEventTouchUpInside];
     [_BTN_enter_event_code addTarget:self action:@selector(BTN_enter_code:) forControlEvents:UIControlEventTouchUpInside];
@@ -207,6 +235,8 @@
     new_frame.size.height = [self allEvent_height];
     _tbl_all_event.frame = new_frame;
     
+    _BTN_all_event.layer.borderWidth = 1.0f;
+    _BTN_all_event.layer.borderColor = [UIColor blackColor].CGColor;
     new_frame = _BTN_all_event.frame;
     new_frame.origin.y = _tbl_all_event.frame.origin.y + [self allEvent_height] + 15;
     new_frame.size.height = _BTN_all_event.frame.size.height;
@@ -409,8 +439,16 @@
             cell.lbl_event_name.numberOfLines = 0;
             [cell.lbl_event_name sizeToFit];
             
+            if (indexPath.row % 2) {
+                cell.VW_leftBG.backgroundColor = [UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.0];
+            } else {
+                cell.VW_leftBG.backgroundColor = [UIColor colorWithRed:1.00 green:1.00 blue:1.00 alpha:1.0];
+            }
             
             cell.lbl_event_time.text = [self getLocalDateTimeFromUTC:[temp_DICN valueForKey:@"start_date"]];
+            
+            cell.BTN_View_detail.layer.borderWidth = 1.0f;
+            cell.BTN_View_detail.layer.borderColor = [UIColor blackColor].CGColor;
             
             [cell.BTN_View_detail setTag:indexPath.row];
             [cell.BTN_View_detail addTarget:self action:@selector(BTN_UP_COMNG_EVENT:) forControlEvents:UIControlEventTouchUpInside];
@@ -469,7 +507,16 @@
             cell.lbl_event_name.numberOfLines = 0;
             [cell.lbl_event_name sizeToFit];
             
+            if (indexPath.row % 2) {
+                cell.VW_leftBG.backgroundColor = [UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.0];
+            } else {
+                cell.VW_leftBG.backgroundColor = [UIColor colorWithRed:1.00 green:1.00 blue:1.00 alpha:1.0];
+            }
+            
             cell.lbl_event_time.text = [self getLocalDateTimeFromUTC:[temp_DICN valueForKey:@"start_date"]];
+            
+            cell.BTN_View_detail.layer.borderWidth = 1.0f;
+            cell.BTN_View_detail.layer.borderColor = [UIColor blackColor].CGColor;
             
             [cell.BTN_View_detail setTag:indexPath.row];
             [cell.BTN_View_detail addTarget:self action:@selector(BTN_ALL_EVENT:) forControlEvents:UIControlEventTouchUpInside];
@@ -487,7 +534,7 @@
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row % 2) {
-        cell.contentView.backgroundColor = [UIColor colorWithRed:0.96 green:0.95 blue:0.95 alpha:1.0];
+        cell.contentView.backgroundColor = [UIColor colorWithRed:1.00 green:1.00 blue:1.00 alpha:1.0];
     } else {
         cell.contentView.backgroundColor = [UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.0];
     }
@@ -619,6 +666,7 @@
                     completion:NULL];
     [self.BTN_enter_event_code  setHidden:YES];
 //    [self sessionOUT];
+    [self.view endEditing:YES];
 }
 -(void)BTN_enter_code:(id)sender
 {
@@ -641,6 +689,7 @@
     str_3 = _TXT_3.text;
     str_4 = _TXT_4.text;
     str_5 = _TXT_5.text;
+    
     if (string.length > 0)
     {
         NSInteger nextTag = textField.tag + 1;
@@ -718,7 +767,9 @@
     {
         _BTN_enter_event_code.enabled = NO;
 //        _BTN_enter_event_code.alpha = 0.5;
-        NSInteger prevTag = textField.tag - 1;
+        
+        /* This is client feed back */
+      /*  NSInteger prevTag = textField.tag - 1;
         UIResponder* prev = [textField.superview viewWithTag:prevTag];
         if (! prev)
         {
@@ -758,7 +809,9 @@
         {
             [prev becomeFirstResponder];
         }
-        return NO;
+        return NO;*/
+        
+        /* This is client feed back */
     }
     return YES;
 }

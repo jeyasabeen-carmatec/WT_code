@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -20,32 +21,45 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bSf-CL-lfY">
-                        <rect key="frame" x="18" y="11" width="237" height="21"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSf-CL-lfY">
+                        <rect key="frame" x="18" y="9" width="180" height="19"/>
+                        <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="NEz-6Y-bRl">
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NEz-6Y-bRl">
                         <rect key="frame" x="263" y="6" width="51" height="31"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="49" id="SPd-Ak-FpU"/>
+                        </constraints>
+                    </switch>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gDb-jX-Ezg">
+                        <rect key="frame" x="206" y="7" width="51" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="49" id="VLb-Ah-vFR"/>
+                        </constraints>
                     </switch>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="gDb-jX-Ezg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="1Od-fG-JhF"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="bSf-CL-lfY" secondAttribute="bottom" constant="8" id="3Uk-lm-gFy"/>
+                    <constraint firstItem="NEz-6Y-bRl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="531-YH-YX8"/>
+                    <constraint firstItem="NEz-6Y-bRl" firstAttribute="leading" secondItem="gDb-jX-Ezg" secondAttribute="trailing" constant="8" symbolic="YES" id="B6e-1Z-Xrk"/>
+                    <constraint firstItem="bSf-CL-lfY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="UeF-NN-Hbd"/>
+                    <constraint firstItem="gDb-jX-Ezg" firstAttribute="leading" secondItem="bSf-CL-lfY" secondAttribute="trailing" constant="8" symbolic="YES" id="j2l-sg-ccP"/>
+                    <constraint firstItem="NEz-6Y-bRl" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="oZN-jJ-1Ff"/>
+                    <constraint firstItem="bSf-CL-lfY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="xxm-OM-AmK"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="SWICTCH_toggle" destination="NEz-6Y-bRl" id="Ncq-95-eGI"/>
+                <outlet property="SWICTCH_email" destination="NEz-6Y-bRl" id="Z0s-cg-FfQ"/>
+                <outlet property="SWICTCH_text" destination="gDb-jX-Ezg" id="HTa-Fc-XlE"/>
                 <outlet property="lbl_title" destination="bSf-CL-lfY" id="22v-zf-Fbp"/>
             </connections>
             <point key="canvasLocation" x="33" y="130"/>
         </tableViewCell>
     </objects>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
-    </simulatedMetricsContainer>
 </document>

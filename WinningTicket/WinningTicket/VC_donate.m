@@ -629,6 +629,10 @@
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    if (string.length != 0) {
+        [textField becomeFirstResponder];
+    }
+    
     if (textField == _TXT_phonenumber) {
         NSInteger inte = textField.text.length;
         if(inte >= 15)

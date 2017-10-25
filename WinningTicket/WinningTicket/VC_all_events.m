@@ -136,6 +136,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    _tbl_eventlst.layer.borderWidth = 1.0f;
+    _tbl_eventlst.layer.borderColor = [UIColor blackColor].CGColor;
     _tbl_eventlst.estimatedRowHeight = 10.0;
     _tbl_eventlst.rowHeight = UITableViewAutomaticDimension;
     
@@ -238,8 +240,8 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Medium" size:22.0f]}];
-    self.navigationItem.title = @"All Events";
+       NSFontAttributeName:[UIFont fontWithName:@"Montserrat-Bold" size:20.0f]}];
+    self.navigationItem.title = @"ALL EVENTS";
     
     CGRect frameimg = CGRectMake(15,5, 80,30);
     
@@ -339,6 +341,8 @@
     _TXT_todate.inputAccessoryView = date_close1;
     _TXT_fromdate.inputAccessoryView = date_close;
     
+    _apply.layer.borderWidth = 1.0f;
+    _apply.layer.borderColor = [UIColor blackColor].CGColor;
     [_apply addTarget:self action:@selector(apply_Clicked) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -638,8 +642,8 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor blackColor],
-       NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Medium" size:22.0f]}];
-    self.navigationItem.title = @"Filter";
+       NSFontAttributeName:FONT_NAV_TITLE}];
+    self.navigationItem.title = @"FILTER";
     
 }
 -(void) whenSearchClicked
@@ -718,8 +722,8 @@
     [self.navigationItem setLeftBarButtonItems:@[negativeSpacer, anotherButton ] animated:NO];
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Medium" size:22.0f]}];
-    self.navigationItem.title = @"All Events";
+       NSFontAttributeName:[UIFont fontWithName:@"Montserrat-Bold" size:20.0f]}];
+    self.navigationItem.title = @"ALL EVENTS";
     
     CGRect frameimg = CGRectMake(15,5, 80,30);
     
@@ -943,13 +947,20 @@
             cell.lbl_event_name.numberOfLines = 0;
             [cell.lbl_event_name sizeToFit];
             
+            if (indexPath.row % 2) {
+                cell.VW_leftBG.backgroundColor = [UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.0];
+            } else {
+                cell.VW_leftBG.backgroundColor = [UIColor colorWithRed:1.00 green:1.00 blue:1.00 alpha:1.0];
+            }
+            
             cell.lbl_event_time.text = [self getLocalDateTimeFromUTC:[temp_DICN valueForKey:@"start_date"]];
             
+            cell.BTN_View_detail.layer.borderWidth = 1.0f;
+            cell.BTN_View_detail.layer.borderColor = [UIColor blackColor].CGColor;
             [cell.BTN_View_detail setTag:indexPath.row];
             [cell.BTN_View_detail addTarget:self action:@selector(BTN_ALL_EVENT:) forControlEvents:UIControlEventTouchUpInside];
             
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            
             
             return cell;
     }
@@ -973,7 +984,7 @@
 {
         if (indexPath.row % 2)
         {
-            cell.contentView.backgroundColor = [UIColor colorWithRed:0.96 green:0.95 blue:0.95 alpha:1.0];
+            cell.contentView.backgroundColor = [UIColor colorWithRed:1.00 green:1.00 blue:1.00 alpha:1.0];
         }
         else
         {

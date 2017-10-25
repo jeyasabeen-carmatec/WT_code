@@ -267,8 +267,8 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Medium" size:22.0f]}];
-    self.navigationItem.title = @"Order Confirmed";
+       NSFontAttributeName:FONT_NAV_TITLE}];
+    self.navigationItem.title = @"ORDER CONFIRMED";
     
     self.navigationItem.hidesBackButton = YES;
 }

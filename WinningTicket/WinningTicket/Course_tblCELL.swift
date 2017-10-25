@@ -10,7 +10,6 @@ import UIKit
 
 class Course_tblCELL: UITableViewCell {
     @IBOutlet weak var lbl_courseName: UILabel!
-    @IBOutlet weak var lbl_privacy: UILabel!
     @IBOutlet weak var lbl_id: UILabel!
     @IBOutlet weak var IMG_privacy: UIImageView!
     @IBOutlet weak var IMG_courseimage: UIImageView!

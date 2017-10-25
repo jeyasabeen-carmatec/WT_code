@@ -316,6 +316,15 @@
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
 {
+    /* This is client feed back */
+    if (string.length != 0) {
+        [textField becomeFirstResponder];
+    }
+    
+//    if (textField == _TXT_password && string.length != 0) {
+//        [textField becomeFirstResponder];
+//    }
+    /* This is client feed back */
     
     return YES;
 }

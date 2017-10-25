@@ -10,7 +10,6 @@ import UIKit
 
 class courseCollectionCELL: UICollectionViewCell {
     @IBOutlet weak var lbl_courseName: UILabel!
-    @IBOutlet weak var lbl_privacy: UILabel!
     @IBOutlet weak var IMG_privacy: UIImageView!
     @IBOutlet weak var IMG_courseimage: UIImageView!
     override func awakeFromNib() {
