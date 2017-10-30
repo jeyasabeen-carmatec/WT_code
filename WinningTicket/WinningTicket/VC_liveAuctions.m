@@ -70,14 +70,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.auctiontab.tableFooterView = [UIView new];
+    
+    
+    _auctiontab.estimatedRowHeight = 173.0f;
+    _auctiontab.rowHeight = UITableViewAutomaticDimension;
+    
     _tbl_search.tableFooterView = [UIView new];
     
     [self setup_VIEW];
     
     _lbl_NoData.hidden = YES;
     _tbl_search.hidden = YES;
-    
-   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -255,159 +258,222 @@
     }
     else
     {
-        auction_CellTableViewCell *auc_cell=[tableView dequeueReusableCellWithIdentifier:@"auc_cell"];
-        //    if(indexPath.section==0)
-        //    {
-        
-        @try {
-            NSDictionary *cpy_dict = [sec_one_ARR objectAtIndex:indexPath.row];
-            //        auc_cell.image_display.image =[UIImage imageNamed:[_cpy_dict objectForKey:@"key4"]];
-            NSString *url_str = [NSString stringWithFormat:@"%@%@",IMAGE_URL,[cpy_dict valueForKey:@"item_image"]];
-            [auc_cell.image_display sd_setImageWithURL:[NSURL URLWithString:url_str]
-                                      placeholderImage:[UIImage imageNamed:@"Logo_WT.png"]];
-            auc_cell.name_lbl.text = [cpy_dict objectForKey:@"name"];
-            
-            //[_cpy_dict objectForKey:@"key3"]; @"Startingbid"
-            
-            
-            NSString *STR_Expired = [NSString stringWithFormat:@"%@",[cpy_dict valueForKey:@"is_expired?"]];
-            NSString *STR_live = [NSString stringWithFormat:@"%@",[cpy_dict valueForKey:@"is_live?"]];
-//
-//            if ([STR_live isEqualToString:@"0"] && [STR_Expired isEqualToString:@"0"]) {
-//                auc_cell.bid_Lbl.text = @"Starting Bid";
-//                auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
-//            }
-//            else if ([STR_live isEqualToString:@"1"])
-//            {
-//                auc_cell.bid_Lbl.text = @"Current Bid";
-//                @try {
-//                    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"current_bid_amount"] floatValue]];
-//                } @catch (NSException *exception) {
-//                    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
-//                }
-//            }
-//            else
-//            {
-//                auc_cell.bid_Lbl.textColor = [UIColor redColor];
-//                auc_cell.bid_Lbl.text = @"Sold";
-//                
-//                @try {
-//                    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"current_bid_amount"] floatValue]];
-//                } @catch (NSException *exception) {
-//                    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
-//                }
-//            }
-//            
-//            NSString *tmp_bid = [cpy_dict valueForKey:@"current_bid_amount"];
-//            if (!tmp_bid) {
-//                auc_cell.bid_Lbl.text = @"Starting Bid";
-//            }
-            
-            
-//            if ([[NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"bid_count"]] isEqualToString:@"0"] && [STR_live isEqualToString:@"1"]) {
-//                auc_cell.bid_Lbl.text = @"Starting Bid";
-//                auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
-//
-//            }
-            if (![[NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"bid_count"]] isEqualToString:@"0"] && [STR_live isEqualToString:@"1"])
+        static NSString *simpleTableIdentifier = @"SimpleTableItem";
+        auction_CellTableViewCell *auc_cell = (auction_CellTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+        if (auc_cell == nil)
+        {
+            NSArray *nib;
+            if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
             {
-                auc_cell.bid_Lbl.text = @"Current Bid";
-                @try {
-                        auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"current_bid_amount"] floatValue]];
-                     }
-                @catch (NSException *exception)
-                {
-                         auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
-                }
+                nib = [[NSBundle mainBundle] loadNibNamed:@"auction_CellTableViewCell~iPad" owner:self options:nil];
             }
             else
             {
-                auc_cell.bid_Lbl.text = @"Starting Bid";
-                auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
+                nib = [[NSBundle mainBundle] loadNibNamed:@"auction_CellTableViewCell" owner:self options:nil];
             }
-            
-//            if ([STR_Expired isEqualToString:@"1"]) {
-//                auc_cell.bid_Lbl.textColor = [UIColor redColor];
-//                auc_cell.bid_Lbl.text = @"Sold";
-//                
-//                @try
-//                {
-//                    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"current_bid_amount"] floatValue]];
-//                }
-//                @catch (NSException *exception)
-//                {
-//                    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
-//                }
-//            }
-            
-            if ([[cpy_dict objectForKey:@"payment_status"] isEqualToString:@"paid"] && [STR_Expired isEqualToString:@"1"]) {
-                auc_cell.bid_Lbl.textColor = [UIColor redColor];
-                auc_cell.bid_Lbl.text = @"Sold";
-                
-                @try
-                {
-                    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"current_bid_amount"] floatValue]];
-                }
-                @catch (NSException *exception)
-                {
-                    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
-                }
-            }
-            if ([STR_Expired isEqualToString:@"1"] && [[cpy_dict objectForKey:@"payment_status"] isEqualToString:@"not_paid"]) {
-                auc_cell.bid_Lbl.textColor = [UIColor redColor];
-                auc_cell.bid_Lbl.text = @"Auction Closed";
-                
-                @try
-                {
-                    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"current_bid_amount"] floatValue]];
-                }
-                @catch (NSException *exception)
-                {
-                    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
-                }
-            }
-            
-        } @catch (NSException *exception) {
-            NSLog(@"Exception %@",exception);
+            auc_cell = [nib objectAtIndex:0];
         }
         
         
+        NSDictionary *cpy_dict = [sec_one_ARR objectAtIndex:indexPath.row];
+        NSString *url_str = [NSString stringWithFormat:@"%@%@",IMAGE_URL,[cpy_dict valueForKey:@"item_image"]];
+        [auc_cell.image_display sd_setImageWithURL:[NSURL URLWithString:url_str]
+                                  placeholderImage:[UIImage imageNamed:@"Logo_WT.png"]];
+//        auc_cell.name_lbl.text = [cpy_dict objectForKey:@"name"];
         
-        // return auc_cell;
-        //
-        //    }
-        //
-        //    NSDictionary *remain = [_sec_one_ARR objectAtIndex:indexPath.row];
-        //    NSString *url_str = [NSString stringWithFormat:@"%@%@",IMAGE_URL,[remain valueForKey:@"item_image"]];
-        //    [auc_cell.image_display sd_setImageWithURL:[NSURL URLWithString:url_str]
-        //                              placeholderImage:[UIImage imageNamed:@"Logo_WT.png"]];
-        //    auc_cell.name_lbl.text = [remain objectForKey:@"name"];
-        //    auc_cell.currency_lbl.text = [NSString stringWithFormat:@"US $%.2f",[[remain objectForKey:@"starting_bid"] floatValue]];
-        //    auc_cell.bid_Lbl.text = @"Startingbid";//[remain objectForKey:@"key3"];
+        auc_cell.image_display.layer.borderWidth = 1.0f;
+        auc_cell.image_display.layer.borderColor = [UIColor blackColor].CGColor;
+        
+        NSString *STR_Expired = [NSString stringWithFormat:@"%@",[cpy_dict valueForKey:@"is_expired?"]];
+        NSString *STR_live = [NSString stringWithFormat:@"%@",[cpy_dict valueForKey:@"is_live?"]];
+        
+        NSString *STR_ItmNUM,*STR_prodNAme,*STR_amount,*STR_bidSTAT,*STR_Bidcc;
+        
+        if ([[cpy_dict valueForKey:@"bid_count"] doubleValue] == 0) {
+            STR_Bidcc = @" NO BIDS";
+        }
+        else if ([[cpy_dict valueForKey:@"bid_count"] doubleValue] < 2) {
+            STR_Bidcc = [NSString stringWithFormat:@" %.0f BID",[[cpy_dict valueForKey:@"bid_count"] doubleValue]];
+        }
+        else
+        {
+            STR_Bidcc = [NSString stringWithFormat:@" %.0f BIDS",[[cpy_dict valueForKey:@"bid_count"] doubleValue]];
+        }
+        
+        NSString *STR_break = @".";
+        NSString *STR_final = [NSString stringWithFormat:@"%@%@",STR_Bidcc,STR_break];
+        if ([auc_cell.bid_Lbl respondsToSelector:@selector(setAttributedText:)]) {
+            NSDictionary *attribs = @{
+                                      NSForegroundColorAttributeName: auc_cell.bid_Lbl.textColor,
+                                      NSFontAttributeName: auc_cell.bid_Lbl.font
+                                      };
+            NSMutableAttributedString *attributedText1 =
+            [[NSMutableAttributedString alloc] initWithString:STR_final
+                                                   attributes:attribs];
+            NSRange cmp1 = [STR_final rangeOfString:STR_break];
+            
+            [attributedText1 setAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor]
+                                            }
+                                    range:cmp1];
+            
+            auc_cell.bid_Lbl.attributedText = attributedText1;
+            
+        }
+        else
+        {
+              auc_cell.bid_Lbl.text = STR_Bidcc;
+        }
+        
+        
+//        [auc_cell.bid_Lbl sizeToFit];
+        
+        auc_cell.bid_Lbl.layer.cornerRadius = 2.5f;
+        auc_cell.bid_Lbl.layer.masksToBounds = YES;
+        
+        if (![[NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"bid_count"]] isEqualToString:@"0"] && [STR_live isEqualToString:@"1"])
+        {
+            STR_bidSTAT = @"Current Bid";
+            @try {
+                STR_amount = [NSString stringWithFormat:@"$%.2f",[[cpy_dict valueForKey:@"current_bid_amount"] floatValue]];
+            }
+            @catch (NSException *exception)
+            {
+                STR_amount = [NSString stringWithFormat:@"$%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
+            }
+        }
+        else
+        {
+            STR_bidSTAT = @"Starting Bid";
+            STR_amount = [NSString stringWithFormat:@"$%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
+        }
+        
+        
+        if ([[cpy_dict objectForKey:@"payment_status"] isEqualToString:@"paid"] && [STR_Expired isEqualToString:@"1"]) {
+//            auc_cell.bid_Lbl.textColor = [UIColor redColor];
+            STR_bidSTAT = @"Sold";
+            
+            @try
+            {
+                STR_amount = [NSString stringWithFormat:@"$%.2f",[[cpy_dict valueForKey:@"current_bid_amount"] floatValue]];
+            }
+            @catch (NSException *exception)
+            {
+                STR_amount = [NSString stringWithFormat:@"$%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
+            }
+        }
+        if ([STR_Expired isEqualToString:@"1"] && [[cpy_dict objectForKey:@"payment_status"] isEqualToString:@"not_paid"]) {
+//            auc_cell.bid_Lbl.textColor = [UIColor redColor];
+            STR_bidSTAT = @"Auction Closed";
+            
+            @try
+            {
+                STR_amount = [NSString stringWithFormat:@"$%.2f",[[cpy_dict valueForKey:@"current_bid_amount"] floatValue]];
+            }
+            @catch (NSException *exception)
+            {
+                STR_amount = [NSString stringWithFormat:@"$%.2f",[[cpy_dict valueForKey:@"starting_bid"] floatValue]];
+            }
+        }
+        
+        STR_ItmNUM = [NSString stringWithFormat:@"#%03d",(int) indexPath.row+1 ];
+        
+//        if (indexPath.row == 0) {
+//            STR_prodNAme = [NSString stringWithFormat:@"This is klsdnfns dkfjns ksdjf sd fhsd fsdihf isdhf sdf ds sdf sdf sd siduhf iusdhfi uhs dfsdhf hsd sdhf usdhf uhsd sduhf sdhf sd fisdhf sdhf sdifj sd fsdif posdf sdaf aspifpsd fiodsof sdfihsdiaf as dfiuhsd fsadf sdaf sdia fisadfisd%@",[cpy_dict objectForKey:@"name"]];
+//        }
+//        else
+//        {
+            STR_prodNAme = [cpy_dict objectForKey:@"name"];
+//        }
+        
+        NSString *text = [NSString stringWithFormat:@"%@\n%@\n%@\n%@\n.",STR_ItmNUM,STR_prodNAme,STR_amount,STR_bidSTAT];
+        
+        if ([auc_cell.name_lbl respondsToSelector:@selector(setAttributedText:)]) {
+            
+            // Define general attributes for the entire text
+            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+            NSDictionary *attribs = @{
+                                      NSForegroundColorAttributeName: auc_cell.name_lbl.textColor,
+                                      NSFontAttributeName: auc_cell.name_lbl.font
+                                      };
+            NSMutableAttributedString *attributedText =
+            [[NSMutableAttributedString alloc] initWithString:text
+                                                   attributes:attribs];
+            
+            // Red text attributes
+            //            UIColor *redColor = [UIColor redColor];
+            NSRange cmp = [text rangeOfString:STR_ItmNUM];
+            NSRange RAN_amount = [text rangeOfString:STR_amount];
+            NSRange RAN_bidSTAT = [text rangeOfString:STR_bidSTAT];
+            
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+            {
+                paragraphStyle.paragraphSpacing = 0.25 * auc_cell.name_lbl.font.lineHeight;
+                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamMedium" size:18.0],NSForegroundColorAttributeName:[UIColor colorWithRed:0.00 green:0.73 blue:0.91 alpha:1.0],NSParagraphStyleAttributeName:paragraphStyle}
+                                        range:cmp];
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_NAV_TITLE,NSForegroundColorAttributeName:[UIColor blackColor],
+                                                NSParagraphStyleAttributeName:paragraphStyle}
+                                        range:RAN_amount];
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL,NSForegroundColorAttributeName:[UIColor lightGrayColor]}
+                                        range:RAN_bidSTAT];
+            }
+            else
+            {
+                paragraphStyle.paragraphSpacing = 0.25 * auc_cell.name_lbl.font.lineHeight;
+                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamMedium" size:17.0],NSForegroundColorAttributeName:[UIColor colorWithRed:0.00 green:0.73 blue:0.91 alpha:1.0],
+                                                NSParagraphStyleAttributeName:paragraphStyle}
+                                        range:cmp];
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_NAV_TITLE,NSForegroundColorAttributeName:[UIColor blackColor],NSParagraphStyleAttributeName:paragraphStyle}
+                                        range:RAN_amount];
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL,NSForegroundColorAttributeName:[UIColor lightGrayColor]}
+                                        range:RAN_bidSTAT];
+            }
+            
+            auc_cell.name_lbl.attributedText = attributedText;
+        }
+        
+        [auc_cell.BTN_viewITEM setTag:indexPath.row];
+        [auc_cell.BTN_viewITEM addTarget:self action:@selector(viewEVENT:) forControlEvents:UIControlEventTouchUpInside];
+        
+        auc_cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        NSLog(@"Font lbl in cell highlight %@",auc_cell.bid_Lbl.font);
+        
         return auc_cell;
     }
 }
-//-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-//{
-//    [self.auctiontab reloadData];
-//    
-//}
-/*- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+
+-(void) viewEVENT :(UIButton *)sender
 {
-    if (tableView == _tbl_search) {
-        return [NSString stringWithFormat:@"%lu results For %@",(unsigned long)ARR_search.count,_search_bar.text];;
+    NSIndexPath *buttonIndexPath = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+    
+    NSDictionary *cpy_dict = [sec_one_ARR objectAtIndex:buttonIndexPath.row];
+    NSString *STR_Expired = [NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"is_expired?"]];
+    NSString *STR_live = [NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"is_live?"]];
+    NSString *STR_bidSTAT;
+    
+    if (![[NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"bid_count"]] isEqualToString:@"0"] && [STR_live isEqualToString:@"1"])
+    {
+        STR_bidSTAT = @"Current Bid";
+    }
+    else
+    {
+        STR_bidSTAT = @"Starting Bid";
     }
     
-   // titleName = @"";
-//    if (section == 0) {
-        titleName = [NSString stringWithFormat:@"%lu results For %@",(unsigned long)_sec_one_ARR.count,_search_bar.text];
-   // }
-//    }else{
-//        titleName = @"Items Related To your Search";
-//    }
-    return  titleName;
     
-}*/
+    if ([[cpy_dict objectForKey:@"payment_status"] isEqualToString:@"paid"] && [STR_Expired isEqualToString:@"1"]) {
+        STR_bidSTAT = @"Closed";
+    }
+    if ([STR_Expired isEqualToString:@"1"] && [[cpy_dict objectForKey:@"payment_status"] isEqualToString:@"not_paid"]) {
+        STR_bidSTAT = @"Closed";
+    }
+    
+    NSDictionary *temp_DICTIN = [sec_one_ARR objectAtIndex:buttonIndexPath.row];
+    [[NSUserDefaults standardUserDefaults] setValue:STR_bidSTAT forKey:@"STR_bidSTAT"];
+    [[NSUserDefaults standardUserDefaults] setValue:[temp_DICTIN valueForKey:@"id"] forKey:@"prev_ID"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self performSegueWithIdentifier:@"auctionstoitemdetailidentifier" sender:self];
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -439,43 +505,10 @@
     }
     else
     {
-        NSDictionary *cpy_dict = [sec_one_ARR objectAtIndex:indexPath.row];
-        NSString *STR_Expired = [NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"is_expired?"]];
-        NSString *STR_live = [NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"is_live?"]];
-        NSString *STR_bidSTAT;
-
-        
-        
-        if (![[NSString stringWithFormat:@"%@",[cpy_dict objectForKey:@"bid_count"]] isEqualToString:@"0"] && [STR_live isEqualToString:@"1"])
-        {
-            STR_bidSTAT = @"Current Bid";
-        }
-        else
-        {
-            STR_bidSTAT = @"Starting Bid";
-        }
-        
-
-        
-        if ([[cpy_dict objectForKey:@"payment_status"] isEqualToString:@"paid"] && [STR_Expired isEqualToString:@"1"]) {
-            STR_bidSTAT = @"Closed";
-        }
-        if ([STR_Expired isEqualToString:@"1"] && [[cpy_dict objectForKey:@"payment_status"] isEqualToString:@"not_paid"]) {
-            STR_bidSTAT = @"Closed";
-        }
-        
-//        NSString *tmp_bid = [_cpy_dict valueForKey:@"current_bid_amount"];
-//        if (!tmp_bid) {
-//            auc_cell.bid_Lbl.text = @"Starting Bid";
-//        }
-        
-        NSDictionary *temp_DICTIN = [sec_one_ARR objectAtIndex:indexPath.row];
-        [[NSUserDefaults standardUserDefaults] setValue:STR_bidSTAT forKey:@"STR_bidSTAT"];
-        [[NSUserDefaults standardUserDefaults] setValue:[temp_DICTIN valueForKey:@"id"] forKey:@"prev_ID"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [self performSegueWithIdentifier:@"auctionstoitemdetailidentifier" sender:self];
+        NSLog(@"Selected index = %d",(int)indexPath.row);
     }
-}-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+}
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
         [cell setSeparatorInset:UIEdgeInsetsZero];

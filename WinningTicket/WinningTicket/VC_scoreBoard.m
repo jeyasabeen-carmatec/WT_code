@@ -29,6 +29,7 @@
     NSIndexPath *INdex_Selected,*INDX_STR,*INDX_expanded;
     NSMutableArray *ARR_netScore;
     NSMutableArray *ARR_grossScore;
+    NSMutableArray *ARR_color;
     
     NSMutableDictionary *DICTIN_PlayerINfo;
     
@@ -63,6 +64,22 @@
     //    [ARR_grossScore Clear_ARR];
     
     /*Code to add Player list*/
+    
+    
+    NSString *text_STR = [NSString stringWithFormat:@"You will have a stroke taken off your gross score for each of the 0 hardest holes on the course."];
+    
+    
+    UIFont *font = _lbl_HandicapDesc.font;
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.minimumLineHeight = 14.5f;
+    paragraphStyle.maximumLineHeight = 14.5f;
+    paragraphStyle.alignment = NSTextAlignmentCenter; 
+    NSDictionary *attributes = @{NSFontAttributeName:font,
+                                 NSParagraphStyleAttributeName:paragraphStyle
+                                 };
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:text_STR attributes:attributes];
+    _lbl_HandicapDesc.attributedText = attributedText;
+    
     [self createDataSourceArray];
     
     _TBL_leaderboard.hidden = YES;
@@ -93,6 +110,8 @@
     //    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     //    paragraphStyle.lineSpacing = 2.0;
     //    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [STR_title length])];
+    
+    
     
     CGRect frame_BTN = _BTN_viewonMAP.frame;
     frame_BTN.size.width = (_TBL_scores.frame.size.width / 5) + 20;
@@ -246,6 +265,33 @@
     if (VAL_STR != 36) {
         VAL_STR = VAL_STR + 1;
         _TXT_Handicap.text = [NSString stringWithFormat:@"%.0f",VAL_STR];
+        
+        NSString *text_STR;
+        
+        
+        
+        if (VAL_STR == 0) {
+            text_STR = [NSString stringWithFormat:@"You will have a stroke taken off your gross score for each of the 0 hardest holes on the course."];
+        }
+        else if (VAL_STR < 0) {
+            text_STR = [NSString stringWithFormat:@"You will have a stroke taken off your gross score for each of the %.f hardest holes on the course.",(0 - VAL_STR)];
+        }
+        else
+        {
+            text_STR = [NSString stringWithFormat:@"You will have a stroke taken off your gross score for each of the -%.f hardest holes on the course.",VAL_STR];
+        }
+        
+        UIFont *font = _lbl_HandicapDesc.font;
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.minimumLineHeight = 14.5f;
+        paragraphStyle.maximumLineHeight = 14.5f;
+        paragraphStyle.alignment = NSTextAlignmentCenter;
+        NSDictionary *attributes = @{NSFontAttributeName:font,
+                                     NSParagraphStyleAttributeName:paragraphStyle
+                                     };
+        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:text_STR attributes:attributes];
+        _lbl_HandicapDesc.attributedText = attributedText;
+        
     }
     
 }
@@ -258,6 +304,31 @@
     if (VAL_STR != -36) {
         VAL_STR = VAL_STR - 1;
         _TXT_Handicap.text = [NSString stringWithFormat:@"%.0f",VAL_STR];
+        
+        NSString *text_STR;
+
+        
+        if (VAL_STR == 0) {
+            text_STR = [NSString stringWithFormat:@"You will have a stroke taken off your gross score for each of the 0 hardest holes on the course."];
+        }
+        else if (VAL_STR < 0) {
+            text_STR = [NSString stringWithFormat:@"You will have a stroke taken off your gross score for each of the %.f hardest holes on the course.",(0 - VAL_STR)];
+        }
+        else
+        {
+            text_STR = [NSString stringWithFormat:@"You will have a stroke taken off your gross score for each of the -%.f hardest holes on the course.",VAL_STR];
+        }
+        
+        UIFont *font = _lbl_HandicapDesc.font;
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.minimumLineHeight = 14.5f;
+        paragraphStyle.maximumLineHeight = 14.5f;
+        paragraphStyle.alignment = NSTextAlignmentCenter;
+        NSDictionary *attributes = @{NSFontAttributeName:font,
+                                     NSParagraphStyleAttributeName:paragraphStyle
+                                     };
+        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:text_STR attributes:attributes];
+        _lbl_HandicapDesc.attributedText = attributedText;
     }
     
 }
@@ -1162,7 +1233,7 @@
                     }
                     
                     cell.lbl_result_score.text = [NSString stringWithFormat:@"Score %.0f/%.0f",DBL_totSCR,DBL_totNet];
-                    cell.lbl_result_position.text = [NSString stringWithFormat:@"Pos T-%d",indexPath.row -1];
+                    cell.lbl_result_position.text = [NSString stringWithFormat:@"Pos T-%d",(int)indexPath.row -1];
                     cell.lbl_result_hcp.text = [NSString stringWithFormat:@"HCP - %@",_TXT_Handicap.text];
                     
 //                    if (DBL_totSCR != 0) {
@@ -2606,72 +2677,6 @@
             }
             else
             {
-             /*   // disable touch on expanded cell
-                //            UITableViewCell *cell = [self.TBL_leaderboard cellForRowAtIndexPath:indexPath];
-                //            if ([[cell reuseIdentifier] isEqualToString:@"ExpandedCellIdentifier"]) {
-                //                return;
-                //            }
-                
-                // deselect row
-                [tableView deselectRowAtIndexPath:indexPath
-                                         animated:NO];
-                
-                // get the actual index path
-                indexPath = [self actualIndexPathForTappedIndexPath:indexPath];
-                
-                // save the expanded cell to delete it later
-                NSIndexPath *theExpandedIndexPath = self.expandedIndexPath;
-                
-                // same row tapped twice - get rid of the expanded cell
-                if ([indexPath isEqual:self.expandingIndexPath]) {
-                    self.expandingIndexPath = nil;
-                    self.expandedIndexPath = nil;
-                }
-                // add the expanded cell
-                else {
-                    self.expandingIndexPath = indexPath;
-                    self.expandedIndexPath = [NSIndexPath indexPathForRow:[indexPath row] + 1
-                                                                inSection:[indexPath section]];
-                }
-                
-                
-               
-                if (theExpandedIndexPath) {
-                    
-                    if (self.expandedIndexPath) {
-                    }
-                    else
-                    {
-                        [tableView beginUpdates];
-                        [_TBL_leaderboard deleteRowsAtIndexPaths:@[theExpandedIndexPath]
-                                                withRowAnimation:UITableViewRowAnimationNone];
-                        [tableView endUpdates];
-                    }
-                    [self.TBL_leaderboard scrollToRowAtIndexPath:indexPath
-                                                atScrollPosition:UITableViewScrollPositionMiddle
-                                                        animated:YES];
-                }
-                
-                
-                // scroll to the expanded cell
-                
-                if (self.expandedIndexPath) {
-                    
-              
-                    
-                    VW_overlay.hidden = NO;
-                    [activityIndicatorView startAnimating];
-                    [self performSelector:@selector(LeaderDetail_API) withObject:activityIndicatorView afterDelay:0.01];
-                    
-//                    [_TBL_leaderboard insertRowsAtIndexPaths:@[self.expandedIndexPath]
-//                                            withRowAnimation:UITableViewRowAnimationNone];
-                
-                }
-                */
-            
-//                VW_overlay.hidden = NO;
-//                [activityIndicatorView startAnimating];
-//                [self performSelector:@selector(update_tableView:) withObject:activityIndicatorView withObject:<#(id)#> afterDelay:<#(NSTimeInterval)#>]
                 [self update_tableView:indexPath];
                 
             }
@@ -2697,17 +2702,10 @@
     }
 }
 
-/*-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (tableView == _TBL_leaderboard) {
-        if (indexPath.row % 2 == 0)
-        {
-            cell.backgroundColor = [UIColor lightGrayColor];
-        } else {
-            cell.backgroundColor =[UIColor whiteColor];
-        }
-    }
-}*/
+
+
+
+
 -(void) update_tableView :(NSIndexPath *)indexPath
 {
     // deselect row
@@ -2788,15 +2786,7 @@
 #pragma mark - Update score Deligate
 -(void)get_SCORE:(NSString *)STR_score
 {
-    //    NSLog(@"received data %@",ARR_scores);
-    //    if ([ARR_scores count] > [ARR_displayScore count]) {
-    //
-    //        [_TBL_scores beginUpdates];
-    //        NSArray *indexPathArray = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:[ARR_scores count] inSection:0]];
-    //
-    //        [_TBL_scores reloadRowsAtIndexPaths:indexPathArray withRowAnimation:UITableViewRowAnimationFade];
-    //        [_TBL_scores endUpdates];
-    //    }
+
     
     NSLog(@"Value return = %@ Index selected %ld",STR_score,(long)INdex_Selected.row);
     
@@ -2807,6 +2797,8 @@
     
     [_TBL_scores beginUpdates];
     NSArray *indexPathArray = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:INdex_Selected.row inSection:0]];
+    ScoreCell2* cell = [self.TBL_scores cellForRowAtIndexPath:[NSIndexPath indexPathForRow:INdex_Selected.row inSection:0]];
+    cell.lbl_gross_score.backgroundColor = [UIColor redColor];
     [_TBL_scores reloadRowsAtIndexPaths:indexPathArray withRowAnimation:UITableViewRowAnimationFade];
     [_TBL_scores endUpdates];
 }
@@ -2848,6 +2840,7 @@
         if ([ARR_grossScore count] == 0) {
             ARR_grossScore = [[NSMutableArray alloc] init];
             ARR_netScore = [[NSMutableArray alloc] init];
+            ARR_color = [[NSMutableArray alloc] init];
             
             ARR_holes = [dict valueForKey:@"hole_info"];
             
@@ -2856,7 +2849,6 @@
                 [ARR_netScore addObject:@""];
             }
         }
-        
         [_TBL_scores reloadData];
         
     }

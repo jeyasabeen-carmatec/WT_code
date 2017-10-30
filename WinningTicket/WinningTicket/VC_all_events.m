@@ -341,8 +341,8 @@
     _TXT_todate.inputAccessoryView = date_close1;
     _TXT_fromdate.inputAccessoryView = date_close;
     
-    _apply.layer.borderWidth = 1.0f;
-    _apply.layer.borderColor = [UIColor blackColor].CGColor;
+    //_apply.layer.borderWidth = 1.0f;
+    //_apply.layer.borderColor = [UIColor blackColor].CGColor;
     [_apply addTarget:self action:@selector(apply_Clicked) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -955,8 +955,8 @@
             
             cell.lbl_event_time.text = [self getLocalDateTimeFromUTC:[temp_DICN valueForKey:@"start_date"]];
             
-            cell.BTN_View_detail.layer.borderWidth = 1.0f;
-            cell.BTN_View_detail.layer.borderColor = [UIColor blackColor].CGColor;
+            //cell.BTN_View_detail.layer.borderWidth = 1.0f;
+            //cell.BTN_View_detail.layer.borderColor = [UIColor blackColor].CGColor;
             [cell.BTN_View_detail setTag:indexPath.row];
             [cell.BTN_View_detail addTarget:self action:@selector(BTN_ALL_EVENT:) forControlEvents:UIControlEventTouchUpInside];
             

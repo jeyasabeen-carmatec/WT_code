@@ -40,5 +40,7 @@
 
 #define FONT_NAV_TITLE [UIFont fontWithName:@"Montserrat-Bold" size:20.0f]
 #define FONT_Distance [UIFont fontWithName:@"Montserrat-Medium" size:13.0f]
+#define FONT_italicSMALL [UIFont fontWithName:@"Gotham-MediumItalic" size:14.0f]
+#define FONT_normal [UIFont fontWithName:@"GothamBook" size:17.0f]
 
 #endif /* WinningTicket_pch */

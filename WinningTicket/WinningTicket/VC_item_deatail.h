@@ -29,7 +29,7 @@
 //- (IBAction)changePage;
 @property (weak, nonatomic) UIAlertAction *submit_action;
 
-@property (weak, nonatomic) IBOutlet UILabel *lbl_itemNAME;
+@property (weak, nonatomic) IBOutlet UITextView *lbl_itemNAME;
 
 @property (weak, nonatomic) IBOutlet UIButton *BTN_place_BID;
 @property (weak, nonatomic) IBOutlet UIButton *BTN_watech;

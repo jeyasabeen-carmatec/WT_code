@@ -11,7 +11,8 @@
 @interface auction_CellTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *image_display;
 @property (weak, nonatomic) IBOutlet UILabel *name_lbl;
-@property (weak, nonatomic) IBOutlet UILabel *currency_lbl;
 @property (weak, nonatomic) IBOutlet UILabel *bid_Lbl;
+
+@property (weak, nonatomic) IBOutlet UIButton *BTN_viewITEM;
 
 @end
