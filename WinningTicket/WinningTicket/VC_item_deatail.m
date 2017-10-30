@@ -321,10 +321,6 @@
     
     _lbl_item_descrip.scrollEnabled = NO;
     
-//    }
-    
-//    _lbl_item_descrip.adjustsFontSizeToFitWidth = NO;
-//    _lbl_item_descrip.lineBreakMode = NSLineBreakByWordWrapping;
     [_lbl_item_descrip sizeToFit];
 //    [_lbl_item_descrip setNeedsDisplay];
     
@@ -363,9 +359,6 @@
         frame_page.origin.y = _lbl_itemNAME.frame.origin.y - 50;
     }
     
-    //        frame_page.origin.x = 0;
-    //        frame_page.size.width = _collection_IMG.frame.size.width;
-    
     _customStoryboardPageControl.frame = frame_page;
     
     NSString *STR_bidSTAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"STR_bidSTAT"];
@@ -384,20 +377,17 @@
     }
     
     NSString *STR_price;
-    NSString *STR_bids;
+//    NSString *STR_bids;
     NSString *text;
     NSString *STR_watche;
     NSString *STR_Bidcc;
     
     if ([STR_bidSTAT isEqualToString:@"Starting Bid"]) {
-        /*Auction not yet started*/
         STR_price = [NSString stringWithFormat:@"US $%.2f",[[auction_item valueForKey:@"starting_bid"] floatValue]];//@"US $59.99";
             text = [NSString stringWithFormat:@"%@\n%@",STR_event_name,STR_price];
-        
     }
     else if ([STR_bidSTAT isEqualToString:@"Current Bid"])
     {
-        /*Auction on going*/
         @try
         {
                   NSString *STR_bid = [NSString stringWithFormat:@"%@",[auction_item valueForKey:@"current_bid_amount"]];
@@ -410,48 +400,60 @@
                       STR_price = [NSString stringWithFormat:@"US $%.2f",[[auction_item valueForKey:@"current_bid_amount"] floatValue]];
                   }
             
-            if ([[auction_item valueForKey:@"watchers_count"] doubleValue] < 2) {
-                STR_watche = @"Watcher";
+            if ([[auction_item valueForKey:@"watchers_count"] doubleValue] == 0) {
+                STR_watche = @"0 WATCHES";
+            }
+            else if ([[auction_item valueForKey:@"watchers_count"] doubleValue] < 2) {
+                STR_watche = [NSString stringWithFormat:@"%@ WATECHER",[auction_item valueForKey:@"watchers_count"]];
             }
             else
             {
-                STR_watche = @"Watchers";
+                STR_watche = [NSString stringWithFormat:@"%@ WATCHES",[auction_item valueForKey:@"watchers_count"]];
             }
             
+            if ([[auction_item valueForKey:@"bid_count"] doubleValue] == 0) {
+                STR_Bidcc = @" NO BIDS ";
+            }
             if ([[auction_item valueForKey:@"bid_count"] doubleValue] < 2) {
-                STR_Bidcc = @"Bid";
+                STR_Bidcc = [NSString stringWithFormat:@" %@ BID ",[auction_item valueForKey:@"bid_count"]];//@"BID";
             }
             else
             {
-                STR_Bidcc = @"Bids";
+                STR_Bidcc = [NSString stringWithFormat:@" %@ BIDS ",[auction_item valueForKey:@"bid_count"]];//@"BIDS";
             }
             
-            STR_bids = [NSString stringWithFormat:@"%@ %@ | %@ %@",[auction_item valueForKey:@"bid_count"],STR_Bidcc,[auction_item valueForKey:@"watchers_count"],STR_watche];
-              
+//            STR_bids = [NSString stringWithFormat:@"%@ %@ | %@ %@",[auction_item valueForKey:@"bid_count"],STR_Bidcc,[auction_item valueForKey:@"watchers_count"],STR_watche];
+            
         }
         @catch (NSException *exception) {
             STR_price = [NSString stringWithFormat:@"US $%.2f",[[auction_item valueForKey:@"starting_bid"] floatValue]];//@"US $59.99";
             
             
-            if ([[auction_item valueForKey:@"watchers_count"] doubleValue] < 2) {
-                STR_watche = @"Watcher";
+            if ([[auction_item valueForKey:@"watchers_count"] doubleValue] == 0) {
+                STR_watche = @"0 WATCHES";
+            }
+            else if ([[auction_item valueForKey:@"watchers_count"] doubleValue] < 2) {
+                STR_watche = [NSString stringWithFormat:@"%@ WATECHER",[auction_item valueForKey:@"watchers_count"]];
             }
             else
             {
-                STR_watche = @"Watchers";
+                STR_watche = [NSString stringWithFormat:@"%@ WATCHES",[auction_item valueForKey:@"watchers_count"]];
             }
             
+            if ([[auction_item valueForKey:@"bid_count"] doubleValue] == 0) {
+                STR_Bidcc = @" NO BIDS ";
+            }
             if ([[auction_item valueForKey:@"bid_count"] doubleValue] < 2) {
-                STR_Bidcc = @"Bid";
+                STR_Bidcc = [NSString stringWithFormat:@" %@ BID ",[auction_item valueForKey:@"bid_count"]];//@"BID";
             }
             else
             {
-                STR_Bidcc = @"Bids";
+                STR_Bidcc = [NSString stringWithFormat:@" %@ BIDS ",[auction_item valueForKey:@"bid_count"]];//@"BIDS";
             }
             
-            STR_bids = [NSString stringWithFormat:@"%@ %@ | %@ %@",[auction_item valueForKey:@"bid_count"],STR_Bidcc,[auction_item valueForKey:@"watchers_count"],STR_watche];
+//            STR_bids = [NSString stringWithFormat:@"%@ %@ | %@ %@",[auction_item valueForKey:@"bid_count"],STR_Bidcc,[auction_item valueForKey:@"watchers_count"],STR_watche];
         }
-        text = [NSString stringWithFormat:@"%@\n%@\n%@",STR_event_name,STR_price,STR_bids];
+        text = [NSString stringWithFormat:@"%@\n%@ %@\n%@",STR_event_name,STR_price,STR_Bidcc,STR_watche];
     }
     else
     {
@@ -459,27 +461,31 @@
         @try
         {
             _lbl_CountDown.backgroundColor = [UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1.0];
-            
-
-          
             STR_price = [NSString stringWithFormat:@"US $%.2f",[[auction_item valueForKey:@"current_bid_amount"] floatValue]];
             
-            if ([[auction_item valueForKey:@"watchers_count"] doubleValue] < 2) {
-                STR_watche = @"Watcher";
+            if ([[auction_item valueForKey:@"watchers_count"] doubleValue] == 0) {
+                STR_watche = @"0 WATCHES";
+            }
+            else if ([[auction_item valueForKey:@"watchers_count"] doubleValue] < 2) {
+                STR_watche = [NSString stringWithFormat:@"%@ WATECHER",[auction_item valueForKey:@"watchers_count"]];
             }
             else
             {
-                STR_watche = @"Watchers";
+                STR_watche = [NSString stringWithFormat:@"%@ WATCHES",[auction_item valueForKey:@"watchers_count"]];
             }
             
+            if ([[auction_item valueForKey:@"bid_count"] doubleValue] == 0) {
+                STR_Bidcc = @" NO BIDS ";
+            }
             if ([[auction_item valueForKey:@"bid_count"] doubleValue] < 2) {
-                STR_Bidcc = @"Bid";
+                STR_Bidcc = [NSString stringWithFormat:@" %@ BID ",[auction_item valueForKey:@"bid_count"]];//@"BID";
             }
             else
             {
-                STR_Bidcc = @"Bids";
+                STR_Bidcc = [NSString stringWithFormat:@" %@ BIDS ",[auction_item valueForKey:@"bid_count"]];//@"BIDS";
             }
-            STR_bids = [NSString stringWithFormat:@"%@ %@ | %@ %@",[auction_item valueForKey:@"bid_count"],STR_Bidcc,[auction_item valueForKey:@"watchers_count"],STR_watche];
+            
+//            STR_bids = [NSString stringWithFormat:@"%@ %@ | %@ %@",[auction_item valueForKey:@"bid_count"],STR_Bidcc,[auction_item valueForKey:@"watchers_count"],STR_watche];
             
                 if([winner_status isEqualToString:@"1"])
                 {
@@ -529,52 +535,43 @@
         }
         @catch (NSException *exception)
         {
-//               self.lbl_CountDown.numberOfLines = 0;
-//                [self.lbl_CountDown sizeToFit];
             _lbl_CountDown.backgroundColor = [UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1.0];
-
             STR_price = [NSString stringWithFormat:@"US $%.2f",[[auction_item valueForKey:@"starting_bid"] floatValue]];
-            
-            
-            if ([[auction_item valueForKey:@"watchers_count"] doubleValue] < 2) {
-                STR_watche = @"Watcher";
+            if ([[auction_item valueForKey:@"watchers_count"] doubleValue] == 0) {
+                STR_watche = @"0 WATCHES";
+            }
+            else if ([[auction_item valueForKey:@"watchers_count"] doubleValue] < 2) {
+                STR_watche = [NSString stringWithFormat:@"%@ WATECHER",[auction_item valueForKey:@"watchers_count"]];
             }
             else
             {
-                STR_watche = @"Watchers";
+                STR_watche = [NSString stringWithFormat:@"%@ WATCHES",[auction_item valueForKey:@"watchers_count"]];
             }
             
+            if ([[auction_item valueForKey:@"bid_count"] doubleValue] == 0) {
+                STR_Bidcc = @" NO BIDS ";
+            }
             if ([[auction_item valueForKey:@"bid_count"] doubleValue] < 2) {
-                STR_Bidcc = @"Bid";
+                STR_Bidcc = [NSString stringWithFormat:@" %@ BID ",[auction_item valueForKey:@"bid_count"]];//@"BID";
             }
             else
             {
-                STR_Bidcc = @"Bids";
+                STR_Bidcc = [NSString stringWithFormat:@" %@ BIDS ",[auction_item valueForKey:@"bid_count"]];//@"BIDS";
             }
-            STR_bids = [NSString stringWithFormat:@"%@ %@ | %@ %@",[auction_item valueForKey:@"bid_count"],STR_Bidcc,[auction_item valueForKey:@"watchers_count"],STR_watche];
-           
             
-
-           
+//            STR_bids = [NSString stringWithFormat:@"%@ %@ | %@ %@",[auction_item valueForKey:@"bid_count"],STR_Bidcc,[auction_item valueForKey:@"watchers_count"],STR_watche];
                 if([winner_status isEqualToString:@"1"])
                 {
                     if([pay_status isEqualToString:@"not_paid"] )
                     {
                         _lbl_CountDown.text = [NSString stringWithFormat:@"Congrulations! You won this item. Pay $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
-                        
-                        
                     }
                     else  if([pay_status isEqualToString:@"paid"])
                     {
                         _lbl_CountDown.text = [NSString stringWithFormat:@"Thanks for buying this item."];
                         _lbl_CountDown.textColor = [UIColor colorWithRed:0.00 green:0.37 blue:0.05 alpha:1.0];
-
                     }
-                    
-                    
-                    
                 }
-           
             else  if([winner_status isEqualToString:@"0"] )
             {
                 if([pay_status isEqualToString:@"not_paid"] )
@@ -582,38 +579,29 @@
                    if(count > 0)
                     {
                         _lbl_CountDown.text = [NSString stringWithFormat:@"Bidding Closed.Final Bid : $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
-                        
                     }
                     else
                     {
                         _lbl_CountDown.text = [NSString stringWithFormat:@"No one Bids For This Item"];
-                       
                     }
-                    
                     _lbl_CountDown.textColor = [UIColor grayColor];
-                    
                 }
                 else  if([pay_status isEqualToString:@"paid"])
                 {
                     _lbl_CountDown.text = [NSString stringWithFormat:@"Sold out. Final Bid : $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
                     _lbl_CountDown.textColor = [UIColor redColor];
-
                 }
-                
                 else
                 {
                     _lbl_CountDown.text = [NSString stringWithFormat:@"No one Bids For This Item"];
                 }
             }
-            
-            
             _lbl_CountDown.layer.borderWidth = 1.0f;
             _lbl_CountDown.layer.borderColor = [UIColor blackColor].CGColor;
             self.lbl_CountDown.numberOfLines = 0;
             [self.lbl_CountDown sizeToFit];
-            
         }
-        text = [NSString stringWithFormat:@"%@\n%@\n%@",STR_event_name,STR_price,STR_bids];
+        text = [NSString stringWithFormat:@"%@\n%@ %@\n%@",STR_event_name,STR_price,STR_Bidcc,STR_watche];
     }
     if(_imagesData.count == 0)
     {
@@ -624,42 +612,83 @@
         _lbl_count.text = [NSString stringWithFormat:@"1 of %lu",(unsigned long)_imagesData.count];
 
     }
+    
+//    self.lbl_itemNAME.text = @"";
+    
+    
+    for (UIView *view_T in [_lbl_itemNAME subviews]) {
+        if (view_T.tag == 1) {
+            [view_T removeFromSuperview];
+        }
+    }
 
     if ([self.lbl_itemNAME respondsToSelector:@selector(setAttributedText:)]) {
+        UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:21.0];
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.paragraphSpacing = 0.25 * font.lineHeight;
         NSDictionary *attribs = @{
-                                  NSForegroundColorAttributeName: self.lbl_itemNAME.textColor,
-                                  NSFontAttributeName: self.lbl_itemNAME.font
+                                  NSForegroundColorAttributeName: [UIColor blackColor],
+                                  NSFontAttributeName: [UIFont fontWithName:@"GothamBook" size:17.0]
                                   };
         NSMutableAttributedString *attributedText =
         [[NSMutableAttributedString alloc] initWithString:text
                                                attributes:attribs];
         NSRange ename = [text rangeOfString:STR_event_name];
+        NSRange cmp = [text rangeOfString:STR_price];
+        NSRange RAN_Bids = [text rangeOfString:STR_Bidcc];
+        NSRange RAN_wat = [text rangeOfString:STR_watche];
+        
+        
+        
+//        UIImage *image = [UIImage imageNamed:@"Untitled_1"];
+       
+        
         if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
         {
+            CGRect codeRect = [self frameOfTextRange:RAN_Bids];
+            codeRect.origin.y = codeRect.origin.y + 3;
+            codeRect.size.height = codeRect.size.height - 3;
+            UIView *highlightView = [[UIView alloc] initWithFrame:codeRect];
+            highlightView.layer.cornerRadius = 4;
+            highlightView.backgroundColor = [UIColor blackColor];
+            highlightView.tag = 1;
+            [_lbl_itemNAME insertSubview:highlightView atIndex:0];
+            
             [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:25.0]}
                                     range:ename];
+            [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Bold" size:27.0]}
+                                    range:cmp];
+            [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL,NSForegroundColorAttributeName:[UIColor whiteColor]}
+                                    range:RAN_Bids];
+            [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:12.0]}
+                                    range:RAN_wat];
         }
         else
         {
+            CGRect codeRect = [self frameOfTextRange:RAN_Bids];
+            codeRect.origin.y = codeRect.origin.y + 3;
+            codeRect.size.height = codeRect.size.height - 3;
+            UIView *highlightView = [[UIView alloc] initWithFrame:codeRect];
+            highlightView.layer.cornerRadius = 4;
+            highlightView.backgroundColor = [UIColor blackColor];
+            highlightView.tag = 1;
+            [_lbl_itemNAME insertSubview:highlightView atIndex:0];
+            
+            
             [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:19.0]}
                                     range:ename];
-        }
-
-        
-        
-        
-        NSRange cmp = [text rangeOfString:STR_price];
-        //        NSRange range_event_desc = [text rangeOfString:<#(nonnull NSString *)#>];
-        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-        {
             [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Bold" size:21.0]}
                                     range:cmp];
+            [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL,NSForegroundColorAttributeName:[UIColor whiteColor]}
+                                    range:RAN_Bids];
+            [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:12.0]}
+                                    range:RAN_wat];
         }
-        else
-        {
-            [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Bold" size:17.0]}
-                                    range:cmp];
-        }
+        
+        [attributedText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:cmp];
+        paragraphStyle.paragraphSpacing = 0.0f;
+        [attributedText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:RAN_Bids];
+        
         self.lbl_itemNAME.attributedText = attributedText;
     }
     else
@@ -667,8 +696,16 @@
         self.lbl_itemNAME.text = text;
     }
     
-    self.lbl_itemNAME.numberOfLines = 0;
-    [self.lbl_itemNAME sizeToFit];
+    CGRect txt_frame1 = _lbl_itemNAME.frame;
+    txt_frame1.origin.x = _lbl_item_descrip.frame.origin.x;
+    txt_frame1.size.width = self.view.frame.size.width - _lbl_item_descrip.frame.origin.x - 5;
+    txt_frame1.size.height = _lbl_itemNAME.contentSize.height;
+    _lbl_itemNAME.frame = txt_frame1;
+    
+//    _lbl_itemNAME.scrollEnabled = NO;
+    
+   // self.lbl_itemNAME.numberOfLines = 0;
+//    [self.lbl_itemNAME sizeToFit];
 //    self.lbl_CountDown.numberOfLines = 0;
 //    [self.lbl_CountDown sizeToFit];
     
@@ -851,8 +888,8 @@
         
         
         _BTN_watech.frame = new_frame;
-        _BTN_watech.layer.borderWidth = 2.0f;
-        _BTN_watech.layer.borderColor = [UIColor blackColor].CGColor;
+//        _BTN_watech.layer.borderWidth = 2.0f;
+//        _BTN_watech.layer.borderColor = [UIColor blackColor].CGColor;
         [_BTN_watech addTarget:self action:@selector(showActionSHEET) forControlEvents:UIControlEventTouchUpInside];
         
         new_frame = _VW_line1.frame;
@@ -1057,8 +1094,8 @@
         
         
         _BTN_watech.frame = new_frame;
-        _BTN_watech.layer.borderWidth = 2.0f;
-        _BTN_watech.layer.borderColor = [UIColor blackColor].CGColor;
+//        _BTN_watech.layer.borderWidth = 2.0f;
+//        _BTN_watech.layer.borderColor = [UIColor blackColor].CGColor;
         [_BTN_watech addTarget:self action:@selector(showActionSHEET) forControlEvents:UIControlEventTouchUpInside];
         
         new_frame = _VW_line1.frame;
@@ -1190,6 +1227,14 @@
 //    
 //    _lbl_count.text = [NSString stringWithFormat:@"%lu of %lu",(long)self.pageControl.currentPage + 1,(unsigned long)self.pageControl.numberOfPages];
 //}
+
+- (CGRect)frameOfTextRange:(NSRange)range
+{
+    self.lbl_itemNAME.selectedRange = range;
+    UITextRange *textRange = [self.lbl_itemNAME selectedTextRange];
+    CGRect rect = [self.lbl_itemNAME firstRectForRange:textRange];
+    return rect;
+}
 
 
 #pragma mark - Back Action
@@ -1792,34 +1837,72 @@ self.countdownLabel.text = [NSString stringWithFormat:@"%@/%@/%@ %@:%@:%@", days
     NSCalendarUnit unitFlags = NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitDay | NSCalendarUnitSecond;
     
     NSDateComponents *breakdownInfo = [sysCalendar components:unitFlags fromDate:date  toDate:date2  options:0];
-    NSString *STR_time;
     
     NSString *STR_bidSTAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"STR_bidSTAT"];
     //Starting Bid,Current Bid,Closed
     
-    if ([breakdownInfo day] <= 0 && [breakdownInfo hour] <= 0 && [breakdownInfo minute] <= 0 && [breakdownInfo second] <= 0) {
-
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//                golfTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target: self selector: @selector(Timer_Stopped) userInfo: nil repeats: NO];
-//            });
-        [self Timer_Stopped];
-        [self GETAuction_Item_details];
+    if (![STR_bidSTAT isEqualToString:@"Starting Bid"] && ![STR_bidSTAT isEqualToString:@"Current Bid"]) {
+        _lbl_CountDown.text = @"Auction Closed";
     }
     else
     {
-        if ([STR_bidSTAT isEqualToString:@"Starting Bid"]) {
-            STR_time= [NSString stringWithFormat:@"Starting bid | %li D : %li H : %li M : %li S", (long)[breakdownInfo day], (long)[breakdownInfo hour], (long)[breakdownInfo minute], (long)[breakdownInfo second]];
+        NSString *STR_timeRe;
+        
+        if ([breakdownInfo day] <= 0 ) {
+            STR_timeRe = [NSString stringWithFormat:@" | %02d H : %02d M : %02d S",(int)[breakdownInfo hour], (int)[breakdownInfo minute], (int)[breakdownInfo second]];
         }
-        else if ([STR_bidSTAT isEqualToString:@"Current Bid"])
+        else if ([breakdownInfo day] <= 0 && [breakdownInfo hour] <= 0)
         {
-            STR_time= [NSString stringWithFormat:@"Current bid | %li D : %li H : %li M : %li S", (long)[breakdownInfo day], (long)[breakdownInfo hour], (long)[breakdownInfo minute], (long)[breakdownInfo second]];
+            STR_timeRe = [NSString stringWithFormat:@" | %02d M : %02d S",(int)[breakdownInfo minute], (int)[breakdownInfo second]];
+        }
+        else if ([breakdownInfo day] <= 0 && [breakdownInfo hour] <= 0 && [breakdownInfo minute] <= 0)
+        {
+            STR_timeRe = [NSString stringWithFormat:@" | %02d S", (int)[breakdownInfo second]];
+        }
+        else if ([breakdownInfo day] <= 0 && [breakdownInfo hour] <= 0 && [breakdownInfo minute] <= 0 && [breakdownInfo second] <= 0) {
+            [self Timer_Stopped];
+            [self GETAuction_Item_details];
         }
         else
         {
-            _lbl_CountDown.text = @"Auction Closed";
+            STR_timeRe = [NSString stringWithFormat:@" | %02d D : %02d H : %02d M : %02d S", (int)[breakdownInfo day], (int)[breakdownInfo hour], (int)[breakdownInfo minute], (int)[breakdownInfo second]];
+            
+            
+            NSString *text = [NSString stringWithFormat:@"%@%@",STR_bidSTAT,STR_timeRe];
+            
+            if ([_lbl_CountDown respondsToSelector:@selector(setAttributedText:)]) {
+                
+                // Define general attributes for the entire text
+                NSDictionary *attribs = @{
+                                          NSForegroundColorAttributeName: _lbl_CountDown.textColor,
+                                          NSFontAttributeName: FONT_normal
+                                          };
+                NSMutableAttributedString *attributedText =
+                [[NSMutableAttributedString alloc] initWithString:text
+                                                       attributes:attribs];
+                
+                // Red text attributes
+                //            UIColor *redColor = [UIColor redColor];
+                NSRange cmp = [text rangeOfString:STR_bidSTAT];
+                
+                
+                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+                {
+                    [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL}
+                                            range:cmp];
+                }
+                else
+                {
+                    [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL}
+                                            range:cmp];
+                }
+                _lbl_CountDown.attributedText = attributedText;
+            }
+            else
+            {
+                _lbl_CountDown.text = text;
+            }
         }
-        _lbl_CountDown.text = [NSString stringWithFormat:@"%@", STR_time];
-        //NSLog(@"the timer is:%@",_lbl_CountDown.text);
     }
 }
 
@@ -1936,13 +2019,6 @@ self.countdownLabel.text = [NSString stringWithFormat:@"%@/%@/%@ %@:%@:%@", days
     
     
     NSString *alert_title = [NSString stringWithFormat:@"Amount should be increment of $%.2f",[minimum_bid_increment floatValue]];
-    
-//    if ([STR_bidSTAT isEqualToString:@"Starting Bid"]) {
-//        NSLog(@"Bid Not yet started");
-//    }
-//    else if ([STR_bidSTAT isEqualToString:@"Current Bid"])
-//    {
-//        NSLog(@"Bid open");
         alertController = [UIAlertController alertControllerWithTitle: @"Place Bid Amount"
                                                               message: alert_title
                                                        preferredStyle:UIAlertControllerStyleAlert];
@@ -2052,9 +2128,6 @@ self.countdownLabel.text = [NSString stringWithFormat:@"%@/%@/%@ %@:%@:%@", days
         NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
         NSDictionary *parameters = @{@"current_bid":myNumber};
         NSLog(@"the post data is:%@",parameters);
-        //    self->activityIndicatorView.hidden=NO;
-        //    [self->activityIndicatorView startAnimating];
-        //    [self.view addSubview:activityIndicatorView];
         NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
         NSDictionary *auction_item = [jsonReponse valueForKey:@"auction_item"];
         

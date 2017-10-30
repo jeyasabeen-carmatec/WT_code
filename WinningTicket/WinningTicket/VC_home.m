@@ -146,18 +146,18 @@
     _lbl_titl_event_code.hidden = YES;
     _VW_hold_code.hidden = YES;
     
-    _BTN_cancel.layer.borderWidth = 1.0f;
-    _BTN_cancel.layer.borderColor = [UIColor blackColor].CGColor;
+//    _BTN_cancel.layer.borderWidth = 1.0f;
+//    _BTN_cancel.layer.borderColor = [UIColor blackColor].CGColor;
     _BTN_cancel.hidden = YES;
     
-    _BTN_enter_event_code.layer.borderWidth = 1.0f;
-    _BTN_enter_event_code.layer.borderColor = [UIColor blackColor].CGColor;
+//    _BTN_enter_event_code.layer.borderWidth = 1.0f;
+//    _BTN_enter_event_code.layer.borderColor = [UIColor blackColor].CGColor;
     _BTN_enter_event_code.hidden = YES;
     _BTN_enter_event_code.enabled = NO;
 //    _BTN_enter_event_code.alpha = 0.5;
     
-    _BTN_view_all_event.layer.borderWidth = 1.0f;
-    _BTN_view_all_event.layer.borderColor = [UIColor blackColor].CGColor;
+//    _BTN_view_all_event.layer.borderWidth = 1.0f;
+//    _BTN_view_all_event.layer.borderColor = [UIColor blackColor].CGColor;
     
     [_BTN_view_all_event addTarget:self action:@selector(BTN_enter_event_code:) forControlEvents:UIControlEventTouchUpInside];
     [_BTN_cancel addTarget:self action:@selector(BTN_cancel:) forControlEvents:UIControlEventTouchUpInside];
@@ -235,8 +235,8 @@
     new_frame.size.height = [self allEvent_height];
     _tbl_all_event.frame = new_frame;
     
-    _BTN_all_event.layer.borderWidth = 1.0f;
-    _BTN_all_event.layer.borderColor = [UIColor blackColor].CGColor;
+//    _BTN_all_event.layer.borderWidth = 1.0f;
+//    _BTN_all_event.layer.borderColor = [UIColor blackColor].CGColor;
     new_frame = _BTN_all_event.frame;
     new_frame.origin.y = _tbl_all_event.frame.origin.y + [self allEvent_height] + 15;
     new_frame.size.height = _BTN_all_event.frame.size.height;
@@ -447,8 +447,8 @@
             
             cell.lbl_event_time.text = [self getLocalDateTimeFromUTC:[temp_DICN valueForKey:@"start_date"]];
             
-            cell.BTN_View_detail.layer.borderWidth = 1.0f;
-            cell.BTN_View_detail.layer.borderColor = [UIColor blackColor].CGColor;
+//            cell.BTN_View_detail.layer.borderWidth = 1.0f;
+//            cell.BTN_View_detail.layer.borderColor = [UIColor blackColor].CGColor;
             
             [cell.BTN_View_detail setTag:indexPath.row];
             [cell.BTN_View_detail addTarget:self action:@selector(BTN_UP_COMNG_EVENT:) forControlEvents:UIControlEventTouchUpInside];
@@ -515,8 +515,8 @@
             
             cell.lbl_event_time.text = [self getLocalDateTimeFromUTC:[temp_DICN valueForKey:@"start_date"]];
             
-            cell.BTN_View_detail.layer.borderWidth = 1.0f;
-            cell.BTN_View_detail.layer.borderColor = [UIColor blackColor].CGColor;
+//            cell.BTN_View_detail.layer.borderWidth = 1.0f;
+//            cell.BTN_View_detail.layer.borderColor = [UIColor blackColor].CGColor;
             
             [cell.BTN_View_detail setTag:indexPath.row];
             [cell.BTN_View_detail addTarget:self action:@selector(BTN_ALL_EVENT:) forControlEvents:UIControlEventTouchUpInside];
