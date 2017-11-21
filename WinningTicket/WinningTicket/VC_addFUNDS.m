@@ -866,8 +866,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
                  
                  [self presentViewController:navigationController animated:YES completion:nil];*/
                 
-                @try
-                {
+                
                     BTDropInRequest *request = [[BTDropInRequest alloc] init];
                     BTDropInController *dropIn = [[BTDropInController alloc] initWithAuthorization:[dict valueForKey:@"client_token"] request:request handler:^(BTDropInController * _Nonnull controller, BTDropInResult * _Nullable result, NSError * _Nullable error) {
                         
@@ -885,12 +884,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
                         }
                     }];
                     [self presentViewController:dropIn animated:YES completion:nil];
-                }
-                @catch (NSException *exception)
-                {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection error" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-                    [alert show];
-                }
+                
             }
         }
         @catch (NSException *exception)

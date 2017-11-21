@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,16 +21,31 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="59" id="7ZO-LO-BXZ" customClass="TBL_VW_Cell_EVENTS">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="59" id="43C-4x-dsR" customClass="TBL_VW_Cell_EVENTS">
             <rect key="frame" x="0.0" y="0.0" width="768" height="59"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7ZO-LO-BXZ" id="shg-j6-9MK">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="43C-4x-dsR" id="fkw-nO-pGM">
                 <rect key="frame" x="0.0" y="0.0" width="768" height="58.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test testTest testTest testTest testTest test" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihJ-1s-m9t" customClass="CSTM_cell_LBL">
-                        <rect key="frame" x="8" y="8" width="412" height="42.5"/>
-                        <fontDescription key="fontDescription" name="GothamPro-Medium" family="Gotham Pro" pointSize="18"/>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yev-wy-aY8">
+                        <rect key="frame" x="0.0" y="58" width="768" height="1"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h7k-7j-oze">
+                        <rect key="frame" x="448" y="0.0" width="1" height="60"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FCK-6t-Jf0">
+                        <rect key="frame" x="0.0" y="1" width="448" height="57"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test testTest testTest testTest testTest test" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hyi-eB-OmJ" customClass="CSTM_cell_LBL">
+                        <rect key="frame" x="8" y="8" width="440" height="43"/>
+                        <fontDescription key="fontDescription" name="GothamPro-Medium" family="Gotham Pro" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                         <size key="shadowOffset" width="0.0" height="0.0"/>
@@ -39,13 +55,12 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mar 31,2017 11:00AM EST" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulI-US-9Nc" customClass="CSTM_cell_LBL">
-                        <rect key="frame" x="458" y="7" width="147" height="42"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mar 31,2017 11:00AM EST" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQE-JY-1v2" customClass="CSTM_cell_LBL">
+                        <rect key="frame" x="457" y="8" width="150" height="43"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="147" id="5pM-zd-rvQ"/>
-                            <constraint firstAttribute="height" constant="41.5" id="gbt-a5-tHq"/>
+                            <constraint firstAttribute="width" constant="150" id="1F0-sv-7aK"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="GothamPro-Medium" family="Gotham Pro" pointSize="18"/>
+                        <fontDescription key="fontDescription" name="GothamPro-Medium" family="Gotham Pro" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                         <size key="shadowOffset" width="0.0" height="0.0"/>
@@ -55,35 +70,39 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3j-0M-9dY" customClass="BTN_Winnig_TKT">
-                        <rect key="frame" x="684" y="8" width="80" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o45-bB-CDY" customClass="BTN_borderwidth">
+                        <rect key="frame" x="674" y="15" width="48" height="29"/>
                         <color key="backgroundColor" red="0.01176470588" green="0.69019607839999997" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="qHM-Pg-sQl"/>
-                            <constraint firstAttribute="width" constant="80" id="xYc-Af-mbG"/>
+                            <constraint firstAttribute="height" constant="29" id="9Qx-vi-J7e"/>
+                            <constraint firstAttribute="width" constant="48" id="shZ-yU-FiJ"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="16"/>
+                        <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="14"/>
                         <state key="normal" title="VIEW">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ihJ-1s-m9t" firstAttribute="leading" secondItem="shg-j6-9MK" secondAttribute="leadingMargin" id="8JD-xS-02h"/>
-                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="ulI-US-9Nc" secondAttribute="bottom" constant="1.5" id="FSF-L0-D4l"/>
-                    <constraint firstItem="ihJ-1s-m9t" firstAttribute="top" secondItem="k3j-0M-9dY" secondAttribute="top" id="H52-F3-dC9"/>
-                    <constraint firstItem="ihJ-1s-m9t" firstAttribute="top" secondItem="shg-j6-9MK" secondAttribute="topMargin" id="J7p-P6-VD0"/>
-                    <constraint firstItem="ulI-US-9Nc" firstAttribute="top" secondItem="shg-j6-9MK" secondAttribute="topMargin" constant="-1" id="O7e-h0-UcS"/>
-                    <constraint firstItem="k3j-0M-9dY" firstAttribute="leading" secondItem="ulI-US-9Nc" secondAttribute="trailing" constant="79" id="WoQ-Bj-pcb"/>
-                    <constraint firstItem="ihJ-1s-m9t" firstAttribute="centerY" secondItem="shg-j6-9MK" secondAttribute="centerY" id="il7-bE-uyn"/>
-                    <constraint firstItem="ulI-US-9Nc" firstAttribute="leading" secondItem="ihJ-1s-m9t" secondAttribute="trailing" constant="38" id="q1Y-gr-HwR"/>
-                    <constraint firstItem="k3j-0M-9dY" firstAttribute="trailing" secondItem="shg-j6-9MK" secondAttribute="trailingMargin" constant="4" id="tR5-GP-AA6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="o45-bB-CDY" secondAttribute="trailing" constant="38" id="1Et-qK-yXD"/>
+                    <constraint firstAttribute="bottom" secondItem="hyi-eB-OmJ" secondAttribute="bottom" constant="8" id="8TN-p1-xxe"/>
+                    <constraint firstItem="hyi-eB-OmJ" firstAttribute="centerY" secondItem="fkw-nO-pGM" secondAttribute="centerY" id="FgF-65-q96"/>
+                    <constraint firstItem="bQE-JY-1v2" firstAttribute="leading" secondItem="hyi-eB-OmJ" secondAttribute="trailing" constant="9" id="Fhe-jZ-hPh"/>
+                    <constraint firstItem="bQE-JY-1v2" firstAttribute="centerY" secondItem="o45-bB-CDY" secondAttribute="centerY" id="Ntq-LO-TaD"/>
+                    <constraint firstItem="hyi-eB-OmJ" firstAttribute="firstBaseline" secondItem="bQE-JY-1v2" secondAttribute="firstBaseline" id="TD5-N0-UYm"/>
+                    <constraint firstItem="hyi-eB-OmJ" firstAttribute="top" secondItem="fkw-nO-pGM" secondAttribute="top" constant="8" id="bFF-1J-DIG"/>
+                    <constraint firstItem="bQE-JY-1v2" firstAttribute="centerY" secondItem="fkw-nO-pGM" secondAttribute="centerY" id="fWd-07-qFk"/>
+                    <constraint firstItem="hyi-eB-OmJ" firstAttribute="leading" secondItem="fkw-nO-pGM" secondAttribute="leadingMargin" id="hGd-yg-MMn"/>
+                    <constraint firstItem="o45-bB-CDY" firstAttribute="top" secondItem="fkw-nO-pGM" secondAttribute="topMargin" constant="7" id="kYH-vo-lqk"/>
+                    <constraint firstItem="o45-bB-CDY" firstAttribute="leading" secondItem="bQE-JY-1v2" secondAttribute="trailing" constant="67" id="ky0-ao-Yez"/>
+                    <constraint firstItem="hyi-eB-OmJ" firstAttribute="baseline" secondItem="bQE-JY-1v2" secondAttribute="baseline" id="qC2-NT-eNe"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="BTN_View_detail" destination="k3j-0M-9dY" id="Mmz-NJ-0wO"/>
-                <outlet property="lbl_event_name" destination="ihJ-1s-m9t" id="6T3-zG-J5n"/>
-                <outlet property="lbl_event_time" destination="ulI-US-9Nc" id="dWO-b2-2xj"/>
+                <outlet property="BTN_View_detail" destination="o45-bB-CDY" id="zz2-Ng-Gpi"/>
+                <outlet property="VW_leftBG" destination="FCK-6t-Jf0" id="rC6-o4-DLr"/>
+                <outlet property="lbl_event_name" destination="hyi-eB-OmJ" id="32y-3C-rxJ"/>
+                <outlet property="lbl_event_time" destination="bQE-JY-1v2" id="GU8-Wu-ZXG"/>
             </connections>
             <point key="canvasLocation" x="25" y="59.5"/>
         </tableViewCell>

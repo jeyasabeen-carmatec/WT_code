@@ -13,6 +13,9 @@
         <array key="Gotham Bold Regular.ttf">
             <string>GothamBold</string>
         </array>
+        <array key="Montserrat-Bold.ttf">
+            <string>Montserrat-Bold</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -24,44 +27,56 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swI-AN-Deb">
-                        <rect key="frame" x="19" y="12" width="179" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swI-AN-Deb">
+                        <rect key="frame" x="19" y="12" width="131" height="21"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2mY-ia-caj">
-                        <rect key="frame" x="206" y="11" width="42" height="8"/>
+                        <rect key="frame" x="206" y="11" width="42" height="9"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="42" id="Jxr-L9-Mi7"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="9"/>
+                        <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSh-Wb-y7u">
-                        <rect key="frame" x="263" y="11" width="42" height="8"/>
+                        <rect key="frame" x="263" y="11" width="42" height="9"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="42" id="nTM-9t-cz3"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="9"/>
+                        <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J65-Ra-5pA">
+                        <rect key="frame" x="158" y="11" width="29" height="9"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="29" id="6rn-nu-rjf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="XSh-Wb-y7u" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="80t-yj-VBy"/>
+                    <constraint firstItem="swI-AN-Deb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="JE1-CB-ejG"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="swI-AN-Deb" secondAttribute="bottom" constant="2.5" id="O9O-Nr-c5s"/>
                     <constraint firstAttribute="trailingMargin" secondItem="XSh-Wb-y7u" secondAttribute="trailing" constant="7" id="RbI-1J-iOq"/>
+                    <constraint firstItem="2mY-ia-caj" firstAttribute="leading" secondItem="J65-Ra-5pA" secondAttribute="trailing" constant="19" id="SKO-pd-hFL"/>
                     <constraint firstItem="2mY-ia-caj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="Tkr-bs-Pzo"/>
-                    <constraint firstItem="swI-AN-Deb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="11" id="WnH-yF-Ah1"/>
-                    <constraint firstItem="swI-AN-Deb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="aFW-ex-bdK"/>
+                    <constraint firstItem="J65-Ra-5pA" firstAttribute="leading" secondItem="swI-AN-Deb" secondAttribute="trailing" constant="8" id="YQ1-BA-Jg1"/>
+                    <constraint firstItem="J65-Ra-5pA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="ZnP-SM-BUF"/>
                     <constraint firstItem="XSh-Wb-y7u" firstAttribute="leading" secondItem="2mY-ia-caj" secondAttribute="trailing" constant="15" id="kNW-Q5-vtH"/>
-                    <constraint firstItem="2mY-ia-caj" firstAttribute="leading" secondItem="swI-AN-Deb" secondAttribute="trailing" constant="8" symbolic="YES" id="x3I-bk-DDg"/>
-                    <constraint firstItem="swI-AN-Deb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="yG7-m8-bbh"/>
+                    <constraint firstItem="swI-AN-Deb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="11" id="q6m-is-ecO"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="lbl_email" destination="XSh-Wb-y7u" id="BnQ-Ld-MI8"/>
+                <outlet property="lbl_push" destination="J65-Ra-5pA" id="GMc-0P-1hg"/>
                 <outlet property="lbl_text" destination="2mY-ia-caj" id="O48-dV-E38"/>
                 <outlet property="lbl_title" destination="swI-AN-Deb" id="a1z-YV-1KR"/>
             </connections>

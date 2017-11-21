@@ -383,7 +383,7 @@
     NSString *STR_Bidcc;
     
     if ([STR_bidSTAT isEqualToString:@"Starting Bid"]) {
-        STR_price = [NSString stringWithFormat:@"US $%.2f",[[auction_item valueForKey:@"starting_bid"] floatValue]];//@"US $59.99";
+        STR_price = [NSString stringWithFormat:@"$%.2f",[[auction_item valueForKey:@"starting_bid"] floatValue]];//@"US $59.99";
             text = [NSString stringWithFormat:@"%@\n%@",STR_event_name,STR_price];
     }
     else if ([STR_bidSTAT isEqualToString:@"Current Bid"])
@@ -393,11 +393,11 @@
                   NSString *STR_bid = [NSString stringWithFormat:@"%@",[auction_item valueForKey:@"current_bid_amount"]];
                   if ([STR_bid isEqualToString:@"<null>"])
                   {
-                      STR_price = [NSString stringWithFormat:@"US $%.2f",[[auction_item valueForKey:@"starting_bid"] floatValue]];
+                      STR_price = [NSString stringWithFormat:@"$%.2f",[[auction_item valueForKey:@"starting_bid"] floatValue]];
                   }
                   else
                   {
-                      STR_price = [NSString stringWithFormat:@"US $%.2f",[[auction_item valueForKey:@"current_bid_amount"] floatValue]];
+                      STR_price = [NSString stringWithFormat:@"$%.2f",[[auction_item valueForKey:@"current_bid_amount"] floatValue]];
                   }
             
             if ([[auction_item valueForKey:@"watchers_count"] doubleValue] == 0) {
@@ -412,21 +412,21 @@
             }
             
             if ([[auction_item valueForKey:@"bid_count"] doubleValue] == 0) {
-                STR_Bidcc = @" NO BIDS ";
+                STR_Bidcc = @"   NO BIDS   ";
             }
             if ([[auction_item valueForKey:@"bid_count"] doubleValue] < 2) {
-                STR_Bidcc = [NSString stringWithFormat:@" %@ BID ",[auction_item valueForKey:@"bid_count"]];//@"BID";
+                STR_Bidcc = [NSString stringWithFormat:@"   %@ BID   ",[auction_item valueForKey:@"bid_count"]];//@"BID";
             }
             else
             {
-                STR_Bidcc = [NSString stringWithFormat:@" %@ BIDS ",[auction_item valueForKey:@"bid_count"]];//@"BIDS";
+                STR_Bidcc = [NSString stringWithFormat:@"   %@ BIDS   ",[auction_item valueForKey:@"bid_count"]];//@"BIDS";
             }
             
 //            STR_bids = [NSString stringWithFormat:@"%@ %@ | %@ %@",[auction_item valueForKey:@"bid_count"],STR_Bidcc,[auction_item valueForKey:@"watchers_count"],STR_watche];
             
         }
         @catch (NSException *exception) {
-            STR_price = [NSString stringWithFormat:@"US $%.2f",[[auction_item valueForKey:@"starting_bid"] floatValue]];//@"US $59.99";
+            STR_price = [NSString stringWithFormat:@"$%.2f",[[auction_item valueForKey:@"starting_bid"] floatValue]];//@"US $59.99";
             
             
             if ([[auction_item valueForKey:@"watchers_count"] doubleValue] == 0) {
@@ -441,14 +441,14 @@
             }
             
             if ([[auction_item valueForKey:@"bid_count"] doubleValue] == 0) {
-                STR_Bidcc = @" NO BIDS ";
+                STR_Bidcc = @"   NO BIDS   ";
             }
             if ([[auction_item valueForKey:@"bid_count"] doubleValue] < 2) {
-                STR_Bidcc = [NSString stringWithFormat:@" %@ BID ",[auction_item valueForKey:@"bid_count"]];//@"BID";
+                STR_Bidcc = [NSString stringWithFormat:@"   %@ BID   ",[auction_item valueForKey:@"bid_count"]];//@"BID";
             }
             else
             {
-                STR_Bidcc = [NSString stringWithFormat:@" %@ BIDS ",[auction_item valueForKey:@"bid_count"]];//@"BIDS";
+                STR_Bidcc = [NSString stringWithFormat:@"   %@ BIDS   ",[auction_item valueForKey:@"bid_count"]];//@"BIDS";
             }
             
 //            STR_bids = [NSString stringWithFormat:@"%@ %@ | %@ %@",[auction_item valueForKey:@"bid_count"],STR_Bidcc,[auction_item valueForKey:@"watchers_count"],STR_watche];
@@ -461,7 +461,7 @@
         @try
         {
             _lbl_CountDown.backgroundColor = [UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1.0];
-            STR_price = [NSString stringWithFormat:@"US $%.2f",[[auction_item valueForKey:@"current_bid_amount"] floatValue]];
+            STR_price = [NSString stringWithFormat:@"$%.2f",[[auction_item valueForKey:@"current_bid_amount"] floatValue]];
             
             if ([[auction_item valueForKey:@"watchers_count"] doubleValue] == 0) {
                 STR_watche = @"0 WATCHES";
@@ -475,14 +475,14 @@
             }
             
             if ([[auction_item valueForKey:@"bid_count"] doubleValue] == 0) {
-                STR_Bidcc = @" NO BIDS ";
+                STR_Bidcc = @"   NO BIDS   ";
             }
             if ([[auction_item valueForKey:@"bid_count"] doubleValue] < 2) {
-                STR_Bidcc = [NSString stringWithFormat:@" %@ BID ",[auction_item valueForKey:@"bid_count"]];//@"BID";
+                STR_Bidcc = [NSString stringWithFormat:@"   %@ BID   ",[auction_item valueForKey:@"bid_count"]];//@"BID";
             }
             else
             {
-                STR_Bidcc = [NSString stringWithFormat:@" %@ BIDS ",[auction_item valueForKey:@"bid_count"]];//@"BIDS";
+                STR_Bidcc = [NSString stringWithFormat:@"   %@ BIDS   ",[auction_item valueForKey:@"bid_count"]];//@"BIDS";
             }
             
 //            STR_bids = [NSString stringWithFormat:@"%@ %@ | %@ %@",[auction_item valueForKey:@"bid_count"],STR_Bidcc,[auction_item valueForKey:@"watchers_count"],STR_watche];
@@ -536,7 +536,7 @@
         @catch (NSException *exception)
         {
             _lbl_CountDown.backgroundColor = [UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1.0];
-            STR_price = [NSString stringWithFormat:@"US $%.2f",[[auction_item valueForKey:@"starting_bid"] floatValue]];
+            STR_price = [NSString stringWithFormat:@"$%.2f",[[auction_item valueForKey:@"starting_bid"] floatValue]];
             if ([[auction_item valueForKey:@"watchers_count"] doubleValue] == 0) {
                 STR_watche = @"0 WATCHES";
             }
@@ -549,14 +549,14 @@
             }
             
             if ([[auction_item valueForKey:@"bid_count"] doubleValue] == 0) {
-                STR_Bidcc = @" NO BIDS ";
+                STR_Bidcc = @"   NO BIDS   ";
             }
             if ([[auction_item valueForKey:@"bid_count"] doubleValue] < 2) {
-                STR_Bidcc = [NSString stringWithFormat:@" %@ BID ",[auction_item valueForKey:@"bid_count"]];//@"BID";
+                STR_Bidcc = [NSString stringWithFormat:@"   %@ BID   ",[auction_item valueForKey:@"bid_count"]];//@"BID";
             }
             else
             {
-                STR_Bidcc = [NSString stringWithFormat:@" %@ BIDS ",[auction_item valueForKey:@"bid_count"]];//@"BIDS";
+                STR_Bidcc = [NSString stringWithFormat:@"   %@ BIDS   ",[auction_item valueForKey:@"bid_count"]];//@"BIDS";
             }
             
 //            STR_bids = [NSString stringWithFormat:@"%@ %@ | %@ %@",[auction_item valueForKey:@"bid_count"],STR_Bidcc,[auction_item valueForKey:@"watchers_count"],STR_watche];
@@ -1369,7 +1369,7 @@
             
                    }
         
-        NSString *text = [NSString stringWithFormat:@"US $%@\n%@",STR_price,STR_stat];
+        NSString *text = [NSString stringWithFormat:@"$%@\n%@",STR_price,STR_stat];
         if ([similar_cell.price respondsToSelector:@selector(setAttributedText:)])
         {
             NSDictionary *attribs = @{

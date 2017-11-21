@@ -17,8 +17,15 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    
+    if (selected == YES && animated == YES) {
+        UIView * selectedBackgroundView = [[UIView alloc] init];
+        [selectedBackgroundView setBackgroundColor:[UIColor colorWithRed:0.61 green:0.61 blue:0.61 alpha:0.5]]; // set color here
+        selectedBackgroundView.frame = CGRectMake(self.contentView.frame.origin.x, self.contentView.frame.origin.y
+, [UIScreen mainScreen].bounds.size.width, self.contentView.frame.size.height);
+        [self.contentView addSubview:selectedBackgroundView];
+    }
+    
 }
 
 @end

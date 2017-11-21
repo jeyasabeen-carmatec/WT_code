@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Update_Score.h"
+#import "KSJActionSocket.h"
 
 @interface VC_scoreBoard : UIViewController <UITableViewDelegate, UITableViewDataSource,Update_Score>
 

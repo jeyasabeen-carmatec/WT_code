@@ -42,18 +42,18 @@
 - (CGRect)textRectForBounds:(CGRect)bounds {
     if (showingError) {
 //        return CGRectMake(10, 0, bounds.size.width, bounds.size.height);
-        return CGRectMake(10, 4, bounds.size.width, bounds.size.height);
+        return CGRectMake(10, 4, bounds.size.width -10, bounds.size.height);
     }else{
-        return CGRectMake(10, 4, bounds.size.width, bounds.size.height);
+        return CGRectMake(10, 4, bounds.size.width -10, bounds.size.height);
     }
 }
 
 - (CGRect)editingRectForBounds:(CGRect)bounds {
     if (showingError) {
 //        return CGRectMake(10, 0, bounds.size.width, bounds.size.height);
-        return CGRectMake(10, 4, bounds.size.width, bounds.size.height);
+        return CGRectMake(10, 4, bounds.size.width -10, bounds.size.height);
     }else{
-        return CGRectMake(10, 4, bounds.size.width, bounds.size.height);
+        return CGRectMake(10, 4, bounds.size.width -10, bounds.size.height);
     }
 }
 
@@ -464,12 +464,12 @@
 -(void)setTextFieldPlaceholderText:(NSString *)placeholderText {
     
     self.labelPlaceholder.text = placeholderText;
-    [self textFieldDidEndEditing];
+//    [self textFieldDidEndEditing];
 }
 -(void)setPlaceholder:(NSString *)placeholder {
     
     self.labelPlaceholder.text = placeholder;
-    [self textFieldDidEndEditing];
+//    [self textFieldDidEndEditing];
     
 }
 
@@ -487,6 +487,7 @@
 }
 -(void)setErrorText:(NSString *)errorText {
     _errorText = errorText;
+    self.labelErrorPlaceholder.text = errorText;
 }
 
 #pragma mark  UITextField Responder Overide

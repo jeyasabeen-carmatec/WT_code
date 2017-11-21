@@ -13,6 +13,11 @@
 @interface VC_score_update ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
     NSArray *collection_arr;
+    NSIndexPath *INDX_selecterdl;
+    
+    
+    UIView *VW_overlay;
+    UIActivityIndicatorView *activityIndicatorView;
 }
 
 @end
@@ -22,6 +27,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    
+    activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
+    
+    activityIndicatorView.center = VW_overlay.center;
+    [VW_overlay addSubview:activityIndicatorView];
+    VW_overlay.center = self.view.center;
+    [self.view addSubview:VW_overlay];
+    
+    VW_overlay.hidden = YES;
    
 
     NSLog(@"Data from prev vc %@",_STR_parSTR);
@@ -115,21 +133,33 @@
     //cell.layer.cornerRadius = cell.contentView.frame.size.width / 2;
     cell.contentView.backgroundColor = _name_vw.backgroundColor;
     
+    INDX_selecterdl = indexPath;
+    
+    VW_overlay.hidden = NO;
+    [activityIndicatorView startAnimating];
+    [self performSelector:@selector(dismiss_COntroller) withObject:activityIndicatorView afterDelay:0.01];
+}
+
+-(void) dismiss_COntroller
+{
     ARR_grossScore *store_ARR = [ARR_grossScore ARR_values];
-    [store_ARR.ARR_score addObject:[collection_arr objectAtIndex:indexPath.row]];
+    [store_ARR.ARR_score addObject:[collection_arr objectAtIndex:INDX_selecterdl.row]];
     
     if(_delegate && [_delegate respondsToSelector:@selector(get_SCORE:)])
     {
-        [_delegate get_SCORE:[NSString stringWithFormat:@"%@",[collection_arr objectAtIndex:indexPath.row]]]; //[ARR_grossScore ARR_values].ARR_score
+        [_delegate get_SCORE:[NSString stringWithFormat:@"%@",[collection_arr objectAtIndex:INDX_selecterdl.row]]]; //[ARR_grossScore ARR_values].ARR_score
     }
     
+    [activityIndicatorView stopAnimating];
+    VW_overlay.hidden = YES;
     
     [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
+
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-  //  cell.layer.cornerRadius = cell.contentView.frame.size.width / 2;
     cell.contentView.backgroundColor = [UIColor colorWithRed:0.87 green:0.87 blue:0.87 alpha:1.0];
 }
 

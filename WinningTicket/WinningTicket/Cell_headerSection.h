@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbl_title;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_text;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_email;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_push;
 
 @end

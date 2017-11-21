@@ -150,6 +150,11 @@
         Dictin_order = [dictin_transaction valueForKey:@"order"];
         [self display_addFund:Dictin_order];
     }
+    else if ([purpose isEqualToString:@"auction"])
+    {
+        Dictin_order = [dictin_transaction valueForKey:@"order"];
+        [self display_Donation:Dictin_order];
+    }
     
     _lbl_ticketDetail.numberOfLines = 0;
     [_lbl_ticketDetail sizeToFit];
@@ -490,6 +495,191 @@
             }
             
             [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line];
+            
+            _lbl_ticketDetail.attributedText = attributedText;
+        }
+        else
+        {
+            _lbl_ticketDetail.text = STR_detailLBL;
+        }
+    }
+}
+
+-(void) display_Donation :(NSDictionary *)dictin_orderdetail
+{
+    UIFont *small_text_font = [UIFont fontWithName:@"GothamBold" size:4.0];
+    NSString *braintree_payment_type = [dictin_orderdetail valueForKey:@"braintree_payment_type"];
+    NSString *STR_paymentTYPE = @"Payment type";
+    NSString *STR_paymntDetail;
+    NSString *empty_txt_line = @"sampleText";
+    NSString *recipt_name;
+    NSString *title_event = @"Event name";
+    NSString *empty_txt_line1 = @"sampleText1";
+    NSString *empty_txt_line2 = @"sampleText2";
+    NSString *event_name = [dictin_orderdetail valueForKey:@"event_name"];
+    
+    NSString *organisation_name = [dictin_orderdetail valueForKey:@"organization_name"];
+//    
+//    if ([trans_type isEqualToString:@"donation"]) {
+//        recipt_name = @"Donation recipient";
+//    }
+//    else
+//    {
+        recipt_name = @"Auction";
+//    }
+    
+    @try {
+        if ([braintree_payment_type isEqualToString:@"PayPalAccount"]) {
+            STR_paymntDetail = [NSString stringWithFormat:@"PayPal - %@",[dictin_orderdetail valueForKey:@"paypal_email"]];
+            NSString *STR_detailLBL = [NSString stringWithFormat:@"%@\n%@\n%@\n\n%@\n%@\n%@\n\n%@\n%@\n%@",STR_paymentTYPE,empty_txt_line,STR_paymntDetail,recipt_name,empty_txt_line1,organisation_name,title_event,empty_txt_line2,event_name];
+            NSRange range_empty_line = [STR_detailLBL rangeOfString:empty_txt_line];
+            NSRange range_empty_line1 = [STR_detailLBL rangeOfString:empty_txt_line1];
+            NSRange range_empty_line2 = [STR_detailLBL rangeOfString:empty_txt_line2];
+            
+            NSRange event_range = [STR_detailLBL rangeOfString:event_name];
+            NSRange org_range = [STR_detailLBL rangeOfString:organisation_name];
+            
+            if ([_lbl_ticketDetail respondsToSelector:@selector(setAttributedText:)]) {
+                
+                NSDictionary *attribs = @{
+                                          NSForegroundColorAttributeName: _lbl_ticketDetail.textColor,
+                                          NSFontAttributeName: _lbl_ticketDetail.font
+                                          };
+                NSMutableAttributedString *attributedText =
+                [[NSMutableAttributedString alloc] initWithString:STR_detailLBL
+                                                       attributes:attribs];
+                
+                NSRange cmp = [STR_detailLBL rangeOfString:STR_paymntDetail];
+                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+                {
+                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+                                            range:cmp];
+                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+                                            range:event_range];
+                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+                                            range:org_range];
+                }
+                else
+                {
+                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
+                                            range:cmp];
+                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
+                                            range:event_range];
+                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
+                                            range:org_range];
+                }
+                
+                [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line];
+                
+                [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line1];
+                [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line2];
+                
+                _lbl_ticketDetail.attributedText = attributedText;
+            }
+            else
+            {
+                _lbl_ticketDetail.text = STR_detailLBL;
+            }
+        }
+        else if ([braintree_payment_type isEqualToString:@"CreditCard"])
+        {
+            STR_paymntDetail = [NSString stringWithFormat:@"CreditCard - %@ **** **** **** **%@",[dictin_orderdetail valueForKey:@"card_type"],[dictin_orderdetail valueForKey:@"card_last_two"]];
+            
+            NSString *STR_detailLBL = [NSString stringWithFormat:@"%@\n%@\n%@\n\n%@\n%@\n%@\n\n%@\n%@\n%@",STR_paymentTYPE,empty_txt_line,STR_paymntDetail,recipt_name,empty_txt_line1,organisation_name,title_event,empty_txt_line2,event_name];
+            NSRange range_empty_line = [STR_detailLBL rangeOfString:empty_txt_line];
+            NSRange range_empty_line1 = [STR_detailLBL rangeOfString:empty_txt_line1];
+            NSRange range_empty_line2 = [STR_detailLBL rangeOfString:empty_txt_line2];
+            
+            NSRange event_range = [STR_detailLBL rangeOfString:event_name];
+            NSRange org_range = [STR_detailLBL rangeOfString:organisation_name];
+            
+            if ([_lbl_ticketDetail respondsToSelector:@selector(setAttributedText:)]) {
+                
+                NSDictionary *attribs = @{
+                                          NSForegroundColorAttributeName: _lbl_ticketDetail.textColor,
+                                          NSFontAttributeName: _lbl_ticketDetail.font
+                                          };
+                NSMutableAttributedString *attributedText =
+                [[NSMutableAttributedString alloc] initWithString:STR_detailLBL
+                                                       attributes:attribs];
+                
+                NSRange cmp = [STR_detailLBL rangeOfString:STR_paymntDetail];
+                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+                {
+                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+                                            range:cmp];
+                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+                                            range:event_range];
+                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+                                            range:org_range];
+                }
+                else
+                {
+                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
+                                            range:cmp];
+                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
+                                            range:event_range];
+                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
+                                            range:org_range];
+                }
+                
+                [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line];
+                
+                [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line1];
+                [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line2];
+                
+                _lbl_ticketDetail.attributedText = attributedText;
+            }
+            else
+            {
+                _lbl_ticketDetail.text = STR_detailLBL;
+            }
+        }
+    } @catch (NSException *exception) {
+        STR_paymntDetail = @"Paid through wallet";
+        
+        NSString *STR_detailLBL = [NSString stringWithFormat:@"%@\n%@\n%@\n\n%@\n%@\n%@\n\n%@\n%@\n%@",STR_paymentTYPE,empty_txt_line,STR_paymntDetail,recipt_name,empty_txt_line1,organisation_name,title_event,empty_txt_line2,event_name];
+        NSRange range_empty_line = [STR_detailLBL rangeOfString:empty_txt_line];
+        NSRange range_empty_line1 = [STR_detailLBL rangeOfString:empty_txt_line1];
+        NSRange range_empty_line2 = [STR_detailLBL rangeOfString:empty_txt_line2];
+        
+        NSRange event_range = [STR_detailLBL rangeOfString:event_name];
+        NSRange org_range = [STR_detailLBL rangeOfString:organisation_name];
+        
+        if ([_lbl_ticketDetail respondsToSelector:@selector(setAttributedText:)]) {
+            
+            NSDictionary *attribs = @{
+                                      NSForegroundColorAttributeName: _lbl_ticketDetail.textColor,
+                                      NSFontAttributeName: _lbl_ticketDetail.font
+                                      };
+            NSMutableAttributedString *attributedText =
+            [[NSMutableAttributedString alloc] initWithString:STR_detailLBL
+                                                   attributes:attribs];
+            
+            NSRange cmp = [STR_detailLBL rangeOfString:STR_paymntDetail];
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+                                        range:cmp];
+                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+                                        range:event_range];
+                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+                                        range:org_range];
+            }
+            else
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
+                                        range:cmp];
+                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
+                                        range:event_range];
+                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
+                                        range:org_range];
+            }
+            
+            [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line];
+            
+            [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line1];
+            [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line2];
             
             _lbl_ticketDetail.attributedText = attributedText;
         }

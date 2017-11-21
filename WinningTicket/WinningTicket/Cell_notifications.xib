@@ -24,38 +24,48 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSf-CL-lfY">
-                        <rect key="frame" x="18" y="9" width="180" height="19"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSf-CL-lfY">
+                        <rect key="frame" x="18" y="5" width="123" height="33"/>
                         <fontDescription key="fontDescription" name="Gotham-Book" family="Gotham" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NEz-6Y-bRl">
-                        <rect key="frame" x="263" y="6" width="51" height="31"/>
+                        <rect key="frame" x="263" y="7" width="51" height="31"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="49" id="SPd-Ak-FpU"/>
+                            <constraint firstAttribute="width" constant="49" id="QVl-o1-n2I"/>
                         </constraints>
                     </switch>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gDb-jX-Ezg">
                         <rect key="frame" x="206" y="7" width="51" height="31"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="49" id="VLb-Ah-vFR"/>
+                            <constraint firstAttribute="width" constant="49" id="jOO-kW-RsT"/>
+                        </constraints>
+                    </switch>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f0m-cb-whe">
+                        <rect key="frame" x="149" y="7" width="51" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="49" id="UmN-xQ-kYL"/>
                         </constraints>
                     </switch>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="gDb-jX-Ezg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="1Od-fG-JhF"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="bSf-CL-lfY" secondAttribute="bottom" constant="8" id="3Uk-lm-gFy"/>
-                    <constraint firstItem="NEz-6Y-bRl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="531-YH-YX8"/>
-                    <constraint firstItem="NEz-6Y-bRl" firstAttribute="leading" secondItem="gDb-jX-Ezg" secondAttribute="trailing" constant="8" symbolic="YES" id="B6e-1Z-Xrk"/>
-                    <constraint firstItem="bSf-CL-lfY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="UeF-NN-Hbd"/>
-                    <constraint firstItem="gDb-jX-Ezg" firstAttribute="leading" secondItem="bSf-CL-lfY" secondAttribute="trailing" constant="8" symbolic="YES" id="j2l-sg-ccP"/>
-                    <constraint firstItem="NEz-6Y-bRl" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="oZN-jJ-1Ff"/>
-                    <constraint firstItem="bSf-CL-lfY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="xxm-OM-AmK"/>
+                    <constraint firstItem="NEz-6Y-bRl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="Afd-oE-HmJ"/>
+                    <constraint firstItem="gDb-jX-Ezg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="DsW-Ds-EBL"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="f0m-cb-whe" secondAttribute="bottom" constant="-2.5" id="Tcg-3Q-6uv"/>
+                    <constraint firstItem="bSf-CL-lfY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="UBK-Ec-eEI"/>
+                    <constraint firstItem="NEz-6Y-bRl" firstAttribute="leading" secondItem="gDb-jX-Ezg" secondAttribute="trailing" constant="8" id="UhR-U0-vzX"/>
+                    <constraint firstAttribute="bottom" secondItem="bSf-CL-lfY" secondAttribute="bottom" constant="5.5" id="f6W-OE-fyY"/>
+                    <constraint firstItem="gDb-jX-Ezg" firstAttribute="leading" secondItem="f0m-cb-whe" secondAttribute="trailing" constant="8" id="gwM-Ca-cno"/>
+                    <constraint firstItem="f0m-cb-whe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="izc-E5-6GY"/>
+                    <constraint firstItem="f0m-cb-whe" firstAttribute="leading" secondItem="bSf-CL-lfY" secondAttribute="trailing" constant="8" id="lX8-np-uRt"/>
+                    <constraint firstAttribute="trailing" secondItem="NEz-6Y-bRl" secondAttribute="trailing" constant="8" id="uoY-tg-Pb0"/>
+                    <constraint firstItem="bSf-CL-lfY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="vOV-ty-ds2"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="SWICTCH_email" destination="NEz-6Y-bRl" id="Z0s-cg-FfQ"/>
+                <outlet property="SWICTCH_push" destination="f0m-cb-whe" id="hiV-6o-dKt"/>
                 <outlet property="SWICTCH_text" destination="gDb-jX-Ezg" id="HTa-Fc-XlE"/>
                 <outlet property="lbl_title" destination="bSf-CL-lfY" id="22v-zf-Fbp"/>
             </connections>

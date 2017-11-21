@@ -20,14 +20,17 @@
 @interface VC_billingAddr ()
 {
     float original_height;
-    float BTN_originY,total;
+    float BTN_originY;
     
-    CGRect lbl_origin_FRAME;
+    CGRect lbl_origin_FRAME,VW_originalFrame;
     NSMutableDictionary *states,*countryS;
     UIView *VW_overlay;
     UIActivityIndicatorView *activityIndicatorView;
 //    UILabel *loadingLabel;
     NSArray *sorted_STAES,*sorted_Contry;
+    
+    float discount;
+    float total_price;
 }
 @property (nonatomic, strong) NSArray *countrypicker,*statepicker;
 @end
@@ -344,6 +347,13 @@
             frame_NEW.size.height = _lbl_total.frame.origin.y + _VW_line2.frame.size.height + 15;
             _VW_main.frame = frame_NEW;
             
+            _VW_line_wallet.hidden = YES;
+            _VW_line_promocode.hidden = YES;
+            _LBL_titlewallet.hidden = YES;
+            _LBL_titleDiscount.hidden = YES;
+            _LBL_datawallet.hidden = YES;
+            _LBL_dataDiscount.hidden = YES;
+            
             float heiht1 = _VW_main.frame.size.height;
             
             self.VW_main.frame = CGRectMake(0,0,
@@ -501,21 +511,73 @@
             [_BTN_checkout addTarget:self action:@selector(chckout_ACtin:) forControlEvents:UIControlEventTouchUpInside];
             
             
-            //    frame_NEW=_proceed_TOPAY.frame;
-            //    frame_NEW.origin.y=_lbl_address.frame.origin.y+_lbl_address.frame.size.height+30;
-            //    _proceed_TOPAY.frame=frame_NEW;
+//            frame_NEW = _VW_account.frame;
+//            frame_NEW.origin.y = _lbl_address.frame.origin.y + _lbl_address.frame.size.height + 10;
+//            _VW_account.frame = frame_NEW;
             
-            frame_NEW = _BTN_checkout.frame;
+            _VW_account.hidden = YES;
+            _VW_useAccountt.hidden = YES;
+            
+            _LBL_coupanCode.hidden = YES;
+            _BTN_close.hidden = YES;
+            
+            _TXT_getpromocode.layer.borderWidth = 1.0f;
+            _TXT_getpromocode.layer.borderColor = [UIColor darkGrayColor].CGColor;
+            _TXT_getpromocode.layer.cornerRadius = 5.0f;
+            _TXT_getpromocode.layer.masksToBounds = YES;
+            
+            [_BTN_addPromo addTarget:self action:@selector(ApplyPROMO_Tapped) forControlEvents:UIControlEventTouchUpInside];
+            [_BTN_useAccount addTarget:self action:@selector(Apply_wallet_tpped) forControlEvents:UIControlEventTouchUpInside];
+            
+            [_BTN_apply addTarget:self action:@selector(BTN_applyMETH) forControlEvents:UIControlEventTouchUpInside];
+            [_BTN_close addTarget:self action:@selector(BTN_closeMETH) forControlEvents:UIControlEventTouchUpInside];
+            
+            frame_NEW = _BTN_addPromo.frame;
             frame_NEW.origin.y = _lbl_address.frame.origin.y + _lbl_address.frame.size.height + 10;
-            _BTN_checkout.frame = frame_NEW;
+            _BTN_addPromo.frame = frame_NEW;
             
+            frame_NEW = _LBL_arrowPromo.frame;
+            frame_NEW.origin.y = _lbl_address.frame.origin.y + _lbl_address.frame.size.height + 10;
+            _LBL_arrowPromo.frame = frame_NEW;
+            
+            frame_NEW = _VW_line_promo.frame;
+            frame_NEW.origin.y = _BTN_addPromo.frame.origin.y + _BTN_addPromo.frame.size.height + 10;
+            _VW_line_promo.frame = frame_NEW;
+            
+            frame_NEW = _BTN_useAccount.frame;
+            frame_NEW.origin.y = _BTN_addPromo.frame.origin.y + _BTN_addPromo.frame.size.height + 10;
+            _BTN_useAccount.frame = frame_NEW;
+            
+            frame_NEW = _LBL_arrowAccount.frame;
+            frame_NEW.origin.y = _BTN_addPromo.frame.origin.y + _BTN_addPromo.frame.size.height + 10;
+            _LBL_arrowAccount.frame = frame_NEW;
+            
+            _LBL_wallet_bal.text = [NSString stringWithFormat:@"Current Balence : %.2f",[[user valueForKey:@"wallet"] floatValue]];
+            
+            if ([[user valueForKey:@"wallet"] floatValue] > 0 && [[[NSUserDefaults standardUserDefaults] valueForKey:@"QTY"] intValue] < 2)
+            {
+                _VW_useAccountt.hidden = NO;
+                
+                frame_NEW = _VW_useAccountt.frame;
+                frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height;
+                _VW_useAccountt.frame = frame_NEW;
+                
+                frame_NEW = _BTN_checkout.frame;
+                frame_NEW.origin.y = _VW_useAccountt.frame.origin.y + _VW_useAccountt.frame.size.height + 10;
+                _BTN_checkout.frame = frame_NEW;
+            }
+            else
+            {
+                [_SWITCH_useAccount setOn:NO animated:YES];
+                frame_NEW = _BTN_checkout.frame;
+                frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height + 10;
+                _BTN_checkout.frame = frame_NEW;
+            }
             
             
             frame_NEW = _lbl_agree.frame;
             frame_NEW.size.width = lbl_origin_FRAME.size.width;
             _lbl_agree.frame = frame_NEW;
-            
-            //    frame_NEW = _lbl_agree.frame;
             
             frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
             _lbl_agree.frame = frame_NEW;
@@ -534,8 +596,6 @@
             _state_pickerView.dataSource=self;
             _state_pickerView.delegate=self;
             
-            
-            
             UITapGestureRecognizer *tapToSelect = [[UITapGestureRecognizer alloc]initWithTarget:self
                                                                                          action:@selector(tappedToSelectRow:)];
             tapToSelect.delegate = self;
@@ -548,9 +608,6 @@
             satetap.delegate = self;
             [_state_pickerView addGestureRecognizer:satetap];
             
-            
-            
-            
             UIToolbar* conutry_close = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
             conutry_close.barStyle = UIBarStyleBlackTranslucent;
             [conutry_close sizeToFit];
@@ -562,10 +619,6 @@
             //    [numberToolbar setItems:[NSArray arrayWithObjects:close, nil]];
             [conutry_close addSubview:btn];
             _TXT_country.inputAccessoryView=conutry_close;
-            
-            
-            
-            
             
             UIToolbar* state_close = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
             state_close.barStyle = UIBarStyleBlackTranslucent;
@@ -641,7 +694,9 @@
             //            _proceed_TOPAY.frame=CGRectMake(_proceed_TOPAY.frame.origin.x
             //                                            ,  _VW_address.frame.origin.y+_VW_address.frame.size.height+10, _proceed_TOPAY.frame.size.width, _proceed_TOPAY.frame.size.height);
             
-            _BTN_checkout.frame = CGRectMake(_BTN_checkout.frame.origin.x, _VW_address.frame.origin.y+_VW_address.frame.size.height+10, _BTN_checkout.frame.size.width, _BTN_checkout.frame.size.height);
+            _VW_account.frame = CGRectMake(_VW_account.frame.origin.x, _VW_address.frame.origin.y+_VW_address.frame.size.height+10, _VW_account.frame.size.width, _VW_account.frame.size.height);
+            
+            _BTN_checkout.frame = CGRectMake(_BTN_checkout.frame.origin.x, _VW_account.frame.origin.y+_VW_account.frame.size.height+10, _BTN_checkout.frame.size.width, _BTN_checkout.frame.size.height);
             
             _lbl_agree.frame = CGRectMake(_lbl_agree.frame.origin.x, _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height+10 , lbl_origin_FRAME.size.width, _lbl_agree.frame.size.height+10);
             
@@ -657,15 +712,6 @@
 
 -(void) chckout_ACtin : (id) sender
 {
-//    if(_VW_address.hidden == YES)
-//    {
-//      [self showViewAddress];
-//    }
-//    NSString *text_to_compare_email = _txt.text;
-//    NSString *emailRegEx = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}";
-//    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
-//    NSLog(@"Sighn UP");
-    
     
     
     if([_TXT_firstname.text isEqualToString:@""])
@@ -782,17 +828,39 @@
     {
         [self.view endEditing:TRUE];
         
+    
+        NSError *error;
+        NSMutableDictionary *user=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"User_data"] options:NSASCIIStringEncoding error:&error];
+        VW_overlay.hidden = NO;
+        [activityIndicatorView startAnimating];
         
-      VW_overlay.hidden = NO;
-      [activityIndicatorView startAnimating];
+//       total = [[[NSUserDefaults standardUserDefaults] valueForKey:@"total_balance"] floatValue];
+//       NSString *switch_STAT = @"";// [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
         
-       total = [[[NSUserDefaults standardUserDefaults] valueForKey:@"total_balance"] floatValue];
-       NSString *switch_STAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
+        float val_total = 0.0;
         
-      if(total == 0.00 && [switch_STAT isEqualToString:@"SWITCH_ON"])
+        
+        if (discount != 0) {
+            [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%.2f",discount] forKey:@"DISCOUNT_STAT"];
+            val_total = discount;
+        }
+        else
+        {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"DISCOUNT_STAT"];
+        }
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+      if([[user valueForKey:@"wallet"] floatValue] != 0.00 && [_SWITCH_useAccount isOn])
       {
+          NSError *error;
+          NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"upcoming_events"] options:NSASCIIStringEncoding error:&error];
+          
+          float total_miscellenious = ([[dict valueForKey:@"price"] floatValue] * [[[NSUserDefaults standardUserDefaults] valueForKey:@"QTY"] intValue]) + val_total;
+          
           STR_payment_mode *payment_mode = [STR_payment_mode PaymentTYPE];
           payment_mode.STR_paymentTYPE = @"Wallet";
+          [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NAUNCETOK"];
+          [[NSUserDefaults standardUserDefaults] synchronize];
           [self performSelector:@selector(billing_Address) withObject:activityIndicatorView afterDelay:0.01];
       }
       else
@@ -916,9 +984,17 @@
 //                [[NSUserDefaults standardUserDefaults] synchronize];
                 
                 STR_payment_mode *payment_mode = [STR_payment_mode PaymentTYPE];
-                NSString *switch_STAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
+//                NSString *switch_STAT = @"";// [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
                 
-                if(total != 0.00 && [switch_STAT isEqualToString:@"SWITCH_ON"])
+                NSError *error;
+                NSMutableDictionary *user=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"User_data"] options:NSASCIIStringEncoding error:&error];
+                VW_overlay.hidden = NO;
+                [activityIndicatorView startAnimating];
+                
+                //       total = [[[NSUserDefaults standardUserDefaults] valueForKey:@"total_balance"] floatValue];
+                //       NSString *switch_STAT = @"";// [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
+                
+                if([[user valueForKey:@"wallet"] floatValue] != 0.00 && [_SWITCH_useAccount isOn])
                 {
                     payment_mode.STR_paymentTYPE = [NSString stringWithFormat:@"Wallet & %@",result.paymentMethod.type];
                 }
@@ -955,7 +1031,7 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if(textField.tag == 3 || textField.tag == 8 || textField.tag == 9)
+    if(textField.tag == 3 || textField.tag == 8 || textField.tag == 9 || textField == _TXT_getpromocode)
     {
         //if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
         // {
@@ -973,14 +1049,29 @@
 {
 //    if(textField.tag==8)
 //    {
+    if (textField == _TXT_getpromocode) {
+        [textField resignFirstResponder];
         [UIView beginAnimations:nil context:NULL];
-   
+        
         self.view.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height);
         [UIView commitAnimations];
-                [UIView beginAnimations:nil context:NULL];
-  
+        [UIView beginAnimations:nil context:NULL];
+        
         self.view.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height);
         [UIView commitAnimations];
+    }
+    else
+    {
+        [UIView beginAnimations:nil context:NULL];
+        
+        self.view.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height);
+        [UIView commitAnimations];
+        [UIView beginAnimations:nil context:NULL];
+        
+        self.view.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height);
+        [UIView commitAnimations];
+    }
+    
 //    }
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -1409,13 +1500,12 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
             NSDictionary *parameters;
             
             
-            NSString *switch_STAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
+            NSString *naunce_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"NAUNCETOK"];
+            NSString *discount_VAL = [[NSUserDefaults standardUserDefaults] valueForKey:@"DISCOUNT_STAT"];
             
-            if([switch_STAT isEqualToString:@"SWITCH_ON"])
+            if([_SWITCH_useAccount isOn])
             {
                  parameters = @{@"billing_address":@{ @"first_name": first_name,@"last_name": last_name,@"address_line1": address_line1,@"address_line2": address_line2,@"city": city,@"country": contry_Code,@"zip_code": zip_code,@"state": state_code,@"order_id": order_ID,@"phone": phone},@"fund_amount":@"yes"};
-                
-                
             }
             else
             {
@@ -1451,6 +1541,13 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
 //                    else
 //                    {
                         [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"CHKOUTDETAIL"];
+                
+                if ([_SWITCH_useAccount isOn]) {
+                     [[NSUserDefaults standardUserDefaults] setObject:@"SWITCH_ON" forKey:@"SWITCHSTAT"];
+                }
+                
+                
+                
                         [[NSUserDefaults standardUserDefaults] synchronize];
                         
                         [self performSegueWithIdentifier:@"billaddretocheckoutdetail" sender:self];
@@ -1527,6 +1624,457 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
     [tncView setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     
     [self presentViewController:tncView animated:YES completion:NULL];
+}
+
+#pragma mark - NEw methods
+-(void) ApplyPROMO_Tapped
+{
+    if (_VW_account.hidden == YES)
+    {
+        CGRect Frame_NEW = _VW_account.frame;
+        Frame_NEW.origin.y = _BTN_addPromo.frame.origin.y + _BTN_addPromo.frame.size.height;
+        _VW_account.frame = Frame_NEW;
+        
+        _VW_account.hidden = NO;
+        
+        Frame_NEW = _VW_line_promo.frame;
+        Frame_NEW.origin.y = _VW_account.frame.origin.y + _VW_account.frame.size.height + 10;
+        _VW_line_promo.frame = Frame_NEW;
+        
+        Frame_NEW = _BTN_useAccount.frame;
+        Frame_NEW.origin.y = _VW_line_promo.frame.origin.y + _VW_line_promo.frame.size.height + 10;
+        _BTN_useAccount.frame = Frame_NEW;
+        
+        Frame_NEW = _LBL_arrowAccount.frame;
+        Frame_NEW.origin.y = _VW_line_promo.frame.origin.y + _VW_line_promo.frame.size.height + 10;
+        _LBL_arrowAccount.frame = Frame_NEW;
+        
+        if (_VW_useAccountt.hidden == YES) {
+            Frame_NEW = _BTN_checkout.frame;
+            Frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height + 10;
+            _BTN_checkout.frame = Frame_NEW;
+            
+            Frame_NEW = _lbl_agree.frame;
+            Frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
+            _lbl_agree.frame = Frame_NEW;
+        }
+        else
+        {
+            Frame_NEW = _VW_useAccountt.frame;
+            Frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height;
+            _VW_useAccountt.frame = Frame_NEW;
+            
+            Frame_NEW = _BTN_checkout.frame;
+            Frame_NEW.origin.y = _VW_useAccountt.frame.origin.y + _VW_useAccountt.frame.size.height + 10;
+            _BTN_checkout.frame = Frame_NEW;
+            
+            Frame_NEW = _lbl_agree.frame;
+            Frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
+            _lbl_agree.frame = Frame_NEW;
+        }
+        
+        original_height= _lbl_agree.frame.origin.y + _lbl_agree.frame.size.height;
+        [self viewDidLayoutSubviews];
+        
+    }
+    else
+    {
+        _VW_account.hidden = YES;
+        
+        CGRect Frame_NEW = _VW_line_promo.frame;
+        Frame_NEW.origin.y = _BTN_addPromo.frame.origin.y + _BTN_addPromo.frame.size.height + 10;
+        _VW_line_promo.frame = Frame_NEW;
+        
+        Frame_NEW = _BTN_useAccount.frame;
+        Frame_NEW.origin.y = _VW_line_promo.frame.origin.y + _VW_line_promo.frame.size.height + 10;
+        _BTN_useAccount.frame = Frame_NEW;
+        
+        Frame_NEW = _LBL_arrowAccount.frame;
+        Frame_NEW.origin.y = _VW_line_promo.frame.origin.y + _VW_line_promo.frame.size.height + 10;
+        _LBL_arrowAccount.frame = Frame_NEW;
+        
+        if (_VW_useAccountt.hidden == YES) {
+            Frame_NEW = _BTN_checkout.frame;
+            Frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height + 10;
+            _BTN_checkout.frame = Frame_NEW;
+            
+            Frame_NEW = _lbl_agree.frame;
+            Frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
+            _lbl_agree.frame = Frame_NEW;
+        }
+        else
+        {
+            Frame_NEW = _VW_useAccountt.frame;
+            Frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height;
+            _VW_useAccountt.frame = Frame_NEW;
+            
+            Frame_NEW = _BTN_checkout.frame;
+            Frame_NEW.origin.y = _VW_useAccountt.frame.origin.y + _VW_useAccountt.frame.size.height + 10;
+            _BTN_checkout.frame = Frame_NEW;
+            
+            Frame_NEW = _lbl_agree.frame;
+            Frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
+            _lbl_agree.frame = Frame_NEW;
+        }
+        
+        
+        original_height= _lbl_agree.frame.origin.y + _lbl_agree.frame.size.height;
+        [self viewDidLayoutSubviews];
+    }
+}
+-(void) Apply_wallet_tpped
+{
+    if (_VW_useAccountt.hidden == YES)
+    {
+        CGRect Frame_NEW = _VW_useAccountt.frame;
+        Frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height;
+        _VW_useAccountt.frame = Frame_NEW;
+        
+        _VW_useAccountt.hidden = NO;
+        [_SWITCH_useAccount setOn:YES animated:YES];
+        
+        Frame_NEW = _BTN_checkout.frame;
+        Frame_NEW.origin.y = _VW_useAccountt.frame.origin.y + _VW_useAccountt.frame.size.height + 10;
+        _BTN_checkout.frame = Frame_NEW;
+        
+        Frame_NEW = _lbl_agree.frame;
+        Frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
+        _lbl_agree.frame = Frame_NEW;
+        
+        original_height= _lbl_agree.frame.origin.y + _lbl_agree.frame.size.height;
+    }
+    else
+    {
+        _VW_useAccountt.hidden = YES;
+        [_SWITCH_useAccount setOn:NO animated:YES];
+        CGRect Frame_NEW = _BTN_checkout.frame;
+        Frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height + 10;
+        _BTN_checkout.frame = Frame_NEW;
+        
+        Frame_NEW = _lbl_agree.frame;
+        Frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
+        _lbl_agree.frame = Frame_NEW;
+        
+        original_height= _lbl_agree.frame.origin.y + _lbl_agree.frame.size.height;
+    }
+}
+
+-(void) BTN_applyMETH
+{
+    if (_TXT_getpromocode.text.length == 0) {
+        [_TXT_getpromocode resignFirstResponder];
+        _BTN_apply.hidden = NO;
+        _TXT_getpromocode.hidden = NO;
+        
+        _LBL_coupanCode.hidden = YES;
+        _BTN_close.hidden = YES;
+    }
+    else
+    {
+//        [self API_apply_Promocode];
+        
+        VW_overlay.hidden = NO;
+        [activityIndicatorView startAnimating];
+        
+        [self performSelector:@selector(API_apply_Promocode) withObject:activityIndicatorView afterDelay:0.01];
+    }
+    
+}
+-(void) BTN_closeMETH
+{
+    VW_overlay.hidden = NO;
+    [activityIndicatorView startAnimating];
+    [self performSelector:@selector(API_remove_Promocode) withObject:activityIndicatorView afterDelay:0.01];
+}
+
+-(void) API_apply_Promocode
+{
+    NSString *STR_promo = _TXT_getpromocode.text;
+    [_TXT_getpromocode resignFirstResponder];
+    NSError *error;
+    NSError *err;
+    NSHTTPURLResponse *response = nil;
+    
+    NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"upcoming_events"] options:NSASCIIStringEncoding error:&error];
+    
+    NSMutableDictionary *dictn_Order = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"QUANTITY"] options:NSASCIIStringEncoding error:&error];
+    
+    
+    NSLog(@"Order dictin = %@",dictn_Order);
+    
+    NSString *STR_error = [dict valueForKey:@"error"];
+        if (STR_error)
+        {
+            [self sessionOUT];
+        }
+        else
+        {
+            NSDictionary *temp_dict=[dict valueForKey:@"event"];
+            
+            NSDictionary *parameters = @{ @"event_id":  [temp_dict valueForKey:@"id"], @"promo_code": STR_promo,@"order_id":[dictn_Order valueForKey:@"order_id"]};
+            NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+            
+            NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&err];
+            NSString *urlGetuser = [NSString stringWithFormat:@"%@events/apply_promo_code",SERVER_URL];
+            NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
+            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+            [request setURL:urlProducts];
+            [request setHTTPMethod:@"POST"];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+            [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+            [request setHTTPBody:postData];
+            [request setHTTPShouldHandleCookies:NO];
+            NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+            if (aData)
+            {
+                [activityIndicatorView stopAnimating];
+                VW_overlay.hidden = YES;
+                
+                NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
+                
+                NSLog(@"Dictin promo code %@",dict);
+                
+                @try
+                {
+                    NSString *STR_error1 = [dict valueForKey:@"error"];
+                    if (STR_error1)
+                    {
+                        [self sessionOUT];
+                    }
+                    else
+                    {
+                        if ([[dict valueForKey:@"status"]isEqualToString:@"Failure"])
+                        {
+                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Code" message:[dict valueForKey:@"message"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+                            [alert show];
+                        }
+                        else
+                        {
+                            [_TXT_getpromocode resignFirstResponder];
+                            _BTN_apply.hidden = YES;
+                            _TXT_getpromocode.hidden = YES;
+                            
+                            _LBL_coupanCode.hidden = NO;
+                            _LBL_coupanCode.text = [NSString stringWithFormat:@"A $%@ discount has been applied to this event",[dict valueForKey:@"discount"]];
+                            
+//                            NSString *STR_discount_VAL = [NSString stringWithFormat:@"%@",[dict valueForKey:@"discount"]];
+                            discount = [[NSString stringWithFormat:@"%@",[dict valueForKey:@"discount"]] floatValue];
+                            
+                            _LBL_coupanCode.numberOfLines = 0;
+                            [_LBL_coupanCode sizeToFit];
+                            _BTN_close.hidden = NO;
+                            
+                            CGRect frame_NEW;
+                            NSMutableDictionary *user = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"User_data"] options:NSASCIIStringEncoding error:&error];
+                            if ([[user valueForKey:@"wallet"] floatValue] > 0 && [[[NSUserDefaults standardUserDefaults] valueForKey:@"QTY"] intValue] < 2)
+                            {
+                                _BTN_useAccount.hidden = YES;
+                                _LBL_arrowAccount.hidden = YES;
+                                _VW_useAccountt.hidden = YES;
+                                [_SWITCH_useAccount setOn:NO animated:YES];
+//
+//                                frame_NEW = _VW_useAccountt.frame;
+//                                frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height;
+//                                _VW_useAccountt.frame = frame_NEW;
+//                                
+                                frame_NEW = _BTN_checkout.frame;
+                                frame_NEW.origin.y = _VW_line_promo.frame.origin.y + _VW_line_promo.frame.size.height + 10;
+                                _BTN_checkout.frame = frame_NEW;
+                                
+//                                frame_NEW =
+                                
+                                frame_NEW = _lbl_agree.frame;
+                                frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
+                                _lbl_agree.frame = frame_NEW;
+                                
+                                original_height= _lbl_agree.frame.origin.y + _lbl_agree.frame.size.height;
+                                [self viewDidLayoutSubviews];
+                            }
+                            else
+                            {
+                                if (_VW_useAccountt.hidden == YES) {
+                                    
+                                    frame_NEW = _BTN_checkout.frame;
+                                    frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height + 10;
+                                    _BTN_checkout.frame = frame_NEW;
+                                    
+                                    frame_NEW = _lbl_agree.frame;
+                                    frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
+                                    _lbl_agree.frame = frame_NEW;
+                                }
+                                else
+                                {
+                                    frame_NEW = _VW_useAccountt.frame;
+                                    frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height;
+                                    _VW_useAccountt.frame = frame_NEW;
+                                    
+                                    frame_NEW = _BTN_checkout.frame;
+                                    frame_NEW.origin.y = _VW_useAccountt.frame.origin.y + _VW_useAccountt.frame.size.height + 10;
+                                    _BTN_checkout.frame = frame_NEW;
+                                    
+                                    frame_NEW = _lbl_agree.frame;
+                                    frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
+                                    _lbl_agree.frame = frame_NEW;
+                                }
+                                
+                                original_height= _lbl_agree.frame.origin.y + _lbl_agree.frame.size.height;
+                                [self viewDidLayoutSubviews];
+                            }
+                            
+                            frame_NEW = _lbl_agree.frame;
+                            frame_NEW.size.width = lbl_origin_FRAME.size.width;
+                            _lbl_agree.frame = frame_NEW;
+                            
+                            frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
+                            _lbl_agree.frame = frame_NEW;
+                            
+                            original_height= _lbl_agree.frame.origin.y + _lbl_agree.frame.size.height;
+                            [self viewDidLayoutSubviews];
+                        }
+                    }
+                }
+                @catch (NSException *exception)
+                {
+                    [self sessionOUT];
+                }
+            }
+            else
+            {
+                [activityIndicatorView stopAnimating];
+                VW_overlay.hidden = YES;
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Error" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+                [alert show];
+            }
+            
+            
+        }
+    
+}
+-(void) API_remove_Promocode
+{
+    NSError *error;
+    NSError *err;
+    NSHTTPURLResponse *response = nil;
+    
+    NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"upcoming_events"] options:NSASCIIStringEncoding error:&error];
+    
+    NSMutableDictionary *dictn_Order = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"QUANTITY"] options:NSASCIIStringEncoding error:&error];
+    
+    
+    NSLog(@"Order dictin = %@",dictn_Order);
+    
+    NSString *STR_error = [dict valueForKey:@"error"];
+    if (STR_error)
+    {
+        [self sessionOUT];
+    }
+    else
+    {
+        
+        NSDictionary *parameters = @{@"order_id":[dictn_Order valueForKey:@"order_id"]};
+        NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+        
+        NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&err];
+        NSString *urlGetuser = [NSString stringWithFormat:@"%@events/remove_promo_code",SERVER_URL];
+        NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:urlProducts];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+        [request setHTTPBody:postData];
+        [request setHTTPShouldHandleCookies:NO];
+        NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        if (aData)
+        {
+            [activityIndicatorView stopAnimating];
+            VW_overlay.hidden = YES;
+            
+            NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
+            
+            NSLog(@"Dictin promo code %@",dict);
+            
+            @try
+            {
+                NSString *STR_error1 = [dict valueForKey:@"error"];
+                if (STR_error1)
+                {
+                    [self sessionOUT];
+                }
+                else
+                {
+                    CGRect frame_NEW;
+                    if ([[dict valueForKey:@"status"] isEqualToString:@"Success"])
+                    {
+                        
+                        _TXT_getpromocode.text = @"";
+                        _LBL_coupanCode.hidden = YES;
+                        _BTN_close.hidden = YES;
+                        
+                        _TXT_getpromocode.hidden = NO;
+                        _BTN_apply.hidden = NO;
+                        
+                        NSMutableDictionary *user=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"User_data"] options:NSASCIIStringEncoding error:&error];
+                        if (_VW_useAccountt.hidden == YES && [[user valueForKey:@"wallet"] floatValue] > 0)
+                        {
+                            _VW_useAccountt.hidden = NO;
+                            
+                            _BTN_useAccount.hidden = NO;
+                            _LBL_arrowAccount.hidden = NO;
+                            
+                            frame_NEW = _VW_useAccountt.frame;
+                            frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height;
+                            _VW_useAccountt.frame = frame_NEW;
+                            
+                            frame_NEW = _BTN_checkout.frame;
+                            frame_NEW.origin.y = _VW_useAccountt.frame.origin.y + _VW_useAccountt.frame.size.height + 10;
+                            _BTN_checkout.frame = frame_NEW;
+                            
+                            frame_NEW = _lbl_agree.frame;
+                            frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
+                            _lbl_agree.frame = frame_NEW;
+                            
+                        }
+                        else
+                        {
+                            frame_NEW = _BTN_checkout.frame;
+                            frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height + 10;
+                            _BTN_checkout.frame = frame_NEW;
+                            
+                            frame_NEW = _lbl_agree.frame;
+                            frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
+                            _lbl_agree.frame = frame_NEW;
+                        }
+                        
+                        
+                        original_height= _lbl_agree.frame.origin.y + _lbl_agree.frame.size.height;
+                        [self viewDidLayoutSubviews];
+                    }
+                    else
+                    {
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Failed" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+                        [alert show];
+                    }
+                    
+                }
+            }
+            @catch (NSException *exception)
+            {
+                [self sessionOUT];
+            }
+        }
+        else
+        {
+            [activityIndicatorView stopAnimating];
+            VW_overlay.hidden = YES;
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Error" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+            [alert show];
+        }
+        
+        
+    }
 }
 
 @end
