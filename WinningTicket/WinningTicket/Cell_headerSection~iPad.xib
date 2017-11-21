@@ -62,6 +62,7 @@
                     <constraint firstItem="NxK-Fr-9vY" firstAttribute="leading" secondItem="gQ5-cp-UXL" secondAttribute="trailing" constant="8" id="uRG-bS-meF"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" red="0.92549019610000005" green="0.94117647059999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="lbl_email" destination="6aR-2x-pMH" id="24N-RX-s2H"/>
                 <outlet property="lbl_text" destination="NxK-Fr-9vY" id="tbg-vY-JRn"/>

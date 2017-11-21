@@ -16,27 +16,31 @@
 #import "HMSegmentedControl.h"
 #import "DICTIN_holes.h"
 #import "VC_score_update.h"
+#import <AVFoundation/AVFoundation.h>
 
 #import <QuartzCore/QuartzCore.h>
+#import <objc/runtime.h>
 
-@interface VC_scoreBoard ()<UIAlertViewDelegate>
+@interface VC_scoreBoard ()<UIAlertViewDelegate, KSJActionSocketDelegate>
 {
-    NSArray *ARR_holes;
+    NSMutableArray *ARR_holes;
     UIView *VW_overlay;
     UIActivityIndicatorView *activityIndicatorView;
     NSArray *ARR_displayScore;
     
     NSIndexPath *INdex_Selected,*INDX_STR,*INDX_expanded;
-    NSMutableArray *ARR_netScore;
-    NSMutableArray *ARR_grossScore;
+//    NSMutableArray *ARR_netScore;
+//    NSMutableArray *ARR_grossScore;
     NSMutableArray *ARR_color;
     
     NSMutableDictionary *DICTIN_PlayerINfo;
     
-    NSArray *ARR_leaders;
+    NSMutableArray *ARR_leaders;
     
     NSMutableDictionary *dictin_Scores;
 }
+
+@property (nonatomic) KSJActionSocket *actionSocket;
 
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl4;
 
@@ -64,6 +68,11 @@
     //    [ARR_grossScore Clear_ARR];
     
     /*Code to add Player list*/
+    
+    NSString *STR_url = [NSString stringWithFormat:@"ws://%@",ACTION_CABLE];
+    self.actionSocket = [KSJActionSocket socketWithURL:[NSURL URLWithString:STR_url]];
+    [self.actionSocket open];
+    self.actionSocket.delegate = self;
     
     
     NSString *text_STR = [NSString stringWithFormat:@"You will have a stroke taken off your gross score for each of the 0 hardest holes on the course."];
@@ -156,6 +165,12 @@
     VW_overlay.hidden = NO;
     
     [VW_overlay addSubview:_VW_selectHANDICAP];
+    
+    NSString *STR_handicap = [[NSUserDefaults standardUserDefaults] valueForKey:@"handicap1"];
+    if ([STR_handicap isEqualToString:@""] || [STR_handicap isEqualToString:@" "]) {
+        STR_handicap = @"0";
+    }
+    _TXT_Handicap.text = STR_handicap;
     
     _TXT_Handicap.layer.borderWidth = 2.0f;
     _TXT_Handicap.layer.borderColor = [UIColor blackColor].CGColor;
@@ -2323,15 +2338,19 @@
                 
                 NSString *str_01,*STR_02;
                 
-                str_01 = [NSString stringWithFormat:@" %@",[Dictn_contents valueForKey:@"total_net_score"]];
-                str_01 = [str_01 stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
-                
-                cell.lbl_Score.text = str_01;
-                
                 STR_02 = [NSString stringWithFormat:@" %@",[Dictn_contents valueForKey:@"total_score"]];
                 STR_02 = [STR_02 stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                 
-                cell.lbl_Topar.text = STR_02;
+                cell.lbl_Score.text = STR_02;
+                
+                
+                str_01 = [NSString stringWithFormat:@" %@",[Dictn_contents valueForKey:@"total_net_score"]];
+                str_01 = [str_01 stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                
+                cell.lbl_Topar.text = str_01;
+                
+                
+                cell.lbl_userID.text = [NSString stringWithFormat:@" %@",[Dictn_contents valueForKey:@"user_id"]];
                 
                 return cell;
             }
@@ -2425,9 +2444,6 @@
             cell.lbl_playerName.numberOfLines = 0;
             [cell.lbl_playerName sizeToFit];
             
-            
-            
-            
             CGRect frame_lbl = cell.lbl_hole.frame;
             frame_lbl.origin.x = 0;
             frame_lbl.size.width = _TBL_scores.frame.size.width / 5;
@@ -2519,6 +2535,13 @@
             frame_lbl.size.width = _TBL_scores.frame.size.width / 5;
             frame_lbl.size.height = 60;
             cell.lbl_hole.frame = frame_lbl;
+            
+            UIImage *Image_hole = [UIImage imageNamed:@"Blue"];
+            UIGraphicsBeginImageContextWithOptions(cell.lbl_hole.frame.size, NO, 0.f);
+            [Image_hole drawInRect:CGRectMake(0.f, 0.f, cell.lbl_hole.frame.size.width, cell.lbl_hole.frame.size.height)];
+            UIImage * resultImage_hole = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            cell.lbl_hole.backgroundColor = [UIColor colorWithPatternImage:resultImage_hole];
                         
             cell.lbl_distance.text = [NSString stringWithFormat:@"%@",[DICTN_info valueForKey:@"yards"]];
             
@@ -2528,28 +2551,12 @@
             frame_lbl.size.height = 60;
             cell.lbl_distance.frame = frame_lbl;
             
-            
-            NSString *STR_grossSCORE = [NSString stringWithFormat:@"%@",[DICTN_info valueForKey:@"gross_score"]];
-            
-            if ([STR_grossSCORE isEqualToString:@"<null>"]) {
-                @try {
-                    cell.lbl_gross_score.text = [ARR_grossScore objectAtIndex:indexPath.row - 1];
-                } @catch (NSException *exception) {
-                    cell.lbl_gross_score.text = @"";
-                }
-            }
-            else if (INdex_Selected.row == indexPath.row)
-            {
-                @try {
-                    cell.lbl_gross_score.text = [ARR_grossScore objectAtIndex:indexPath.row - 1];
-                } @catch (NSException *exception) {
-                    cell.lbl_gross_score.text = @"";
-                }
-            }
-            else
-            {
-                cell.lbl_gross_score.text = STR_grossSCORE;
-            }
+            UIImage *Image_distance = [UIImage imageNamed:@"Grey"];
+            UIGraphicsBeginImageContextWithOptions(cell.lbl_distance.frame.size, NO, 0.f);
+            [Image_distance drawInRect:CGRectMake(0.f, 0.f, cell.lbl_distance.frame.size.width, cell.lbl_distance.frame.size.height)];
+            UIImage * resultImage_distance = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            [cell.lbl_distance setBackgroundColor:[UIColor colorWithPatternImage:resultImage_distance]];
             
             
             frame_lbl = cell.VW_grossScore.frame;
@@ -2558,24 +2565,79 @@
             frame_lbl.size.height = 60;
             cell.VW_grossScore.frame = frame_lbl;
             
+            if ([[[ARR_color objectAtIndex:indexPath.row-1] valueForKey:@"color"] isEqualToString:@"blue"]) {
+                cell.lbl_gross_score.backgroundColor = cell.lbl_hole.backgroundColor;
+                [cell setSelected:YES animated:YES];
+            }
+            
+            NSString *STR_grossSCORE = [NSString stringWithFormat:@"%@",[DICTN_info valueForKey:@"gross_score"]];
+            
+            if ([STR_grossSCORE isEqualToString:@"<null>"]) {
+//                @try {
+//                    cell.lbl_gross_score.text = [ARR_grossScore objectAtIndex:indexPath.row - 1];
+                
+//                } @catch (NSException *exception) {
+                    cell.lbl_gross_score.text = @"";
+//                }
+            }
+//            else if (INdex_Selected.row == indexPath.row)
+//            {
+//                @try {
+//                    cell.lbl_gross_score.text = [ARR_grossScore objectAtIndex:indexPath.row - 1];
+//                    if ([[[ARR_color objectAtIndex:indexPath.row-1] valueForKey:@"color"] isEqualToString:@"blue"]) {
+//                        cell.lbl_gross_score.backgroundColor = cell.lbl_hole.backgroundColor;
+//                        [cell setSelected:YES animated:YES];
+//                    }
+                
+//                    NSLog(@"The value color %@\nThe value for index %@\n",[[ARR_color objectAtIndex:indexPath.row-1] valueForKey:@"color"],[[ARR_color objectAtIndex:indexPath.row-1] valueForKey:@"index"]);
+//                } @catch (NSException *exception) {
+//                    cell.lbl_gross_score.text = @"";
+//                }
+//            }
+            else
+            {
+                cell.lbl_gross_score.text = STR_grossSCORE;
+            }
+            
+            
+            
+            
+            CGRect new_rect = cell.lbl_gross_score.frame;
+            new_rect.size.width = 40;
+            new_rect.size.height = 40;
+            cell.lbl_gross_score.frame = new_rect;
+            
+            cell.lbl_gross_score.layer.cornerRadius = 20;
+            cell.lbl_gross_score.layer.masksToBounds = YES;
+            
+//            cell.lbl_gross_score.center = cell.VW_grossScore.center;
+            
+            
+//            UIImage *Image_gross_scr = [UIImage imageNamed:@"Grey_1"];
+//            UIGraphicsBeginImageContextWithOptions(cell.VW_grossScore.frame.size, NO, 0.f);
+//            [Image_gross_scr drawInRect:CGRectMake(0.f, 0.f, cell.VW_grossScore.frame.size.width, cell.VW_grossScore.frame.size.height)];
+//            UIImage * resultImage_Gross_scr = UIGraphicsGetImageFromCurrentImageContext();
+//            UIGraphicsEndImageContext();
+            [cell.VW_grossScore setBackgroundColor:[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0]];
+            
             
             NSString *STR_NetSocre = [NSString stringWithFormat:@"%@",[DICTN_info valueForKey:@"net_score"]];
             
             if ([STR_NetSocre isEqualToString:@"<null>"]) {
-                @try {
-                    cell.lbl_net_score.text = [ARR_netScore objectAtIndex:indexPath.row - 1];
-                } @catch (NSException *exception) {
+//                @try {
+//                    cell.lbl_net_score.text = [ARR_netScore objectAtIndex:indexPath.row - 1];
+//                } @catch (NSException *exception) {
                     cell.lbl_net_score.text = @"";
-                }
+//                }
             }
-            else if (INdex_Selected.row == indexPath.row)
-            {
-                @try {
-                    cell.lbl_net_score.text = [ARR_netScore objectAtIndex:indexPath.row - 1];
-                } @catch (NSException *exception) {
-                    cell.lbl_net_score.text = @"";
-                }
-            }
+//            if (INdex_Selected.row == indexPath.row)
+//            {
+//                @try {
+//                    cell.lbl_net_score.text = [ARR_netScore objectAtIndex:indexPath.row - 1];
+//                } @catch (NSException *exception) {
+//                    cell.lbl_net_score.text = @"";
+//                }
+//            }
             else
             {
                 cell.lbl_net_score.text = STR_NetSocre;
@@ -2588,6 +2650,13 @@
             frame_lbl.size.height = 60;
             cell.lbl_net_score.frame = frame_lbl;
             
+            UIImage *Image_net_SCR = [UIImage imageNamed:@"Grey_2"];
+            UIGraphicsBeginImageContextWithOptions(cell.lbl_net_score.frame.size, NO, 0.f);
+            [Image_net_SCR drawInRect:CGRectMake(0.f, 0.f, cell.lbl_net_score.frame.size.width, cell.lbl_net_score.frame.size.height)];
+            UIImage * resultImage_Net_scr = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            [cell.lbl_net_score setBackgroundColor:[UIColor colorWithPatternImage:resultImage_Net_scr]];
+            
             cell.lbl_handicap.text = [NSString stringWithFormat:@"%@",[DICTN_info valueForKey:@"handicap"]];
             
             frame_lbl = cell.lbl_handicap.frame;
@@ -2595,6 +2664,13 @@
             frame_lbl.size.width = _TBL_scores.frame.size.width / 5;
             frame_lbl.size.height = 60;
             cell.lbl_handicap.frame = frame_lbl;
+            
+            UIImage *Image_Handicap = [UIImage imageNamed:@"Grey_3"];
+            UIGraphicsBeginImageContextWithOptions(cell.lbl_handicap.frame.size, NO, 0.f);
+            [Image_Handicap drawInRect:CGRectMake(0.f, 0.f, cell.lbl_handicap.frame.size.width, cell.lbl_handicap.frame.size.height)];
+            UIImage * resultImage_Handicap = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            [cell.lbl_handicap setBackgroundColor:[UIColor colorWithPatternImage:resultImage_Handicap]];
             
             return cell;
         }
@@ -2617,7 +2693,6 @@
         }
         else if ([indexPath isEqual:self.expandedIndexPath]) {
             
-//            NSLog(@"Leader board frame = %@",NSStringFromCGRect(_TBL_leaderboard.frame));
             float FR_width = (_TBL_leaderboard.frame.size.width - 114) / 9;
             float FR_height = (FR_width * 8) + 34;
             
@@ -2657,8 +2732,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     if (tableView == _TBL_leaderboard)
     {
         if (indexPath.row == 0)
@@ -2681,11 +2754,12 @@
                 
             }
         }
-            
     }
     else
     {
         if (indexPath.row == 0) {
+            
+            _TXT_Handicap.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"handicap1"];
             VW_overlay.hidden = NO;
             _VW_selectHANDICAP.hidden = NO;
             
@@ -2696,14 +2770,12 @@
         }
         else
         {
+            
             INdex_Selected = indexPath;
             [self performSegueWithIdentifier:@"scoreUpdateIdentifier" sender:self];
         }
     }
 }
-
-
-
 
 
 -(void) update_tableView :(NSIndexPath *)indexPath
@@ -2776,6 +2848,21 @@
 {
     NSDictionary *DICTN_info = [ARR_holes objectAtIndex:INdex_Selected.row - 1];
     
+    
+    for (int i = 0; i < [ARR_holes count]; i++) {
+        NSDictionary *dictin_TEMP = @{@"color":@"",@"index":@""};
+        if ([[[ARR_color objectAtIndex:i] valueForKey:@"color"] isEqualToString:@"blue"]) {
+            [ARR_color replaceObjectAtIndex:i withObject:dictin_TEMP];
+            
+            [_TBL_scores beginUpdates];
+            NSArray *indexPathArray = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:i+1 inSection:0]];
+            [_TBL_scores reloadRowsAtIndexPaths:indexPathArray withRowAnimation:UITableViewRowAnimationFade];
+            [_TBL_scores endUpdates];
+        }
+    }
+
+    
+    
     VC_score_update *vc = segue.destinationViewController;
     vc.STR_parSTR = [DICTN_info valueForKey:@"par"];
     vc.delegate = self;
@@ -2787,18 +2874,11 @@
 -(void)get_SCORE:(NSString *)STR_score
 {
 
-    
     NSLog(@"Value return = %@ Index selected %ld",STR_score,(long)INdex_Selected.row);
-    
-    //    -(void) get_GRoss_SCORE : (NSString *)STR_scoreVAL
     [self get_GRoss_SCORE:STR_score];
-    
-//    [ARR_grossScore insertObject:STR_score atIndex:INdex_Selected.row-1];
     
     [_TBL_scores beginUpdates];
     NSArray *indexPathArray = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:INdex_Selected.row inSection:0]];
-    ScoreCell2* cell = [self.TBL_scores cellForRowAtIndexPath:[NSIndexPath indexPathForRow:INdex_Selected.row inSection:0]];
-    cell.lbl_gross_score.backgroundColor = [UIColor redColor];
     [_TBL_scores reloadRowsAtIndexPaths:indexPathArray withRowAnimation:UITableViewRowAnimationFade];
     [_TBL_scores endUpdates];
 }
@@ -2830,6 +2910,8 @@
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if(aData)
     {
+        [[NSUserDefaults standardUserDefaults] setObject:_TXT_Handicap.text forKey:@"handicap1"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
         
         NSLog(@"Json response UPDATE_handicap = %@",dict);
@@ -2837,17 +2919,20 @@
         DICTIN_PlayerINfo = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSString stringWithFormat:@"%@",[dict valueForKey:@"name"]],@"STR_playerName",@"",@"STR_team",[NSString stringWithFormat:@"%@",_TXT_Handicap.text],@"STR_HCP",[NSString stringWithFormat:@"%@",[dict valueForKey:@"total_score"]],@"Total", nil];
         
         
-        if ([ARR_grossScore count] == 0) {
-            ARR_grossScore = [[NSMutableArray alloc] init];
-            ARR_netScore = [[NSMutableArray alloc] init];
+//        if ([ARR_grossScore count] == 0) {
+//            ARR_grossScore = [[NSMutableArray alloc] init];
+//            ARR_netScore = [[NSMutableArray alloc] init];
             ARR_color = [[NSMutableArray alloc] init];
+            ARR_holes = [[NSMutableArray alloc] init];
             
-            ARR_holes = [dict valueForKey:@"hole_info"];
+            [ARR_holes addObjectsFromArray:[dict valueForKey:@"hole_info"]];
             
             for (int i = 0; i < [ARR_holes count]; i++) {
-                [ARR_grossScore addObject:@""];
-                [ARR_netScore addObject:@""];
-            }
+                NSDictionary *dictin_TEMP = @{@"color":@"",@"index":@""};
+//                [ARR_grossScore addObject:@""];
+//                [ARR_netScore addObject:@""];
+                [ARR_color addObject:dictin_TEMP];
+//            }
         }
         [_TBL_scores reloadData];
         
@@ -2894,23 +2979,18 @@
         //        DICTIN_holes *globals = [DICTIN_holes dictionary_VAL];
         //        globals.Dictin_course = dict;
         
-        if ([ARR_grossScore count] == 0) {
-            ARR_grossScore = [[NSMutableArray alloc] init];
-            ARR_netScore = [[NSMutableArray alloc] init];
-            
-            ARR_holes = [dict valueForKey:@"hole_info"];
+//        if ([ARR_grossScore count] == 0) {
+//            ARR_grossScore = [[NSMutableArray alloc] init];
+//            ARR_netScore = [[NSMutableArray alloc] init];
+        
+            [ARR_holes removeAllObjects];
+            [ARR_holes addObjectsFromArray:[dict valueForKey:@"hole_info"]];
             //        NSLog(@"Json response Hole = %@",dict);
             
-            for (int i = 0; i < [ARR_holes count]; i++) {
-                [ARR_grossScore addObject:@""];
-                [ARR_netScore addObject:@""];
-            }
-        }
-        
-        
-        
-        
-        
+//            for (int i = 0; i < [ARR_holes count]; i++) {
+//                [ARR_grossScore addObject:@""];
+//                [ARR_netScore addObject:@""];
+//            }
         [_TBL_scores reloadData];
     }
     else
@@ -2951,28 +3031,37 @@
     if(aData)
     {
         NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
-        
-        
         NSLog(@"Json response get net Socre = %@",dict);
         
 //        DICTIN_PlayerINfo = @{@"STR_playerName":[NSString stringWithFormat:@"%@",[dict valueForKey:@"name"]],@"STR_team":@"Team 1",@"STR_HCP":[NSString stringWithFormat:@"%@",_TXT_Handicap.text],@"Total":[NSString stringWithFormat:@"%@",[dict valueForKey:@"total_score"]]};
         
-        [DICTIN_PlayerINfo setObject:[NSString stringWithFormat:@"%@",[dict valueForKey:@"total_score"]]  forKey:@"Total"];
-        
-        NSString *STR_netScore = [NSString stringWithFormat:@"%@",[dict valueForKey:@"net_score"]];
-        NSString *gross_score = [NSString stringWithFormat:@"%@",[dict valueForKey:@"gross_score"]];
-        
-        [ARR_netScore insertObject:STR_netScore atIndex:INdex_Selected.row-1];
-        [ARR_grossScore insertObject:gross_score atIndex:INdex_Selected.row-1];
-        
-        [_TBL_scores beginUpdates];
-        NSArray *indexPathArray = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:INdex_Selected.row inSection:0]];
-        NSArray *indexPath0 = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
-        [_TBL_scores reloadRowsAtIndexPaths:indexPath0 withRowAnimation:UITableViewRowAnimationFade];
-        [_TBL_scores reloadRowsAtIndexPaths:indexPathArray withRowAnimation:UITableViewRowAnimationFade];
-        [_TBL_scores endUpdates];
-        
-        
+        if (dict) {
+            [DICTIN_PlayerINfo setObject:[NSString stringWithFormat:@"%@",[dict valueForKey:@"total_score"]]  forKey:@"Total"];
+            
+            NSString *STR_netScore = [NSString stringWithFormat:@"%@",[dict valueForKey:@"net_score"]];
+            NSString *gross_score = [NSString stringWithFormat:@"%@",[dict valueForKey:@"gross_score"]];
+            
+            NSLog(@"Index selected = %@",INdex_Selected);
+            
+            NSDictionary *temp_dictin = [ARR_holes objectAtIndex:INdex_Selected.row-1];
+            NSDictionary *sore_val = @{@"gross_score":gross_score,@"handicap":[temp_dictin valueForKey:@"handicap"],@"net_score":STR_netScore,@"par":[temp_dictin valueForKey:@"par"],@"position":[temp_dictin valueForKey:@"position"],@"yards":[temp_dictin valueForKey:@"yards"]};
+            
+//            [ARR_netScore replaceObjectAtIndex:INdex_Selected.row-1 withObject:STR_netScore];
+//            [ARR_grossScore replaceObjectAtIndex:INdex_Selected.row-1 withObject:gross_score];
+            
+            [ARR_holes replaceObjectAtIndex:INdex_Selected.row-1 withObject:sore_val];
+            
+            NSDictionary *dictin_TEMP = @{@"color":@"blue",@"index":@"value"};
+            [ARR_color replaceObjectAtIndex:INdex_Selected.row-1 withObject:dictin_TEMP];
+            
+            
+            [_TBL_scores beginUpdates];
+            NSArray *indexPathArray = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:INdex_Selected.row inSection:0]];
+            NSArray *indexPath0 = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+            [_TBL_scores reloadRowsAtIndexPaths:indexPath0 withRowAnimation:UITableViewRowAnimationFade];
+            [_TBL_scores reloadRowsAtIndexPaths:indexPathArray withRowAnimation:UITableViewRowAnimationFade];
+            [_TBL_scores endUpdates];
+        }
     }
     else
     {
@@ -3013,7 +3102,10 @@
         NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
         
         NSLog(@"Json response Leaders_API = %@",dict);
-        ARR_leaders = [dict valueForKey:@"leader_board"];
+        ARR_leaders = [[NSMutableArray alloc] init];
+        [ARR_leaders addObjectsFromArray:[dict valueForKey:@"leader_board"]];
+        
+        [ARR_leaders sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"total_score" ascending:YES]]];
         
         if ([ARR_leaders count] != 0) {
             [_TBL_leaderboard reloadData];
@@ -3112,9 +3204,310 @@
                 break;
         }
     }
+    else if (alertView.tag == 2)
+    {
+        switch (buttonIndex) {
+            case 0:
+                NSLog(@"Button index 0");
+                break;
+                
+            default:
+                break;
+        }
+    }
+    else if (alertView.tag == 3)
+    {
+        switch (buttonIndex) {
+            case 0:
+                NSLog(@"Button index 0");
+                break;
+                
+            default:
+                break;
+        }
+    }
+    else if (alertView.tag == 4)
+    {
+        switch (buttonIndex) {
+            case 0:
+                NSLog(@"Button index 0");
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+
+- (NSDictionary *) dictionaryWithPropertiesOfObject:(id)obj
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    unsigned count;
+    objc_property_t *properties = class_copyPropertyList([obj class], &count);
+    
+    for (int i = 0; i < count; i++) {
+        NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
+        [dict setObject:[obj valueForKey:key] forKey:key];
+    }
+    
+    free(properties);
+    
+    return [NSDictionary dictionaryWithDictionary:dict];
+}
+
+- (NSDictionary *) dictionaryWithPropertiesOfObject_1:(id)obj
+{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    unsigned count;
+    objc_property_t *properties = class_copyPropertyList([obj class], &count);
+    
+    for (int i = 0; i < count; i++) {
+        NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
+        Class classObject = NSClassFromString([key capitalizedString]);
+        
+        id object = [obj valueForKey:key];
+        
+        if (classObject) {
+            id subObj = [self dictionaryWithPropertiesOfObject_1:object];
+            [dict setObject:subObj forKey:key];
+        }
+        else if([object isKindOfClass:[NSArray class]])
+        {
+            NSMutableArray *subObj = [NSMutableArray array];
+            for (id o in object) {
+                [subObj addObject:[self dictionaryWithPropertiesOfObject_1:o] ];
+            }
+            [dict setObject:subObj forKey:key];
+        }
+        else
+        {
+            if(object) [dict setObject:object forKey:key];
+        }
+    }
+    
+    free(properties);
+    return [NSDictionary dictionaryWithDictionary:dict];
+}
+
+-(void)Sucess :(NSData *)aData
+{
+    if ([aData isKindOfClass:[NSArray class]]) {
+        NSLog(@"its an array!");
+        NSArray *jsonArray = (NSArray *)aData;
+        NSLog(@"jsonArray - %@",jsonArray);
+    }
+    else
+    {
+        //        NSDictionary *jsonDictionary = [self dictionaryWithPropertiesOfObject_1:aData];
+        //        NSDictionary *jsonDictionary = (NSDictionary *)aData;
+        NSError *error;
+        
+        NSString *jsonDictionary = (NSString *)aData;
+        
+        NSData *jsonData = [jsonDictionary dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                             options:NSJSONReadingMutableContainers
+                                                               error:&error];
+        
+        NSString *STR_type;
+        @try {
+            STR_type = [json valueForKey:@"type"];
+        } @catch (NSException *exception) {
+            NSLog(@"Type exception %@",exception);
+        }
+        
+        NSDictionary *dictin_message;
+        @try {
+            dictin_message = [json valueForKey:@"message"];
+        } @catch (NSException *exception) {
+            NSLog(@"Message exception %@",exception);
+        }
+        
+        if ([dictin_message isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *json;
+            @try {
+                json = [dictin_message valueForKey:@"json"];
+                if (json) {
+                    
+                    if ([[json valueForKey:@"sender_auth_token"] isEqualToString:[[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"]])
+                    {
+                        NSLog(@"Update Not required");
+                    }
+                    else
+                    {
+                        NSLog(@"Update Required Json respon %@",json);
+                        if (_TBL_leaderboard.hidden == NO)
+                        {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                
+                                NSString *STR_usr_id = [[NSUserDefaults standardUserDefaults] valueForKey:@"Selected_USER"];
+                                int usr_id = [STR_usr_id intValue];
+                                
+                                NSString *STR_jsonUSer = [json valueForKey:@"user_id"];
+                                int jsonUSer = [STR_jsonUSer intValue];
+                                
+                                if (dictin_Scores) {
+                                    if (usr_id == jsonUSer)
+                                    {
+                                        NSLog(@"Score update");
+                                        NSMutableArray *hole_array = [[NSMutableArray alloc] init];
+                                        
+                                        NSString *STR_index = [json valueForKey:@"hole_number"];
+                                        int index = [STR_index intValue];
+                                        
+                                        [hole_array addObjectsFromArray:[dictin_Scores valueForKey:@"hole_array"]];
+                                        
+                                        NSString *gross_score = [json valueForKey:@"gross_score"];
+                                        NSString *handicap = [[hole_array objectAtIndex:index-1] valueForKey:@"handicap"];
+                                        NSString *net_score = [json valueForKey:@"net_score"];
+                                        NSString *par = [[hole_array objectAtIndex:index-1] valueForKey:@"par"];
+                                        NSString *position = [NSString stringWithFormat:@"%d",index];
+                                        NSString *yards = [[hole_array objectAtIndex:index-1] valueForKey:@"yards"];
+                                        
+                                        NSDictionary *dictin_temp = @{@"gross_score":gross_score,@"handicap":handicap,@"net_score":net_score,@"par":par,@"position":position,@"yards":yards};
+                                        [hole_array replaceObjectAtIndex:index-1 withObject:dictin_temp];
+                                        [dictin_Scores setObject:hole_array forKey:@"hole_array"];
+                                        
+                                        NSLog(@"Mutable dictionary Scores %@",dictin_Scores);
+                                        
+                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                            [self.TBL_leaderboard beginUpdates];
+                                            NSArray *indexPath0 = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:self.expandedIndexPath.row inSection:0]];
+                                            [self.TBL_leaderboard reloadRowsAtIndexPaths:indexPath0 withRowAnimation:UITableViewRowAnimationNone];
+                                            [self.TBL_leaderboard endUpdates];
+                                        });
+                                    }
+                                }
+                            });
+                            
+                            static NSString *simpleTableIdentifier = @"SimpleTableItem";
+                            cell_player *cell = (cell_player *)[_TBL_leaderboard dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+                            if (cell == nil)
+                            {
+                                
+                                NSArray *nib;
+                                if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+                                {
+                                    nib = [[NSBundle mainBundle] loadNibNamed:@"cell_player~iPad" owner:self options:nil];
+                                }
+                                else
+                                {
+                                    nib = [[NSBundle mainBundle] loadNibNamed:@"cell_player" owner:self options:nil];
+                                }
+                                cell = [nib objectAtIndex:0];
+                            }
+                            
+                            UITableView *tableview = self.TBL_leaderboard;    //set your tableview here
+                            for(int sectionI=0; sectionI < 1; sectionI++) {
+                                int rowCount = (int)[tableview numberOfRowsInSection:sectionI];
+                                for (int rowsI=0; rowsI < rowCount; rowsI++) {
+                                    NSIndexPath *indxPath = [NSIndexPath indexPathForRow:rowsI inSection:sectionI];
+                                    
+                                    @try {
+                                        cell = (cell_player *)[_TBL_leaderboard cellForRowAtIndexPath:indxPath];
+                                        NSString *user_id = cell.lbl_userID.text;
+                                        int usr_id = [user_id intValue];
+                                        
+                                        NSString *STR_jsonUSer = [json valueForKey:@"user_id"];
+                                        int jsonUSer = [STR_jsonUSer intValue];
+                                        
+                                        if (usr_id == jsonUSer) {
+                                            NSInteger i = [self returnIndexFromDateProperty:[json valueForKey:@"user_id"]];
+                                            NSDictionary *temp_dictin = [ARR_leaders objectAtIndex:i];
+                                            NSString *user_id1 = [json valueForKey:@"user_id"];
+                                            NSString *user_name = [temp_dictin valueForKey:@"user_name"];
+                                            NSString *total_score = [json valueForKey:@"total_score"];
+                                            NSString *total_net_score;
+                                            
+                                            @try {
+                                                total_net_score = [json valueForKey:@"total_net_score"];
+                                            } @catch (NSException *exception) {
+                                                total_net_score = [json valueForKey:@"total_score"];
+                                            }
+                                            
+                                            NSDictionary *store_dictin = @{@"total_net_score":total_net_score,@"total_score":total_score,@"user_id":user_id1,@"user_name":user_name};
+                                            [ARR_leaders replaceObjectAtIndex:i withObject:store_dictin];
+                                            
+                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                [self.TBL_leaderboard beginUpdates];
+                                                NSArray *indexPath0 = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:indxPath.row inSection:0]];
+                                                [self.TBL_leaderboard reloadRowsAtIndexPaths:indexPath0 withRowAnimation:UITableViewRowAnimationNone];
+                                                [self.TBL_leaderboard endUpdates];
+                                            });
+                                        }
+                                        
+                                    } @catch (NSException *exception) {
+                                        NSLog(@"Exception cell leader %@",exception);
+                                    }
+                                    
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            @catch (NSException *exception) {
+                NSLog(@"Exception from socket %@",json);
+            }
+        }
+    }
+}
+
+-(NSInteger)returnIndexFromDateProperty:(NSString *)property{
+    NSInteger iIndex = 0;
+    int property1 = [property intValue];
+    for (int i = 0; i < [ARR_leaders count]; i++){
+        NSString *STR_userid = [[ARR_leaders objectAtIndex:i]valueForKey:@"user_id"];
+        int user_id = [STR_userid intValue];
+        if(property1 == user_id){
+            iIndex = i;
+        }
+    }
+    return iIndex;
 }
 
 
-
-
+#pragma mark - KSJActionSocket Deligate Methord
+- (void)actionSocketOpened:(KSJActionSocket *)socket
+{
+    NSLog(@"Connected success");
+    [self.actionSocket joinChannelWithName:@"LiveScoringsChannel" andPayload:@{}];
+}
+- (void)actionSocket:(KSJActionSocket *)socket recievedData:(NSData *)data
+{
+    [self Sucess:data];
+}
+- (void)actionSocket:(KSJActionSocket *)socket failedWithError:(NSError *)error
+{
+    NSLog(@"Socket Closed %@",error);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket closed condition" message:[NSString stringWithFormat:@"%@",error] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",@"Reconnect", nil];
+    alert.tag = 2;
+    [alert show];
+    
+//    @try {
+//        [self.actionSocket close];
+//        [self.actionSocket open];
+//    } @catch (NSException *exception) {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket closed" message:[NSString stringWithFormat:@"%@",exception] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+//        [alert show];
+//    }
+    
+}
+- (void)actionSocket:(KSJActionSocket *)socket closedWithCode:(NSInteger)code reason:(NSString *)reason
+{
+    NSLog(@"Error response %@",reason);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket closed condition" message:[NSString stringWithFormat:@"%@",reason] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",@"Reconnect", nil];
+    alert.tag = 3;
+    [alert show];
+}
+-(void)actionSocket:(KSJActionSocket *)socket closedWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean
+{
+    NSLog(@"Socket cloased response %@",reason);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket closed condition" message:[NSString stringWithFormat:@"%@",reason] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",@"Reconnect", nil];
+    alert.tag = 4;
+    [alert show];
+}
 @end

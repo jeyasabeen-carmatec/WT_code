@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbl_title;
 @property (weak, nonatomic) IBOutlet UISwitch *SWICTCH_text;
 @property (weak, nonatomic) IBOutlet UISwitch *SWICTCH_email;
+@property (weak, nonatomic) IBOutlet UISwitch *SWICTCH_push;
 
 @end

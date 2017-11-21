@@ -155,10 +155,8 @@
         negativeSpacer.width = -12;
     }
     
-    [self.navigationController.navigationBar setTitleTextAttributes:
-     @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:FONT_NAV_TITLE}];
-    self.navigationItem.title = @"SILENT AUCTIONS";
+    
+    
     
 //    UIBarButtonItem *anotherButton1 = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain
 //                                                                     target:self action:@selector(more_ACTION)];
@@ -166,6 +164,10 @@
     [self.navigationItem setLeftBarButtonItems:@[negativeSpacer, anotherButton ] animated:NO];
 
     self.navigationController.navigationBar.titleTextAttributes=@{NSForegroundColorAttributeName:[UIColor whiteColor]};
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor whiteColor],
+       NSFontAttributeName:FONT_NAV_TITLE}];
+    self.navigationItem.title = @"SILENT AUCTIONS";
     
 
     UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
@@ -377,13 +379,9 @@
         
         STR_ItmNUM = [NSString stringWithFormat:@"#%03d",(int) indexPath.row+1 ];
         
-//        if (indexPath.row == 0) {
-//            STR_prodNAme = [NSString stringWithFormat:@"This is klsdnfns dkfjns ksdjf sd fhsd fsdihf isdhf sdf ds sdf sdf sd siduhf iusdhfi uhs dfsdhf hsd sdhf usdhf uhsd sduhf sdhf sd fisdhf sdhf sdifj sd fsdif posdf sdaf aspifpsd fiodsof sdfihsdiaf as dfiuhsd fsadf sdaf sdia fisadfisd%@",[cpy_dict objectForKey:@"name"]];
-//        }
-//        else
-//        {
-            STR_prodNAme = [cpy_dict objectForKey:@"name"];
-//        }
+
+        STR_prodNAme = [cpy_dict objectForKey:@"name"];
+
         
         NSString *text = [NSString stringWithFormat:@"%@\n%@\n%@\n%@\n.",STR_ItmNUM,STR_prodNAme,STR_amount,STR_bidSTAT];
         
@@ -413,8 +411,16 @@
                 [attributedText setAttributes:@{NSFontAttributeName:FONT_NAV_TITLE,NSForegroundColorAttributeName:[UIColor blackColor],
                                                 NSParagraphStyleAttributeName:paragraphStyle}
                                         range:RAN_amount];
-                [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL,NSForegroundColorAttributeName:[UIColor lightGrayColor]}
-                                        range:RAN_bidSTAT];
+                if ([STR_bidSTAT isEqualToString:@"Auction Closed"]) {
+                    [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL,NSForegroundColorAttributeName:[UIColor redColor]}
+                                            range:RAN_bidSTAT];
+                }
+                else
+                {
+                    [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL,NSForegroundColorAttributeName:[UIColor lightGrayColor]}
+                                            range:RAN_bidSTAT];
+                }
+                
             }
             else
             {
@@ -424,8 +430,15 @@
                                         range:cmp];
                 [attributedText setAttributes:@{NSFontAttributeName:FONT_NAV_TITLE,NSForegroundColorAttributeName:[UIColor blackColor],NSParagraphStyleAttributeName:paragraphStyle}
                                         range:RAN_amount];
-                [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL,NSForegroundColorAttributeName:[UIColor lightGrayColor]}
-                                        range:RAN_bidSTAT];
+                if ([STR_bidSTAT isEqualToString:@"Auction Closed"]) {
+                    [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL,NSForegroundColorAttributeName:[UIColor redColor]}
+                                            range:RAN_bidSTAT];
+                }
+                else
+                {
+                    [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL,NSForegroundColorAttributeName:[UIColor lightGrayColor]}
+                                            range:RAN_bidSTAT];
+                }
             }
             
             auc_cell.name_lbl.attributedText = attributedText;

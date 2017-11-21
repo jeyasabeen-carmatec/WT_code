@@ -203,7 +203,7 @@
     [_BTN_close addTarget:self action:@selector(MET_nav_Close) forControlEvents:UIControlEventTouchUpInside];
     _BTN_close.hidden = YES;
     
-    [_BTN_toggle setTitle:@"LIST\t" forState:UIControlStateNormal];
+    [_BTN_toggle setTitle:@"VIEW LIST\t" forState:UIControlStateNormal];
     [_BTN_toggle addTarget:self action:@selector(MET_toggle_TAP) forControlEvents:UIControlEventTouchUpInside];
     
     [_BTN_search addTarget:self action:@selector(MET_serch_TAP) forControlEvents:UIControlEventTouchUpInside];
@@ -456,7 +456,7 @@
         
         [UIView transitionWithView:_BTN_toggle duration:0.4 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
             
-            [_BTN_toggle setTitle:@"MAP\t" forState:UIControlStateNormal];
+            [_BTN_toggle setTitle:@"VIEW MAP\t" forState:UIControlStateNormal];
             
         } completion:nil];
         
@@ -488,7 +488,7 @@
         
         [UIView transitionWithView:_BTN_toggle duration:0.4 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
             
-            [_BTN_toggle setTitle:@"LIST\t" forState:UIControlStateNormal];
+            [_BTN_toggle setTitle:@"VIEW LIST\t" forState:UIControlStateNormal];
             
         } completion:nil];
         
@@ -610,7 +610,7 @@
     NSString *course_name = [temp_dictin valueForKey:@"name"];
     course_name = [course_name stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
     course_name = [course_name stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
-    NSString *address = [temp_dictin valueForKey:@"address"];
+    NSString *address = [NSString stringWithFormat:@"%@, %@",[temp_dictin valueForKey:@"address"],[temp_dictin valueForKey:@"state_or_province"]];
     address = [address stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
     address = [address stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
     
@@ -630,8 +630,7 @@
     c2D_to.latitude = [[temp_dictin valueForKey:@"lat"] doubleValue];
     c2D_to.longitude = [[temp_dictin valueForKey:@"lng"] doubleValue];
     
-    
-    
+
     NSNumber *new_distance = [self calculateDistanceInMetersBetweenCoord:c2D_from coord:c2D_to];
     double disT = ([new_distance doubleValue] * 0.000621371f) - 0.4f;
     
@@ -752,12 +751,216 @@
     //cell.lbl_privacy.text = @"";
     
     NSString *website_url = [temp_dictin valueForKey:@"course_image"];
-    if (website_url)
-    {
-        website_url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,[temp_dictin valueForKey:@"course_image"]];
-        [cell.IMG_courseimage sd_setImageWithURL:[NSURL URLWithString:website_url]
-                                placeholderImage:[UIImage imageNamed:@"profile_pic.png"]];
+    UIImage *IMG_placeholder;
+    
+    if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"AL"]) {
+        IMG_placeholder = [UIImage imageNamed:@"ALABAMA"];
     }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"AK"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"ALASKA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"AZ"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"ARIZONA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"AR"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"ARKANSAS"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"CA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"CALIFORNIA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"CO"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"COLORADO"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"CT"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"CONNECTICUT"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"DE"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"DELAWARE"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"FL"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"FLORIDA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"GA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"GEORGIA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"HI"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"HAWAII"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"ID"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"IDAHO"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"IL"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"ILLINOIS"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"IN"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"INDIANA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"IA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"IOWA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"KS"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"KANSAS"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"KY"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"KENTUCKY"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"LA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"LOUISIANA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"ME"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MAINE"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MD"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MARYLAND"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"Massachusetts"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MI"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MICHIGAN"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MN"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MINNESOTA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MS"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MISSISSIPPI"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MO"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MISSOURI"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MT"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MONTANA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NE"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NEBRASKA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NV"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NEVADA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NH"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NEWHAMPSHIRE"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NJ"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NEWJERSEY"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NM"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NEWMEXICO"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NY"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NEWYORK"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NC"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NORTHCAROLINA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"ND"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NORTHDAKOTA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"OH"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"OHIO"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"OK"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"OKLAHOMA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"OR"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"OREGON"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"PA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"PENNSYLVANIA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"RI"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"RHODEISLAND"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"SC"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"SOUTHCAROLINA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"SD"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"SOUTHDAKOTA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"TN"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"TENNESSEE"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"TX"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"TEXAS"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"UT"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"UTAH"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"VT"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"VERMONT"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"VA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"VIRGINIA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"WA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"WASHINGTON"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"WV"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"WESTVIRGINIA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"WI"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"WISCONSIN"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"WY"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"WYOMING"];
+    }
+    else
+    {
+        IMG_placeholder = [UIImage imageNamed:@"WT_default_Course"];
+    }
+    
+    
+    website_url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,[temp_dictin valueForKey:@"course_image"]];
+    [cell.IMG_courseimage sd_setImageWithURL:[NSURL URLWithString:website_url]
+                            placeholderImage:IMG_placeholder];
     
     cell.IMG_courseimage.layer.cornerRadius = cell.IMG_courseimage.frame.size.width/2;
     cell.IMG_courseimage.layer.masksToBounds = YES;
@@ -841,16 +1044,7 @@
     NSString *course_name = [temp_dictin valueForKey:@"name"];
     course_name = [course_name stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
     course_name = [course_name stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
-    NSString *address = [temp_dictin valueForKey:@"address"];
-    address = [address stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
-    address = [address stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
-    
-    CLLocation *location2 = [[CLLocation alloc] initWithLatitude:[[temp_dictin valueForKey:@"lat"] doubleValue] longitude:[[temp_dictin valueForKey:@"lng"] doubleValue]];
-    CLLocation *LOC_main = [[CLLocation alloc] initWithLatitude:[[[NSUserDefaults standardUserDefaults] valueForKey:@"lat_STR"] doubleValue] longitude:[[[NSUserDefaults standardUserDefaults] valueForKey:@"long_STR"] doubleValue]];
-    
-    CLLocationDistance distance = [LOC_main distanceFromLocation:location2];
-    
-    NSLog(@"Distance in miles %f",distance * 0.000621371);
+    NSString *address = [NSString stringWithFormat:@"%@, %@",[temp_dictin valueForKey:@"address"],[temp_dictin valueForKey:@"state_or_province"]];
     
     
     CLLocationCoordinate2D c2D_from;
@@ -887,6 +1081,9 @@
         //            UIColor *redColor = [UIColor redColor];
         NSRange cmp = [text rangeOfString:address];// * Notice that usage of rangeOfString in this case may cause some bugs - I use it here only for demonstration
         NSRange RAN_miles = [text rangeOfString:miles];
+        
+//        NSLog(@"The font = %@",cell.l);
+        
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
@@ -982,15 +1179,220 @@
    // cell.lbl_privacy.text = @"";
     
     NSString *website_url = [temp_dictin valueForKey:@"course_image"];
-    if (website_url)
-    {
-        website_url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,[temp_dictin valueForKey:@"course_image"]];
-        [cell.IMG_courseimage sd_setImageWithURL:[NSURL URLWithString:website_url]
-                                placeholderImage:[UIImage imageNamed:@"profile_pic.png"]];
+    UIImage *IMG_placeholder;
+    
+    if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"AL"]) {
+        IMG_placeholder = [UIImage imageNamed:@"ALABAMA"];
     }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"AK"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"ALASKA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"AZ"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"ARIZONA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"AR"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"ARKANSAS"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"CA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"CALIFORNIA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"CO"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"COLORADO"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"CT"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"CONNECTICUT"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"DE"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"DELAWARE"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"FL"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"FLORIDA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"GA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"GEORGIA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"HI"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"HAWAII"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"ID"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"IDAHO"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"IL"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"ILLINOIS"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"IN"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"INDIANA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"IA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"IOWA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"KS"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"KANSAS"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"KY"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"KENTUCKY"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"LA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"LOUISIANA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"ME"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MAINE"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MD"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MARYLAND"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"Massachusetts"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MI"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MICHIGAN"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MN"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MINNESOTA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MS"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MISSISSIPPI"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MO"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MISSOURI"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MT"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MONTANA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NE"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NEBRASKA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NV"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NEVADA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NH"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NEWHAMPSHIRE"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NJ"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NEWJERSEY"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NM"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NEWMEXICO"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NY"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NEWYORK"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NC"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NORTHCAROLINA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"ND"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NORTHDAKOTA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"OH"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"OHIO"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"OK"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"OKLAHOMA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"OR"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"OREGON"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"PA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"PENNSYLVANIA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"RI"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"RHODEISLAND"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"SC"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"SOUTHCAROLINA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"SD"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"SOUTHDAKOTA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"TN"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"TENNESSEE"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"TX"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"TEXAS"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"UT"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"UTAH"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"VT"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"VERMONT"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"VA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"VIRGINIA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"WA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"WASHINGTON"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"WV"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"WESTVIRGINIA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"WI"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"WISCONSIN"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"WY"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"WYOMING"];
+    }
+    else
+    {
+        IMG_placeholder = [UIImage imageNamed:@"WT_default_Course"];
+    }
+    
+    
+    website_url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,[temp_dictin valueForKey:@"course_image"]];
+    [cell.IMG_courseimage sd_setImageWithURL:[NSURL URLWithString:website_url]
+                            placeholderImage:IMG_placeholder];
     
     cell.IMG_courseimage.layer.cornerRadius = cell.IMG_courseimage.frame.size.width/2;
     cell.IMG_courseimage.layer.masksToBounds = YES;
+    
     
     //    else
     //    {
@@ -1230,9 +1632,9 @@
             self.mapView.settings.compassButton = YES;
         }
         
-        NSString *address = [NSString stringWithFormat:@"%@, %@",[temp_dictin valueForKey:@"city"],[temp_dictin valueForKey:@"state_or_province"]];
+//        NSString *address = [NSString stringWithFormat:@"%@",[temp_dictin valueForKey:@"city"]];
         
-        NSDictionary *store_val = [NSDictionary dictionaryWithObjectsAndKeys:[temp_dictin valueForKey:@"course_type"],@"course_type",[temp_dictin valueForKey:@"name"],@"name",address,@"address",[temp_dictin valueForKey:@"course_image"],@"course_image",[temp_dictin valueForKey:@"id"],@"id",[temp_dictin valueForKey:@"lat"],@"lat",[temp_dictin valueForKey:@"lng"],@"lng", nil];
+        NSDictionary *store_val = [NSDictionary dictionaryWithObjectsAndKeys:[temp_dictin valueForKey:@"course_type"],@"course_type",[temp_dictin valueForKey:@"name"],@"name",[temp_dictin valueForKey:@"city"],@"address",[temp_dictin valueForKey:@"course_image"],@"course_image",[temp_dictin valueForKey:@"id"],@"id",[temp_dictin valueForKey:@"lat"],@"lat",[temp_dictin valueForKey:@"lng"],@"lng",[temp_dictin valueForKey:@"state_or_province"],@"state_or_province" ,nil];
         
         [globals.ARR_list_data addObject:store_val];
         [globals.ARR_colection_data addObject:store_val];

@@ -772,6 +772,8 @@
         {
             STR_payment_mode *payment_mode = [STR_payment_mode PaymentTYPE];
             payment_mode.STR_paymentTYPE = @"Wallet";
+            [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:@"NAUNCETOK"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             [self performSelector:@selector(billing_Address) withObject:activityIndicatorView afterDelay:0.01];
         }
         else
@@ -867,8 +869,7 @@
      
      [self presentViewController:navigationController animated:YES completion:nil];*/
     
-    @try
-    {
+   
         BTDropInRequest *request = [[BTDropInRequest alloc] init];
         BTDropInController *dropIn = [[BTDropInController alloc] initWithAuthorization:client_TOK request:request handler:^(BTDropInController * _Nonnull controller, BTDropInResult * _Nullable result, NSError * _Nullable error) {
             
@@ -902,12 +903,7 @@
             }
         }];
         [self presentViewController:dropIn animated:YES completion:nil];
-    }
-    @catch (NSException *exception)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection error" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-        [alert show];
-    }
+   
 }
 
 

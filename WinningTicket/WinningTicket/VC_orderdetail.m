@@ -431,7 +431,7 @@
     [self.view addSubview:VW_overlay];
     
     VW_overlay.hidden = NO;
-    
+    [activityIndicatorView startAnimating];
     [self performSelector:@selector(get_EVENT_STAT) withObject:activityIndicatorView afterDelay:0.01];
     
 }
@@ -463,9 +463,15 @@
     if(aData)
     {
         dict1 = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
-        
         NSLog(@"Json response check Game stat VC Order detail = %@",dict1);
-
+        
+        @try {
+            [[NSUserDefaults standardUserDefaults] setObject:[dict1 valueForKey:@"handicap"] forKey:@"handicap1"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        } @catch (NSException *exception) {
+            [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"handicap1"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
     }
     else
     {

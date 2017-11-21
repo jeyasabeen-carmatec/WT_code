@@ -12,66 +12,67 @@
         <array key="Gotham Bold Regular.ttf">
             <string>GothamBold</string>
         </array>
-        <array key="GothamMedium Regular.otf">
-            <string>GothamMedium</string>
+        <array key="Montserrat-Medium.ttf">
+            <string>Montserrat-Medium</string>
         </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="courseceldentifier" reuseIdentifier="courseceldentifier" id="gTV-IL-0wX" customClass="courseCollectionCELL" customModule="WinningTicket_Universal" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="768" height="93"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" restorationIdentifier="courseceldentifier" reuseIdentifier="courseceldentifier" id="VTf-fy-cm7" customClass="courseCollectionCELL" customModule="WinningTicket_Universal" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="105"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="768" height="93"/>
+                <rect key="frame" x="0.0" y="0.0" width="768" height="105"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PRIVATE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndE-ro-iHU">
-                        <rect key="frame" x="691" y="15" width="70" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="GothamMedium" family="GothamMedium" pointSize="14"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lMX-8E-dJj">
+                        <rect key="frame" x="8" y="22" width="62" height="62"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="62" id="0yP-d6-V1Z"/>
+                            <constraint firstAttribute="width" constant="62" id="2eA-X7-sh3"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Te1-hk-mkz">
+                        <rect key="frame" x="72" y="46.5" width="621" height="13.5"/>
+                        <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="15"/>
+                        <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rFd-AJ-Lqv">
-                        <rect key="frame" x="11" y="15" width="62" height="62"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="private.png" translatesAutoresizingMaskIntoConstraints="NO" id="ElE-bb-IFR">
+                        <rect key="frame" x="701" y="22" width="60" height="60"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="62" id="RJo-fh-QaA"/>
-                            <constraint firstAttribute="width" constant="62" id="d6v-Qy-PsJ"/>
+                            <constraint firstAttribute="height" constant="60" id="4dM-bV-4oa"/>
+                            <constraint firstAttribute="width" constant="60" id="uFV-KY-nYI"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="private.png" translatesAutoresizingMaskIntoConstraints="NO" id="CFf-jO-Jhn">
-                        <rect key="frame" x="697" y="16" width="60" height="60"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="60" id="Sbr-EK-t9o"/>
-                            <constraint firstAttribute="width" constant="60" id="yDL-iM-GvV"/>
-                        </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAt-de-2aH">
-                        <rect key="frame" x="78" y="40" width="611" height="14"/>
-                        <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0b5-pq-BrO">
+                        <rect key="frame" x="417" y="0.0" width="42" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
             </view>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="CFf-jO-Jhn" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="2rv-By-ec5"/>
-                <constraint firstItem="rFd-AJ-Lqv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="11" id="7Ai-9l-P6r"/>
-                <constraint firstAttribute="trailing" secondItem="CFf-jO-Jhn" secondAttribute="trailing" constant="11" id="bCF-Wd-IDl"/>
-                <constraint firstItem="vAt-de-2aH" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="kKC-Xg-GeB"/>
-                <constraint firstItem="rFd-AJ-Lqv" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="m2S-Ci-esC"/>
-                <constraint firstItem="vAt-de-2aH" firstAttribute="leading" secondItem="rFd-AJ-Lqv" secondAttribute="trailing" constant="5" id="src-AE-SPO"/>
-                <constraint firstItem="CFf-jO-Jhn" firstAttribute="leading" secondItem="vAt-de-2aH" secondAttribute="trailing" constant="8" id="uzL-us-Af9"/>
+                <constraint firstAttribute="trailing" secondItem="ElE-bb-IFR" secondAttribute="trailing" constant="7" id="5ta-56-trG"/>
+                <constraint firstItem="ElE-bb-IFR" firstAttribute="leading" secondItem="Te1-hk-mkz" secondAttribute="trailing" constant="8" id="Lzt-hi-CQM"/>
+                <constraint firstItem="ElE-bb-IFR" firstAttribute="centerY" secondItem="VTf-fy-cm7" secondAttribute="centerY" id="Soe-BO-ruD"/>
+                <constraint firstItem="lMX-8E-dJj" firstAttribute="leading" secondItem="VTf-fy-cm7" secondAttribute="leading" constant="8" id="TA5-T2-Iez"/>
+                <constraint firstItem="lMX-8E-dJj" firstAttribute="centerY" secondItem="VTf-fy-cm7" secondAttribute="centerY" id="TPV-GM-Th5"/>
+                <constraint firstItem="Te1-hk-mkz" firstAttribute="leading" secondItem="lMX-8E-dJj" secondAttribute="trailing" constant="2" id="WLC-PR-fbh"/>
+                <constraint firstItem="Te1-hk-mkz" firstAttribute="centerY" secondItem="VTf-fy-cm7" secondAttribute="centerY" id="jdQ-QO-2cH"/>
             </constraints>
+            <size key="customSize" width="320" height="105"/>
             <connections>
-                <outlet property="IMG_courseimage" destination="rFd-AJ-Lqv" id="1Wg-7b-OgI"/>
-                <outlet property="IMG_privacy" destination="CFf-jO-Jhn" id="xc0-qI-JQk"/>
-                <outlet property="lbl_courseName" destination="vAt-de-2aH" id="TeV-V5-KFe"/>
-                <outlet property="lbl_privacy" destination="ndE-ro-iHU" id="OLW-Aq-7tQ"/>
+                <outlet property="IMG_courseimage" destination="lMX-8E-dJj" id="bk7-Sm-aA3"/>
+                <outlet property="IMG_privacy" destination="ElE-bb-IFR" id="UUa-k1-v4J"/>
+                <outlet property="lbl_courseName" destination="Te1-hk-mkz" id="eYx-NZ-ssF"/>
+                <outlet property="lbl_font" destination="0b5-pq-BrO" id="DYO-hW-yyo"/>
             </connections>
-            <point key="canvasLocation" x="33" y="94.5"/>
+            <point key="canvasLocation" x="33" y="92.5"/>
         </collectionViewCell>
     </objects>
     <resources>

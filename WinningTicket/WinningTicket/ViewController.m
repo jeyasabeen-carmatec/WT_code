@@ -522,8 +522,18 @@
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
     {
-        [activityIndicatorView stopAnimating];
-        VW_overlay.hidden = YES;
+        NSString *dev_TOK = [[NSUserDefaults standardUserDefaults]valueForKey:@"DEV_TOK"];
+        if (dev_TOK)
+        {
+            [self send_TOK];
+        }
+        else
+        {
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(tokenAvailableNotification:)
+                                                         name:@"NEW_TOKEN_AVAILABLE"
+                                                       object:nil];
+        }
 
         [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"JsonEventlist"];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -538,6 +548,51 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Interrupted" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
     }
+}
+
+-(void) send_TOK
+{
+    NSError *error;
+    NSError *err;
+    NSHTTPURLResponse *response = nil;
+    
+    NSString *dev_TOK = [[NSUserDefaults standardUserDefaults]valueForKey:@"DEV_TOK"];
+    NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+    NSDictionary *parameters = @{ @"user": @{ @"device_type":@"ios" , @"device_id":dev_TOK } };
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&err];
+    
+    NSString *urlGetuser =[NSString stringWithFormat:@"%@notification_settings/device_registration",SERVER_URL];
+    NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:urlProducts];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setHTTPBody:postData];
+    
+    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if (aData)
+    {
+        NSLog(@"Sucess");
+    }
+    [activityIndicatorView stopAnimating];
+    VW_overlay.hidden = YES;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)tokenAvailableNotification:(NSNotification *)notification {
+    NSString *token = (NSString *)notification.object;
+    NSLog(@"new token available : %@", token);
+    
+    [[NSUserDefaults standardUserDefaults]setObject:token forKey:@"DEV_TOK"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+    
+    VW_overlay.hidden = NO;
+    [activityIndicatorView startAnimating];
+    [self performSelector:@selector(send_TOK) withObject:activityIndicatorView afterDelay:0.01];
 }
 
 /*-(void)myaccount_API_calling

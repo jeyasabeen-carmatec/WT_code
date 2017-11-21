@@ -444,6 +444,13 @@
             frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
             _lbl_datatotal.frame = frame_rect;
             
+            _lbl_title_discount.hidden = YES;
+            _lbl_title_wallet.hidden = YES;
+            _lbl_data_discount.hidden = YES;
+            _lbl_data_wallet.hidden = YES;
+            _VW_line4.hidden = YES;
+            _VW_line5.hidden = YES;
+            
             frame_rect = _BTN_order2.frame;
             frame_rect.origin.y = _lbl_datatotal.frame.origin.y + _lbl_datatotal.frame.size.height + 10;
             _BTN_order2.frame = frame_rect;
@@ -585,11 +592,11 @@
     NSString *a = [NSString stringWithFormat:@"%.2f", total];
     
     NSString *nanunce = [[NSUserDefaults standardUserDefaults] valueForKey:@"NAUNCETOK"];
-     float total_amount = [[[NSUserDefaults standardUserDefaults] valueForKey:@"total_balance"] floatValue];
+//     float total_amount = [[[NSUserDefaults standardUserDefaults] valueForKey:@"total_balance"] floatValue];
     
     NSString *switch_STAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
     NSDictionary *parameters;   
-    if([switch_STAT isEqualToString:@"SWITCH_ON"] && total_amount == 0.00)
+    if([switch_STAT isEqualToString:@"SWITCH_ON"])
     {
         parameters = @{ @"transaction_type":@"purchase", @"price":[NSNumber numberWithFloat:[a floatValue]]};
     }

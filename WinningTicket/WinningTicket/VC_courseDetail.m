@@ -387,9 +387,9 @@
     {
         NSDictionary *temp_dictin = [temp_arr objectAtIndex:i];
         
-        NSString *address = [NSString stringWithFormat:@"%@, %@",[temp_dictin valueForKey:@"city"],[temp_dictin valueForKey:@"state_or_province"]];
+//        NSString *address = [NSString stringWithFormat:@"%@, %@",[temp_dictin valueForKey:@"city"],[temp_dictin valueForKey:@"state_or_province"]];
         
-        NSDictionary *store_val = [NSDictionary dictionaryWithObjectsAndKeys:[temp_dictin valueForKey:@"course_type"],@"course_type",[temp_dictin valueForKey:@"name"],@"name",address,@"address",[temp_dictin valueForKey:@"course_image"],@"course_image",[temp_dictin valueForKey:@"id"],@"id", nil];
+        NSDictionary *store_val = [NSDictionary dictionaryWithObjectsAndKeys:[temp_dictin valueForKey:@"course_type"],@"course_type",[temp_dictin valueForKey:@"name"],@"name",[temp_dictin valueForKey:@"city"],@"address",[temp_dictin valueForKey:@"course_image"],@"course_image",[temp_dictin valueForKey:@"id"],@"id",[temp_dictin valueForKey:@"lat"],@"lat",[temp_dictin valueForKey:@"lng"],@"lng",[temp_dictin valueForKey:@"state_or_province"],@"state_or_province" ,nil];
         
         [ARR_near_courselist addObject:store_val];
     }
@@ -425,8 +425,221 @@
         image_url = [image_url stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
         image_url = [image_url stringByReplacingOccurrencesOfString:@":" withString:@""];
         image_url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,image_url];
-        [_IMG_course_image sd_setImageWithURL:[NSURL URLWithString:image_url]
-                       placeholderImage:[UIImage imageNamed:@"profile_pic.png"]];
+        
+        NSString *website_url = [temp_dictin valueForKey:@"course_image"];
+        UIImage *IMG_placeholder;
+        
+        if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"AL"]) {
+            IMG_placeholder = [UIImage imageNamed:@"ALABAMA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"AK"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"ALASKA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"AZ"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"ARIZONA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"AR"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"ARKANSAS"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"CA"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"CALIFORNIA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"CO"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"COLORADO"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"CT"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"CONNECTICUT"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"DE"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"DELAWARE"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"FL"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"FLORIDA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"GA"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"GEORGIA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"HI"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"HAWAII"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"ID"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"IDAHO"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"IL"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"ILLINOIS"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"IN"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"INDIANA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"IA"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"IOWA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"KS"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"KANSAS"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"KY"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"KENTUCKY"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"LA"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"LOUISIANA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"ME"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"MAINE"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"MD"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"MARYLAND"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"MA"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"Massachusetts"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"MI"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"MICHIGAN"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"MN"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"MINNESOTA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"MS"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"MISSISSIPPI"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"MO"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"MISSOURI"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"MT"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"MONTANA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"NE"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"NEBRASKA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"NV"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"NEVADA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"NH"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"NEWHAMPSHIRE"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"NJ"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"NEWJERSEY"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"NM"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"NEWMEXICO"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"NY"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"NEWYORK"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"NC"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"NORTHCAROLINA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"ND"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"NORTHDAKOTA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"OH"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"OHIO"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"OK"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"OKLAHOMA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"OR"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"OREGON"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"PA"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"PENNSYLVANIA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"RI"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"RHODEISLAND"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"SC"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"SOUTHCAROLINA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"SD"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"SOUTHDAKOTA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"TN"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"TENNESSEE"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"TX"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"TEXAS"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"UT"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"UTAH"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"VT"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"VERMONT"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"VA"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"VIRGINIA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"WA"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"WASHINGTON"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"WV"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"WESTVIRGINIA"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"WI"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"WISCONSIN"];
+        }
+        else if ([[selected_course valueForKey:@"state_or_province"] isEqualToString:@"WY"])
+        {
+            IMG_placeholder = [UIImage imageNamed:@"WYOMING"];
+        }
+        else
+        {
+            IMG_placeholder = [UIImage imageNamed:@"WT_default_Course"];
+        }
+        
+        
+        website_url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,[temp_dictin valueForKey:@"course_image"]];
+        [_IMG_course_image sd_setImageWithURL:[NSURL URLWithString:website_url]
+                                placeholderImage:IMG_placeholder];
+        
+//        [_IMG_course_image sd_setImageWithURL:[NSURL URLWithString:image_url]
+//                       placeholderImage:[UIImage imageNamed:@"profile_pic.png"]];
 //        _IMG_course_image.image = [UIImage imageNamed:@"GOlf-Icon"];
     }
     
@@ -685,6 +898,20 @@
 {
     return [ARR_near_courselist count];
 }
+
+- (NSNumber*)calculateDistanceInMetersBetweenCoord:(CLLocationCoordinate2D)coord1 coord:(CLLocationCoordinate2D)coord2 {
+    NSInteger nRadius = 6371; // Earth's radius in Kilometers
+    double latDiff = (coord2.latitude - coord1.latitude) * (M_PI/180);
+    double lonDiff = (coord2.longitude - coord1.longitude) * (M_PI/180);
+    double lat1InRadians = coord1.latitude * (M_PI/180);
+    double lat2InRadians = coord2.latitude * (M_PI/180);
+    double nA = pow ( sin(latDiff/2), 2 ) + cos(lat1InRadians) * cos(lat2InRadians) * pow ( sin(lonDiff/2), 2 );
+    double nC = 2 * atan2( sqrt(nA), sqrt( 1 - nA ));
+    double nD = nRadius * nC;
+    // convert to meters
+    return @(nD*1000);
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
@@ -703,120 +930,384 @@
         cell = [nib objectAtIndex:0];
     }
     
-    @try {
-        NSDictionary *temp_dictin = [ARR_near_courselist objectAtIndex:indexPath.row];
-        NSString *course_type = [temp_dictin valueForKey:@"course_type"];
-        course_type = [course_type stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
-        course_type = [course_type stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
+    NSDictionary *temp_dictin = [ARR_near_courselist objectAtIndex:indexPath.row];
+    NSString *course_type = [temp_dictin valueForKey:@"course_type"];
+    course_type = [course_type stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+    course_type = [course_type stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
+    
+    NSString *course_name = [temp_dictin valueForKey:@"name"];
+    course_name = [course_name stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+    course_name = [course_name stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
+    NSString *address = [NSString stringWithFormat:@"%@, %@",[temp_dictin valueForKey:@"address"],[temp_dictin valueForKey:@"state_or_province"]];
+    address = [address stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+    address = [address stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
+    
+    CLLocation *location2 = [[CLLocation alloc] initWithLatitude:[[temp_dictin valueForKey:@"lat"] doubleValue] longitude:[[temp_dictin valueForKey:@"lng"] doubleValue]];
+    CLLocation *LOC_main = [[CLLocation alloc] initWithLatitude:[[[NSUserDefaults standardUserDefaults] valueForKey:@"lat_STR"] doubleValue] longitude:[[[NSUserDefaults standardUserDefaults] valueForKey:@"long_STR"] doubleValue]];
+    
+    CLLocationDistance distance = [LOC_main distanceFromLocation:location2];
+    
+    NSLog(@"Distance in miles %f",distance * 0.000621371);
+    
+    
+    CLLocationCoordinate2D c2D_from;
+    c2D_from.latitude = [[[NSUserDefaults standardUserDefaults] valueForKey:@"lat_STR"] doubleValue];
+    c2D_from.longitude = [[[NSUserDefaults standardUserDefaults] valueForKey:@"long_STR"] doubleValue];
+    
+    CLLocationCoordinate2D c2D_to;
+    c2D_to.latitude = [[temp_dictin valueForKey:@"lat"] doubleValue];
+    c2D_to.longitude = [[temp_dictin valueForKey:@"lng"] doubleValue];
+    
+    
+    NSNumber *new_distance = [self calculateDistanceInMetersBetweenCoord:c2D_from coord:c2D_to];
+    double disT = ([new_distance doubleValue] * 0.000621371f) - 0.4f;
+    
+    NSString *miles = [NSString stringWithFormat:@"%.1f MILES",disT];
+    
+    NSString *text = [NSString stringWithFormat:@"%@\n%@ %@",course_name,address,miles];
+    UIImage *newImage = [UIImage alloc];// = [cell.IMG_privacy.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
+    
+    // If attributed text is supported (iOS6+)
+    if ([cell.lbl_courseName respondsToSelector:@selector(setAttributedText:)]) {
+        // Define general attributes for the entire text
         
-        NSString *course_name = [temp_dictin valueForKey:@"name"];
-        course_name = [course_name stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
-        course_name = [course_name stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
+        NSDictionary *attribs = @{
+                                  NSForegroundColorAttributeName: cell.lbl_courseName.textColor,
+                                  NSFontAttributeName: cell.lbl_courseName.font
+                                  };
+        NSMutableAttributedString *attributedText =
+        [[NSMutableAttributedString alloc] initWithString:text
+                                               attributes:attribs];
         
-        NSString *address_sel = [NSString stringWithFormat:@"%@",[temp_dictin valueForKey:@"address"]];
-        
-        //    NSString *address = address_sel;
-        address_sel = [address_sel stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
-        address_sel = [address_sel stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
-        
-        NSString *text = [NSString stringWithFormat:@"%@\n%@",course_name,address_sel];
-        
-        
-        // If attributed text is supported (iOS6+)
-        if ([cell.lbl_courseName respondsToSelector:@selector(setAttributedText:)]) {
-            // Define general attributes for the entire text
-            NSDictionary *attribs = @{
-                                      NSForegroundColorAttributeName: cell.lbl_courseName.textColor,
-                                      NSFontAttributeName: cell.lbl_courseName.font
-                                      };
-            NSMutableAttributedString *attributedText =
-            [[NSMutableAttributedString alloc] initWithString:text
-                                                   attributes:attribs];
-            
-            // Red text attributes
-            //            UIColor *redColor = [UIColor redColor];
-            NSRange cmp = [text rangeOfString:address_sel];// * Notice that usage of rangeOfString in this case may cause some bugs - I use it here only for demonstration
-            
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-            {
-                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-MediumItalic" size:15.0]}
-                                        range:cmp];
-            }
-            else
-            {
-                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-MediumItalic" size:12.0]}
-                                        range:cmp];
-            }
-            cell.lbl_courseName.attributedText = attributedText;
-        }
-        else
-        {
-            cell.lbl_courseName.text = text;
-        }
-        
-        cell.lbl_courseName.numberOfLines = 0;
-        //    [cell.lbl_courseName sizeToFit];
+        // Red text attributes
+        //            UIColor *redColor = [UIColor redColor];
+        NSRange cmp = [text rangeOfString:address];// * Notice that usage of rangeOfString in this case may cause some bugs - I use it here only for demonstration
+        NSRange RAN_miles = [text rangeOfString:miles];
         
         cell.lbl_id.text = [NSString stringWithFormat:@"%@",[temp_dictin valueForKey:@"id"]];
         
-        if ([course_type isEqualToString:@"private"])
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         {
-            UIImage *newImage = [cell.IMG_privacy.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
-            [[UIColor colorWithRed:0.00 green:0.00 blue:1.00 alpha:1.0] set];
-            [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
-            newImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            cell.IMG_privacy.image = newImage;
-        }
-        else if ([course_type isEqualToString:@"public"])
-        {
-            UIImage *newImage = [cell.IMG_privacy.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
-            [[UIColor colorWithRed:0.00 green:0.65 blue:0.32 alpha:1.0] set];
-            [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
-            newImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            cell.IMG_privacy.image = newImage;
+            if ([course_type isEqualToString:@"private"])
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.09 green:0.64 blue:0.91 alpha:1.0]}
+                                        range:RAN_miles];
+                
+                // UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+                //  [[UIColor colorWithRed:0.00 green:0.00 blue:1.00 alpha:1.0] set];
+                // [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                newImage = [UIImage imageNamed:@"PRIVATE_1.png"];// UIGraphicsGetImageFromCurrentImageContext();
+                // UIGraphicsEndImageContext();
+                
+            }
+            else if ([course_type isEqualToString:@"public"])
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.00 green:0.67 blue:0.20 alpha:1.0]}
+                                        range:RAN_miles];
+                
+                //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+                //                [[UIColor colorWithRed:0.00 green:0.65 blue:0.32 alpha:1.0] set];
+                //                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                newImage = [UIImage imageNamed:@"PUBLIC.png"];//UIGraphicsGetImageFromCurrentImageContext();
+                //                UIGraphicsEndImageContext();
+            }
+            else
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.74 green:0.74 blue:0.75 alpha:1.0]}
+                                        range:RAN_miles];
+                
+                //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+                //                [[UIColor whiteColor] set];
+                //                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                newImage = [UIImage new];//UIGraphicsGetImageFromCurrentImageContext();
+                //                UIGraphicsEndImageContext();
+            }
+            [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-MediumItalic" size:15.0]}
+                                    range:cmp];
+            
         }
         else
         {
-            UIImage *newImage = [cell.IMG_privacy.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-            UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
-            [[UIColor whiteColor] set];
-            [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
-            newImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            cell.IMG_privacy.image = newImage;
+            if ([course_type isEqualToString:@"private"])
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.09 green:0.64 blue:0.91 alpha:1.0]}
+                                        range:RAN_miles];
+                
+                //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+                //                [[UIColor colorWithRed:0.00 green:0.00 blue:1.00 alpha:1.0] set];
+                //                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                newImage = [UIImage imageNamed:@"PRIVATE_1.png"]; //UIGraphicsGetImageFromCurrentImageContext();
+                //                UIGraphicsEndImageContext();
+                
+            }
+            else if ([course_type isEqualToString:@"public"])
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.00 green:0.67 blue:0.20 alpha:1.0]}
+                                        range:RAN_miles];
+                
+                //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+                //                [[UIColor colorWithRed:0.00 green:0.65 blue:0.32 alpha:1.0] set];
+                //                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                newImage = [UIImage imageNamed:@"PUBLIC.png"]; //UIGraphicsGetImageFromCurrentImageContext();
+                //                UIGraphicsEndImageContext();
+            }
+            else
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.74 green:0.74 blue:0.75 alpha:1.0]}
+                                        range:RAN_miles];
+                
+                //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+                //                [[UIColor whiteColor] set];
+                //                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                newImage = [UIImage new]; //UIGraphicsGetImageFromCurrentImageContext();
+                //                UIGraphicsEndImageContext();
+            }
+            [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-MediumItalic" size:12.0]}
+                                    range:cmp];
         }
-        
-      //  cell.lbl_privacy.text = [course_type uppercaseString];
-        
-        NSString *website_url = [temp_dictin valueForKey:@"course_image"];
-        if (website_url)
-        {
-            website_url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,[temp_dictin valueForKey:@"course_image"]];
-            [cell.IMG_courseimage sd_setImageWithURL:[NSURL URLWithString:website_url]
-                                    placeholderImage:[UIImage imageNamed:@"profile_pic.png"]];
-        }
-        
-        cell.IMG_courseimage.layer.cornerRadius = cell.IMG_courseimage.frame.size.width/2;
-        cell.IMG_courseimage.layer.masksToBounds = YES;
-        
-        
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-            [cell setSeparatorInset:UIEdgeInsetsZero];
-        }
-        
-        if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-            [cell setLayoutMargins:UIEdgeInsetsZero];
-        }
-    } @catch (NSException *exception) {
-        NSLog(@"Exception in course detail table cell for row");
+        cell.lbl_courseName.attributedText = attributedText;
+    }
+    else
+    {
+        cell.lbl_courseName.text = text;
     }
     
     
+    cell.lbl_courseName.numberOfLines = 0;
+    [cell.lbl_courseName sizeToFit];
+    
+    cell.IMG_privacy.image = newImage;
+    //cell.lbl_privacy.text = @"";
+    
+    NSString *website_url = [temp_dictin valueForKey:@"course_image"];
+    UIImage *IMG_placeholder;
+    
+    if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"AL"]) {
+        IMG_placeholder = [UIImage imageNamed:@"ALABAMA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"AK"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"ALASKA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"AZ"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"ARIZONA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"AR"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"ARKANSAS"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"CA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"CALIFORNIA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"CO"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"COLORADO"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"CT"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"CONNECTICUT"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"DE"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"DELAWARE"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"FL"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"FLORIDA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"GA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"GEORGIA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"HI"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"HAWAII"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"ID"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"IDAHO"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"IL"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"ILLINOIS"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"IN"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"INDIANA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"IA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"IOWA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"KS"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"KANSAS"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"KY"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"KENTUCKY"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"LA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"LOUISIANA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"ME"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MAINE"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MD"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MARYLAND"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"Massachusetts"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MI"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MICHIGAN"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MN"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MINNESOTA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MS"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MISSISSIPPI"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MO"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MISSOURI"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"MT"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"MONTANA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NE"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NEBRASKA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NV"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NEVADA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NH"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NEWHAMPSHIRE"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NJ"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NEWJERSEY"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NM"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NEWMEXICO"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NY"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NEWYORK"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"NC"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NORTHCAROLINA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"ND"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"NORTHDAKOTA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"OH"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"OHIO"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"OK"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"OKLAHOMA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"OR"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"OREGON"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"PA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"PENNSYLVANIA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"RI"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"RHODEISLAND"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"SC"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"SOUTHCAROLINA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"SD"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"SOUTHDAKOTA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"TN"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"TENNESSEE"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"TX"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"TEXAS"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"UT"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"UTAH"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"VT"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"VERMONT"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"VA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"VIRGINIA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"WA"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"WASHINGTON"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"WV"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"WESTVIRGINIA"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"WI"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"WISCONSIN"];
+    }
+    else if ([[temp_dictin valueForKey:@"state_or_province"] isEqualToString:@"WY"])
+    {
+        IMG_placeholder = [UIImage imageNamed:@"WYOMING"];
+    }
+    else
+    {
+        IMG_placeholder = [UIImage imageNamed:@"WT_default_Course"];
+    }
+    
+    
+    website_url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,[temp_dictin valueForKey:@"course_image"]];
+    [cell.IMG_courseimage sd_setImageWithURL:[NSURL URLWithString:website_url]
+                            placeholderImage:IMG_placeholder];
+    
+    cell.IMG_courseimage.layer.cornerRadius = cell.IMG_courseimage.frame.size.width/2;
+    cell.IMG_courseimage.layer.masksToBounds = YES;
+    
+    //    else
+    //    {
+    //
+    //    }
+    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
     
     return cell;
 }

@@ -49,4 +49,31 @@
 
 @property(nonatomic,weak)IBOutlet UIButton *BTN_edit;
 
+//New changes add Promo
+@property (weak, nonatomic) IBOutlet UIButton *BTN_addPromo;
+@property (weak, nonatomic) IBOutlet UILabel *LBL_arrowPromo;
+@property (weak, nonatomic) IBOutlet UIView *VW_account;
+@property (weak, nonatomic) IBOutlet UITextField *TXT_getpromocode;
+@property (weak, nonatomic) IBOutlet UIButton *BTN_apply;
+@property (weak, nonatomic) IBOutlet UILabel *LBL_coupanCode;
+@property (weak, nonatomic) IBOutlet UIButton *BTN_close;
+
+// New changes use account balence
+@property (weak, nonatomic) IBOutlet UIButton *BTN_useAccount;
+@property (weak, nonatomic) IBOutlet UILabel *LBL_arrowAccount;
+@property (weak, nonatomic) IBOutlet UIView *VW_useAccountt;
+@property (weak, nonatomic) IBOutlet UISwitch *SWITCH_useAccount;
+@property (weak, nonatomic) IBOutlet UILabel *LBL_wallet_bal;
+
+// New content Title items
+@property (weak, nonatomic) IBOutlet UIView *VW_line_promocode;
+@property (weak, nonatomic) IBOutlet UILabel *LBL_titleDiscount;
+@property (weak, nonatomic) IBOutlet UILabel *LBL_dataDiscount;
+@property (weak, nonatomic) IBOutlet UIView *VW_line_wallet;
+@property (weak, nonatomic) IBOutlet UILabel *LBL_titlewallet;
+@property (weak, nonatomic) IBOutlet UILabel *LBL_datawallet;
+
+@property (weak, nonatomic) IBOutlet UIView *VW_line_promo;
+
+
 @end

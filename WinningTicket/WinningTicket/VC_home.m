@@ -753,19 +753,24 @@
 //                    _TXT_3.secureTextEntry = YES;
 //                }
 //                else
-                if(textField == _TXT_5)
+               /* if(textField == _TXT_5)
                 {
                     _BTN_enter_event_code.enabled = YES;
                     _BTN_enter_event_code.alpha = 1.0;
 //                    _TXT_4.secureTextEntry = YES;
-                }
+                }*/
             }
         }
+        
+        if (_TXT_0.text.length != 0 && _TXT_1.text.length != 0 && _TXT_2.text.length != 0 && _TXT_3.text.length != 0 && _TXT_4.text.length != 0 && _TXT_5.text.length != 0) {
+            _BTN_enter_event_code.enabled = YES;
+        }
+        
         return NO;
     }
     else
     {
-        _BTN_enter_event_code.enabled = NO;
+        
 //        _BTN_enter_event_code.alpha = 0.5;
         
         /* This is client feed back */

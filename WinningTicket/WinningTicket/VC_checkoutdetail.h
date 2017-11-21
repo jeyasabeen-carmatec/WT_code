@@ -37,4 +37,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbl_titl_payment_info;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_data_payment_info;
 
+//New code
+@property (weak, nonatomic) IBOutlet UIView *VW_line4;
+@property (weak, nonatomic) IBOutlet UIView *VW_line5;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbl_title_discount;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_data_discount;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbl_title_wallet;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_data_wallet;
+
+
 @end

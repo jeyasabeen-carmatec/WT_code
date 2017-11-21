@@ -15,4 +15,6 @@
 @property (nonatomic,weak) IBOutlet UILabel *lbl_Score;
 @property (nonatomic,weak) IBOutlet UILabel *lbl_Topar;
 
+@property (nonatomic,weak) IBOutlet UILabel *lbl_userID;
+
 @end
