@@ -157,6 +157,13 @@
                 
                 _amount.text = [NSString stringWithFormat:@"$%.2f",[[dict valueForKey:@"price"] floatValue]];
                 
+                _VW_line4.hidden = YES;
+                _VW_line5.hidden = YES;
+                _lbl_title_wallet.hidden = YES;
+                _lbl_title_discount.hidden = YES;
+                _lbl_data_wallet.hidden = YES;
+                _lbl_data_discount.hidden = YES;
+                
                 frame_rect = _amount.frame;
                 frame_rect.origin.y = _name_ticket.frame.origin.y + _name_ticket.frame.size.height + 10;
                 _amount.frame = frame_rect;
@@ -178,14 +185,95 @@
                 frame_rect.origin.y = _sub_amount.frame.origin.y + _sub_amount.frame.size.height + 5;
                 _sec_vw.frame = frame_rect;
                 
+                float discount_val = 0.0f;
+                float wallet_val = 0.0f;
+                NSString *STR_discount = [[NSUserDefaults standardUserDefaults] valueForKey:@"DISCOUNT_STAT"];
+                NSString *STR_wallet = [[NSUserDefaults standardUserDefaults] valueForKey:@"WALLETMONEY"];
+                
+                if (STR_discount) {
+                    _lbl_title_discount.hidden = NO;
+                    _lbl_data_discount.hidden = NO;
+                    _VW_line4.hidden = NO;
+                    
+                    discount_val = [STR_discount floatValue];
+                    
+                    frame_rect = _lbl_title_discount.frame;
+                    frame_rect.origin.y = _sec_vw.frame.origin.y + _sec_vw.frame.size.height + 10;
+                    _lbl_title_discount.frame = frame_rect;
+                    
+                    frame_rect = _lbl_data_discount.frame;
+                    frame_rect.origin.y = _sec_vw.frame.origin.y + _sec_vw.frame.size.height + 10;
+                    _lbl_data_discount.frame = frame_rect;
+                    
+                    _lbl_data_discount.text = [NSString stringWithFormat:@"-$%@",STR_discount];
+                    
+                    frame_rect = _VW_line4.frame;
+                    frame_rect.origin.y = _lbl_title_discount.frame.origin.y + _lbl_title_discount.frame.size.height + 10;
+                    _VW_line4.frame = frame_rect;
+                }
+                
+                if (STR_wallet) {
+                    _lbl_title_wallet.hidden = NO;
+                    _lbl_data_wallet.hidden = NO;
+                    _VW_line5.hidden = NO;
+                    
+                    wallet_val = [STR_wallet floatValue];
+                    
+                    frame_rect = _lbl_title_wallet.frame;
+                    if (_VW_line4.hidden == YES) {
+                        frame_rect.origin.y = _sec_vw.frame.origin.y + _sec_vw.frame.size.height + 10;
+                    }
+                    else
+                    {
+                        frame_rect.origin.y = _VW_line4.frame.origin.y + _VW_line4.frame.size.height + 10;
+                    }
+                    _lbl_title_wallet.frame = frame_rect;
+                    
+                    frame_rect = _lbl_data_wallet.frame;
+                    if (_VW_line4.hidden == YES) {
+                        frame_rect.origin.y = _sec_vw.frame.origin.y + _sec_vw.frame.size.height + 10;
+                    }
+                    else
+                    {
+                        frame_rect.origin.y = _VW_line4.frame.origin.y + _VW_line4.frame.size.height + 10;
+                    }
+                    _lbl_data_wallet.frame = frame_rect;
+                    _lbl_data_wallet.text = [NSString stringWithFormat:@"-$%@",STR_wallet];
+                    
+                    frame_rect = _VW_line5.frame;
+                    frame_rect.origin.y = _lbl_title_wallet.frame.origin.y + _lbl_title_wallet.frame.size.height + 10;
+                    _VW_line5.frame = frame_rect;
+                }
+                
+                
                 frame_rect = _total.frame;
-                frame_rect.origin.y = _sec_vw.frame.origin.y + _sec_vw.frame.size.height + 5;
+                
+                if (_VW_line4.hidden == YES && _VW_line5.hidden == YES) {
+                    frame_rect.origin.y = _sec_vw.frame.origin.y + _sec_vw.frame.size.height + 10;
+                }
+                else if (_VW_line5.hidden == NO && _VW_line4.hidden == YES)
+                {
+                    frame_rect.origin.y = _VW_line5.frame.origin.y + _VW_line5.frame.size.height + 10;
+                }
+                else if (_VW_line5.hidden == YES && _VW_line4.hidden == NO)
+                {
+                    frame_rect.origin.y = _VW_line4.frame.origin.y + _VW_line4.frame.size.height + 10;
+                }
+                else if (_VW_line5.hidden == NO && _VW_line4.hidden == NO)
+                {
+                    frame_rect.origin.y = _VW_line5.frame.origin.y + _VW_line5.frame.size.height + 10;
+                }
+                
                 _total.frame = frame_rect;
                 
-                _total_amount.text = [NSString stringWithFormat:@"$%.2f",[[dict valueForKey:@"price"] floatValue]];
                 frame_rect = _total_amount.frame;
-                frame_rect.origin.y = _sec_vw.frame.origin.y + _sec_vw.frame.size.height + 5;
+                frame_rect.origin.y = _total.frame.origin.y;
                 _total_amount.frame = frame_rect;
+                
+                float val_tot = [[dict valueForKey:@"price"] floatValue];
+                float tot = val_tot - wallet_val - discount_val;
+                
+                _total_amount.text = [NSString stringWithFormat:@"$%.2f",tot];
                 
                 frame_rect = __BTN_Ok.frame;
                 frame_rect.origin.y = _total.frame.origin.y + _total.frame.size.height + 5;
@@ -256,7 +344,7 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:FONT_NAV_TITLE}];
+       NSFontAttributeName:_lbl_nav_font.font}];
     self.navigationItem.title = @"ORDER CONFIRMED";
     
     self.navigationItem.hidesBackButton = YES;

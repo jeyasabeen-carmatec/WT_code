@@ -86,7 +86,7 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:FONT_NAV_TITLE}];
+       NSFontAttributeName:_lbl_font.font}];
     self.navigationItem.title = @"ITEM";
     
     
@@ -635,8 +635,17 @@
                                                attributes:attribs];
         NSRange ename = [text rangeOfString:STR_event_name];
         NSRange cmp = [text rangeOfString:STR_price];
-        NSRange RAN_Bids = [text rangeOfString:STR_Bidcc];
-        NSRange RAN_wat = [text rangeOfString:STR_watche];
+        
+        NSRange RAN_Bids;
+        NSRange RAN_wat;
+        if ([STR_bidSTAT isEqualToString:@"Starting Bid"]) {
+        }
+        else
+        {
+            RAN_Bids = [text rangeOfString:STR_Bidcc];
+            RAN_wat = [text rangeOfString:STR_watche];
+        }
+        
         
         
         
@@ -658,10 +667,16 @@
                                     range:ename];
             [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Bold" size:27.0]}
                                     range:cmp];
-            [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL,NSForegroundColorAttributeName:[UIColor whiteColor]}
-                                    range:RAN_Bids];
-            [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:12.0]}
-                                    range:RAN_wat];
+            if ([STR_bidSTAT isEqualToString:@"Starting Bid"]) {
+            }
+            else
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:_lbl_font_small.font,NSForegroundColorAttributeName:[UIColor whiteColor]}
+                                        range:RAN_Bids];
+                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:12.0]}
+                                        range:RAN_wat];
+            }
+            
         }
         else
         {
@@ -679,15 +694,27 @@
                                     range:ename];
             [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Bold" size:21.0]}
                                     range:cmp];
-            [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL,NSForegroundColorAttributeName:[UIColor whiteColor]}
-                                    range:RAN_Bids];
-            [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:12.0]}
-                                    range:RAN_wat];
+            if ([STR_bidSTAT isEqualToString:@"Starting Bid"]) {
+            }
+            else
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:_lbl_font_small.font,NSForegroundColorAttributeName:[UIColor whiteColor]}
+                                        range:RAN_Bids];
+                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:12.0]}
+                                        range:RAN_wat];
+            }
+            
         }
         
         [attributedText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:cmp];
         paragraphStyle.paragraphSpacing = 0.0f;
-        [attributedText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:RAN_Bids];
+        if ([STR_bidSTAT isEqualToString:@"Starting Bid"]) {
+        }
+        else
+        {
+            [attributedText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:RAN_Bids];
+        }
+        
         
         self.lbl_itemNAME.attributedText = attributedText;
     }
@@ -1630,8 +1657,16 @@
             
         case 2:
         {
-//            UIImage *image=[UIImage imageNamed:@"IMG_0011.PNG"];
-            NSArray *postItems=@[@"Sample text"];
+            NSDictionary *auction_item = [jsonReponse valueForKey:@"auction_item"];
+            NSString *str_share;
+            @try {
+                str_share = [auction_item valueForKey:@"unique_url_key"];
+            } @catch (NSException *exception) {
+                str_share = @"";
+            }
+            
+            NSString *STR_share_URL = [NSString stringWithFormat:@"%@/%@",IMAGE_URL,str_share];
+            NSArray *postItems=@[STR_share_URL];
             
             UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:postItems applicationActivities:nil];
             
@@ -1859,50 +1894,53 @@ self.countdownLabel.text = [NSString stringWithFormat:@"%@/%@/%@ %@:%@:%@", days
         {
             STR_timeRe = [NSString stringWithFormat:@" | %02d S", (int)[breakdownInfo second]];
         }
-        else if ([breakdownInfo day] <= 0 && [breakdownInfo hour] <= 0 && [breakdownInfo minute] <= 0 && [breakdownInfo second] <= 0) {
-            [self Timer_Stopped];
-            [self GETAuction_Item_details];
-        }
-        else
-        {
-            STR_timeRe = [NSString stringWithFormat:@" | %02d D : %02d H : %02d M : %02d S", (int)[breakdownInfo day], (int)[breakdownInfo hour], (int)[breakdownInfo minute], (int)[breakdownInfo second]];
+//        else
+        STR_timeRe = [NSString stringWithFormat:@" | %02d D : %02d H : %02d M : %02d S", (int)[breakdownInfo day], (int)[breakdownInfo hour], (int)[breakdownInfo minute], (int)[breakdownInfo second]];
+        
+        
+        NSString *text = [NSString stringWithFormat:@"%@%@",STR_bidSTAT,STR_timeRe];
+        
+        if ([_lbl_CountDown respondsToSelector:@selector(setAttributedText:)]) {
+            
+            // Define general attributes for the entire text
+            NSDictionary *attribs = @{
+                                      NSForegroundColorAttributeName: _lbl_CountDown.textColor,
+                                      NSFontAttributeName: _lbl_font_normal.font
+                                      };
+            NSMutableAttributedString *attributedText =
+            [[NSMutableAttributedString alloc] initWithString:text
+                                                   attributes:attribs];
+            
+            // Red text attributes
+            //            UIColor *redColor = [UIColor redColor];
+            NSRange cmp = [text rangeOfString:STR_bidSTAT];
             
             
-            NSString *text = [NSString stringWithFormat:@"%@%@",STR_bidSTAT,STR_timeRe];
-            
-            if ([_lbl_CountDown respondsToSelector:@selector(setAttributedText:)]) {
-                
-                // Define general attributes for the entire text
-                NSDictionary *attribs = @{
-                                          NSForegroundColorAttributeName: _lbl_CountDown.textColor,
-                                          NSFontAttributeName: FONT_normal
-                                          };
-                NSMutableAttributedString *attributedText =
-                [[NSMutableAttributedString alloc] initWithString:text
-                                                       attributes:attribs];
-                
-                // Red text attributes
-                //            UIColor *redColor = [UIColor redColor];
-                NSRange cmp = [text rangeOfString:STR_bidSTAT];
-                
-                
-                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-                {
-                    [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL}
-                                            range:cmp];
-                }
-                else
-                {
-                    [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL}
-                                            range:cmp];
-                }
-                _lbl_CountDown.attributedText = attributedText;
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+            {
+                [attributedText setAttributes:@{NSFontAttributeName:_lbl_font_small.font}
+                                        range:cmp];
             }
             else
             {
-                _lbl_CountDown.text = text;
+                [attributedText setAttributes:@{NSFontAttributeName:_lbl_font_small.font}
+                                        range:cmp];
             }
+            _lbl_CountDown.attributedText = attributedText;
         }
+        else
+        {
+            _lbl_CountDown.text = text;
+        }
+        
+        if ([breakdownInfo day] <= 0 && [breakdownInfo hour] <= 0 && [breakdownInfo minute] <= 0 && [breakdownInfo second] <= 0) {
+            [self Timer_Stopped];
+            [self GETAuction_Item_details];
+        }
+//        else
+//        {
+//           
+//        }
     }
 }
 

@@ -37,4 +37,6 @@
 #pragma mark - Swipe cells (collection view)
 @property (nonatomic, retain) IBOutlet UICollectionView *Collection_course;
 
+@property (nonatomic, retain) IBOutlet UILabel *Lbl_font_distance;
+
 @end

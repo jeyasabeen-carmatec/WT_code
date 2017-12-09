@@ -15,7 +15,7 @@
 // An empty implementation adversely affects performance during animation.
  */
 - (void)drawRect:(CGRect)rect {
-    rect = CGRectMake(rect.origin.x + 10, rect.origin.y, rect.size.width, rect.size.height);
+    rect = CGRectMake(rect.origin.x + 10, rect.origin.y, rect.size.width -10, rect.size.height);
     [super drawTextInRect:rect];
 }
 

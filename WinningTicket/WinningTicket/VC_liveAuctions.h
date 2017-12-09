@@ -14,4 +14,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *lbl_NoData;
 @property (nonatomic, retain) IBOutlet UITableView *auctiontab;
 
+@property (nonatomic, retain) IBOutlet UILabel *lbl_nav_font;
+@property (nonatomic, retain) IBOutlet UILabel *lbl_font_small;
+
 @end

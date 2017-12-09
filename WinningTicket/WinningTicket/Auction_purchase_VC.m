@@ -50,6 +50,10 @@
     
     VW_overlay.hidden = YES;
     
+    _lbl_title_acc_BAL.hidden = YES;
+    _lbl_data_acc_BAL.hidden = YES;
+    _VW_line4.hidden = YES;
+    
     [self set_UP_VW];
 }
 
@@ -189,14 +193,50 @@
                 frame_rect.origin.y = _sub_amount.frame.origin.y + _sub_amount.frame.size.height + 5;
                 _sec_vw.frame = frame_rect;
                 
-                frame_rect = _total.frame;
-                frame_rect.origin.y = _sec_vw.frame.origin.y + _sec_vw.frame.size.height + 5;
-                _total.frame = frame_rect;
                 
-                _total_amount.text = [NSString stringWithFormat:@"$%.2f",[amount floatValue]];
-                frame_rect = _total_amount.frame;
-                frame_rect.origin.y = _sec_vw.frame.origin.y + _sec_vw.frame.size.height + 5;
-                _total_amount.frame = frame_rect;
+                NSString *SWITCHSTAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
+                float wallet_money = [[[NSUserDefaults standardUserDefaults] valueForKey:@"wallet_money"] floatValue];
+                
+                if ([SWITCHSTAT isEqualToString:@"SWITCH_ON"] && (wallet_money > 0.00)) {
+                    _lbl_title_acc_BAL.hidden = NO;
+                    _lbl_data_acc_BAL.hidden = NO;
+                    _lbl_data_acc_BAL.text = [NSString stringWithFormat:@"-$%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"wallet_money"]];
+                    _VW_line4.hidden = NO;
+                    
+                    frame_rect = _lbl_title_acc_BAL.frame;
+                    frame_rect.origin.y = _sec_vw.frame.origin.y + _sec_vw.frame.size.height + 10;
+                    _lbl_title_acc_BAL.frame = frame_rect;
+                    
+                    frame_rect = _lbl_data_acc_BAL.frame;
+                    frame_rect.origin.y = _sec_vw.frame.origin.y + _sec_vw.frame.size.height + 10;
+                    _lbl_data_acc_BAL.frame = frame_rect;
+                    
+                    frame_rect = _VW_line4.frame;
+                    frame_rect.origin.y = _lbl_title_acc_BAL.frame.origin.y + _lbl_title_acc_BAL.frame.size.height + 10;
+                    _VW_line4.frame = frame_rect;
+                    
+                    frame_rect = _total.frame;
+                    frame_rect.origin.y = _VW_line4.frame.origin.y + _VW_line4.frame.size.height + 10;
+                    _total.frame = frame_rect;
+                    
+                    frame_rect = _total_amount.frame;
+                    frame_rect.origin.y = _VW_line4.frame.origin.y + _VW_line4.frame.size.height + 10;
+                    _total_amount.frame = frame_rect;
+                }
+                else
+                {
+                    frame_rect = _total.frame;
+                    frame_rect.origin.y = _sec_vw.frame.origin.y + _sec_vw.frame.size.height + 5;
+                    _total.frame = frame_rect;
+                    
+//                    _total_amount.text = [NSString stringWithFormat:@"$%.2f",[amount floatValue]];
+                    frame_rect = _total_amount.frame;
+                    frame_rect.origin.y = _sec_vw.frame.origin.y + _sec_vw.frame.size.height + 5;
+                    _total_amount.frame = frame_rect;
+                }
+                
+                
+                _total_amount.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"total_balance"];
                 
                 frame_rect = __BTN_Ok.frame;
                 frame_rect.origin.y = _total.frame.origin.y + _total.frame.size.height + 5;
@@ -267,7 +307,7 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:FONT_NAV_TITLE}];
+       NSFontAttributeName:_lbl_navFont.font}];
     self.navigationItem.title = @"ORDER CONFIRMED";
     
     self.navigationItem.hidesBackButton = YES;

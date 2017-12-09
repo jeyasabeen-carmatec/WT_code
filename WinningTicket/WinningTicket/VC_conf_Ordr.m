@@ -104,7 +104,7 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:FONT_NAV_TITLE}];
+       NSFontAttributeName:_lbl_nav_font.font}];
     self.navigationItem.title = @"CHECK OUT";
     
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -803,14 +803,14 @@
             total = subtotal - waletMoney;
             difference = subtotal - total;
         }
-               _lbl_acbalance_amount.text = [NSString stringWithFormat:@"-$%.2f",difference];
+        
+        _lbl_acbalance_amount.text = [NSString stringWithFormat:@"-$%.2f",difference];
         price_deduct = total;
         NSString *STR_total = [NSString stringWithFormat:@"$%.2f",total];
         _lbl_dataTotal.text = STR_total;
         
         [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%.2f",total] forKey:@"total_balance"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
+        [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%.2f",difference] forKey:@"wallet_money"];
         [[NSUserDefaults standardUserDefaults] setValue:@"SWITCH_ON" forKey:@"SWITCHSTAT"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         

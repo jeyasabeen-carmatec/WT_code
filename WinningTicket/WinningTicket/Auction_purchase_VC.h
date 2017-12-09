@@ -39,4 +39,10 @@
 
 @property (weak, nonatomic) IBOutlet UIView *VW_head;
 
+@property (weak, nonatomic) IBOutlet UILabel *lbl_navFont;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbl_title_acc_BAL;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_data_acc_BAL;
+@property (weak, nonatomic) IBOutlet UIView *VW_line4;
+
 @end

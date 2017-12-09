@@ -991,7 +991,7 @@
         {
             if ([course_type isEqualToString:@"private"])
             {
-                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.09 green:0.64 blue:0.91 alpha:1.0]}
+                [attributedText setAttributes:@{NSFontAttributeName:_Lbl_font_dist.font,NSForegroundColorAttributeName:[UIColor colorWithRed:0.09 green:0.64 blue:0.91 alpha:1.0]}
                                         range:RAN_miles];
                 
                 // UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
@@ -1003,7 +1003,7 @@
             }
             else if ([course_type isEqualToString:@"public"])
             {
-                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.00 green:0.67 blue:0.20 alpha:1.0]}
+                [attributedText setAttributes:@{NSFontAttributeName:_Lbl_font_dist.font,NSForegroundColorAttributeName:[UIColor colorWithRed:0.00 green:0.67 blue:0.20 alpha:1.0]}
                                         range:RAN_miles];
                 
                 //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
@@ -1014,7 +1014,7 @@
             }
             else
             {
-                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.74 green:0.74 blue:0.75 alpha:1.0]}
+                [attributedText setAttributes:@{NSFontAttributeName:_Lbl_font_dist.font,NSForegroundColorAttributeName:[UIColor colorWithRed:0.74 green:0.74 blue:0.75 alpha:1.0]}
                                         range:RAN_miles];
                 
                 //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
@@ -1031,7 +1031,7 @@
         {
             if ([course_type isEqualToString:@"private"])
             {
-                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.09 green:0.64 blue:0.91 alpha:1.0]}
+                [attributedText setAttributes:@{NSFontAttributeName:_Lbl_font_dist.font,NSForegroundColorAttributeName:[UIColor colorWithRed:0.09 green:0.64 blue:0.91 alpha:1.0]}
                                         range:RAN_miles];
                 
                 //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
@@ -1043,7 +1043,7 @@
             }
             else if ([course_type isEqualToString:@"public"])
             {
-                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.00 green:0.67 blue:0.20 alpha:1.0]}
+                [attributedText setAttributes:@{NSFontAttributeName:_Lbl_font_dist.font,NSForegroundColorAttributeName:[UIColor colorWithRed:0.00 green:0.67 blue:0.20 alpha:1.0]}
                                         range:RAN_miles];
                 
                 //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
@@ -1054,7 +1054,7 @@
             }
             else
             {
-                [attributedText setAttributes:@{NSFontAttributeName:FONT_Distance,NSForegroundColorAttributeName:[UIColor colorWithRed:0.74 green:0.74 blue:0.75 alpha:1.0]}
+                [attributedText setAttributes:@{NSFontAttributeName:_Lbl_font_dist.font,NSForegroundColorAttributeName:[UIColor colorWithRed:0.74 green:0.74 blue:0.75 alpha:1.0]}
                                         range:RAN_miles];
                 
                 //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);

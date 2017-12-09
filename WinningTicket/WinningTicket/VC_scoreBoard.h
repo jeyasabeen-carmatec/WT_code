@@ -30,4 +30,8 @@
 @property (nonatomic,weak) IBOutlet UILabel *lbl_HandicapDesc;
 @property (nonatomic,weak) IBOutlet UIButton *BTN_ContinueHandicap;
 
+@property (nonatomic, retain) IBOutlet UIView *VW_end_Game;
+@property (nonatomic,weak) IBOutlet UIButton *BTN_End_game;
+@property (nonatomic,weak) IBOutlet UIButton *BTN_continue_playing;
+
 @end

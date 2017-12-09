@@ -24,6 +24,7 @@
 @interface VC_scoreBoard ()<UIAlertViewDelegate, KSJActionSocketDelegate>
 {
     NSMutableArray *ARR_holes;
+    NSString *STR_update_handicap;
     UIView *VW_overlay;
     UIActivityIndicatorView *activityIndicatorView;
     NSArray *ARR_displayScore;
@@ -69,13 +70,28 @@
     
     /*Code to add Player list*/
     
+    _VW_end_Game.hidden = YES;
+    
     NSString *STR_url = [NSString stringWithFormat:@"ws://%@",ACTION_CABLE];
     self.actionSocket = [KSJActionSocket socketWithURL:[NSURL URLWithString:STR_url]];
     [self.actionSocket open];
     self.actionSocket.delegate = self;
     
     
-    NSString *text_STR = [NSString stringWithFormat:@"You will have a stroke taken off your gross score for each of the 0 hardest holes on the course."];
+    NSString *text_STR;
+    double VAL_STR = [[[NSUserDefaults standardUserDefaults] valueForKey:@"handicap1"] doubleValue];
+    
+    if (VAL_STR == 0) {
+        text_STR = [NSString stringWithFormat:@"There will be no effect on your gross score."];
+    }
+    else if (VAL_STR < 0) {
+        text_STR = [NSString stringWithFormat:@"You will have a stroke taken off your gross score for each of the -%.f hardest holes on the course.",(0 - VAL_STR)];
+    }
+    else
+    {
+        text_STR = [NSString stringWithFormat:@"You will have a stroke added for each of the %.f easiest holes on the course.",VAL_STR];
+    }
+    
     
     
     UIFont *font = _lbl_HandicapDesc.font;
@@ -120,8 +136,7 @@
     //    paragraphStyle.lineSpacing = 2.0;
     //    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [STR_title length])];
     
-    
-    
+
     CGRect frame_BTN = _BTN_viewonMAP.frame;
     frame_BTN.size.width = (_TBL_scores.frame.size.width / 5) + 20;
     frame_BTN.size.height = (_TBL_scores.frame.size.width / 5) + 20;
@@ -220,6 +235,9 @@
     _BTN_viewonMAP.frame = rect_BTN;
     
     [self.view addSubview:_BTN_viewonMAP];
+    
+    self.segmentedControl4.userInteractionEnabled = NO;
+    _BTN_viewonMAP.userInteractionEnabled = NO;
 }
 #pragma mark - Segment Button IBACTION
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl4
@@ -237,6 +255,9 @@
             
 //            if (VW_overlay.hidden == NO) {
 //                NSLog(@"Index 1");
+            
+            self.expandingIndexPath = nil;
+            self.expandedIndexPath = nil;
             
                 VW_overlay.hidden = NO;
                 [activityIndicatorView startAnimating];
@@ -264,14 +285,60 @@
 #pragma mark - UIButton Actions
 -(void) ACTN_leaveGame
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Leave Game" message:@"Are you sure to leave the game" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok",@"Cancel", nil];
-    alert.tag = 1;
-    [alert show];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Leave Game" message:@"Are you sure to leave the game" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok",@"Cancel", nil];
+//    alert.tag = 1;
+//    [alert show];
+    
+    self.segmentedControl4.userInteractionEnabled = NO;
+    _BTN_viewonMAP.userInteractionEnabled = NO;
+
+    _VW_end_Game.center = self.view.center;
+    _VW_end_Game.layer.cornerRadius = 5.0f;
+    _VW_end_Game.layer.masksToBounds = YES;
+    
+    VW_overlay.hidden= NO;
+    _VW_end_Game.hidden = NO;
+    [VW_overlay addSubview:_VW_end_Game];
+    
+    [_BTN_End_game addTarget:self action:@selector(ACT_leave_game) forControlEvents:UIControlEventTouchUpInside];
+    [_BTN_continue_playing addTarget:self action:@selector(ACT_continue_playing) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+
+-(void) ACT_leave_game
+{
+    NSLog(@"Action leave game tapped");
+    _VW_end_Game.hidden = YES;
+    VW_overlay.hidden = YES;
+    
+    self.segmentedControl4.userInteractionEnabled = YES;
+    _BTN_viewonMAP.userInteractionEnabled = YES;
+    
+    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+-(void) ACT_continue_playing
+{
+    self.segmentedControl4.userInteractionEnabled = YES;
+    _BTN_viewonMAP.userInteractionEnabled = YES;
+    
+    _VW_end_Game.hidden = YES;
+    VW_overlay.hidden = YES;
 }
 -(void) ACTN_viewONMAP
 {
-    NSLog(@"Btn view on map tapped");
+    VW_overlay.hidden = NO;
+    [activityIndicatorView startAnimating];
+    [self performSelector:@selector(load_map_VC) withObject:activityIndicatorView afterDelay:0.01];
+    
 }
+-(void) load_map_VC
+{
+    [self performSegueWithIdentifier:@"scorebordtomapIdentifier" sender:self];
+    [activityIndicatorView stopAnimating];
+    VW_overlay.hidden = YES;
+}
+
 -(void) ACTN_btnPLUS
 {
     NSLog(@"Btn Plus tapped");
@@ -286,14 +353,14 @@
         
         
         if (VAL_STR == 0) {
-            text_STR = [NSString stringWithFormat:@"You will have a stroke taken off your gross score for each of the 0 hardest holes on the course."];
+            text_STR = [NSString stringWithFormat:@"There will be no effect on your gross score."];
         }
         else if (VAL_STR < 0) {
-            text_STR = [NSString stringWithFormat:@"You will have a stroke taken off your gross score for each of the %.f hardest holes on the course.",(0 - VAL_STR)];
+            text_STR = [NSString stringWithFormat:@"You will have a stroke taken off your gross score for each of the -%.f hardest holes on the course.",(0 - VAL_STR)];
         }
         else
         {
-            text_STR = [NSString stringWithFormat:@"You will have a stroke taken off your gross score for each of the -%.f hardest holes on the course.",VAL_STR];
+            text_STR = [NSString stringWithFormat:@"You will have a stroke added for each of the %.f easiest holes on the course.",VAL_STR];
         }
         
         UIFont *font = _lbl_HandicapDesc.font;
@@ -324,14 +391,14 @@
 
         
         if (VAL_STR == 0) {
-            text_STR = [NSString stringWithFormat:@"You will have a stroke taken off your gross score for each of the 0 hardest holes on the course."];
+            text_STR = [NSString stringWithFormat:@"There will be no effect on your gross score."];
         }
         else if (VAL_STR < 0) {
-            text_STR = [NSString stringWithFormat:@"You will have a stroke taken off your gross score for each of the %.f hardest holes on the course.",(0 - VAL_STR)];
+            text_STR = [NSString stringWithFormat:@"You will have a stroke taken off your gross score for each of the -%.f hardest holes on the course.",(0 - VAL_STR)];
         }
         else
         {
-            text_STR = [NSString stringWithFormat:@"You will have a stroke taken off your gross score for each of the -%.f hardest holes on the course.",VAL_STR];
+            text_STR = [NSString stringWithFormat:@"You will have a stroke added for each of the %.f easiest holes on the course.",VAL_STR];
         }
         
         UIFont *font = _lbl_HandicapDesc.font;
@@ -349,6 +416,8 @@
 }
 -(void) ACTN_continueHandicap
 {
+    self.segmentedControl4.userInteractionEnabled = YES;
+    _BTN_viewonMAP.userInteractionEnabled = YES;
     NSLog(@"Btn handicap continue tapped");
     _VW_selectHANDICAP.hidden = YES;
     VW_overlay.hidden = NO;
@@ -393,6 +462,8 @@
                 }
                 cell = [nib objectAtIndex:0];
             }
+            
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             return cell;
         }
         else
@@ -1247,9 +1318,32 @@
                         cell.lbl_result_PAR.text = @"Par 0";
                     }
                     
+                    NSString *STR_position;
+                    @try {
+                        STR_position = [dictin_Scores valueForKey:@"position"];
+                    } @catch (NSException *exception) {
+                        STR_position = @"";
+                    }
+                    
+                    
+                    
                     cell.lbl_result_score.text = [NSString stringWithFormat:@"Score %.0f/%.0f",DBL_totSCR,DBL_totNet];
-                    cell.lbl_result_position.text = [NSString stringWithFormat:@"Pos T-%d",(int)indexPath.row -1];
-                    cell.lbl_result_hcp.text = [NSString stringWithFormat:@"HCP - %@",_TXT_Handicap.text];
+                    cell.lbl_result_position.text = [NSString stringWithFormat:@"Pos T-%@",STR_position];
+                    
+                    float handicap = [STR_update_handicap floatValue];
+                    if (handicap > 0) {
+                        STR_update_handicap = [NSString stringWithFormat:@"+%.0f",handicap];
+                    }
+                    else if (handicap == 0)
+                    {
+                        STR_update_handicap = [NSString stringWithFormat:@"%.0f",handicap];
+                    }
+                    else
+                    {
+                        STR_update_handicap = [NSString stringWithFormat:@"%.0f",handicap];
+                    }
+                    
+                    cell.lbl_result_hcp.text = [NSString stringWithFormat:@"HCP %@",STR_update_handicap];
                     
 //                    if (DBL_totSCR != 0) {
 //                        cell.lbl_result_score.text = [NSString stringWithFormat:@"Score %.0f",DBL_totSCR];
@@ -2308,6 +2402,7 @@
                     }
                 }
                 
+                [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                 
                 return cell;
             }
@@ -2332,25 +2427,95 @@
                 
                 NSIndexPath *theIndexPath = [self actualIndexPathForTappedIndexPath:indexPath];
                 NSDictionary *Dictn_contents = [ARR_leaders objectAtIndex:[theIndexPath row]-1];
+                NSDictionary *Nextval;
+                float cur_position = [[Dictn_contents valueForKey:@"user_position"] floatValue];
+                float next_posi = 0.00;
+                
+                NSString *STR_position_val;
+                
+                if ([theIndexPath row] -1 == 0) {
+                    if ([ARR_leaders count] > 1) {
+                        Nextval = [ARR_leaders objectAtIndex:[theIndexPath row]];
+                    }
+                }
+                else
+                {
+                    Nextval = [ARR_leaders objectAtIndex:[theIndexPath row]-2];
+                }
+                
+                /*else
+                {
+                    if ([ARR_leaders count] > 1) {
+                        Nextval = [ARR_leaders objectAtIndex:[theIndexPath row]-1];
+                    }
+                }*/
+                
+                if (Nextval) {
+                    next_posi = [[Nextval valueForKey:@"user_position"] floatValue];
+                }
+                
+                if (cur_position == next_posi) {
+                    STR_position_val = @"-";
+                }
+                else
+                {
+                    STR_position_val = [NSString stringWithFormat:@"%.0f",cur_position];
+                }
 
-                cell.lbl_Position.text = [NSString stringWithFormat:@" %ld",(long)[theIndexPath row]];
+                cell.lbl_Position.text = STR_position_val;
                 cell.lbl_playerNAme.text = [NSString stringWithFormat:@"  %@",[Dictn_contents valueForKey:@"user_name"]];
                 
                 NSString *str_01,*STR_02;
                 
-                STR_02 = [NSString stringWithFormat:@" %@",[Dictn_contents valueForKey:@"total_score"]];
+                STR_02 = [NSString stringWithFormat:@" %@",[Dictn_contents valueForKey:@"total_net_score"]];
                 STR_02 = [STR_02 stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                 
-                cell.lbl_Score.text = STR_02;
+                cell.lbl_Score.text = [NSString stringWithFormat:@"%@",STR_02];
                 
                 
-                str_01 = [NSString stringWithFormat:@" %@",[Dictn_contents valueForKey:@"total_net_score"]];
-                str_01 = [str_01 stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                 
-                cell.lbl_Topar.text = str_01;
+                
+                @try {
+                    str_01 = [Dictn_contents valueForKey:@"total_score"];
+                    
+                    int Temp_val = [str_01 intValue];
+                    if (Temp_val == 0) {
+                        str_01 = @"E";
+                    }
+                    else if (Temp_val > 0)
+                    {
+                        str_01 = [NSString stringWithFormat:@"+%@",[Dictn_contents valueForKey:@"total_score"]];
+                    }
+                } @catch (NSException *exception) {
+                    str_01 = @"E";
+                }
+             
+                
+                cell.lbl_Topar.text = [NSString stringWithFormat:@"%@",str_01];
                 
                 
                 cell.lbl_userID.text = [NSString stringWithFormat:@" %@",[Dictn_contents valueForKey:@"user_id"]];
+                
+                if (indexPath.row == 1)
+                {
+                    cell.lbl_playerNAme.textColor = [UIColor colorWithRed:0.00 green:0.61 blue:0.02 alpha:1.0];
+                    cell.lbl_Topar.textColor = [UIColor colorWithRed:0.00 green:0.61 blue:0.02 alpha:1.0];
+                    cell.lbl_Score.textColor = [UIColor colorWithRed:0.00 green:0.61 blue:0.02 alpha:1.0];
+                }
+                
+                
+                if ((indexPath.row + 1) % 2 == 0)
+                {
+                    cell.lbl_Position.backgroundColor = [UIColor colorWithRed:0.01 green:0.69 blue:0.87 alpha:1.0];
+                    cell.lbl_playerNAme.backgroundColor = [UIColor colorWithRed:1.00 green:1.00 blue:1.00 alpha:1.0];
+                    cell.lbl_Score.backgroundColor = [UIColor colorWithRed:0.89 green:0.89 blue:0.89 alpha:1.0];
+                    cell.lbl_Topar.backgroundColor = [UIColor colorWithRed:0.78 green:0.78 blue:0.78 alpha:1.0];
+                } else {
+                    cell.lbl_Position.backgroundColor = [UIColor colorWithRed:0.01 green:0.58 blue:0.69 alpha:1.0];
+                    cell.lbl_playerNAme.backgroundColor = [UIColor colorWithRed:0.89 green:0.90 blue:0.90 alpha:1.0];
+                    cell.lbl_Score.backgroundColor = [UIColor colorWithRed:0.78 green:0.78 blue:0.78 alpha:1.0];
+                    cell.lbl_Topar.backgroundColor = [UIColor colorWithRed:0.66 green:0.66 blue:0.66 alpha:1.0];
+                }
                 
                 return cell;
             }
@@ -2393,6 +2558,9 @@
             
             if (!STR_HCP) {
                 STR_HCP = @"";
+            }
+            else{
+                STR_HCP = [NSString stringWithFormat:@"HCP %@",STR_HCP];
             }
             
             if (!STR_total) {
@@ -2567,6 +2735,7 @@
             
             if ([[[ARR_color objectAtIndex:indexPath.row-1] valueForKey:@"color"] isEqualToString:@"blue"]) {
                 cell.lbl_gross_score.backgroundColor = cell.lbl_hole.backgroundColor;
+                cell.lbl_gross_score.textColor = [UIColor whiteColor];
                 [cell setSelected:YES animated:YES];
             }
             
@@ -2846,26 +3015,31 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSDictionary *DICTN_info = [ARR_holes objectAtIndex:INdex_Selected.row - 1];
-    
-    
-    for (int i = 0; i < [ARR_holes count]; i++) {
-        NSDictionary *dictin_TEMP = @{@"color":@"",@"index":@""};
-        if ([[[ARR_color objectAtIndex:i] valueForKey:@"color"] isEqualToString:@"blue"]) {
-            [ARR_color replaceObjectAtIndex:i withObject:dictin_TEMP];
-            
-            [_TBL_scores beginUpdates];
-            NSArray *indexPathArray = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:i+1 inSection:0]];
-            [_TBL_scores reloadRowsAtIndexPaths:indexPathArray withRowAnimation:UITableViewRowAnimationFade];
-            [_TBL_scores endUpdates];
+    if (![[segue identifier] isEqualToString:@"scorebordtomapIdentifier"])
+    {
+        NSDictionary *DICTN_info = [ARR_holes objectAtIndex:INdex_Selected.row - 1];
+        
+        
+        for (int i = 0; i < [ARR_holes count]; i++) {
+            NSDictionary *dictin_TEMP = @{@"color":@"",@"index":@""};
+            if ([[[ARR_color objectAtIndex:i] valueForKey:@"color"] isEqualToString:@"blue"]) {
+                [ARR_color replaceObjectAtIndex:i withObject:dictin_TEMP];
+                
+                [_TBL_scores beginUpdates];
+                NSArray *indexPathArray = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:i+1 inSection:0]];
+                [_TBL_scores reloadRowsAtIndexPaths:indexPathArray withRowAnimation:UITableViewRowAnimationFade];
+                [_TBL_scores endUpdates];
+            }
         }
+        
+        
+        
+        VC_score_update *vc = segue.destinationViewController;
+        vc.STR_parSTR = [DICTN_info valueForKey:@"par"];
+        vc.STR_holeSTR = [DICTN_info valueForKey:@"position"];
+        vc.STR_playernameSTR = [DICTIN_PlayerINfo valueForKey:@"STR_playerName"];
+        vc.delegate = self;
     }
-
-    
-    
-    VC_score_update *vc = segue.destinationViewController;
-    vc.STR_parSTR = [DICTN_info valueForKey:@"par"];
-    vc.delegate = self;
 }
 
 
@@ -3014,7 +3188,7 @@
     
     NSDictionary *DICTN_info = [ARR_holes objectAtIndex:INdex_Selected.row - 1];
     
-    NSDictionary *parameters = @{ @"hole_number":[DICTN_info valueForKey:@"position"],@"gross_score":  STR_scoreVAL};
+    NSDictionary *parameters = @{ @"hole_number":[DICTN_info valueForKey:@"position"],@"gross_score":  STR_scoreVAL,@"handicap":[DICTIN_PlayerINfo valueForKey:@"STR_HCP"]};
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
     
     NSURL *urlProducts=[NSURL URLWithString:[NSString stringWithFormat:@"%@hole_info/gross_score/%@",SERVER_URL,[event valueForKey:@"id"]]];
@@ -3105,7 +3279,7 @@
         ARR_leaders = [[NSMutableArray alloc] init];
         [ARR_leaders addObjectsFromArray:[dict valueForKey:@"leader_board"]];
         
-        [ARR_leaders sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"total_score" ascending:YES]]];
+//        [ARR_leaders sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"total_score" ascending:YES]]];
         
         if ([ARR_leaders count] != 0) {
             [_TBL_leaderboard reloadData];
@@ -3155,10 +3329,11 @@
         dictin_Scores = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
         NSLog(@"Dictin score api = %@",dictin_Scores);
         
+        STR_update_handicap = [dictin_Scores valueForKey:@"handicap"];
+        
     }
     else
     {
-        
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection Failed" message:@"Please retry" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
     }
@@ -3306,6 +3481,8 @@
         
         NSString *jsonDictionary = (NSString *)aData;
         
+//        NSLog(@"Json dictin live %@",jsonDictionary);
+        
         NSData *jsonData = [jsonDictionary dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
                                                              options:NSJSONReadingMutableContainers
@@ -3338,6 +3515,13 @@
                     else
                     {
                         NSLog(@"Update Required Json respon %@",json);
+                        
+                        @try {
+                            STR_update_handicap = [json valueForKey:@"handicap"];
+                        } @catch (NSException *exception) {
+                            STR_update_handicap = _TXT_Handicap.text;
+                        }
+        
                         if (_TBL_leaderboard.hidden == NO)
                         {
                             dispatch_async(dispatch_get_main_queue(), ^{
@@ -3348,29 +3532,44 @@
                                 NSString *STR_jsonUSer = [json valueForKey:@"user_id"];
                                 int jsonUSer = [STR_jsonUSer intValue];
                                 
+                                NSArray *ARR_tem;
+                                NSMutableArray *hole_array = [[NSMutableArray alloc] init];
                                 if (dictin_Scores) {
-                                    if (usr_id == jsonUSer)
+                                    if (usr_id == jsonUSer) //(dictin_Scores) //
                                     {
                                         NSLog(@"Score update");
-                                        NSMutableArray *hole_array = [[NSMutableArray alloc] init];
+                                        
                                         
                                         NSString *STR_index = [json valueForKey:@"hole_number"];
                                         int index = [STR_index intValue];
                                         
-                                        [hole_array addObjectsFromArray:[dictin_Scores valueForKey:@"hole_array"]];
-                                        
-                                        NSString *gross_score = [json valueForKey:@"gross_score"];
-                                        NSString *handicap = [[hole_array objectAtIndex:index-1] valueForKey:@"handicap"];
-                                        NSString *net_score = [json valueForKey:@"net_score"];
-                                        NSString *par = [[hole_array objectAtIndex:index-1] valueForKey:@"par"];
-                                        NSString *position = [NSString stringWithFormat:@"%d",index];
-                                        NSString *yards = [[hole_array objectAtIndex:index-1] valueForKey:@"yards"];
-                                        
-                                        NSDictionary *dictin_temp = @{@"gross_score":gross_score,@"handicap":handicap,@"net_score":net_score,@"par":par,@"position":position,@"yards":yards};
-                                        [hole_array replaceObjectAtIndex:index-1 withObject:dictin_temp];
-                                        [dictin_Scores setObject:hole_array forKey:@"hole_array"];
-                                        
-                                        NSLog(@"Mutable dictionary Scores %@",dictin_Scores);
+                                        @try {
+                                            ARR_tem = [json valueForKey:@"hole_array"];
+                                            [dictin_Scores setObject:ARR_tem forKey:@"hole_array"];
+                                            STR_update_handicap = [json valueForKey:@"handicap"];
+                                        } @catch (NSException *exception) {
+                                            NSString *STR_position;
+                                            
+                                            @try {
+                                                STR_position = [json valueForKey:@"position"];
+                                            } @catch (NSException *exception) {
+                                                STR_position = @"0";
+                                            }
+                                            
+                                            [hole_array addObjectsFromArray:[dictin_Scores valueForKey:@"hole_array"]];
+                                            
+                                            NSString *gross_score = [json valueForKey:@"gross_score"];
+                                            NSString *handicap = [[hole_array objectAtIndex:index-1] valueForKey:@"handicap"];
+                                            NSString *net_score = [json valueForKey:@"net_score"];
+                                            NSString *par = [[hole_array objectAtIndex:index-1] valueForKey:@"par"];
+                                            NSString *position = [NSString stringWithFormat:@"%d",index];
+                                            NSString *yards = [[hole_array objectAtIndex:index-1] valueForKey:@"yards"];
+                                            
+                                            NSDictionary *dictin_temp = @{@"gross_score":gross_score,@"handicap":handicap,@"net_score":net_score,@"par":par,@"position":position,@"yards":yards};
+                                            [hole_array replaceObjectAtIndex:index-1 withObject:dictin_temp];
+                                            [dictin_Scores setObject:hole_array forKey:@"hole_array"];
+                                            [dictin_Scores setObject:STR_position forKey:@"position"];
+                                        }
                                         
                                         dispatch_async(dispatch_get_main_queue(), ^{
                                             [self.TBL_leaderboard beginUpdates];
@@ -3382,75 +3581,99 @@
                                 }
                             });
                             
-                            static NSString *simpleTableIdentifier = @"SimpleTableItem";
-                            cell_player *cell = (cell_player *)[_TBL_leaderboard dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-                            if (cell == nil)
-                            {
-                                
-                                NSArray *nib;
-                                if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-                                {
-                                    nib = [[NSBundle mainBundle] loadNibNamed:@"cell_player~iPad" owner:self options:nil];
-                                }
-                                else
-                                {
-                                    nib = [[NSBundle mainBundle] loadNibNamed:@"cell_player" owner:self options:nil];
-                                }
-                                cell = [nib objectAtIndex:0];
-                            }
                             
-                            UITableView *tableview = self.TBL_leaderboard;    //set your tableview here
-                            for(int sectionI=0; sectionI < 1; sectionI++) {
-                                int rowCount = (int)[tableview numberOfRowsInSection:sectionI];
-                                for (int rowsI=0; rowsI < rowCount; rowsI++) {
-                                    NSIndexPath *indxPath = [NSIndexPath indexPathForRow:rowsI inSection:sectionI];
-                                    
-                                    @try {
-                                        cell = (cell_player *)[_TBL_leaderboard cellForRowAtIndexPath:indxPath];
-                                        NSString *user_id = cell.lbl_userID.text;
-                                        int usr_id = [user_id intValue];
+                            @try {
+                                NSDictionary *DICTIN_playerdetail = [json valueForKey:@"leader_board_details"];
+                                [ARR_leaders addObject:DICTIN_playerdetail];
+                                
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    self.expandingIndexPath = nil;
+                                    self.expandedIndexPath = nil;
+                                    [self.TBL_leaderboard reloadData];
+                                });
+                                
+                            }
+                            @catch (NSException *exception)
+                            {
+                                NSLog(@"Exception add new person %@",exception);
+                                @try {
+                                    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+                                    cell_player *cell = (cell_player *)[_TBL_leaderboard dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+                                    if (cell == nil)
+                                    {
                                         
-                                        NSString *STR_jsonUSer = [json valueForKey:@"user_id"];
-                                        int jsonUSer = [STR_jsonUSer intValue];
-                                        
-                                        if (usr_id == jsonUSer) {
-                                            NSInteger i = [self returnIndexFromDateProperty:[json valueForKey:@"user_id"]];
-                                            NSDictionary *temp_dictin = [ARR_leaders objectAtIndex:i];
-                                            NSString *user_id1 = [json valueForKey:@"user_id"];
-                                            NSString *user_name = [temp_dictin valueForKey:@"user_name"];
-                                            NSString *total_score = [json valueForKey:@"total_score"];
-                                            NSString *total_net_score;
-                                            
-                                            @try {
-                                                total_net_score = [json valueForKey:@"total_net_score"];
-                                            } @catch (NSException *exception) {
-                                                total_net_score = [json valueForKey:@"total_score"];
-                                            }
-                                            
-                                            NSDictionary *store_dictin = @{@"total_net_score":total_net_score,@"total_score":total_score,@"user_id":user_id1,@"user_name":user_name};
-                                            [ARR_leaders replaceObjectAtIndex:i withObject:store_dictin];
-                                            
-                                            dispatch_async(dispatch_get_main_queue(), ^{
-                                                [self.TBL_leaderboard beginUpdates];
-                                                NSArray *indexPath0 = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:indxPath.row inSection:0]];
-                                                [self.TBL_leaderboard reloadRowsAtIndexPaths:indexPath0 withRowAnimation:UITableViewRowAnimationNone];
-                                                [self.TBL_leaderboard endUpdates];
-                                            });
+                                        NSArray *nib;
+                                        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+                                        {
+                                            nib = [[NSBundle mainBundle] loadNibNamed:@"cell_player~iPad" owner:self options:nil];
                                         }
-                                        
-                                    } @catch (NSException *exception) {
-                                        NSLog(@"Exception cell leader %@",exception);
+                                        else
+                                        {
+                                            nib = [[NSBundle mainBundle] loadNibNamed:@"cell_player" owner:self options:nil];
+                                        }
+                                        cell = [nib objectAtIndex:0];
                                     }
                                     
+                                    UITableView *tableview = self.TBL_leaderboard;    //set your tableview here
+                                    for(int sectionI=0; sectionI < 1; sectionI++)
+                                    {
+                                        int rowCount = (int)[tableview numberOfRowsInSection:sectionI];
+                                        for (int rowsI=1; rowsI < rowCount; rowsI++)
+                                        {
+                                            NSIndexPath *indxPath = [NSIndexPath indexPathForRow:rowsI inSection:sectionI];
+                                            cell = (cell_player *)[_TBL_leaderboard cellForRowAtIndexPath:indxPath];
+                                            NSString *user_id = cell.lbl_userID.text;
+                                            int usr_id = [user_id intValue];
+                                            
+                                            NSString *STR_jsonUSer = [json valueForKey:@"user_id"];
+                                            int jsonUSer = [STR_jsonUSer intValue];
+                                            
+                                            if (usr_id == jsonUSer) {
+                                                NSInteger i = [self returnIndexFromDateProperty:[json valueForKey:@"user_id"]];
+                                                NSDictionary *temp_dictin = [ARR_leaders objectAtIndex:i];
+                                                NSString *user_id1 = [json valueForKey:@"user_id"];
+                                                NSString *user_name = [temp_dictin valueForKey:@"user_name"];
+                                                NSString *total_score = [json valueForKey:@"total_score"];
+                                                NSString *total_net_score;
+                                                
+                                                //                                            if ([total_score isEqualToString:@"0"]) {
+                                                //                                                total_score = @"0";
+                                                //                                            }
+                                                //
+                                                //                                            if (![total_score containsString:@"-"]) {
+                                                //                                                total_score = [NSString stringWithFormat:@"+%@",[json valueForKey:@"total_score"]];
+                                                //                                            }
+                                                
+                                                @try {
+                                                    total_net_score = [json valueForKey:@"total_net_score"];
+                                                } @catch (NSException *exception) {
+                                                    total_net_score = [json valueForKey:@"total_score"];
+                                                }
+                                                
+                                                NSDictionary *store_dictin = @{@"total_net_score":total_net_score,@"total_score":total_score,@"user_id":user_id1,@"user_name":user_name};
+                                                [ARR_leaders replaceObjectAtIndex:i withObject:store_dictin];
+                                                
+                                                
+                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                    [self.TBL_leaderboard beginUpdates];
+                                                    NSArray *indexPath0 = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:indxPath.row inSection:0]];
+                                                    [self.TBL_leaderboard reloadRowsAtIndexPaths:indexPath0 withRowAnimation:UITableViewRowAnimationNone];
+                                                    [self.TBL_leaderboard endUpdates];
+                                                });
+                                            }
+                                        }
+                                    }
+                                } @catch (NSException *exception) {
+                                    NSLog(@"Exception from update players %@",json);
                                 }
                             }
                         }
-                        
                     }
                 }
             }
-            @catch (NSException *exception) {
-                NSLog(@"Exception from socket %@",json);
+            @catch (NSException *exception)
+            {
+                NSLog(@"Exception json response%@",exception);
             }
         }
     }
@@ -3483,31 +3706,47 @@
 - (void)actionSocket:(KSJActionSocket *)socket failedWithError:(NSError *)error
 {
     NSLog(@"Socket Closed %@",error);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket closed condition" message:[NSString stringWithFormat:@"%@",error] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",@"Reconnect", nil];
-    alert.tag = 2;
-    [alert show];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket closed condition" message:[NSString stringWithFormat:@"%@",error] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",@"Reconnect", nil];
+//    alert.tag = 2;
+//    [alert show];
     
-//    @try {
-//        [self.actionSocket close];
-//        [self.actionSocket open];
-//    } @catch (NSException *exception) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket closed" message:[NSString stringWithFormat:@"%@",exception] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-//        [alert show];
-//    }
+    [self.actionSocket close];
+    self.actionSocket.delegate = Nil;
+    
+    NSString *STR_url = [NSString stringWithFormat:@"ws://%@",ACTION_CABLE];
+    self.actionSocket = [KSJActionSocket socketWithURL:[NSURL URLWithString:STR_url]];
+    self.actionSocket.delegate = self;
+    [self.actionSocket open];
     
 }
 - (void)actionSocket:(KSJActionSocket *)socket closedWithCode:(NSInteger)code reason:(NSString *)reason
 {
     NSLog(@"Error response %@",reason);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket closed condition" message:[NSString stringWithFormat:@"%@",reason] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",@"Reconnect", nil];
-    alert.tag = 3;
-    [alert show];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket closed condition" message:[NSString stringWithFormat:@"%@",reason] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",@"Reconnect", nil];
+//    alert.tag = 3;
+//    [alert show];
+    
+    [self.actionSocket close];
+    self.actionSocket.delegate = Nil;
+    
+    NSString *STR_url = [NSString stringWithFormat:@"ws://%@",ACTION_CABLE];
+    self.actionSocket = [KSJActionSocket socketWithURL:[NSURL URLWithString:STR_url]];
+    self.actionSocket.delegate = self;
+    [self.actionSocket open];
+    
 }
 -(void)actionSocket:(KSJActionSocket *)socket closedWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean
 {
     NSLog(@"Socket cloased response %@",reason);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket closed condition" message:[NSString stringWithFormat:@"%@",reason] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",@"Reconnect", nil];
-    alert.tag = 4;
-    [alert show];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket closed condition" message:[NSString stringWithFormat:@"%@",reason] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",@"Reconnect", nil];
+//    alert.tag = 4;
+//    [alert show];
+    [self.actionSocket close];
+    self.actionSocket.delegate = Nil;
+    
+    NSString *STR_url = [NSString stringWithFormat:@"ws://%@",ACTION_CABLE];
+    self.actionSocket = [KSJActionSocket socketWithURL:[NSURL URLWithString:STR_url]];
+    self.actionSocket.delegate = self;
+    [self.actionSocket open];
 }
 @end

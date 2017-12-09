@@ -110,7 +110,7 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:FONT_NAV_TITLE}];
+       NSFontAttributeName:_lbl_nav_font.font}];
     self.navigationItem.title = @"EVENT DETAIL";
 }
 
@@ -275,9 +275,13 @@
             frame_NN.origin.y = _lbl_eventdetail.frame.origin.y + final_Y;
             _lbl_location.frame = frame_NN;
             
+            [_BTN_viewTKT addTarget:self action:@selector(view_ticket) forControlEvents:UIControlEventTouchUpInside];
+            
             frame_HT = _BTN_viewTKT.frame;
             frame_HT.origin.y = _VW_eventcontent.frame.origin.y + _VW_eventcontent.frame.size.height + 10;
             _BTN_viewTKT.frame = frame_HT;
+            
+            [_BTN_giftBAG addTarget:self action:@selector(View_virtualBAg) forControlEvents:UIControlEventTouchUpInside];
             
             frame_HT = _BTN_giftBAG.frame;
             frame_HT.origin.y = _BTN_viewTKT.frame.origin.y + _BTN_viewTKT.frame.size.height + 10;
@@ -416,6 +420,31 @@
 }
 
 #pragma mark - Button Methods
+-(void) View_virtualBAg
+{
+    VW_overlay.hidden = NO;
+    [activityIndicatorView startAnimating];
+    [self performSelector:@selector(goto_VCvirtualBAG) withObject:activityIndicatorView afterDelay:0.01];
+}
+-(void) goto_VCvirtualBAG
+{
+    [activityIndicatorView stopAnimating];
+    VW_overlay.hidden = YES;
+    [self performSegueWithIdentifier:@"orderdetailtoVirtualbaglist" sender:self];
+}
+
+-(void) view_ticket
+{
+    VW_overlay.hidden = NO;
+    [activityIndicatorView startAnimating];
+    [self performSelector:@selector(goto_ticketDetail) withObject:activityIndicatorView afterDelay:0.01];
+}
+-(void) goto_ticketDetail
+{
+    [activityIndicatorView stopAnimating];
+    VW_overlay.hidden = YES;
+    [self performSegueWithIdentifier:@"ordertoTicketdetail" sender:self];
+}
 -(void)live_score_page
 {
 
@@ -448,7 +477,7 @@
 //    NSDictionary *parameters = @{ @"handicap":  [NSString stringWithFormat:@"%@",_TXT_Handicap.text]};
 //    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
     
-    NSURL *urlProducts=[NSURL URLWithString:[NSString stringWithFormat:@"%@hole_info/check_hole_info/%@",SERVER_URL,[event valueForKey:@"id"]]];
+    NSURL *urlProducts=[NSURL URLWithString:[NSString stringWithFormat:@"%@hole_info/check_event_live/%@",SERVER_URL,[event valueForKey:@"id"]]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:urlProducts];
     [request setHTTPMethod:@"POST"];
@@ -463,15 +492,81 @@
     if(aData)
     {
         dict1 = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
-        NSLog(@"Json response check Game stat VC Order detail = %@",dict1);
+        NSLog(@"Json response event is live = %@",dict1);
+        
+        [activityIndicatorView stopAnimating];
+        VW_overlay.hidden = YES;
         
         @try {
-            [[NSUserDefaults standardUserDefaults] setObject:[dict1 valueForKey:@"handicap"] forKey:@"handicap1"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            if ([[dict1 valueForKey:@"event_status"] isEqualToString:@"live"]) {
+                [self get_EVENT_holes];
+            }
+            else if ([[dict1 valueForKey:@"event_status"] isEqualToString:@"upcoming"]) {
+                
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Event is Upcoming" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+                [alert show];
+            }
+            else if ([[dict1 valueForKey:@"event_status"] isEqualToString:@"closed"])
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Event is Closed" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+                [alert show];
+            }
+            
         } @catch (NSException *exception) {
-            [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"handicap1"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection error" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+            [alert show];
         }
+    }
+    else
+    {
+        [activityIndicatorView stopAnimating];
+        VW_overlay.hidden = YES;
+        
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection error" message:@"" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [alert show];
+    }
+}
+-(void) get_EVENT_holes
+{
+    NSError *error;
+    NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"upcoming_events"] options:NSASCIIStringEncoding error:&error];
+    
+    NSDictionary *event = [dict valueForKey:@"event"];
+    
+    NSHTTPURLResponse *response = nil;
+    
+    //    NSDictionary *parameters = @{ @"handicap":  [NSString stringWithFormat:@"%@",_TXT_Handicap.text]};
+    //    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
+    
+    NSURL *urlProducts=[NSURL URLWithString:[NSString stringWithFormat:@"%@hole_info/check_hole_info/%@",SERVER_URL,[event valueForKey:@"id"]]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:urlProducts];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPShouldHandleCookies:NO];
+    NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+    //    [request setHTTPBody:postData];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    
+    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSMutableDictionary *dict1;
+    if(aData)
+    {
+        dict1 = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
+        NSLog(@"Json response check Game stat VC Order detail = %@",dict1);
+        
+        NSString *STR_handicap = [NSString stringWithFormat:@"%@",[dict1 valueForKey:@"handicap"]];
+        STR_handicap = [STR_handicap stringByReplacingOccurrencesOfString:@"<null>" withString:@"0"];
+        STR_handicap = [STR_handicap stringByReplacingOccurrencesOfString:@"(null)" withString:@"0"];
+        
+//        @try {
+            [[NSUserDefaults standardUserDefaults] setObject:STR_handicap forKey:@"handicap1"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+//        } @catch (NSException *exception) {
+//            [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"handicap1"];
+//            [[NSUserDefaults standardUserDefaults] synchronize];
+//        }
     }
     else
     {

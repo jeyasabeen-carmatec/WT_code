@@ -11,6 +11,7 @@
 //#import "DejalActivityView.h"
 //#import "DGActivityIndicatorView.h"
 #import "ViewController.h"
+#import "UIView+Toast.h"
 
 @interface VC_qty_detail ()
 {
@@ -89,7 +90,7 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:FONT_NAV_TITLE}];
+       NSFontAttributeName:_lbl_nav_font.font}];
     self.navigationItem.title = @"ADD RECIPIENTS";
 }
 
@@ -137,11 +138,17 @@
                     NSLog(@"path  = %@",path);
                     pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
                     [pu_cell.fname becomeFirstResponder];
-                    [pu_cell.fname showError];
-                    [pu_cell.fname showErrorWithText:@" First name minimum 2 characters"];
+//                    [pu_cell.fname showError];
+//                    [pu_cell.fname showErrorWithText:@" First name minimum 2 characters"];
+                    
+                    [self.navigationController.view makeToast:@"First name minimum 2 characters"
+                                                     duration:2.0
+                                                     position:CSToastPositionCenter];
+                    
                     break;
                 }
             }
+            
             if (lname.length < 2)
             {
                 if([lname isEqual:@""])
@@ -155,8 +162,11 @@
                     NSLog(@"path  = %@",path);
                     pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
                     [pu_cell.lname becomeFirstResponder];
-                    [pu_cell.lname showError];
-                    [pu_cell.lname showErrorWithText:@" Last name minimum 2 Character"];
+//                    [pu_cell.lname showError];
+//                    [pu_cell.lname showErrorWithText:@" Last name minimum 2 Character"];
+                    [self.navigationController.view makeToast:@"Last name minimum 2 Character"
+                                                     duration:2.0
+                                                     position:CSToastPositionCenter];
                     break;
                 }
             }
@@ -176,8 +186,13 @@
                         NSLog(@"path  = %@",path);
                         pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
                         [pu_cell.email becomeFirstResponder];
-                        [pu_cell.email showError];
-                        [pu_cell.email showErrorWithText:@" Email is not valid"];
+//                        [pu_cell.email showError];
+//                        [pu_cell.email showErrorWithText:@" Email is not valid"];
+                        
+                        [self.navigationController.view makeToast:@"Email is not valid"
+                                                         duration:2.0
+                                                         position:CSToastPositionCenter];
+                        
                         break;
                     }
                 }
@@ -189,8 +204,45 @@
                 NSLog(@"path  = %@",path);
                 pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
                 [pu_cell.email becomeFirstResponder];
-                [pu_cell.email showError];
-                [pu_cell.email showErrorWithText:@" Please enter valid email address"];
+//                [pu_cell.email showError];
+//                [pu_cell.email showErrorWithText:@" Please enter valid email address"];
+                
+                [self.navigationController.view makeToast:@"Email is not valid"
+                                                 duration:2.0
+                                                 position:CSToastPositionCenter];
+                
+                break;
+            }
+            
+            if (fname.length >= 2 && [lname isEqual:@""])
+            {
+                NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
+                NSLog(@"path  = %@",path);
+                pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
+                [pu_cell.email becomeFirstResponder];
+                //                [pu_cell.email showError];
+                //                [pu_cell.email showErrorWithText:@" Please enter valid email address"];
+                
+                [self.navigationController.view makeToast:@"Pleae enter last name"
+                                                 duration:2.0
+                                                 position:CSToastPositionCenter];
+                
+                break;
+            }
+            
+            if (fname.length >= 2 && lname.length <2)
+            {
+                NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
+                NSLog(@"path  = %@",path);
+                pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
+                [pu_cell.email becomeFirstResponder];
+                //                [pu_cell.email showError];
+                //                [pu_cell.email showErrorWithText:@" Please enter valid email address"];
+                
+                [self.navigationController.view makeToast:@"Last name minimum 2 Character"
+                                                 duration:2.0
+                                                 position:CSToastPositionCenter];
+                
                 break;
             }
     }
@@ -245,7 +297,20 @@
                 dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
                 NSLog(@"Updated Status %@",dict);
                 
-                if ([[dict valueForKey:@"message"] isEqualToString:@"Recipient(s) created/updated successfully."]) {
+                if ([[dict valueForKey:@"status"] isEqualToString:@"Success"]) {
+                    
+                    NSArray *ARR_count;
+                    
+                    @try {
+                        ARR_count = [dict valueForKey:@"recipients"];
+                        if ([ARR_count count] >= 1) {
+                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:[dict valueForKey:@"message"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+                            [alert show];
+                        }
+                    } @catch (NSException *exception) {
+                        NSLog(@"Exception recipients %@",exception);
+                    }
+                    
                     [self performSegueWithIdentifier:@"qtydetailtoplaceorder" sender:self];
                 }
                 else
@@ -551,7 +616,6 @@
 #pragma mark - UITextfiel Deligate
 - (void) textFieldDidBeginEditing:(UITextField *)textField {
     
-    
     purchase_Cell *pu_cell;
     
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
@@ -642,6 +706,7 @@
     NSIndexPath *buttonIndexPath = [NSIndexPath indexPathForRow:sender.tag inSection:0];
     purchase_Cell *pu_cell;
     pu_cell = [self.tbl_content cellForRowAtIndexPath:buttonIndexPath];
+    [pu_cell.fname becomeFirstResponder];
     
     NSString *store_TXT = [NSString stringWithFormat:@"%@",pu_cell.fname.text];
     
@@ -658,6 +723,7 @@
     NSIndexPath *buttonIndexPath = [NSIndexPath indexPathForRow:sender.tag inSection:0];
     purchase_Cell *pu_cell;
     pu_cell = [self.tbl_content cellForRowAtIndexPath:buttonIndexPath];
+    [pu_cell.lname becomeFirstResponder];
     
     NSString *store_TXT = [NSString stringWithFormat:@"%@",pu_cell.lname.text];
     
@@ -674,6 +740,7 @@
     NSIndexPath *buttonIndexPath = [NSIndexPath indexPathForRow:sender.tag inSection:0];
     purchase_Cell *pu_cell;
     pu_cell = [self.tbl_content cellForRowAtIndexPath:buttonIndexPath];
+    [pu_cell.email becomeFirstResponder];
     
     NSString *store_TXT = [NSString stringWithFormat:@"%@",pu_cell.email.text];
     

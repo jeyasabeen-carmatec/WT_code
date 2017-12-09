@@ -27,4 +27,6 @@
 @property (nonatomic, retain) IBOutlet UIView *VW_line1;
 @property (nonatomic, retain) IBOutlet UIView *VW_line2;
 
+@property (nonatomic, retain) IBOutlet UILabel *lbl_nav_font;
+
 @end

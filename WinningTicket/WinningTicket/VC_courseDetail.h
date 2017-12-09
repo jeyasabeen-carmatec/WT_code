@@ -46,4 +46,6 @@
 @property (nonatomic, retain) IBOutlet UIView *VW_nearby_courses;
 @property (nonatomic, retain) IBOutlet UITableView *tbl_nearbycourse;
 
+@property (nonatomic, retain) IBOutlet UILabel *Lbl_font_dist;
+
 @end

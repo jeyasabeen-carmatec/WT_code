@@ -15,6 +15,8 @@
 #import "ViewController.h"
 #import "STR_payment_mode.h"
 
+#import "UIView+Toast.h"
+
 @interface VC_donate ()<UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate,UITextViewDelegate,BTViewControllerPresentingDelegate>
 {
     UIView *VW_overlay;
@@ -1349,101 +1351,147 @@
     {
         [self VIEWaddress];
         [_TXT_firstname becomeFirstResponder];
-        [_TXT_firstname showError];
-        [_TXT_firstname showErrorWithText:@" Plese enter first name"];
+//        [_TXT_firstname showError];
+//        [_TXT_firstname showErrorWithText:@" Plese enter first name"];
+        
+        [self.view makeToast:@"Plese enter first name"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
 
-       else if(_TXT_firstname.text.length < 2)
+    else if(_TXT_firstname.text.length < 2)
     {
         [self VIEWaddress];
         [_TXT_firstname becomeFirstResponder];
-        [_TXT_firstname showError];
-        [_TXT_firstname showErrorWithText:@" First name minimum 2 characters"];
+//        [_TXT_firstname showError];
+//        [_TXT_firstname showErrorWithText:@" First name minimum 2 characters"];
+        
+        [self.view makeToast:@"First name minimum 2 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if([_TXT_address1.text isEqualToString:@""])
     {
         [self VIEWaddress];
         [_TXT_address1 becomeFirstResponder];
-        [_TXT_address1 showError];
-        [_TXT_address1 showErrorWithText:@" Please enter address line 1"];
+//        [_TXT_address1 showError];
+//        [_TXT_address1 showErrorWithText:@" Please enter address line 1"];
+        
+        [self.view makeToast:@"Please enter address line 1"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if (_TXT_address1.text.length < 2)
     {
         [self VIEWaddress];
         [_TXT_address1 becomeFirstResponder];
-        [_TXT_address1 showError];
-        [_TXT_address1 showErrorWithText:@" Address line 1 minimum 2 characters"];
+//        [_TXT_address1 showError];
+//        [_TXT_address1 showErrorWithText:@" Address line 1 minimum 2 characters"];
+        
+        [self.view makeToast:@"Address line 1 minimum 2 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else  if(addr_line_two.length != 0 && _TXT_address2.text.length < 2)
     {
         [self VIEWaddress];
         [_TXT_address2 becomeFirstResponder];
-        [_TXT_address2 showError];
-        [_TXT_address2 showErrorWithText:@" Address line 2 minimum 2 characters"];
+//        [_TXT_address2 showError];
+//        [_TXT_address2 showErrorWithText:@" Address line 2 minimum 2 characters"];
+        
+        [self.view makeToast:@"Address line 2 minimum 2 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else  if(lst_name.length != 0 && _TXT_lastname.text.length < 2)
     {
         [self VIEWaddress];
         [_TXT_lastname becomeFirstResponder];
-        [_TXT_lastname showError];
-        [_TXT_lastname showErrorWithText:@" Last name minimum 2 characters"];
+//        [_TXT_lastname showError];
+//        [_TXT_lastname showErrorWithText:@" Last name minimum 2 characters"];
+        
+        [self.view makeToast:@"Last name minimum 2 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if([_TXT_city.text isEqualToString:@""])
     {
         [self VIEWaddress];
         [_TXT_city becomeFirstResponder];
-        [_TXT_city showError];
-        [_TXT_city showErrorWithText:@" Please enter city"];
+//        [_TXT_city showError];
+//        [_TXT_city showErrorWithText:@" Please enter city"];
+        
+        [self.view makeToast:@"Please enter city"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if(_TXT_city.text.length < 2)
     {
         [self VIEWaddress];
         [_TXT_city becomeFirstResponder];
-        [_TXT_city showError];
-        [_TXT_city showErrorWithText:@" City minimum 2 characters"];
+//        [_TXT_city showError];
+//        [_TXT_city showErrorWithText:@" City minimum 2 characters"];
+        
+        [self.view makeToast:@"City minimum 2 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if([_TXT_country.text isEqualToString:@""])
     {
         [self VIEWaddress];
         [_TXT_country becomeFirstResponder];
-        [_TXT_country showError];
-        [_TXT_country showErrorWithText:@" Please Select country"];
+//        [_TXT_country showError];
+//        [_TXT_country showErrorWithText:@" Please Select country"];
+        
+        [self.view makeToast:@"Please Select country"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
-//    else if([_TXT_state.text isEqualToString:@""])
-//    {
-//        [_TXT_state becomeFirstResponder];
-//        [_TXT_state showError];
-//        [_TXT_state showErrorWithText:@" Please Select State"];
-//    }
 
     else if([_TXT_zip.text isEqualToString:@""])
     {
         [self VIEWaddress];
         [_TXT_zip becomeFirstResponder];
-        [_TXT_zip showError];
-        [_TXT_zip showErrorWithText:@" Please enter zipcode"];
+//        [_TXT_zip showError];
+//        [_TXT_zip showErrorWithText:@" Please enter zipcode"];
+        
+        [self.view makeToast:@"Please enter zipcode"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if(_TXT_zip.text.length < 3)
     {
         [self VIEWaddress];
         [_TXT_zip becomeFirstResponder];
-        [_TXT_zip showError];
-        [_TXT_zip showErrorWithText:@" Zipcode minimum 4 characters"];
+//        [_TXT_zip showError];
+//        [_TXT_zip showErrorWithText:@" Zipcode minimum 4 characters"];
+        
+        [self.view makeToast:@"Zipcode minimum 4 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if([_TXT_phonenumber.text isEqualToString:@""])
     {
         [self VIEWaddress];
         [_TXT_phonenumber becomeFirstResponder];
-        [_TXT_phonenumber showError];
-        [_TXT_phonenumber showErrorWithText:@" Please enter phone number"];
+//        [_TXT_phonenumber showError];
+//        [_TXT_phonenumber showErrorWithText:@" Please enter phone number"];
+        
+        [self.view makeToast:@"Please enter phone number"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
 
     else if (_TXT_phonenumber.text.length < 5)
     {
         [self VIEWaddress];
         [_TXT_phonenumber becomeFirstResponder];
-        [_TXT_phonenumber showError];
-        [_TXT_phonenumber showErrorWithText:@" Phone number minimum 5 numbers"];
+//        [_TXT_phonenumber showError];
+//        [_TXT_phonenumber showErrorWithText:@" Phone number minimum 5 numbers"];
+        
+        [self.view makeToast:@"Phone number minimum 5 numbers"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
       else
     {
@@ -1617,6 +1665,11 @@
     NSHTTPURLResponse *response = nil;
     NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
     NSDictionary *parameters;
+    
+    if ([_SWITCH_wallet isOn]) {
+        [[NSUserDefaults standardUserDefaults] setValue:@"SWITCH_ON" forKey:@"SWITCHSTAT"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
     
     
     if ([_SWITCH_wallet isOn] && (number_amount != 0)) {
@@ -1825,43 +1878,9 @@
 
 -(void) create_payment
 {
-//    [self dismissViewControllerAnimated:YES completion:nil];
     
     NSError *error;
-    NSHTTPURLResponse *response = nil;
-    NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
     NSString *naunce_STR = [[NSUserDefaults standardUserDefaults] valueForKey:@"NAUNCETOK"];
-    
-//    NSArray *ARR_tmp = [_LBLwallet_balence.text componentsSeparatedByString:@"$"];
-//    NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
-//    [fmt setPositiveFormat:@"0.##"];
-//    float Float_amt = [[fmt numberFromString:_TXT_getamount.text] floatValue];
-//    float Float_wallet_val = [[NSNumber numberWithFloat:[[ARR_tmp objectAtIndex:[ARR_tmp count]-1] floatValue]] floatValue];
-    
-    NSString *urlGetuser =[NSString stringWithFormat:@"%@payments/create",SERVER_URL];
-    NSLog(@"The url iS:%@",urlGetuser);
-    
-    NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:urlProducts];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
-    
-   
-    
-   /* if ([_SWITCH_wallet isOn]) {
-    
-        if (Float_wallet_val < Float_amt) {
-            [request setHTTPBody:postData];
-        }
-
-    }*/
-//    else
-//    {
-//        [request setHTTPBody:postData];
-//    }
     
     NSString *amount = _TXT_getamount.text;
     amount = [amount stringByReplacingOccurrencesOfString:@"," withString:@""];
@@ -1881,74 +1900,30 @@
     //                    float Float_amt = [[fmt numberFromString:_TXT_getamount.text] floatValue];
     //                    float Float_wallet_val = [[NSNumber numberWithFloat: floatValue]] floatValue];
     
+    NSData *postData;
     if ([_SWITCH_wallet isOn] && ([wallet_val doubleValue] > [number_amount doubleValue]))
     {
         NSDictionary *parameters = @{ @"nonce":@""};
-        NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
-        [request setHTTPBody:postData];
+        postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
     }
     else if ([_SWITCH_wallet isOn] && ([wallet_val doubleValue] < [number_amount doubleValue]) && (number_amount != 0))
     {
         NSDictionary *parameters = @{ @"nonce":naunce_STR};
-        NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
-        [request setHTTPBody:postData];
+        postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
     }
     else
     {
         NSDictionary *parameters = @{ @"nonce":naunce_STR};
-        NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
-        [request setHTTPBody:postData];
+        postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
     }
     
-    [request setHTTPShouldHandleCookies:NO];
-    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    if (aData)
-    {
-        [activityIndicatorView stopAnimating];
-        VW_overlay.hidden = YES;
-        NSMutableDictionary *json_DATA_one = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
-        
-        
-//        @try
-//        {
-//            NSString *STR_error = [json_DATA_one valueForKey:@"error"];
-//            if (STR_error)
-//            {
-//                [self sessionOUT];
-//            }
-//            else
-//            {
-                NSString *str = [json_DATA_one valueForKey:@"status"];
-                NSLog(@"Final Payment data : \n%@",json_DATA_one);
-                if([str isEqualToString:@"Failure"])
-                {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Failed to create payment" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-                    [alert show];
-                    
-                }
-                else
-                {
-                    [self performSelector:@selector(load_donatepurchase)
-                               withObject:activityIndicatorView
-                               afterDelay:1.0];
-                }
-//            }
-//        }
-//        @catch (NSException *exception)
-//        {
-//            [self sessionOUT];
-//        }
+    [[NSUserDefaults standardUserDefaults] setObject:postData forKey:@"Account_data"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
-        
-    }
-    else
-    {
-        [activityIndicatorView stopAnimating];
-        VW_overlay.hidden = YES;
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Payment Failed" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-        [alert show];
-    }
+    [self performSelector:@selector(load_donatepurchase)
+               withObject:activityIndicatorView
+               afterDelay:1.0];
+   
 }
 
 -(void)load_donatepurchase

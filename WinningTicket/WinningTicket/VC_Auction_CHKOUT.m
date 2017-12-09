@@ -13,6 +13,8 @@
 #import "BraintreeCore.h"
 #import "BraintreeDropIn.h"
 
+#import "UIView+Toast.h"
+
 @interface VC_Auction_CHKOUT ()
 {
     float original_height;
@@ -74,6 +76,11 @@
 #pragma mark - Uiview Customisation
 -(void) setup_VIEW
 {
+    
+    _lbl_title_acc_BAL.hidden = YES;
+    _lbl_data_acc_BAL.hidden = YES;
+    _VW_line4.hidden = YES;
+    
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
@@ -191,7 +198,6 @@
         {
             _lbl_amount_des.text = [NSString stringWithFormat:@"$%.2f",[[checkout_data valueForKey:@"price"] floatValue]];
             _lbl_sub_amount.text = [NSString stringWithFormat:@"$%.2f",[[checkout_data valueForKey:@"price"] floatValue]];
-            _lbl_total_amount.text = _lbl_sub_amount.text;
             
             NSMutableDictionary *user=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"User_data"] options:NSASCIIStringEncoding error:&error];
             NSLog(@"the user data is:%@",user);
@@ -234,7 +240,7 @@
             
             [self.navigationController.navigationBar setTitleTextAttributes:
              @{NSForegroundColorAttributeName:[UIColor whiteColor],
-               NSFontAttributeName:FONT_NAV_TITLE}];
+               NSFontAttributeName:_lbl_nav_font.font}];
             self.navigationItem.title = @"BILLING ADDRESS";
             
             self.lbl_name_ticket.text = @"Silent Auction";
@@ -311,16 +317,51 @@
             frame_NEW.origin.y = _lbl_sub_total.frame.origin.y + _lbl_sub_total.frame.size.height + 10;
             _VW_line2.frame = frame_NEW;
             
-            frame_NEW = _lbl_total.frame;
-            frame_NEW.origin.y = _VW_line2.frame.origin.y + _VW_line2.frame.size.height + 10;
-            _lbl_total.frame = frame_NEW;
+            NSString *SWITCHSTAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
+            float wallet_money = [[[NSUserDefaults standardUserDefaults] valueForKey:@"wallet_money"] floatValue];
             
-            frame_NEW = _lbl_total_amount.frame;
-            frame_NEW.origin.y = _VW_line2.frame.origin.y + _VW_line2.frame.size.height + 10;
-            _lbl_total_amount.frame = frame_NEW;
+            if ([SWITCHSTAT isEqualToString:@"SWITCH_ON"] && (wallet_money > 0.00)) {
+                _lbl_title_acc_BAL.hidden = NO;
+                _lbl_data_acc_BAL.hidden = NO;
+                _lbl_data_acc_BAL.text = [NSString stringWithFormat:@"-$%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"wallet_money"]];
+                _VW_line4.hidden = NO;
+                
+                frame_NEW = _lbl_title_acc_BAL.frame;
+                frame_NEW.origin.y = _VW_line2.frame.origin.y + _VW_line2.frame.size.height + 10;
+                _lbl_title_acc_BAL.frame = frame_NEW;
+                
+                frame_NEW = _lbl_data_acc_BAL.frame;
+                frame_NEW.origin.y = _VW_line2.frame.origin.y + _VW_line2.frame.size.height + 10;
+                _lbl_data_acc_BAL.frame = frame_NEW;
+                
+                frame_NEW = _VW_line4.frame;
+                frame_NEW.origin.y = _lbl_title_acc_BAL.frame.origin.y + _lbl_title_acc_BAL.frame.size.height + 10;
+                _VW_line4.frame = frame_NEW;
+                
+                frame_NEW = _lbl_total.frame;
+                frame_NEW.origin.y = _VW_line4.frame.origin.y + _VW_line4.frame.size.height + 10;
+                _lbl_total.frame = frame_NEW;
+                
+                frame_NEW = _lbl_total_amount.frame;
+                frame_NEW.origin.y = _VW_line4.frame.origin.y + _VW_line4.frame.size.height + 10;
+                _lbl_total_amount.frame = frame_NEW;
+            }
+            else
+            {
+                frame_NEW = _lbl_total.frame;
+                frame_NEW.origin.y = _VW_line2.frame.origin.y + _VW_line2.frame.size.height + 10;
+                _lbl_total.frame = frame_NEW;
+                
+                frame_NEW = _lbl_total_amount.frame;
+                frame_NEW.origin.y = _VW_line2.frame.origin.y + _VW_line2.frame.size.height + 10;
+                _lbl_total_amount.frame = frame_NEW;
+            }
+            
+            
+            _lbl_total_amount.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"total_balance"];
             
             frame_NEW = _VW_main.frame;
-            frame_NEW.size.height = _lbl_total.frame.origin.y + _VW_line2.frame.size.height + 15;
+            frame_NEW.size.height = _lbl_total.frame.origin.y + _lbl_total.frame.size.height;
             _VW_main.frame = frame_NEW;
             
             float heiht1 = _VW_main.frame.size.height;
@@ -651,16 +692,24 @@
     {
         [self showViewAddress];
         [_TXT_firstname becomeFirstResponder];
-        [_TXT_firstname showError];
-        [_TXT_firstname showErrorWithText:@" Please enter first name"];
+//        [_TXT_firstname showError];
+//        [_TXT_firstname showErrorWithText:@" Please enter first name"];
         //        [self showViewAddress];
+        
+        [self.navigationController.view makeToast:@"Please enter first name"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if (_TXT_firstname.text.length < 2)
     {
         [self showViewAddress];
         [_TXT_firstname becomeFirstResponder];
-        [_TXT_firstname showError];
-        [_TXT_firstname showErrorWithText:@" First name minimum 2 characters"];
+//        [_TXT_firstname showError];
+//        [_TXT_firstname showErrorWithText:@" First name minimum 2 characters"];
+        
+        [self.navigationController.view makeToast:@"First name minimum 2 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
         //        [self showViewAddress];
     }
     //    else  if([_TXT_lastname.text isEqualToString:@""])
@@ -677,17 +726,25 @@
     {
         [self showViewAddress];
         [_TXT_address1 becomeFirstResponder];
-        [_TXT_address1 showError];
-        [_TXT_address1 showErrorWithText:@" Please enter address line 1"];
+//        [_TXT_address1 showError];
+//        [_TXT_address1 showErrorWithText:@" Please enter address line 1"];
         //        [self showViewAddress];
+        
+        [self.navigationController.view makeToast:@"Please enter address line 1"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if (_TXT_address1.text.length < 2)
     {
         [self showViewAddress];
         [_TXT_address1 becomeFirstResponder];
-        [_TXT_address1 showError];
-        [_TXT_address1 showErrorWithText:@" Address line 1 minimum 2 characters"];
+//        [_TXT_address1 showError];
+//        [_TXT_address1 showErrorWithText:@" Address line 1 minimum 2 characters"];
         //        [self showViewAddress];
+        
+        [self.navigationController.view makeToast:@"Address line 1 minimum 2 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     //    else  if([_TXT_address2.text isEqualToString:@""] || _TXT_address2.text.length <= 2 || _TXT_address2.text.length > 30)
     //    {
@@ -700,25 +757,36 @@
     {
         [self showViewAddress];
         [_TXT_city becomeFirstResponder];
-        [_TXT_city showError];
-        [_TXT_city showErrorWithText:@" Please enter city"];
+//        [_TXT_city showError];
+//        [_TXT_city showErrorWithText:@" Please enter city"];
         //        [self showViewAddress];
+        [self.navigationController.view makeToast:@"Please enter city"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if (_TXT_city.text.length < 2)
     {
         [self showViewAddress];
         [_TXT_city becomeFirstResponder];
-        [_TXT_city showError];
-        [_TXT_city showErrorWithText:@" City minimum 2 characters"];
+//        [_TXT_city showError];
+//        [_TXT_city showErrorWithText:@" City minimum 2 characters"];
         //        [self showViewAddress];
+        
+        [self.navigationController.view makeToast:@"City minimum 2 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     
     else if([_TXT_country.text isEqualToString:@""])
     {
         [self showViewAddress];
         [_TXT_country becomeFirstResponder];
-        [_TXT_country showError];
-        [_TXT_country showErrorWithText:@" Please select country"];
+//        [_TXT_country showError];
+//        [_TXT_country showErrorWithText:@" Please select country"];
+        
+        [self.navigationController.view makeToast:@"Please select country"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
         
     }
     //    else if([_TXT_state.text isEqualToString:@""])
@@ -732,22 +800,34 @@
     {
         [self showViewAddress];
         [_TXT_zip becomeFirstResponder];
-        [_TXT_zip showError];
-        [_TXT_zip showErrorWithText:@" Please enter zipcode code"];
+//        [_TXT_zip showError];
+//        [_TXT_zip showErrorWithText:@" Please enter zipcode code"];
+        
+        [self.navigationController.view makeToast:@"Please enter zipcode code"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if (_TXT_zip.text.length < 4)
     {
         [self showViewAddress];
         [_TXT_zip becomeFirstResponder];
-        [_TXT_zip showError];
-        [_TXT_zip showErrorWithText:@" Zipcode minimum 4 characters"];
+//        [_TXT_zip showError];
+//        [_TXT_zip showErrorWithText:@" Zipcode minimum 4 characters"];
+        
+        [self.navigationController.view makeToast:@"Zipcode minimum 4 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if (_TXT_phonenumber.text.length < 5)
     {
         [self showViewAddress];
         [_TXT_phonenumber becomeFirstResponder];
-        [_TXT_phonenumber showError];
-        [_TXT_phonenumber showErrorWithText:@" Please enter more than 5 numbers"];
+//        [_TXT_phonenumber showError];
+//        [_TXT_phonenumber showErrorWithText:@" Please enter more than 5 numbers"];
+        
+        [self.navigationController.view makeToast:@"Please enter more than 5 numbers"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     
     

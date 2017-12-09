@@ -75,5 +75,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *VW_line_promo;
 
+@property(nonatomic,weak)IBOutlet UILabel *lbl_nav_font;
+
 
 @end

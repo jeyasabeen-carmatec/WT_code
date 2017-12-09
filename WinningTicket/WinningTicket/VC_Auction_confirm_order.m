@@ -86,7 +86,7 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:FONT_NAV_TITLE}];
+       NSFontAttributeName:_lbl_nav_font.font}];
     self.navigationItem.title = @"ORDER PREVIEW";
     
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PurchaseRESPONSE"];
@@ -134,6 +134,10 @@
     
     VW_overlay.hidden = YES;
     
+    _lbl_title_acc_BAL.hidden = YES;
+    _lbl_data_acc_BAL.hidden = YES;
+    _VW_line4.hidden = YES;
+    
     NSError *error;
     NSMutableDictionary *temp_resp = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"CHKOUTDETAIL"] options:NSASCIIStringEncoding error:&error];
     
@@ -156,7 +160,7 @@
             NSLog(@"The response from checkout detail VC \n%@",temp_resp);
             
             _lbl_datasubtotal.text = [NSString stringWithFormat:@"$%.2f",[[temp_resp valueForKey:@"price"] floatValue]];
-            _lbl_datatotal.text = _lbl_datasubtotal.text;
+//            _lbl_datatotal.text = _lbl_datasubtotal.text;
             
             [_BTN_order2 addTarget:self action:@selector(BTN_order2action) forControlEvents:UIControlEventTouchUpInside];
             
@@ -435,13 +439,51 @@
             frame_rect.origin.y = _lbl_datasubtotal.frame.origin.y + _lbl_datasubtotal.frame.size.height + 10;
             _VW_line3.frame = frame_rect;
             
-            frame_rect = _lbl_titletotal.frame;
-            frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
-            _lbl_titletotal.frame = frame_rect;
             
-            frame_rect = _lbl_datatotal.frame;
-            frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
-            _lbl_datatotal.frame = frame_rect;
+            NSString *SWITCHSTAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
+            float wallet_money = [[[NSUserDefaults standardUserDefaults] valueForKey:@"wallet_money"] floatValue];
+            
+            if ([SWITCHSTAT isEqualToString:@"SWITCH_ON"] && (wallet_money > 0.00)) {
+                _lbl_title_acc_BAL.hidden = NO;
+                _lbl_data_acc_BAL.hidden = NO;
+                _lbl_data_acc_BAL.text = [NSString stringWithFormat:@"-$%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"wallet_money"]];
+                _VW_line4.hidden = NO;
+                
+                frame_rect = _lbl_title_acc_BAL.frame;
+                frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
+                _lbl_title_acc_BAL.frame = frame_rect;
+                
+                frame_rect = _lbl_data_acc_BAL.frame;
+                frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
+                _lbl_data_acc_BAL.frame = frame_rect;
+                
+                frame_rect = _VW_line4.frame;
+                frame_rect.origin.y = _lbl_title_acc_BAL.frame.origin.y + _lbl_title_acc_BAL.frame.size.height + 10;
+                _VW_line4.frame = frame_rect;
+                
+                frame_rect = _lbl_titletotal.frame;
+                frame_rect.origin.y = _VW_line4.frame.origin.y + _VW_line4.frame.size.height + 10;
+                _lbl_titletotal.frame = frame_rect;
+                
+                frame_rect = _lbl_datatotal.frame;
+                frame_rect.origin.y = _VW_line4.frame.origin.y + _VW_line4.frame.size.height + 10;
+                _lbl_datatotal.frame = frame_rect;
+            }
+            else
+            {
+                frame_rect = _lbl_titletotal.frame;
+                frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
+                _lbl_titletotal.frame = frame_rect;
+                
+                frame_rect = _lbl_datatotal.frame;
+                frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
+                _lbl_datatotal.frame = frame_rect;
+            }
+            
+            
+            _lbl_datatotal.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"total_balance"];
+            
+            
             
             frame_rect = _BTN_order2.frame;
             frame_rect.origin.y = _lbl_datatotal.frame.origin.y + _lbl_datatotal.frame.size.height + 10;

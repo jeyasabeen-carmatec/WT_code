@@ -16,6 +16,8 @@
 #import "BraintreeCore.h"
 #import "BraintreeDropIn.h"
 
+#import "UIView+Toast.h"
+
 
 @interface VC_billingAddr ()
 {
@@ -39,6 +41,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    discount = 0.0f;
     // Do any additional setup after loading the view.
 //    NSError *error;
 //    NSMutableDictionary *json_DAT = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"state_response"] options:NSASCIIStringEncoding error:&error];
@@ -269,7 +272,7 @@
             
             [self.navigationController.navigationBar setTitleTextAttributes:
              @{NSForegroundColorAttributeName:[UIColor whiteColor],
-               NSFontAttributeName:FONT_NAV_TITLE}];
+               NSFontAttributeName:_lbl_nav_font.font}];
             self.navigationItem.title = @"BILLING ADDRESS";
             
             self.lbl_name_ticket.text=@"Winning Ticket";
@@ -526,6 +529,10 @@
             _TXT_getpromocode.layer.cornerRadius = 5.0f;
             _TXT_getpromocode.layer.masksToBounds = YES;
             
+            _BTN_close.layer.masksToBounds = YES;
+            _BTN_close.layer.cornerRadius = _BTN_close.frame.size.width / 2;
+            
+            
             [_BTN_addPromo addTarget:self action:@selector(ApplyPROMO_Tapped) forControlEvents:UIControlEventTouchUpInside];
             [_BTN_useAccount addTarget:self action:@selector(Apply_wallet_tpped) forControlEvents:UIControlEventTouchUpInside];
             
@@ -552,11 +559,12 @@
             frame_NEW.origin.y = _BTN_addPromo.frame.origin.y + _BTN_addPromo.frame.size.height + 10;
             _LBL_arrowAccount.frame = frame_NEW;
             
-            _LBL_wallet_bal.text = [NSString stringWithFormat:@"Current Balence : %.2f",[[user valueForKey:@"wallet"] floatValue]];
+            _LBL_wallet_bal.text = [NSString stringWithFormat:@"Current Balance : %.2f",[[user valueForKey:@"wallet"] floatValue]];
             
-            if ([[user valueForKey:@"wallet"] floatValue] > 0 && [[[NSUserDefaults standardUserDefaults] valueForKey:@"QTY"] intValue] < 2)
+            if ([[user valueForKey:@"wallet"] floatValue] > 0 && [[[NSUserDefaults standardUserDefaults] valueForKey:@"QTY"] intValue])
             {
                 _VW_useAccountt.hidden = NO;
+                _LBL_arrowAccount.text = @"";
                 
                 frame_NEW = _VW_useAccountt.frame;
                 frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height;
@@ -665,18 +673,18 @@
 {
     if(_VW_address.hidden==YES)
     {
-
-    [self showViewAddress];
+        [self showViewAddress];
     }
     
 }
 
+#pragma mark - Show address
 -(void)showViewAddress
 {
+    _lbl_address.hidden = YES;
     if(_VW_address.hidden == YES)
     {
         BTN_originY = _BTN_checkout.frame.origin.y;
-        
         
         [UIView beginAnimations:@"LeftFlip" context:nil];
         [UIView setAnimationDuration:0.5];
@@ -687,16 +695,48 @@
         [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:_VW_address cache:YES];
         [UIView commitAnimations];
         [UIView animateWithDuration:0.5 animations:^{
+
+//            _VW_account.frame = CGRectMake(_VW_account.frame.origin.x, _VW_address.frame.origin.y+_VW_address.frame.size.height+10, _VW_account.frame.size.width, _VW_account.frame.size.height);
             
-            /*Frame Change*/
-            _lbl_address.hidden=YES;
+            CGRect frame_SET = _BTN_addPromo.frame;
+            frame_SET.origin.y = _VW_address.frame.origin.y + _VW_address.frame.size.height;
+            _BTN_addPromo.frame = frame_SET;
             
-            //            _proceed_TOPAY.frame=CGRectMake(_proceed_TOPAY.frame.origin.x
-            //                                            ,  _VW_address.frame.origin.y+_VW_address.frame.size.height+10, _proceed_TOPAY.frame.size.width, _proceed_TOPAY.frame.size.height);
+            frame_SET = _LBL_arrowPromo.frame;
+            frame_SET.origin.y = _BTN_addPromo.frame.origin.y;
+            _LBL_arrowPromo.frame = frame_SET;
             
-            _VW_account.frame = CGRectMake(_VW_account.frame.origin.x, _VW_address.frame.origin.y+_VW_address.frame.size.height+10, _VW_account.frame.size.width, _VW_account.frame.size.height);
+            if (_VW_account.hidden == NO) {
+                frame_SET = _VW_account.frame;
+                frame_SET.origin.y = _BTN_addPromo.frame.origin.y + _BTN_addPromo.frame.size.height + 10;
+                _VW_account.frame = frame_SET;
+            }
             
-            _BTN_checkout.frame = CGRectMake(_BTN_checkout.frame.origin.x, _VW_account.frame.origin.y+_VW_account.frame.size.height+10, _BTN_checkout.frame.size.width, _BTN_checkout.frame.size.height);
+            frame_SET = _BTN_useAccount.frame;
+            if (_VW_account.hidden == YES) {
+                frame_SET.origin.y = _BTN_addPromo.frame.origin.y + _BTN_addPromo.frame.size.height + 10;
+            }
+            else
+            {
+                frame_SET.origin.y = _VW_account.frame.origin.y + _VW_account.frame.size.height + 10;
+            }
+            _BTN_useAccount.frame = frame_SET;
+            
+            frame_SET = _LBL_arrowAccount.frame;
+            frame_SET.origin.y = _BTN_useAccount.frame.origin.y;
+            _LBL_arrowAccount.frame = frame_SET;
+            
+            if (_VW_useAccountt.hidden == NO) {
+                frame_SET = _VW_useAccountt.frame;
+                frame_SET.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height + 10;
+                _VW_useAccountt.frame = frame_SET;
+                
+                _BTN_checkout.frame = CGRectMake(_BTN_checkout.frame.origin.x, _VW_useAccountt.frame.origin.y+_VW_useAccountt.frame.size.height+10, _BTN_checkout.frame.size.width, _BTN_checkout.frame.size.height);
+            }
+            else
+            {
+                _BTN_checkout.frame = CGRectMake(_BTN_checkout.frame.origin.x, _BTN_useAccount.frame.origin.y+_BTN_useAccount.frame.size.height+10, _BTN_checkout.frame.size.width, _BTN_checkout.frame.size.height);
+            }
             
             _lbl_agree.frame = CGRectMake(_lbl_agree.frame.origin.x, _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height+10 , lbl_origin_FRAME.size.width, _lbl_agree.frame.size.height+10);
             
@@ -718,17 +758,23 @@
     {
         [self showViewAddress];
         [_TXT_firstname becomeFirstResponder];
-        [_TXT_firstname showError];
-        [_TXT_firstname showErrorWithText:@" Please enter first name"];
+//        [_TXT_firstname showError];
+//        [_TXT_firstname showErrorWithText:@" Please enter first name"];
 //        [self showViewAddress];
+        [self.navigationController.view makeToast:@"Please enter first name"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if (_TXT_firstname.text.length < 2)
     {
         [self showViewAddress];
         [_TXT_firstname becomeFirstResponder];
-        [_TXT_firstname showError];
-        [_TXT_firstname showErrorWithText:@" First name minimum 2 characters"];
+//        [_TXT_firstname showError];
+//        [_TXT_firstname showErrorWithText:@" First name minimum 2 characters"];
 //        [self showViewAddress];
+        [self.navigationController.view makeToast:@"First name minimum 2 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
 //    else  if([_TXT_lastname.text isEqualToString:@""])
 //    {
@@ -744,17 +790,23 @@
     {
         [self showViewAddress];
         [_TXT_address1 becomeFirstResponder];
-        [_TXT_address1 showError];
-        [_TXT_address1 showErrorWithText:@" Please enter address line 1"];
+//        [_TXT_address1 showError];
+//        [_TXT_address1 showErrorWithText:@" Please enter address line 1"];
 //        [self showViewAddress];
+        [self.navigationController.view makeToast:@"Please enter address line 1"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if (_TXT_address1.text.length < 2)
     {
         [self showViewAddress];
         [_TXT_address1 becomeFirstResponder];
-        [_TXT_address1 showError];
-        [_TXT_address1 showErrorWithText:@" Address line 1 minimum 2 characters"];
+//        [_TXT_address1 showError];
+//        [_TXT_address1 showErrorWithText:@" Address line 1 minimum 2 characters"];
 //        [self showViewAddress];
+        [self.navigationController.view makeToast:@"Address line 1 minimum 2 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
 //    else  if([_TXT_address2.text isEqualToString:@""] || _TXT_address2.text.length <= 2 || _TXT_address2.text.length > 30)
 //    {
@@ -767,25 +819,34 @@
     {
         [self showViewAddress];
         [_TXT_city becomeFirstResponder];
-        [_TXT_city showError];
-        [_TXT_city showErrorWithText:@" Please enter city"];
+//        [_TXT_city showError];
+//        [_TXT_city showErrorWithText:@" Please enter city"];
 //        [self showViewAddress];
+        [self.navigationController.view makeToast:@"Please enter city"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if (_TXT_city.text.length < 2)
     {
         [self showViewAddress];
         [_TXT_city becomeFirstResponder];
-        [_TXT_city showError];
-        [_TXT_city showErrorWithText:@" City minimum 2 characters"];
+//        [_TXT_city showError];
+//        [_TXT_city showErrorWithText:@" City minimum 2 characters"];
 //        [self showViewAddress];
+        [self.navigationController.view makeToast:@"City minimum 2 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     
     else if([_TXT_country.text isEqualToString:@""])
     {
         [self showViewAddress];
         [_TXT_country becomeFirstResponder];
-        [_TXT_country showError];
-        [_TXT_country showErrorWithText:@" Please select country"];
+//        [_TXT_country showError];
+//        [_TXT_country showErrorWithText:@" Please select country"];
+        [self.navigationController.view makeToast:@"Please select country"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
         
     }
 //    else if([_TXT_state.text isEqualToString:@""])
@@ -799,22 +860,31 @@
     {
         [self showViewAddress];
         [_TXT_zip becomeFirstResponder];
-        [_TXT_zip showError];
-        [_TXT_zip showErrorWithText:@" Please enter zipcode code"];
+//        [_TXT_zip showError];
+//        [_TXT_zip showErrorWithText:@" Please enter zipcode code"];
+        [self.navigationController.view makeToast:@"Please enter zipcode code"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if (_TXT_zip.text.length < 4)
     {
         [self showViewAddress];
         [_TXT_zip becomeFirstResponder];
-        [_TXT_zip showError];
-        [_TXT_zip showErrorWithText:@" Zipcode minimum 4 characters"];
+//        [_TXT_zip showError];
+//        [_TXT_zip showErrorWithText:@" Zipcode minimum 4 characters"];
+        [self.navigationController.view makeToast:@"Zipcode minimum 4 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if (_TXT_phonenumber.text.length < 5)
     {
         [self showViewAddress];
         [_TXT_phonenumber becomeFirstResponder];
-        [_TXT_phonenumber showError];
-        [_TXT_phonenumber showErrorWithText:@" Please enter more than 5 numbers"];
+//        [_TXT_phonenumber showError];
+//        [_TXT_phonenumber showErrorWithText:@" Please enter more than 5 numbers"];
+        [self.navigationController.view makeToast:@"Please enter more than 5 numbers"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     
 
@@ -836,39 +906,82 @@
         
 //       total = [[[NSUserDefaults standardUserDefaults] valueForKey:@"total_balance"] floatValue];
 //       NSString *switch_STAT = @"";// [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
+//        NSError *error;
         
+        NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"upcoming_events"] options:NSASCIIStringEncoding error:&error];
         float val_total = 0.0;
-        
+        float totap_price_val = [[dict valueForKey:@"price"] floatValue] * [[[NSUserDefaults standardUserDefaults] valueForKey:@"QTY"] intValue];
         
         if (discount != 0) {
             [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%.2f",discount] forKey:@"DISCOUNT_STAT"];
             val_total = discount;
+            if (val_total >= totap_price_val) {
+                
+                STR_payment_mode *payment_mode = [STR_payment_mode PaymentTYPE];
+                payment_mode.STR_paymentTYPE = @"VIP payment";
+                
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"WALLETMONEY"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                [self performSelector:@selector(billing_Address) withObject:activityIndicatorView afterDelay:0.01];
+            }
         }
         else
         {
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"DISCOUNT_STAT"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
-        [[NSUserDefaults standardUserDefaults] synchronize];
         
-      if([[user valueForKey:@"wallet"] floatValue] != 0.00 && [_SWITCH_useAccount isOn])
-      {
-          NSError *error;
-          NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"upcoming_events"] options:NSASCIIStringEncoding error:&error];
-          
-          float total_miscellenious = ([[dict valueForKey:@"price"] floatValue] * [[[NSUserDefaults standardUserDefaults] valueForKey:@"QTY"] intValue]) + val_total;
-          
-          STR_payment_mode *payment_mode = [STR_payment_mode PaymentTYPE];
-          payment_mode.STR_paymentTYPE = @"Wallet";
-          [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NAUNCETOK"];
-          [[NSUserDefaults standardUserDefaults] synchronize];
-          [self performSelector:@selector(billing_Address) withObject:activityIndicatorView afterDelay:0.01];
-      }
-      else
-      {
-          [self performSelector:@selector(get_client_TOKEN) withObject:activityIndicatorView afterDelay:0.01];
-
-      }
+        if (discount < totap_price_val)
+        {
+            if([[user valueForKey:@"wallet"] floatValue] != 0.00 && [_SWITCH_useAccount isOn])
+            {
+                
+                float wallet_money = [[user valueForKey:@"wallet"] floatValue];
+                
+                float total_miscellenious = totap_price_val - val_total - wallet_money;
+                if (total_miscellenious < 0) {
+                    NSLog(@"No money need to pay");
+                    
+                    val_total = totap_price_val;
+                    
+                    float temp_tot = val_total - discount;
+                    
+                    STR_payment_mode *payment_mode = [STR_payment_mode PaymentTYPE];
+                    if (discount > 0) {
+                        payment_mode.STR_paymentTYPE = @"Wallet & VIP payment";
+                    }
+                    else
+                    {
+                        payment_mode.STR_paymentTYPE = @"Wallet";
+                    }
+                    
+                    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NAUNCETOK"];
+                    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%.2f",temp_tot] forKey:@"WALLETMONEY"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    [self performSelector:@selector(billing_Address) withObject:activityIndicatorView afterDelay:0.01];
+                }
+                else
+                {
+                    NSLog(@"Money Need to pay");
+                    float temp_tot = wallet_money;
+                                      
+                    
+                    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%.2f",temp_tot] forKey:@"WALLETMONEY"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    [self performSelector:@selector(get_client_TOKEN) withObject:activityIndicatorView afterDelay:0.01];
+                }
+                
+                
+            }
+            else
+            {
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"WALLETMONEY"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                [self performSelector:@selector(get_client_TOKEN) withObject:activityIndicatorView afterDelay:0.01];
+                
+            }
         
+        }
     }
 }
 
@@ -994,14 +1107,36 @@
                 //       total = [[[NSUserDefaults standardUserDefaults] valueForKey:@"total_balance"] floatValue];
                 //       NSString *switch_STAT = @"";// [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
                 
+                float wallet_money = 0.00;
+                NSString *STR_disp,*STR_wallet,*STR_discount;
                 if([[user valueForKey:@"wallet"] floatValue] != 0.00 && [_SWITCH_useAccount isOn])
                 {
-                    payment_mode.STR_paymentTYPE = [NSString stringWithFormat:@"Wallet & %@",result.paymentMethod.type];
+                     wallet_money = [[user valueForKey:@"wallet"] floatValue];
+                }
+                
+                if(wallet_money > 0)
+                {
+                    STR_wallet = @" & Wallet";
                 }
                 else
                 {
-                    payment_mode.STR_paymentTYPE = result.paymentMethod.type;
+                    STR_wallet = @"";
                 }
+                
+                if (discount > 0)
+                {
+                    STR_discount = @" & VIP payment";
+                }
+                else
+                {
+                    STR_discount = @"";
+                }
+                
+                STR_disp = [NSString stringWithFormat:@"%@%@%@",result.paymentMethod.type,STR_discount,STR_wallet];
+               
+                
+                payment_mode.STR_paymentTYPE = STR_disp;
+                
                 
                 [self postNonceToServer:result.paymentMethod.nonce];
                 [self dismissViewControllerAnimated:YES completion:NULL];
@@ -1501,11 +1636,14 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
             
             
             NSString *naunce_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"NAUNCETOK"];
-            NSString *discount_VAL = [[NSUserDefaults standardUserDefaults] valueForKey:@"DISCOUNT_STAT"];
             
-            if([_SWITCH_useAccount isOn])
+            if(!naunce_TOK)
             {
                  parameters = @{@"billing_address":@{ @"first_name": first_name,@"last_name": last_name,@"address_line1": address_line1,@"address_line2": address_line2,@"city": city,@"country": contry_Code,@"zip_code": zip_code,@"state": state_code,@"order_id": order_ID,@"phone": phone},@"fund_amount":@"yes"};
+            }
+            else if ([_SWITCH_useAccount isOn])
+            {
+                parameters = @{@"billing_address":@{ @"first_name": first_name,@"last_name": last_name,@"address_line1": address_line1,@"address_line2": address_line2,@"city": city,@"country": contry_Code,@"zip_code": zip_code,@"state": state_code,@"order_id": order_ID,@"phone": phone},@"fund_amount":@"yes"};
             }
             else
             {
@@ -1542,9 +1680,9 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
 //                    {
                         [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"CHKOUTDETAIL"];
                 
-                if ([_SWITCH_useAccount isOn]) {
-                     [[NSUserDefaults standardUserDefaults] setObject:@"SWITCH_ON" forKey:@"SWITCHSTAT"];
-                }
+//                if ([_SWITCH_useAccount isOn]) {
+//                     [[NSUserDefaults standardUserDefaults] setObject:@"SWITCH_ON" forKey:@"SWITCHSTAT"];
+//                }
                 
                 
                 
@@ -1631,6 +1769,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
 {
     if (_VW_account.hidden == YES)
     {
+        _LBL_arrowPromo.text = @"";
         CGRect Frame_NEW = _VW_account.frame;
         Frame_NEW.origin.y = _BTN_addPromo.frame.origin.y + _BTN_addPromo.frame.size.height;
         _VW_account.frame = Frame_NEW;
@@ -1680,7 +1819,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
     else
     {
         _VW_account.hidden = YES;
-        
+        _LBL_arrowPromo.text = @"";
         CGRect Frame_NEW = _VW_line_promo.frame;
         Frame_NEW.origin.y = _BTN_addPromo.frame.origin.y + _BTN_addPromo.frame.size.height + 10;
         _VW_line_promo.frame = Frame_NEW;
@@ -1730,6 +1869,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
         Frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height;
         _VW_useAccountt.frame = Frame_NEW;
         
+        _LBL_arrowAccount.text = @"";
         _VW_useAccountt.hidden = NO;
         [_SWITCH_useAccount setOn:YES animated:YES];
         
@@ -1745,6 +1885,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
     }
     else
     {
+        _LBL_arrowAccount.text = @"";
         _VW_useAccountt.hidden = YES;
         [_SWITCH_useAccount setOn:NO animated:YES];
         CGRect Frame_NEW = _BTN_checkout.frame;
@@ -1866,7 +2007,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
                             
                             CGRect frame_NEW;
                             NSMutableDictionary *user = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"User_data"] options:NSASCIIStringEncoding error:&error];
-                            if ([[user valueForKey:@"wallet"] floatValue] > 0 && [[[NSUserDefaults standardUserDefaults] valueForKey:@"QTY"] intValue] < 2)
+                            if ([[user valueForKey:@"wallet"] floatValue] > 0)
                             {
                                 _BTN_useAccount.hidden = YES;
                                 _LBL_arrowAccount.hidden = YES;
@@ -2009,6 +2150,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
                     {
                         
                         _TXT_getpromocode.text = @"";
+                        discount = 0.0f;
                         _LBL_coupanCode.hidden = YES;
                         _BTN_close.hidden = YES;
                         
