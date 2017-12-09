@@ -47,5 +47,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbl_title_wallet;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_data_wallet;
 
+@property (weak, nonatomic) IBOutlet UILabel *lbl_nav_font;
+
 
 @end

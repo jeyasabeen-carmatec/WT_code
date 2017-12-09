@@ -19,6 +19,10 @@
 @property (nonatomic,weak) IBOutlet UILabel *LBL_gross;
 @property (nonatomic,weak) IBOutlet UILabel *LBL_Heading;
 
+@property (nonatomic,weak) IBOutlet UILabel *LBL_player_name;
+
 @property (strong) NSString *STR_parSTR;
+@property (strong) NSString *STR_holeSTR;
+@property (strong) NSString *STR_playernameSTR;
 
 @end

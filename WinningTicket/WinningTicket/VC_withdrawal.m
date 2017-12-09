@@ -459,9 +459,10 @@ else if ([_TXT_amtpaypal.text isEqualToString:@"0.00"] || [_TXT_amtpaypal.text i
                 }
                 else if(error)
                 {
+                    _TXT_amtpaypal.text = @"0.00";
                     [activityIndicatorView stopAnimating];
                     VW_overlay.hidden=YES;
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection failed" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"You do not have enough funds in your account to withdraw that amount." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                     [alert show];
                 }
                 

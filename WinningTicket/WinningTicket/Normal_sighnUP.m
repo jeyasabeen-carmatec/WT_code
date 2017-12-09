@@ -7,8 +7,10 @@
 //
 
 #import "Normal_sighnUP.h"
+#import "UIView+Toast.h"
 //#import "DejalActivityView.h"
 //#import "DGActivityIndicatorView.h"
+
 
 @interface Normal_sighnUP ()<UITextFieldDelegate,UIPickerViewDelegate, UIPickerViewDataSource>
 {
@@ -482,68 +484,101 @@
     if ([_TXT_F_name.text isEqualToString:@""])
     {
         [_TXT_F_name becomeFirstResponder];
-        [_TXT_F_name showError];
-        [_TXT_F_name showErrorWithText:@" Please enter first name"];
+//        [_TXT_F_name showError];
+//        [_TXT_F_name showErrorWithText:@" Please enter first name"];
+        [self.navigationController.view makeToast:@"Please enter first name"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if(_TXT_F_name.text.length < 2)
     {
         [_TXT_F_name becomeFirstResponder];
-        [_TXT_F_name showError];
-        [_TXT_F_name showErrorWithText:@" First name minimum 2 characters"];
+//        [_TXT_F_name showError];
+//        [_TXT_F_name showErrorWithText:@" First name minimum 2 characters"];
+        [self.navigationController.view makeToast:@"First name minimum 2 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if([_TXT_addressLine_one.text isEqualToString:@""])
     {
         [_TXT_addressLine_one becomeFirstResponder];
-        [_TXT_addressLine_one showError];
-        [_TXT_addressLine_one showErrorWithText:@" Please enter address line 1"];
+//        [_TXT_addressLine_one showError];
+//        [_TXT_addressLine_one showErrorWithText:@" Please enter address line 1"];
+        [self.navigationController.view makeToast:@"Please enter address line 1"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if (_TXT_addressLine_one.text.length < 2)
     {
         [_TXT_addressLine_one becomeFirstResponder];
-        [_TXT_addressLine_one showError];
-        [_TXT_addressLine_one showErrorWithText:@" Address line 1 minimum 2 characters"];
+//        [_TXT_addressLine_one showError];
+//        [_TXT_addressLine_one showErrorWithText:@" Address line 1 minimum 2 characters"];
+        [self.navigationController.view makeToast:@"Address line 1 minimum 2 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else  if(addr_line_two.length != 0 && _TXT_addressLine_two.text.length < 2)
     {
         [_TXT_addressLine_two becomeFirstResponder];
-        [_TXT_addressLine_two showError];
-        [_TXT_addressLine_two showErrorWithText:@" Address line 2 minimum 2 characters"];
+//        [_TXT_addressLine_two showError];
+//        [_TXT_addressLine_two showErrorWithText:@" Address line 2 minimum 2 characters"];
+        [self.navigationController.view makeToast:@"Address line 2 minimum 2 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else  if(lst_name.length != 0 && _TXT_L_name.text.length < 2)
     {
         [_TXT_L_name becomeFirstResponder];
-        [_TXT_L_name showError];
-        [_TXT_L_name showErrorWithText:@" Last name minimum 2 characters"];
+//        [_TXT_L_name showError];
+//        [_TXT_L_name showErrorWithText:@" Last name minimum 2 characters"];
+        [self.navigationController.view makeToast:@"Last name minimum 2 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if([_TXT_city.text isEqualToString:@""])
     {
         [_TXT_city becomeFirstResponder];
-        [_TXT_city showError];
-        [_TXT_city showErrorWithText:@" Please enter city"];
+//        [_TXT_city showError];
+//        [_TXT_city showErrorWithText:@" Please enter city"];
+        [self.navigationController.view makeToast:@"Please enter city"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if(_TXT_city.text.length < 2)
     {
         [_TXT_city becomeFirstResponder];
-        [_TXT_city showError];
-        [_TXT_city showErrorWithText:@" City minimum 2 characters"];
+//        [_TXT_city showError];
+//        [_TXT_city showErrorWithText:@" City minimum 2 characters"];
+        [self.navigationController.view makeToast:@"City minimum 2 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if([_TXT_phone_number.text isEqualToString:@""])
     {
         [_TXT_phone_number becomeFirstResponder];
-        [_TXT_phone_number showError];
-        [_TXT_phone_number showErrorWithText:@" Please enter phone number"];
+//        [_TXT_phone_number showError];
+//        [_TXT_phone_number showErrorWithText:@" Please enter phone number"];
+        [self.navigationController.view makeToast:@"Please enter phone number"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if (_TXT_phone_number.text.length < 5)
     {
         [_TXT_phone_number becomeFirstResponder];
-        [_TXT_phone_number showError];
-        [_TXT_phone_number showErrorWithText:@" Phone number minimum 5 numbers"];
+//        [_TXT_phone_number showError];
+//        [_TXT_phone_number showErrorWithText:@" Phone number minimum 5 numbers"];
+        [self.navigationController.view makeToast:@"Phone number minimum 5 numbers"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if([_TXT_country.text isEqualToString:@""])
     {
         [_TXT_country becomeFirstResponder];
-        [_TXT_country showError];
-        [_TXT_country showErrorWithText:@" Please select country"];
+//        [_TXT_country showError];
+//        [_TXT_country showErrorWithText:@" Please select country"];
+        [self.navigationController.view makeToast:@"Please select country"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
 //    else if([_TXT_state.text isEqualToString:@""])
 //    {
@@ -554,8 +589,11 @@
     else if([emailTest evaluateWithObject:text_to_compare_email] == NO)
     {
         [_TXT_email becomeFirstResponder];
-        [_TXT_email showError];
-        [_TXT_email showErrorWithText:@" Please enter valid email address"];
+//        [_TXT_email showError];
+//        [_TXT_email showErrorWithText:@" Please enter valid email address"];
+        [self.navigationController.view makeToast:@"Please enter valid email address"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else
     {

@@ -607,7 +607,7 @@
     _VW_nav_TOP.backgroundColor = [UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1.0];
     _search_BAR.hidden = YES;
     
-    CGRect frameimg = CGRectMake(15,5, 25,25);
+    CGRect frameimg = CGRectMake(15,8, 22,22);
     UIButton *someButton = [[UIButton alloc] initWithFrame:frameimg];
 //    [someButton setTitle:@"" forState:UIControlStateNormal];
 //    [someButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -623,7 +623,7 @@
     UIImage *newImage = [temp_IMG.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     UIGraphicsBeginImageContextWithOptions(temp_IMG.image.size, NO, newImage.scale);
     [[UIColor blackColor] set];
-    [newImage drawInRect:CGRectMake(0, 0, temp_IMG.image.size.width, newImage.size.height)];
+    [newImage drawInRect:CGRectMake(5, 5, temp_IMG.image.size.width -5, newImage.size.height -5)];
     newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
@@ -642,7 +642,7 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor blackColor],
-       NSFontAttributeName:FONT_NAV_TITLE}];
+       NSFontAttributeName:_lbl_nav_Font.font}];
     self.navigationItem.title = @"FILTER";
     
 }
@@ -776,7 +776,7 @@
     searchBarItem.tag = 123;
     self.navigationItem.leftBarButtonItem = searchBarItem;
     
-    CGRect frameimg = CGRectMake(15,5, 25,25);
+    CGRect frameimg = CGRectMake(15,8, 22,22);
     
     UIButton *someButton = [[UIButton alloc] initWithFrame:frameimg];
 //    [someButton setTitle:@"" forState:UIControlStateNormal];
@@ -793,7 +793,7 @@
     UIImage *newImage = [temp_IMG.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     UIGraphicsBeginImageContextWithOptions(temp_IMG.image.size, NO, newImage.scale);
     [[UIColor blackColor] set];
-    [newImage drawInRect:CGRectMake(0, 0, temp_IMG.image.size.width, newImage.size.height)];
+    [newImage drawInRect:CGRectMake(5, 5, temp_IMG.image.size.width-5, newImage.size.height-5)];
     newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
@@ -882,7 +882,6 @@
 }
 
 #pragma mark - UITableview Deligate
-#pragma Mark - UITableview
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([ARR_allevent count] == 0)

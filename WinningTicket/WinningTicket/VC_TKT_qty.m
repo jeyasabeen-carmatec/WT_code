@@ -10,6 +10,7 @@
 //#import "DejalActivityView.h"
 //#import "DGActivityIndicatorView.h"
 #import "ViewController.h"
+#import "UIView+Toast.h"
 
 @interface VC_TKT_qty ()
 {
@@ -105,7 +106,7 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:FONT_NAV_TITLE}];
+       NSFontAttributeName:_lbl_navFont.font}];
     self.navigationItem.title = @"ADD QUANTITY";
     
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -421,6 +422,12 @@
         VW_overlay.hidden = NO;
         [activityIndicatorView startAnimating];
         [self performSelector:@selector(update_QTY_api) withObject:activityIndicatorView afterDelay:0.01];
+    }
+    else
+    {
+        [self.view makeToast:@"Please select minimum 1 quantity"
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
 }
 

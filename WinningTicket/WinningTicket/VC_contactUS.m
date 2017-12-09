@@ -11,6 +11,8 @@
 
 #import "ViewController.h"
 
+#import "UIView+Toast.h"
+
 
 @interface VC_contactUS ()<UITextFieldDelegate,UITextViewDelegate,UIAlertViewDelegate>
 {
@@ -284,41 +286,65 @@
     if([_TXT_fname.text isEqualToString:@""])
     {
         [_TXT_fname becomeFirstResponder];
-        [_TXT_fname showError];
-        [_TXT_fname showErrorWithText:@" Plese Enter First name "];
+//        [_TXT_fname showError];
+//        [_TXT_fname showErrorWithText:@" Plese Enter First name "];
+        
+        [self.view makeToast:@"Plese Enter First name"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     
     else if(_TXT_fname.text.length < 2)
     {
         [_TXT_fname becomeFirstResponder];
-        [_TXT_fname showError];
-        [_TXT_fname showErrorWithText:@" First name minimum 2 Character"];
+//        [_TXT_fname showError];
+//        [_TXT_fname showErrorWithText:@" First name minimum 2 Character"];
+        
+        [self.view makeToast:@"First name minimum 2 Character"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if([emailTest evaluateWithObject:text_to_compare_email] == NO)
     {
         [_TXT_email becomeFirstResponder];
-        [_TXT_email showError];
-        [_TXT_email showErrorWithText:@" Please Enter a valid Email address"];
+//        [_TXT_email showError];
+//        [_TXT_email showErrorWithText:@" Please Enter a valid Email address"];
+        
+        [self.view makeToast:@"Please Enter a valid Email address"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
 
     else if([_TXT_phone.text isEqualToString:@""])
     {
         [_TXT_phone becomeFirstResponder];
-        [_TXT_phone showError];
-        [_TXT_phone showErrorWithText:@" Please enter phone number"];
+//        [_TXT_phone showError];
+//        [_TXT_phone showErrorWithText:@" Please enter phone number"];
+        
+        [self.view makeToast:@"Please enter phone number"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     
     else if (_TXT_phone.text.length < 5)
     {
         [_TXT_phone becomeFirstResponder];
-        [_TXT_phone showError];
-        [_TXT_phone showErrorWithText:@" Phone number minimum 5 Numbers"];
+//        [_TXT_phone showError];
+//        [_TXT_phone showErrorWithText:@" Phone number minimum 5 Numbers"];
+        
+        [self.view makeToast:@"Phone number minimum 5 Numbers"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else if([_TXT_subject.text isEqualToString:@""])
     {
         [_TXT_subject becomeFirstResponder];
-        [_TXT_subject showError];
-        [_TXT_subject showErrorWithText:@" Please Enter Subject"];
+//        [_TXT_subject showError];
+//        [_TXT_subject showErrorWithText:@" Please Enter Subject"];
+        
+        [self.view makeToast:@"Please Enter Subject"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
 
     }
     else if([_TXT_VW_message.text isEqualToString:@""] || [_TXT_VW_message.text isEqualToString:@"Your Message"])

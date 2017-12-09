@@ -46,4 +46,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *TXT_account;
 @property (weak, nonatomic) IBOutlet UISwitch *Switch_Ac;
 
+@property (weak, nonatomic) IBOutlet UILabel *lbl_nav_font;
+
 @end

@@ -28,29 +28,29 @@
 //http://192.168.3.40:3000
 
 //Anandh system
-#define SERVER_URL @"http://192.168.3.12:3000/api/v1/"
-#define SERVER_USR @"http://192.168.3.12:3000/api/v1/users/"
-#define IMAGE_URL @"http://192.168.3.12:3000"
-#define ACTION_CABLE @"192.168.3.12:3000/cable"
+//#define SERVER_URL @"http://192.168.3.12:3000/api/v1/"
+//#define SERVER_USR @"http://192.168.3.12:3000/api/v1/users/"
+//#define IMAGE_URL @"http://192.168.3.12:3000"
+//#define ACTION_CABLE @"192.168.3.12:3000/cable"
 
 //Staging Server new
-//#define SERVER_URL @"http://104.37.188.213:3000/api/v1/"
-//#define SERVER_USR @"http://104.37.188.213:3000/api/v1/users/"
-//#define IMAGE_URL @"http://104.37.188.213:3000"
-//#define ACTION_CABLE @"104.37.188.213:3000/cable"
-
-//Staging Server
 //#define SERVER_URL @"http://winningticket.carmatec.com/api/v1/"
 //#define SERVER_USR @"http://winningticket.carmatec.com/api/v1/users/"
 //#define IMAGE_URL @"http://winningticket.carmatec.com"
-//#define ACTION_CABLE @"winningticket.carmatec.com/cable"
+//#define ACTION_CABLE @"104.37.188.213:3000/cable"
+
+//Staging Server
+#define SERVER_URL @"http://winningticket.carmatec.com/api/v1/"
+#define SERVER_USR @"http://winningticket.carmatec.com/api/v1/users/"
+#define IMAGE_URL @"http://winningticket.carmatec.com"
+#define ACTION_CABLE @"winningticket.carmatec.com/cable"
 
 //#define phoneRegex @"(([+]{1}|[0]{2}){0,1}+[1]{1}){0,1}+[ ]{0,1}+(?:[-( ]{0,1}[0-9]{3}[-) ]{0,1}){0,1}+[ ]{0,1}+[0-9]{2,3}+[0-9- ]{4,8}"//@"^\\x2b?[0-9]+$"
 #define emailRegEx @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,10}"
 
-#define FONT_NAV_TITLE [UIFont fontWithName:@"Montserrat-Bold" size:20.0f]
-#define FONT_Distance [UIFont fontWithName:@"Montserrat-Medium" size:13.0f]
-#define FONT_italicSMALL [UIFont fontWithName:@"Gotham-MediumItalic" size:14.0f]
-#define FONT_normal [UIFont fontWithName:@"GothamBook" size:17.0f]
+//#define FONT_NAV_TITLE [UIFont fontWithName:@"Montserrat-Bold" size:20.0f]
+//#define FONT_Distance [UIFont fontWithName:@"Montserrat-Medium" size:13.0f]
+//#define FONT_italicSMALL [UIFont fontWithName:@"Gotham-MediumItalic" size:14.0f]
+//#define FONT_normal [UIFont fontWithName:@"GothamBook" size:17.0f]
 
 #endif /* WinningTicket_pch */

@@ -26,4 +26,5 @@
 @property (nonatomic,weak) IBOutlet UILabel *event_dtl_lbl;
 @property (nonatomic,weak) IBOutlet UILabel *event_addr_lbl;
 
+
 @end

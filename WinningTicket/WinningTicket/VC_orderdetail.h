@@ -33,4 +33,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *BTN_liveSCR;
 @property (weak, nonatomic) IBOutlet UIButton *BTN_liveAUCTN;
 
+@property(nonatomic,weak) IBOutlet UILabel *lbl_nav_font;
+
 @end

@@ -166,7 +166,7 @@
     self.navigationController.navigationBar.titleTextAttributes=@{NSForegroundColorAttributeName:[UIColor whiteColor]};
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:FONT_NAV_TITLE}];
+       NSFontAttributeName:_lbl_nav_font.font}];
     self.navigationItem.title = @"SILENT AUCTIONS";
     
 
@@ -280,7 +280,7 @@
         NSDictionary *cpy_dict = [sec_one_ARR objectAtIndex:indexPath.row];
         NSString *url_str = [NSString stringWithFormat:@"%@%@",IMAGE_URL,[cpy_dict valueForKey:@"item_image"]];
         [auc_cell.image_display sd_setImageWithURL:[NSURL URLWithString:url_str]
-                                  placeholderImage:[UIImage imageNamed:@"Logo_WT.png"]];
+                                  placeholderImage:[UIImage imageNamed:@"square-2"]];
 //        auc_cell.name_lbl.text = [cpy_dict objectForKey:@"name"];
         
         auc_cell.image_display.layer.borderWidth = 1.0f;
@@ -408,16 +408,16 @@
                 paragraphStyle.paragraphSpacing = 0.25 * auc_cell.name_lbl.font.lineHeight;
                 [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamMedium" size:18.0],NSForegroundColorAttributeName:[UIColor colorWithRed:0.00 green:0.73 blue:0.91 alpha:1.0],NSParagraphStyleAttributeName:paragraphStyle}
                                         range:cmp];
-                [attributedText setAttributes:@{NSFontAttributeName:FONT_NAV_TITLE,NSForegroundColorAttributeName:[UIColor blackColor],
+                [attributedText setAttributes:@{NSFontAttributeName:_lbl_nav_font.font,NSForegroundColorAttributeName:[UIColor blackColor],
                                                 NSParagraphStyleAttributeName:paragraphStyle}
                                         range:RAN_amount];
                 if ([STR_bidSTAT isEqualToString:@"Auction Closed"]) {
-                    [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL,NSForegroundColorAttributeName:[UIColor redColor]}
+                    [attributedText setAttributes:@{NSFontAttributeName:_lbl_font_small.font,NSForegroundColorAttributeName:[UIColor redColor]}
                                             range:RAN_bidSTAT];
                 }
                 else
                 {
-                    [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL,NSForegroundColorAttributeName:[UIColor lightGrayColor]}
+                    [attributedText setAttributes:@{NSFontAttributeName:_lbl_font_small.font,NSForegroundColorAttributeName:[UIColor lightGrayColor]}
                                             range:RAN_bidSTAT];
                 }
                 
@@ -428,15 +428,15 @@
                 [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamMedium" size:17.0],NSForegroundColorAttributeName:[UIColor colorWithRed:0.00 green:0.73 blue:0.91 alpha:1.0],
                                                 NSParagraphStyleAttributeName:paragraphStyle}
                                         range:cmp];
-                [attributedText setAttributes:@{NSFontAttributeName:FONT_NAV_TITLE,NSForegroundColorAttributeName:[UIColor blackColor],NSParagraphStyleAttributeName:paragraphStyle}
+                [attributedText setAttributes:@{NSFontAttributeName:_lbl_nav_font.font,NSForegroundColorAttributeName:[UIColor blackColor],NSParagraphStyleAttributeName:paragraphStyle}
                                         range:RAN_amount];
                 if ([STR_bidSTAT isEqualToString:@"Auction Closed"]) {
-                    [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL,NSForegroundColorAttributeName:[UIColor redColor]}
+                    [attributedText setAttributes:@{NSFontAttributeName:_lbl_font_small.font,NSForegroundColorAttributeName:[UIColor redColor]}
                                             range:RAN_bidSTAT];
                 }
                 else
                 {
-                    [attributedText setAttributes:@{NSFontAttributeName:FONT_italicSMALL,NSForegroundColorAttributeName:[UIColor lightGrayColor]}
+                    [attributedText setAttributes:@{NSFontAttributeName:_lbl_font_small.font,NSForegroundColorAttributeName:[UIColor lightGrayColor]}
                                             range:RAN_bidSTAT];
                 }
             }

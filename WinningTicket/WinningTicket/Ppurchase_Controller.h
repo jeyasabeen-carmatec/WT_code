@@ -28,16 +28,24 @@
 //@property (weak, nonatomic) IBOutlet UILabel *descripton_status;
 @property (weak, nonatomic) IBOutlet UILabel *amount;
 
-@property (weak, nonatomic) IBOutlet UIView *subtotal_vw;
-@property (weak, nonatomic) IBOutlet UIView *total_vw;
 
 @property (weak, nonatomic) IBOutlet UIView *sec_vw;
-@property (weak, nonatomic) IBOutlet UIView *third_vw;
 @property (strong, nonatomic) IBOutlet UIView *first_VW;
 @property (nonatomic,weak) IBOutlet UIButton *_BTN_Ok;
 
 
 @property (weak, nonatomic) IBOutlet UIView *VW_head;
+
+@property(nonatomic,weak)IBOutlet UILabel *lbl_nav_font;
+
+@property (weak, nonatomic) IBOutlet UIView *VW_line4;
+@property (weak, nonatomic) IBOutlet UIView *VW_line5;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbl_title_discount;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_data_discount;
+
+@property (weak, nonatomic) IBOutlet UILabel *lbl_title_wallet;
+@property (weak, nonatomic) IBOutlet UILabel *lbl_data_wallet;
 
 
 @end

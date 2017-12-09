@@ -126,6 +126,10 @@
     
     VW_overlay.hidden = YES;
     
+    _lbl_title_acc_BAL.hidden = YES;
+    _lbl_data_acc_BAL.hidden = YES;
+    _VW_line4.hidden = YES;
+    
     NSMutableDictionary *temp_resp = [[NSUserDefaults standardUserDefaults] valueForKey:@"donate_Deatils"];
     NSMutableDictionary *address_dictin = [temp_resp valueForKey:@"billing_address"];
     
@@ -334,7 +338,7 @@
     text = [text stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
     text = [text stringByReplacingOccurrencesOfString:@"(null)" withString:@"Not Mentioned"];
     _lbl_datasubtotal.text = [NSString stringWithFormat:@"$%.2f",[[temp_resp valueForKey:@"price"] floatValue]];
-    _lbl_datatotal.text = _lbl_datasubtotal.text;
+//    _lbl_datatotal.text = _lbl_datasubtotal.text;
     
 
     
@@ -423,13 +427,78 @@
     frame_rect.origin.y = _lbl_datasubtotal.frame.origin.y + _lbl_datasubtotal.frame.size.height + 10;
     _VW_line3.frame = frame_rect;
     
-    frame_rect = _lbl_titletotal.frame;
-    frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
-    _lbl_titletotal.frame = frame_rect;
+   
     
-    frame_rect = _lbl_datatotal.frame;
-    frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
-    _lbl_datatotal.frame = frame_rect;
+    NSData *aData = [[NSUserDefaults standardUserDefaults]valueForKey:@"User_data"] ;
+    NSError *error;
+
+    
+    if(aData)
+    {
+        NSMutableDictionary *user_DICTIN = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
+        float wallet = [[user_DICTIN valueForKey:@"wallet"] floatValue];
+        NSString *STR_SWITCHSTAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
+        if ([STR_SWITCHSTAT isEqualToString:@"SWITCH_ON"] && (wallet > 0.00)) {
+           
+            float total;
+            float waletMoney = [[user_DICTIN valueForKey:@"wallet"] floatValue];
+            
+            NSArray *ARR_subtotal = [_lbl_datasubtotal.text componentsSeparatedByString:@"$"];
+            float subtotal = [[ARR_subtotal objectAtIndex:[ARR_subtotal count]-1]floatValue];
+            
+            float difference;
+            
+            if (waletMoney > subtotal) {
+                total = 0.00f;
+                difference = subtotal;
+            }
+            else
+            {
+                total = subtotal - waletMoney;
+                difference = subtotal - total;
+            }
+            
+            _lbl_datatotal.text = [NSString stringWithFormat:@"$%.2f",total];
+            _lbl_data_acc_BAL.text = [NSString stringWithFormat:@"-$%.2f",difference];
+            
+            _lbl_title_acc_BAL.hidden = NO;
+            _lbl_data_acc_BAL.hidden = NO;
+            _VW_line4.hidden = NO;
+            
+            frame_rect = _lbl_title_acc_BAL.frame;
+            frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
+            _lbl_title_acc_BAL.frame = frame_rect;
+            
+            frame_rect = _lbl_data_acc_BAL.frame;
+            frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
+            _lbl_data_acc_BAL.frame = frame_rect;
+            
+            frame_rect = _VW_line4.frame;
+            frame_rect.origin.y = _lbl_title_acc_BAL.frame.origin.y + _lbl_title_acc_BAL.frame.size.height + 10;
+            _VW_line4.frame = frame_rect;
+            
+            frame_rect = _lbl_titletotal.frame;
+            frame_rect.origin.y = _VW_line4.frame.origin.y + _VW_line4.frame.size.height + 10;
+            _lbl_titletotal.frame = frame_rect;
+            
+            frame_rect = _lbl_datatotal.frame;
+            frame_rect.origin.y = _VW_line4.frame.origin.y + _VW_line4.frame.size.height + 10;
+            _lbl_datatotal.frame = frame_rect;
+        }
+        else
+        {
+            frame_rect = _lbl_titletotal.frame;
+            frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
+            _lbl_titletotal.frame = frame_rect;
+            
+            frame_rect = _lbl_datatotal.frame;
+            frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
+            _lbl_datatotal.frame = frame_rect;
+            
+            NSMutableDictionary *temp_resp = [[NSUserDefaults standardUserDefaults] valueForKey:@"donate_Deatils"];
+            _lbl_datatotal.text = [NSString stringWithFormat:@"$%.2f",[[temp_resp valueForKey:@"price"] floatValue]];
+        }
+    }
     
     frame_rect = _BTN_order2.frame;
     frame_rect.origin.y = _lbl_datatotal.frame.origin.y + _lbl_datatotal.frame.size.height + 10;
@@ -463,9 +532,9 @@
 //}
 -(void) BTN_order2action
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Donation Successfully done" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-    [alert show];
-    [self performSegueWithIdentifier:@"donate_purchase_home" sender:self];
+    VW_overlay.hidden = NO;
+    [activityIndicatorView startAnimating];
+    [self performSelector:@selector(create_payment) withObject:activityIndicatorView afterDelay:0.01];
 }
 
 #pragma mark - States and Country
@@ -527,6 +596,66 @@
     [tncView setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     
     [self presentViewController:tncView animated:YES completion:NULL];
+}
+
+-(void) create_payment
+{
+    NSError *error;
+    NSHTTPURLResponse *response = nil;
+    NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+    
+       
+    NSString *urlGetuser =[NSString stringWithFormat:@"%@payments/create",SERVER_URL];
+    NSLog(@"The url iS:%@",urlGetuser);
+    
+    NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:urlProducts];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    
+    NSData *postData = [[NSUserDefaults standardUserDefaults] valueForKey:@"Account_data"];
+   
+    [request setHTTPBody:postData];
+    [request setHTTPShouldHandleCookies:NO];
+    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if (aData)
+    {
+        [activityIndicatorView stopAnimating];
+        VW_overlay.hidden = YES;
+        NSMutableDictionary *json_DATA_one = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
+        
+        NSString *str = [json_DATA_one valueForKey:@"status"];
+        NSLog(@"Final Payment data : \n%@",json_DATA_one);
+        if([str isEqualToString:@"Failure"])
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Failed to create payment" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+            [alert show];
+            
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Donation Successfully done" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+            [alert show];
+            
+            [self load_VC];
+            
+        }
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Failed" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [alert show];
+    }
+    [activityIndicatorView stopAnimating];
+    VW_overlay.hidden = YES;
+}
+
+-(void) load_VC
+{
+    [self performSegueWithIdentifier:@"donate_purchase_home" sender:self];
 }
 
 @end

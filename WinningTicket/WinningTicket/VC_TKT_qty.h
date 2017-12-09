@@ -43,5 +43,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *Switch_Ac;*/
 /*Change for Apply promocode*/
 
+@property (weak, nonatomic) IBOutlet UILabel *lbl_navFont;
+
 
 @end

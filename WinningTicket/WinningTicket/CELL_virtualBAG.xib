@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Bold.ttf">
+            <string>Montserrat-Bold</string>
+        </array>
+        <array key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
+        <array key="Montserrat-SemiBold.ttf">
+            <string>Montserrat-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="110" id="KGk-i7-Jjw" customClass="CELL_virtualBAG">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="109.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="E8Q-t6-eYw">
+                        <rect key="frame" x="9" y="9" width="90" height="90"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="90" id="BS3-dD-2uv"/>
+                            <constraint firstAttribute="width" constant="90" id="wMr-5U-0Y5"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="L" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAa-b5-2St">
+                        <rect key="frame" x="106" y="9" width="207" height="21"/>
+                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QpQ-cj-i7H">
+                        <rect key="frame" x="122" y="38.5" width="190" height="15"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxi-ZQ-DLX" customClass="BTN_borderwidth">
+                        <rect key="frame" x="159" y="62" width="116" height="37"/>
+                        <color key="backgroundColor" red="0.01176470588" green="0.69019607839999997" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="37" id="QWA-9R-wTO"/>
+                            <constraint firstAttribute="width" constant="116" id="d1y-1X-Lvf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="13"/>
+                        <state key="normal" title="VIEW OFFER">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="QpQ-cj-i7H" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="2Sf-2O-1iX"/>
+                    <constraint firstItem="vAa-b5-2St" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="4MY-q5-djm"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="cxi-ZQ-DLX" secondAttribute="trailing" constant="37" id="BmX-d1-0LK"/>
+                    <constraint firstItem="QpQ-cj-i7H" firstAttribute="leading" secondItem="E8Q-t6-eYw" secondAttribute="trailing" constant="23" id="DoK-Pw-1lV"/>
+                    <constraint firstAttribute="trailing" secondItem="vAa-b5-2St" secondAttribute="trailing" constant="7" id="PL6-vd-bNp"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="E8Q-t6-eYw" secondAttribute="bottom" constant="2.5" id="Stx-R2-RVV"/>
+                    <constraint firstItem="E8Q-t6-eYw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="1" id="Xm2-V1-Jhu"/>
+                    <constraint firstItem="cxi-ZQ-DLX" firstAttribute="top" secondItem="QpQ-cj-i7H" secondAttribute="bottom" constant="8.5" id="cIK-Uf-2wO"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="cxi-ZQ-DLX" secondAttribute="bottom" constant="2.5" id="ceZ-vm-Maf"/>
+                    <constraint firstItem="E8Q-t6-eYw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="1" id="rP4-A5-Ud2"/>
+                    <constraint firstItem="cxi-ZQ-DLX" firstAttribute="leading" secondItem="E8Q-t6-eYw" secondAttribute="trailing" constant="60" id="rXx-EG-vjT"/>
+                    <constraint firstItem="QpQ-cj-i7H" firstAttribute="top" secondItem="vAa-b5-2St" secondAttribute="bottom" constant="8.5" id="wlq-Im-TZS"/>
+                    <constraint firstItem="vAa-b5-2St" firstAttribute="leading" secondItem="E8Q-t6-eYw" secondAttribute="trailing" constant="7" id="xwn-1K-nrb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="BTN_viewOffer" destination="cxi-ZQ-DLX" id="ILj-w6-ZJA"/>
+                <outlet property="IMG_giftIcon" destination="E8Q-t6-eYw" id="xX5-hy-4fZ"/>
+                <outlet property="lbl_offername" destination="vAa-b5-2St" id="L6a-3X-WDQ"/>
+                <outlet property="lbl_status" destination="QpQ-cj-i7H" id="bVp-AB-5xm"/>
+            </connections>
+            <point key="canvasLocation" x="27" y="33"/>
+        </tableViewCell>
+    </objects>
+</document>

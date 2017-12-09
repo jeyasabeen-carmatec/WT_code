@@ -44,5 +44,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbl_count;
 
 @property (retain, nonatomic) IBOutlet UILabel *lbl_CountDown;
+@property (retain, nonatomic) IBOutlet UILabel *lbl_font;
+@property (retain, nonatomic) IBOutlet UILabel *lbl_font_small;
+@property (retain, nonatomic) IBOutlet UILabel *lbl_font_normal;
 
 @end

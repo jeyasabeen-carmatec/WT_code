@@ -213,8 +213,9 @@
         _LBL_gross.frame = myframe;
     }
     
-    NSString *hole_name = @"Hole - 2";
-    NSString *par_name = @"par - 4";
+    _LBL_player_name.text = _STR_playernameSTR;
+    NSString *hole_name = [NSString stringWithFormat:@"Hole - %@",_STR_holeSTR];
+    NSString *par_name = [NSString stringWithFormat:@"par - %@",_STR_parSTR];
     NSString *Hole_text = [NSString stringWithFormat:@"%@ - %@",hole_name,par_name];
     
     if ([self.LBL_Heading respondsToSelector:@selector(setAttributedText:)]) {

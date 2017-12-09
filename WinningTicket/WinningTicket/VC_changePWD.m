@@ -10,7 +10,7 @@
 //#import "DGActivityIndicatorView.h"
 
 #import "ViewController.h"
-
+#import "UIView+Toast.h"
 
 @interface VC_changePWD ()<UITextFieldDelegate>
 {
@@ -227,42 +227,65 @@
     if([_TXT_currentPWD.text isEqualToString:@""])
     {
         [_TXT_currentPWD becomeFirstResponder];
-        [_TXT_currentPWD showError];
-        [_TXT_currentPWD showErrorWithText:@" Please enter current password"];
+//        [_TXT_currentPWD showError];
+//        [_TXT_currentPWD showErrorWithText:@" Please enter current password"];
+        [self.view makeToast:@"Please enter current password"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
         
     }
     else if(_TXT_currentPWD.text.length < 8)
     {
         [_TXT_currentPWD becomeFirstResponder];
-        [_TXT_currentPWD showError];
-        [_TXT_currentPWD showErrorWithText:@" Current password should have minimum 8 characters"];
+//        [_TXT_currentPWD showError];
+//        [_TXT_currentPWD showErrorWithText:@" Current password should have minimum 8 characters"];
+        
+        [self.view makeToast:@"Current password should have minimum 8 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
 
     }
     else  if([_TXT_newPWD.text isEqualToString:@""])
     {
         [_TXT_newPWD becomeFirstResponder];
-        [_TXT_newPWD showError];
-        [_TXT_newPWD showErrorWithText:@" Please enter new password"];
+//        [_TXT_newPWD showError];
+//        [_TXT_newPWD showErrorWithText:@" Please enter new password"];
+        
+        [self.view makeToast:@"Please enter new password"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
         
     }
     else  if(_TXT_newPWD.text.length < 8)
     {
         [_TXT_newPWD becomeFirstResponder];
-        [_TXT_newPWD showError];
-        [_TXT_newPWD showErrorWithText:@" New Password should have minimum 8 chraters"];
+//        [_TXT_newPWD showError];
+//        [_TXT_newPWD showErrorWithText:@" New Password should have minimum 8 chraters"];
+        
+        [self.view makeToast:@"New Password should have minimum 8 chraters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
         
     }
     else  if([_TXT_confirmnewPWD.text isEqualToString:@""])
     {
         [_TXT_confirmnewPWD becomeFirstResponder];
-        [_TXT_confirmnewPWD showError];
-        [_TXT_confirmnewPWD showErrorWithText:@" Please enter confirm Password"];
+//        [_TXT_confirmnewPWD showError];
+//        [_TXT_confirmnewPWD showErrorWithText:@" Please enter confirm Password"];
+        
+        [self.view makeToast:@"Please enter confirm Password"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
     else  if(_TXT_confirmnewPWD.text.length < 8)
     {
         [_TXT_confirmnewPWD becomeFirstResponder];
-        [_TXT_confirmnewPWD showError];
-        [_TXT_confirmnewPWD showErrorWithText:@" Confirm Password should have minimum 8 chraters"];
+//        [_TXT_confirmnewPWD showError];
+//        [_TXT_confirmnewPWD showErrorWithText:@" Confirm Password should have minimum 8 chraters"];
+        
+        [self.view makeToast:@"Confirm Password should have minimum 8 chraters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
     }
 
     else

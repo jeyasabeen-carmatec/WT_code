@@ -948,7 +948,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
     if (aData)
     {
         NSMutableDictionary *json_DATA_one = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
-        NSLog(@"Data from Donate VC generate client TOK : \n%@",json_DATA_one);
+        NSLog(@"Data from add funds VC generate client TOK : \n%@",json_DATA_one);
         
         @try
         {

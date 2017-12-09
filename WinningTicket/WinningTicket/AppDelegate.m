@@ -43,7 +43,7 @@
     [self.window makeKeyAndVisible];
     
     
-    if(SYSTEM_VERSION_EQUAL_TO(@"10.0")){
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"10.0")){
         UNUserNotificationCenter *notifiCenter = [UNUserNotificationCenter currentNotificationCenter];
         notifiCenter.delegate = self;
         [notifiCenter requestAuthorizationWithOptions:(UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionBadge) completionHandler:^(BOOL granted, NSError * _Nullable error){

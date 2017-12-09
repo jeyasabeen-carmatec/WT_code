@@ -86,7 +86,7 @@
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:FONT_NAV_TITLE}];
+       NSFontAttributeName:_lbl_nav_font.font}];
     self.navigationItem.title = @"ORDER PREVIEW";
     
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PurchaseRESPONSE"];
@@ -156,7 +156,7 @@
             NSLog(@"The response from checkout detail VC \n%@",temp_resp);
             
             _lbl_datasubtotal.text = [NSString stringWithFormat:@"$%.2f",[[temp_resp valueForKey:@"price"] floatValue] * [[temp_resp valueForKey:@"quantity"] floatValue]];
-            _lbl_datatotal.text = _lbl_datasubtotal.text;
+//            _lbl_datatotal.text = _lbl_datasubtotal.text;
             
             [_BTN_order2 addTarget:self action:@selector(BTN_order2action) forControlEvents:UIControlEventTouchUpInside];
             
@@ -315,6 +315,13 @@
 //                STR_pay_typ = @"Credit / Debit Card";
 //            }
             
+//            NSString *STR_wallet1 = [[NSUserDefaults standardUserDefaults] valueForKey:@"WALLETMONEY"];
+//            
+//            NSString *STR_pay_info;
+//            if (STR_wallet1) {
+//                STR_pay_info = [NSString stringWithFormat:@"%@ & VIP payment",[STR_payment_mode PaymentTYPE].STR_paymentTYPE];
+//            }
+            
             _lbl_data_payment_info.text = [STR_payment_mode PaymentTYPE].STR_paymentTYPE; //[[NSUserDefaults standardUserDefaults] valueForKey:@"paymentTYPE"];//STR_pay_typ;//@"Credit / Debit Card";
             frame_rect = _lbl_data_payment_info.frame;
             frame_rect.origin.y = _lbl_titl_payment_info.frame.origin.y + _lbl_titl_payment_info.frame.size.height + 10;
@@ -382,6 +389,13 @@
             self.lbl_ticketDetail.numberOfLines = 0;
             [self.lbl_ticketDetail sizeToFit];
             
+            _lbl_title_discount.hidden = YES;
+            _lbl_title_wallet.hidden = YES;
+            _lbl_data_discount.hidden = YES;
+            _lbl_data_wallet.hidden = YES;
+            _VW_line4.hidden = YES;
+            _VW_line5.hidden = YES;
+            
             frame_rect = _lbl_ticketDetail.frame;
             frame_rect.origin.y = _VW_line1.frame.origin.y + _VW_line1.frame.size.height + 5;
             frame_rect.size.width = orginal_width;
@@ -436,20 +450,95 @@
             frame_rect.origin.y = _lbl_datasubtotal.frame.origin.y + _lbl_datasubtotal.frame.size.height + 10;
             _VW_line3.frame = frame_rect;
             
+            float discount_val = 0.0f;
+            float wallet_val = 0.0f;
+            NSString *STR_discount = [[NSUserDefaults standardUserDefaults] valueForKey:@"DISCOUNT_STAT"];
+            NSString *STR_wallet = [[NSUserDefaults standardUserDefaults] valueForKey:@"WALLETMONEY"];
+            
+            if (STR_discount) {
+                _lbl_title_discount.hidden = NO;
+                _lbl_data_discount.hidden = NO;
+                _VW_line4.hidden = NO;
+                
+                discount_val = [STR_discount floatValue];
+                
+                frame_rect = _lbl_title_discount.frame;
+                frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
+                _lbl_title_discount.frame = frame_rect;
+                
+                frame_rect = _lbl_data_discount.frame;
+                frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
+                _lbl_data_discount.frame = frame_rect;
+                
+                _lbl_data_discount.text = [NSString stringWithFormat:@"-$%@",STR_discount];
+                
+                frame_rect = _VW_line4.frame;
+                frame_rect.origin.y = _lbl_title_discount.frame.origin.y + _lbl_title_discount.frame.size.height + 10;
+                _VW_line4.frame = frame_rect;
+            }
+            
+            if (STR_wallet) {
+                _lbl_title_wallet.hidden = NO;
+                _lbl_data_wallet.hidden = NO;
+                _VW_line5.hidden = NO;
+                
+                wallet_val = [STR_wallet floatValue];
+                
+                frame_rect = _lbl_title_wallet.frame;
+                if (_VW_line4.hidden == YES) {
+                    frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
+                }
+                else
+                {
+                    frame_rect.origin.y = _VW_line4.frame.origin.y + _VW_line4.frame.size.height + 10;
+                }
+                _lbl_title_wallet.frame = frame_rect;
+                
+                frame_rect = _lbl_data_wallet.frame;
+                if (_VW_line4.hidden == YES) {
+                    frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
+                }
+                else
+                {
+                    frame_rect.origin.y = _VW_line4.frame.origin.y + _VW_line4.frame.size.height + 10;
+                }
+                _lbl_data_wallet.frame = frame_rect;
+                _lbl_data_wallet.text = [NSString stringWithFormat:@"-$%@",STR_wallet];
+                
+                frame_rect = _VW_line5.frame;
+                frame_rect.origin.y = _lbl_title_wallet.frame.origin.y + _lbl_title_wallet.frame.size.height + 10;
+                _VW_line5.frame = frame_rect;
+            }
+            
+            
             frame_rect = _lbl_titletotal.frame;
-            frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
+            
+            if (_VW_line4.hidden == YES && _VW_line5.hidden == YES) {
+                frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
+            }
+            else if (_VW_line5.hidden == NO && _VW_line4.hidden == YES)
+            {
+                frame_rect.origin.y = _VW_line5.frame.origin.y + _VW_line5.frame.size.height + 10;
+            }
+            else if (_VW_line5.hidden == YES && _VW_line4.hidden == NO)
+            {
+                frame_rect.origin.y = _VW_line4.frame.origin.y + _VW_line4.frame.size.height + 10;
+            }
+            else if (_VW_line5.hidden == NO && _VW_line4.hidden == NO)
+            {
+                frame_rect.origin.y = _VW_line5.frame.origin.y + _VW_line5.frame.size.height + 10;
+            }
+            
             _lbl_titletotal.frame = frame_rect;
             
             frame_rect = _lbl_datatotal.frame;
-            frame_rect.origin.y = _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10;
+            frame_rect.origin.y = _lbl_titletotal.frame.origin.y;
             _lbl_datatotal.frame = frame_rect;
             
-            _lbl_title_discount.hidden = YES;
-            _lbl_title_wallet.hidden = YES;
-            _lbl_data_discount.hidden = YES;
-            _lbl_data_wallet.hidden = YES;
-            _VW_line4.hidden = YES;
-            _VW_line5.hidden = YES;
+            float val_tot = [[temp_resp valueForKey:@"price"] floatValue] * [[temp_resp valueForKey:@"quantity"] floatValue];
+            float tot = val_tot - wallet_val - discount_val;
+            
+            _lbl_datatotal.text = [NSString stringWithFormat:@"$%.2f",tot];
             
             frame_rect = _BTN_order2.frame;
             frame_rect.origin.y = _lbl_datatotal.frame.origin.y + _lbl_datatotal.frame.size.height + 10;
@@ -588,15 +677,31 @@
     
     NSMutableDictionary *temp_resp = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"CHKOUTDETAIL"] options:NSASCIIStringEncoding error:&error];
     
-    float total = [[temp_resp valueForKey:@"price"] floatValue] * [[temp_resp valueForKey:@"quantity"] floatValue];
-    NSString *a = [NSString stringWithFormat:@"%.2f", total];
+    float discount_val = 0.0f;
+    float wallet_val = 0.0f;
+    NSString *STR_discount = [[NSUserDefaults standardUserDefaults] valueForKey:@"DISCOUNT_STAT"];
+    NSString *STR_wallet = [[NSUserDefaults standardUserDefaults] valueForKey:@"WALLETMONEY"];
+    
+    if (STR_discount) {
+        discount_val = [STR_discount floatValue];
+    }
+    
+    if (STR_wallet) {
+        wallet_val = [STR_wallet floatValue];
+    }
+    
+    
+    float val_tot = [[temp_resp valueForKey:@"price"] floatValue] * [[temp_resp valueForKey:@"quantity"] floatValue];
+    float tot = val_tot - wallet_val - discount_val;
+    
+    
+//    float total = [[temp_resp valueForKey:@"price"] floatValue] * [[temp_resp valueForKey:@"quantity"] floatValue];
+    NSString *a = [NSString stringWithFormat:@"%.2f", tot];
     
     NSString *nanunce = [[NSUserDefaults standardUserDefaults] valueForKey:@"NAUNCETOK"];
 //     float total_amount = [[[NSUserDefaults standardUserDefaults] valueForKey:@"total_balance"] floatValue];
-    
-    NSString *switch_STAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
     NSDictionary *parameters;   
-    if([switch_STAT isEqualToString:@"SWITCH_ON"])
+    if(!nanunce)
     {
         parameters = @{ @"transaction_type":@"purchase", @"price":[NSNumber numberWithFloat:[a floatValue]]};
     }

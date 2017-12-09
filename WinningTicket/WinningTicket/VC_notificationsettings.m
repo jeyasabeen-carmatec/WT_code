@@ -83,7 +83,7 @@
 #pragma mark - view customisation
 -(void) setup_VIEW
 {
-    ARR_title = [[NSArray alloc] initWithObjects:@"Winning Ticket Promotions",@"Events",@"Auctions", nil];
+    ARR_title = [[NSArray alloc] initWithObjects:@"Promotions",@"Events",@"Auctions", nil];
     ARR_promotion = [[NSArray alloc] initWithObjects:@"Send me Winning Ticket news and offers", nil];
     ARR_events = [[NSArray alloc] initWithObjects:@"Send me updates on upcoming events",@"Notify me 24 hours before an event", nil];
     ARR_actions = [[NSArray alloc] initWithObjects:@"Notify me before an event begins",@"Notify me when an auction I’m interested in is sold", nil];
