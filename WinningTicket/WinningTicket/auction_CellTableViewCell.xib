@@ -68,12 +68,13 @@
                     <constraint firstAttribute="trailingMargin" secondItem="43K-uW-iF9" secondAttribute="trailing" constant="4" id="7JR-Wt-IjY"/>
                     <constraint firstItem="Rwi-9C-lfi" firstAttribute="leading" secondItem="RVa-WX-ewl" secondAttribute="leading" constant="7" id="9ee-3F-fE0"/>
                     <constraint firstAttribute="bottomMargin" secondItem="C1h-uG-xIQ" secondAttribute="bottom" constant="3.5" id="AG7-KT-CN3"/>
+                    <constraint firstItem="Rwi-9C-lfi" firstAttribute="centerY" secondItem="RVa-WX-ewl" secondAttribute="centerY" id="DiT-5B-Ir9"/>
                     <constraint firstItem="7L3-Ug-iNA" firstAttribute="leading" secondItem="Rwi-9C-lfi" secondAttribute="trailing" constant="8" id="Mnq-1y-dEl"/>
                     <constraint firstItem="43K-uW-iF9" firstAttribute="top" secondItem="RVa-WX-ewl" secondAttribute="topMargin" constant="6" id="fbb-Vy-v7T"/>
                     <constraint firstItem="7L3-Ug-iNA" firstAttribute="top" secondItem="RVa-WX-ewl" secondAttribute="topMargin" id="lEy-M0-m6F"/>
                     <constraint firstAttribute="trailing" secondItem="7L3-Ug-iNA" secondAttribute="trailing" id="mhK-yS-YtO"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Rwi-9C-lfi" secondAttribute="bottom" constant="6" id="pMQ-3B-6ie"/>
-                    <constraint firstItem="Rwi-9C-lfi" firstAttribute="top" secondItem="RVa-WX-ewl" secondAttribute="top" constant="7" id="r2z-5b-4xf"/>
+                    <constraint firstItem="Rwi-9C-lfi" firstAttribute="top" relation="greaterThanOrEqual" secondItem="RVa-WX-ewl" secondAttribute="top" constant="7" id="r2z-5b-4xf"/>
                     <constraint firstItem="C1h-uG-xIQ" firstAttribute="top" secondItem="7L3-Ug-iNA" secondAttribute="bottom" constant="5" id="rZW-Iw-URX"/>
                     <constraint firstItem="C1h-uG-xIQ" firstAttribute="centerX" secondItem="7L3-Ug-iNA" secondAttribute="centerX" id="yTo-gh-BJo"/>
                 </constraints>

@@ -11,6 +11,8 @@
 //#import "DGActivityIndicatorView.h"
 #import "ViewController.h"
 
+#import "UIView+Toast.h"
+
 @interface VC_withdrawal ()<UIAlertViewDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate>
 {
     float scroll_View_HT;
@@ -365,18 +367,33 @@
     NSString *text_to_compare = _TXT_email.text;
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
     
-    if ([emailTest evaluateWithObject:text_to_compare] == NO)
+    if ([_TXT_email.text isEqualToString:@""])
+    {
+        [_TXT_email becomeFirstResponder];
+        //        [_TXT_email showError];
+        //        [_TXT_email showErrorWithText:@" Please enter Correct Mail"];
+        
+        [self.view makeToast:@"Please enter Email"
+                    duration:2.0
+                    position:CSToastPositionCenter];
+        
+    }
+    else if ([emailTest evaluateWithObject:text_to_compare] == NO)
     {
         _TXT_email.text = @"";
         [_TXT_email becomeFirstResponder];
-        [_TXT_email showError];
-        [_TXT_email showErrorWithText:@" Please enter Correct Mail"];
+//        [_TXT_email showError];
+//        [_TXT_email showErrorWithText:@" Please enter Correct Mail"];
+        
+        [self.view makeToast:@"Please enter valid Email"
+                    duration:2.0
+                    position:CSToastPositionCenter];
         
     }
-else if ([_TXT_amtpaypal.text isEqualToString:@"0.00"] || [_TXT_amtpaypal.text isEqualToString:@" 0.00"]) 
+else if ([_TXT_amtpaypal.text isEqualToString:@"0.00"] || [_TXT_amtpaypal.text isEqualToString:@" 0.00"])
         {
             [_TXT_amtpaypal becomeFirstResponder];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please Enter Amount" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please enter Amount" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
         }
     

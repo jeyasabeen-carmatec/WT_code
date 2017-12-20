@@ -24,14 +24,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Winning Ticket Includes" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qq-hW-0ti">
-                        <rect key="frame" x="22" y="9" width="744" height="28"/>
+                        <rect key="frame" x="22" y="7" width="744" height="28"/>
                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="1Qq-hW-0ti" secondAttribute="bottom" constant="5.5" id="Ofp-Nw-ucs"/>
-                    <constraint firstItem="1Qq-hW-0ti" firstAttribute="top" secondItem="9ag-dQ-6cZ" secondAttribute="top" constant="9" id="TGN-xU-5BK"/>
+                    <constraint firstAttribute="bottom" secondItem="1Qq-hW-0ti" secondAttribute="bottom" constant="7.5" id="Ofp-Nw-ucs"/>
+                    <constraint firstItem="1Qq-hW-0ti" firstAttribute="top" secondItem="9ag-dQ-6cZ" secondAttribute="top" constant="7" id="TGN-xU-5BK"/>
                     <constraint firstAttribute="trailing" secondItem="1Qq-hW-0ti" secondAttribute="trailing" constant="2" id="pY8-xa-gUf"/>
                     <constraint firstItem="1Qq-hW-0ti" firstAttribute="leading" secondItem="9ag-dQ-6cZ" secondAttribute="leading" constant="22" id="pbl-1l-w3Q"/>
                 </constraints>

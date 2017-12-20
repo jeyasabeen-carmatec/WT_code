@@ -37,7 +37,7 @@
                             <constraint firstAttribute="height" constant="90" id="dA0-v2-Cs2"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="L" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTJ-V6-Iqy">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="L" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTJ-V6-Iqy">
                         <rect key="frame" x="106" y="9" width="655" height="21"/>
                         <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="17"/>
                         <nil key="textColor"/>
@@ -65,6 +65,7 @@
                 <constraints>
                     <constraint firstItem="5lr-eB-4V9" firstAttribute="leading" secondItem="nA4-od-Ugs" secondAttribute="trailing" constant="23" id="1Bb-VX-nBs"/>
                     <constraint firstItem="5lr-eB-4V9" firstAttribute="top" secondItem="lTJ-V6-Iqy" secondAttribute="bottom" constant="8.5" id="2Hp-82-7VV"/>
+                    <constraint firstItem="nA4-od-Ugs" firstAttribute="centerY" secondItem="VR7-RB-Cao" secondAttribute="centerY" id="2WO-w1-INI"/>
                     <constraint firstAttribute="trailingMargin" secondItem="2Uk-Qe-r9Q" secondAttribute="trailing" constant="277" id="4eX-Rv-eIc"/>
                     <constraint firstItem="lTJ-V6-Iqy" firstAttribute="top" secondItem="VR7-RB-Cao" secondAttribute="top" constant="9" id="ApT-uP-UDN"/>
                     <constraint firstItem="nA4-od-Ugs" firstAttribute="top" secondItem="VR7-RB-Cao" secondAttribute="topMargin" constant="1" id="Bwg-DL-1ef"/>

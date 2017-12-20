@@ -15,6 +15,11 @@
 
 @implementation LIve_scoring_VC
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleLightContent];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

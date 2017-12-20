@@ -141,7 +141,7 @@
 //                    [pu_cell.fname showError];
 //                    [pu_cell.fname showErrorWithText:@" First name minimum 2 characters"];
                     
-                    [self.navigationController.view makeToast:@"First name minimum 2 characters"
+                    [self.navigationController.view makeToast:@"First Name minimum 2 characters"
                                                      duration:2.0
                                                      position:CSToastPositionCenter];
                     
@@ -164,7 +164,7 @@
                     [pu_cell.lname becomeFirstResponder];
 //                    [pu_cell.lname showError];
 //                    [pu_cell.lname showErrorWithText:@" Last name minimum 2 Character"];
-                    [self.navigationController.view makeToast:@"Last name minimum 2 Character"
+                    [self.navigationController.view makeToast:@"Last Name minimum 2 Character"
                                                      duration:2.0
                                                      position:CSToastPositionCenter];
                     break;
@@ -207,7 +207,7 @@
 //                [pu_cell.email showError];
 //                [pu_cell.email showErrorWithText:@" Please enter valid email address"];
                 
-                [self.navigationController.view makeToast:@"Email is not valid"
+                [self.navigationController.view makeToast:@"Please enter Email"
                                                  duration:2.0
                                                  position:CSToastPositionCenter];
                 
@@ -223,7 +223,7 @@
                 //                [pu_cell.email showError];
                 //                [pu_cell.email showErrorWithText:@" Please enter valid email address"];
                 
-                [self.navigationController.view makeToast:@"Pleae enter last name"
+                [self.navigationController.view makeToast:@"Please enter Last Name"
                                                  duration:2.0
                                                  position:CSToastPositionCenter];
                 
@@ -239,10 +239,24 @@
                 //                [pu_cell.email showError];
                 //                [pu_cell.email showErrorWithText:@" Please enter valid email address"];
                 
-                [self.navigationController.view makeToast:@"Last name minimum 2 Character"
+                [self.navigationController.view makeToast:@"Last Name minimum 2 characters"
                                                  duration:2.0
                                                  position:CSToastPositionCenter];
                 
+                break;
+            }
+            
+            if (email.length > 2 && [fname isEqualToString:@""]) {
+                NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
+                NSLog(@"path  = %@",path);
+                pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
+                [pu_cell.fname becomeFirstResponder];
+                //                    [pu_cell.fname showError];
+                //                    [pu_cell.fname showErrorWithText:@" First name minimum 2 characters"];
+                
+                [self.navigationController.view makeToast:@"Please enter First Name"
+                                                 duration:2.0
+                                                 position:CSToastPositionCenter];
                 break;
             }
     }
@@ -646,7 +660,7 @@
             
             [UIView beginAnimations:nil context:NULL];
             // [UIView setAnimationDuration:0.25];
-            self.view.frame = CGRectMake(0,- 310,self.view.frame.size.width,self.view.frame.size.height);
+            self.navigationController.view.frame = CGRectMake(0,- 310,self.view.frame.size.width,self.view.frame.size.height);
 //            [UIView commitAnimations];
         }
         else
@@ -659,7 +673,7 @@
 //            _scroll_TBL.frame = CGRectMake(_scroll_TBL.frame.origin.x, _scroll_TBL.frame.origin.y - 250,_tbl_content.frame.size.width,self.view.frame.size.height);
             [UIView beginAnimations:nil context:NULL];
             // [UIView setAnimationDuration:0.25];
-            self.view.frame = CGRectMake(0,- 212,self.view.frame.size.width,self.view.frame.size.height);
+            self.navigationController.view.frame = CGRectMake(0,- 212,self.view.frame.size.width,self.view.frame.size.height);
 //            [UIView commitAnimations];
         }
         [UIView commitAnimations];
@@ -697,7 +711,7 @@
     
     [UIView beginAnimations:nil context:NULL];
     // [UIView setAnimationDuration:0.25];
-    self.view.frame = CGRectMake(0,00,self.view.frame.size.width,self.view.frame.size.height);
+    self.navigationController.view.frame = CGRectMake(0,00,self.view.frame.size.width,self.view.frame.size.height);
     [UIView commitAnimations];
 }
 

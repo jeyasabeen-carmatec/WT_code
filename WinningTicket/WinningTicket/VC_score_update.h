@@ -24,5 +24,6 @@
 @property (strong) NSString *STR_parSTR;
 @property (strong) NSString *STR_holeSTR;
 @property (strong) NSString *STR_playernameSTR;
+@property (strong) NSString *STR_HCP;
 
 @end

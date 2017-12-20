@@ -401,14 +401,14 @@
                   }
             
             if ([[auction_item valueForKey:@"watchers_count"] doubleValue] == 0) {
-                STR_watche = @"0 WATCHES";
+                STR_watche = @"0 ";
             }
             else if ([[auction_item valueForKey:@"watchers_count"] doubleValue] < 2) {
-                STR_watche = [NSString stringWithFormat:@"%@ WATECHER",[auction_item valueForKey:@"watchers_count"]];
+                STR_watche = [NSString stringWithFormat:@"%@ ",[auction_item valueForKey:@"watchers_count"]];
             }
             else
             {
-                STR_watche = [NSString stringWithFormat:@"%@ WATCHES",[auction_item valueForKey:@"watchers_count"]];
+                STR_watche = [NSString stringWithFormat:@"%@ ",[auction_item valueForKey:@"watchers_count"]];
             }
             
             if ([[auction_item valueForKey:@"bid_count"] doubleValue] == 0) {
@@ -430,14 +430,14 @@
             
             
             if ([[auction_item valueForKey:@"watchers_count"] doubleValue] == 0) {
-                STR_watche = @"0 WATCHES";
+                STR_watche = @"0 ";
             }
             else if ([[auction_item valueForKey:@"watchers_count"] doubleValue] < 2) {
-                STR_watche = [NSString stringWithFormat:@"%@ WATECHER",[auction_item valueForKey:@"watchers_count"]];
+                STR_watche = [NSString stringWithFormat:@"%@ ",[auction_item valueForKey:@"watchers_count"]];
             }
             else
             {
-                STR_watche = [NSString stringWithFormat:@"%@ WATCHES",[auction_item valueForKey:@"watchers_count"]];
+                STR_watche = [NSString stringWithFormat:@"%@ ",[auction_item valueForKey:@"watchers_count"]];
             }
             
             if ([[auction_item valueForKey:@"bid_count"] doubleValue] == 0) {
@@ -464,14 +464,14 @@
             STR_price = [NSString stringWithFormat:@"$%.2f",[[auction_item valueForKey:@"current_bid_amount"] floatValue]];
             
             if ([[auction_item valueForKey:@"watchers_count"] doubleValue] == 0) {
-                STR_watche = @"0 WATCHES";
+                STR_watche = @"0 ";
             }
             else if ([[auction_item valueForKey:@"watchers_count"] doubleValue] < 2) {
-                STR_watche = [NSString stringWithFormat:@"%@ WATECHER",[auction_item valueForKey:@"watchers_count"]];
+                STR_watche = [NSString stringWithFormat:@"%@ ",[auction_item valueForKey:@"watchers_count"]];
             }
             else
             {
-                STR_watche = [NSString stringWithFormat:@"%@ WATCHES",[auction_item valueForKey:@"watchers_count"]];
+                STR_watche = [NSString stringWithFormat:@"%@ ",[auction_item valueForKey:@"watchers_count"]];
             }
             
             if ([[auction_item valueForKey:@"bid_count"] doubleValue] == 0) {
@@ -506,25 +506,25 @@
                     {
                         if(count > 0)
                         {
-                            _lbl_CountDown.text = [NSString stringWithFormat:@"Bidding Closed.Final Bid : $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
+                            _lbl_CountDown.text = [NSString stringWithFormat:@"Bidding Closed. Final Bid: $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
                             
                         }
                         else
                         {
-                            _lbl_CountDown.text = [NSString stringWithFormat:@"No one Bids For This Item"];
+                            _lbl_CountDown.text = [NSString stringWithFormat:@"No one bidded for this Item"];
                            
                         }
                         _lbl_CountDown.textColor = [UIColor grayColor];
                     }
                     else  if([pay_status isEqualToString:@"paid"])
                     {
-                        _lbl_CountDown.text = [NSString stringWithFormat:@"Sold out . Final Bid : $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
+                        _lbl_CountDown.text = [NSString stringWithFormat:@"Sold out. Final Bid: $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
                         _lbl_CountDown.textColor = [UIColor redColor];
 
                     }
                     else
                     {
-                        _lbl_CountDown.text = [NSString stringWithFormat:@"No one Bids For This Item"];
+                        _lbl_CountDown.text = [NSString stringWithFormat:@"No one bidded for this Item"];
                     }
                 }
             
@@ -538,14 +538,14 @@
             _lbl_CountDown.backgroundColor = [UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1.0];
             STR_price = [NSString stringWithFormat:@"$%.2f",[[auction_item valueForKey:@"starting_bid"] floatValue]];
             if ([[auction_item valueForKey:@"watchers_count"] doubleValue] == 0) {
-                STR_watche = @"0 WATCHES";
+                STR_watche = @"0 ";
             }
             else if ([[auction_item valueForKey:@"watchers_count"] doubleValue] < 2) {
-                STR_watche = [NSString stringWithFormat:@"%@ WATECHER",[auction_item valueForKey:@"watchers_count"]];
+                STR_watche = [NSString stringWithFormat:@"%@ ",[auction_item valueForKey:@"watchers_count"]];
             }
             else
             {
-                STR_watche = [NSString stringWithFormat:@"%@ WATCHES",[auction_item valueForKey:@"watchers_count"]];
+                STR_watche = [NSString stringWithFormat:@"%@ ",[auction_item valueForKey:@"watchers_count"]];
             }
             
             if ([[auction_item valueForKey:@"bid_count"] doubleValue] == 0) {
@@ -564,11 +564,11 @@
                 {
                     if([pay_status isEqualToString:@"not_paid"] )
                     {
-                        _lbl_CountDown.text = [NSString stringWithFormat:@"Congrulations! You won this item. Pay $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
+                        _lbl_CountDown.text = [NSString stringWithFormat:@"Congrulations! You won this Item. Pay $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
                     }
                     else  if([pay_status isEqualToString:@"paid"])
                     {
-                        _lbl_CountDown.text = [NSString stringWithFormat:@"Thanks for buying this item."];
+                        _lbl_CountDown.text = [NSString stringWithFormat:@"Thanks for buying this Item."];
                         _lbl_CountDown.textColor = [UIColor colorWithRed:0.00 green:0.37 blue:0.05 alpha:1.0];
                     }
                 }
@@ -578,22 +578,22 @@
                 {
                    if(count > 0)
                     {
-                        _lbl_CountDown.text = [NSString stringWithFormat:@"Bidding Closed.Final Bid : $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
+                        _lbl_CountDown.text = [NSString stringWithFormat:@"Bidding Closed. Final Bid: $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
                     }
                     else
                     {
-                        _lbl_CountDown.text = [NSString stringWithFormat:@"No one Bids For This Item"];
+                        _lbl_CountDown.text = [NSString stringWithFormat:@"No one bidded for this Item"];
                     }
                     _lbl_CountDown.textColor = [UIColor grayColor];
                 }
                 else  if([pay_status isEqualToString:@"paid"])
                 {
-                    _lbl_CountDown.text = [NSString stringWithFormat:@"Sold out. Final Bid : $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
+                    _lbl_CountDown.text = [NSString stringWithFormat:@"Sold out. Final Bid: $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
                     _lbl_CountDown.textColor = [UIColor redColor];
                 }
                 else
                 {
-                    _lbl_CountDown.text = [NSString stringWithFormat:@"No one Bids For This Item"];
+                    _lbl_CountDown.text = [NSString stringWithFormat:@"No one bidded for this Item"];
                 }
             }
             _lbl_CountDown.layer.borderWidth = 1.0f;
@@ -663,9 +663,9 @@
             highlightView.tag = 1;
             [_lbl_itemNAME insertSubview:highlightView atIndex:0];
             
-            [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:25.0]}
+            [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:19.0]}
                                     range:ename];
-            [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Bold" size:27.0]}
+            [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Bold" size:21.0]}
                                     range:cmp];
             if ([STR_bidSTAT isEqualToString:@"Starting Bid"]) {
             }
@@ -673,7 +673,7 @@
             {
                 [attributedText setAttributes:@{NSFontAttributeName:_lbl_font_small.font,NSForegroundColorAttributeName:[UIColor whiteColor]}
                                         range:RAN_Bids];
-                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:12.0]}
+                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"FontAwesome" size:14.0]}
                                         range:RAN_wat];
             }
             
@@ -700,7 +700,7 @@
             {
                 [attributedText setAttributes:@{NSFontAttributeName:_lbl_font_small.font,NSForegroundColorAttributeName:[UIColor whiteColor]}
                                         range:RAN_Bids];
-                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:12.0]}
+                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"FontAwesome" size:14.0]}
                                         range:RAN_wat];
             }
             
@@ -774,7 +774,7 @@
         {
             if([pay_status isEqualToString:@"not_paid"] )
             {
-                _lbl_CountDown.text = [NSString stringWithFormat:@"Congrulations! You won this item. Pay $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
+                _lbl_CountDown.text = [NSString stringWithFormat:@"Congrulations! You won this Item. Pay $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
                 
             }
             else  if([pay_status isEqualToString:@"paid"])
@@ -789,24 +789,24 @@
             {
                 if(count > 0)
                 {
-                    _lbl_CountDown.text = [NSString stringWithFormat:@"Bidding Closed.Final Bid : $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
+                    _lbl_CountDown.text = [NSString stringWithFormat:@"Bidding Closed. Final Bid: $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
                 }
                 else
                 {
-                    _lbl_CountDown.text = [NSString stringWithFormat:@"No one Bids For This Item"];
+                    _lbl_CountDown.text = [NSString stringWithFormat:@"No one bidded for this Item"];
                 }
                 
                 _lbl_CountDown.textColor = [UIColor grayColor];
             }
             else  if([pay_status isEqualToString:@"paid"])
             {
-                _lbl_CountDown.text = [NSString stringWithFormat:@"Sold out.Final Bid : $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
+                _lbl_CountDown.text = [NSString stringWithFormat:@"Sold out. Final Bid: $%.2f",[[auction_item valueForKey:@"current_bid_amount"]floatValue]];
                 _lbl_CountDown.textColor = [UIColor redColor];
             }
             
             else
             {
-                _lbl_CountDown.text = [NSString stringWithFormat:@"No one Bids For This Item"];
+                _lbl_CountDown.text = [NSString stringWithFormat:@"No one bidded for this Item"];
             }
         }
         
@@ -1865,6 +1865,9 @@ self.countdownLabel.text = [NSString stringWithFormat:@"%@/%@/%@ %@:%@:%@", days
 //    NSTimeInterval interval = nowGMTOffset - currentGMTOffset;
 //    NSDate* nowDate = [[NSDate alloc] initWithTimeInterval:interval sinceDate:currentDate];
     
+    NSDictionary *auction_item = [jsonReponse valueForKey:@"auction_item"];
+    NSString *STR_live = [NSString stringWithFormat:@"%@",[auction_item objectForKey:@"is_live?"]];
+    
     NSTimeInterval timeInterval = [date timeIntervalSinceDate:currentDate];
     
     NSCalendar *sysCalendar = [NSCalendar currentCalendar];
@@ -1884,18 +1887,61 @@ self.countdownLabel.text = [NSString stringWithFormat:@"%@/%@/%@ %@:%@:%@", days
         NSString *STR_timeRe;
         
         if ([breakdownInfo day] <= 0 ) {
-            STR_timeRe = [NSString stringWithFormat:@" | %02d H : %02d M : %02d S",(int)[breakdownInfo hour], (int)[breakdownInfo minute], (int)[breakdownInfo second]];
+            if ([STR_live isEqualToString:@"1"]) {
+                STR_timeRe = [NSString stringWithFormat:@" | %02d H : %02d M : %02d S left",(int)[breakdownInfo hour], (int)[breakdownInfo minute], (int)[breakdownInfo second]];
+            }
+            else if ([STR_bidSTAT isEqualToString:@"Starting Bid"]) {
+                STR_timeRe = [NSString stringWithFormat:@" | %02d H : %02d M : %02d S remaining",(int)[breakdownInfo hour], (int)[breakdownInfo minute], (int)[breakdownInfo second]];
+            }
+            else
+            {
+                STR_timeRe = [NSString stringWithFormat:@" | %02d H : %02d M : %02d S left",(int)[breakdownInfo hour], (int)[breakdownInfo minute], (int)[breakdownInfo second]];
+            }
+            
         }
         else if ([breakdownInfo day] <= 0 && [breakdownInfo hour] <= 0)
         {
-            STR_timeRe = [NSString stringWithFormat:@" | %02d M : %02d S",(int)[breakdownInfo minute], (int)[breakdownInfo second]];
+            if ([STR_live isEqualToString:@"1"]) {
+                STR_timeRe = [NSString stringWithFormat:@" | %02d M : %02d S left",(int)[breakdownInfo minute], (int)[breakdownInfo second]];
+            }
+            else if ([STR_bidSTAT isEqualToString:@"Starting Bid"]) {
+                STR_timeRe = [NSString stringWithFormat:@" | %02d M : %02d S remaining",(int)[breakdownInfo minute], (int)[breakdownInfo second]];
+
+            }
+            else
+            {
+                STR_timeRe = [NSString stringWithFormat:@" | %02d M : %02d S left",(int)[breakdownInfo minute], (int)[breakdownInfo second]];
+            }
         }
         else if ([breakdownInfo day] <= 0 && [breakdownInfo hour] <= 0 && [breakdownInfo minute] <= 0)
         {
-            STR_timeRe = [NSString stringWithFormat:@" | %02d S", (int)[breakdownInfo second]];
+            if ([STR_live isEqualToString:@"1"]) {
+                STR_timeRe = [NSString stringWithFormat:@" | %02d S left", (int)[breakdownInfo second]];
+            }
+            else if ([STR_bidSTAT isEqualToString:@"Starting Bid"]) {
+                STR_timeRe = [NSString stringWithFormat:@" | %02d S remaining", (int)[breakdownInfo second]];
+            }
+            else
+            {
+                STR_timeRe = [NSString stringWithFormat:@" | %02d S left", (int)[breakdownInfo second]];
+            }
+            
+        }
+        else
+        {
+            if ([STR_live isEqualToString:@"1"]) {
+                STR_timeRe = [NSString stringWithFormat:@" | %02d D : %02d H : %02d M : %02d S left", (int)[breakdownInfo day], (int)[breakdownInfo hour], (int)[breakdownInfo minute], (int)[breakdownInfo second]];
+            }
+            if ([STR_bidSTAT isEqualToString:@"Starting Bid"]) {
+                STR_timeRe = [NSString stringWithFormat:@" | %02d D : %02d H : %02d M : %02d S remaining", (int)[breakdownInfo day], (int)[breakdownInfo hour], (int)[breakdownInfo minute], (int)[breakdownInfo second]];
+            }
+            else
+            {
+                STR_timeRe = [NSString stringWithFormat:@" | %02d D : %02d H : %02d M : %02d S left", (int)[breakdownInfo day], (int)[breakdownInfo hour], (int)[breakdownInfo minute], (int)[breakdownInfo second]];
+            }
         }
 //        else
-        STR_timeRe = [NSString stringWithFormat:@" | %02d D : %02d H : %02d M : %02d S", (int)[breakdownInfo day], (int)[breakdownInfo hour], (int)[breakdownInfo minute], (int)[breakdownInfo second]];
+        
         
         
         NSString *text = [NSString stringWithFormat:@"%@%@",STR_bidSTAT,STR_timeRe];

@@ -37,14 +37,14 @@
                             <constraint firstAttribute="width" constant="90" id="wMr-5U-0Y5"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="L" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAa-b5-2St">
-                        <rect key="frame" x="106" y="9" width="207" height="21"/>
-                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="L" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAa-b5-2St">
+                        <rect key="frame" x="106" y="9" width="207" height="18.5"/>
+                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QpQ-cj-i7H">
-                        <rect key="frame" x="122" y="38.5" width="190" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="20" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QpQ-cj-i7H">
+                        <rect key="frame" x="122" y="36" width="190" height="17.5"/>
                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -72,6 +72,7 @@
                     <constraint firstItem="E8Q-t6-eYw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="1" id="Xm2-V1-Jhu"/>
                     <constraint firstItem="cxi-ZQ-DLX" firstAttribute="top" secondItem="QpQ-cj-i7H" secondAttribute="bottom" constant="8.5" id="cIK-Uf-2wO"/>
                     <constraint firstAttribute="bottomMargin" secondItem="cxi-ZQ-DLX" secondAttribute="bottom" constant="2.5" id="ceZ-vm-Maf"/>
+                    <constraint firstItem="E8Q-t6-eYw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eoK-5Y-w5h"/>
                     <constraint firstItem="E8Q-t6-eYw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="1" id="rP4-A5-Ud2"/>
                     <constraint firstItem="cxi-ZQ-DLX" firstAttribute="leading" secondItem="E8Q-t6-eYw" secondAttribute="trailing" constant="60" id="rXx-EG-vjT"/>
                     <constraint firstItem="QpQ-cj-i7H" firstAttribute="top" secondItem="vAa-b5-2St" secondAttribute="bottom" constant="8.5" id="wlq-Im-TZS"/>

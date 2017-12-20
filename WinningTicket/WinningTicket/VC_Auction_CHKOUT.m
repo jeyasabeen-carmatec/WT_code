@@ -696,7 +696,7 @@
 //        [_TXT_firstname showErrorWithText:@" Please enter first name"];
         //        [self showViewAddress];
         
-        [self.navigationController.view makeToast:@"Please enter first name"
+        [self.navigationController.view makeToast:@"Please enter First Name"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -707,7 +707,7 @@
 //        [_TXT_firstname showError];
 //        [_TXT_firstname showErrorWithText:@" First name minimum 2 characters"];
         
-        [self.navigationController.view makeToast:@"First name minimum 2 characters"
+        [self.navigationController.view makeToast:@"First Name minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
         //        [self showViewAddress];
@@ -730,7 +730,7 @@
 //        [_TXT_address1 showErrorWithText:@" Please enter address line 1"];
         //        [self showViewAddress];
         
-        [self.navigationController.view makeToast:@"Please enter address line 1"
+        [self.navigationController.view makeToast:@"Please enter Address Line1"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -742,7 +742,7 @@
 //        [_TXT_address1 showErrorWithText:@" Address line 1 minimum 2 characters"];
         //        [self showViewAddress];
         
-        [self.navigationController.view makeToast:@"Address line 1 minimum 2 characters"
+        [self.navigationController.view makeToast:@"Address Line1 minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -760,7 +760,7 @@
 //        [_TXT_city showError];
 //        [_TXT_city showErrorWithText:@" Please enter city"];
         //        [self showViewAddress];
-        [self.navigationController.view makeToast:@"Please enter city"
+        [self.navigationController.view makeToast:@"Please enter City"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -784,7 +784,7 @@
 //        [_TXT_country showError];
 //        [_TXT_country showErrorWithText:@" Please select country"];
         
-        [self.navigationController.view makeToast:@"Please select country"
+        [self.navigationController.view makeToast:@"Please select Country"
                                          duration:2.0
                                          position:CSToastPositionCenter];
         
@@ -803,7 +803,7 @@
 //        [_TXT_zip showError];
 //        [_TXT_zip showErrorWithText:@" Please enter zipcode code"];
         
-        [self.navigationController.view makeToast:@"Please enter zipcode code"
+        [self.navigationController.view makeToast:@"Please enter Zip Code"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -814,7 +814,18 @@
 //        [_TXT_zip showError];
 //        [_TXT_zip showErrorWithText:@" Zipcode minimum 4 characters"];
         
-        [self.navigationController.view makeToast:@"Zipcode minimum 4 characters"
+        [self.navigationController.view makeToast:@"Zip Code minimum 4 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
+    }
+    else if ([_TXT_phonenumber.text isEqualToString:@""])
+    {
+        [self showViewAddress];
+        [_TXT_phonenumber becomeFirstResponder];
+        //        [_TXT_phonenumber showError];
+        //        [_TXT_phonenumber showErrorWithText:@" Please enter more than 5 numbers"];
+        
+        [self.navigationController.view makeToast:@"Please enter Phone Number"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }

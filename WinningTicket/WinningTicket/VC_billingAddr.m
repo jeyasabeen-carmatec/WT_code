@@ -761,7 +761,7 @@
 //        [_TXT_firstname showError];
 //        [_TXT_firstname showErrorWithText:@" Please enter first name"];
 //        [self showViewAddress];
-        [self.navigationController.view makeToast:@"Please enter first name"
+        [self.navigationController.view makeToast:@"Please enter First Name"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -772,7 +772,7 @@
 //        [_TXT_firstname showError];
 //        [_TXT_firstname showErrorWithText:@" First name minimum 2 characters"];
 //        [self showViewAddress];
-        [self.navigationController.view makeToast:@"First name minimum 2 characters"
+        [self.navigationController.view makeToast:@"First Name minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -793,7 +793,7 @@
 //        [_TXT_address1 showError];
 //        [_TXT_address1 showErrorWithText:@" Please enter address line 1"];
 //        [self showViewAddress];
-        [self.navigationController.view makeToast:@"Please enter address line 1"
+        [self.navigationController.view makeToast:@"Please enter Address Line1"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -804,7 +804,7 @@
 //        [_TXT_address1 showError];
 //        [_TXT_address1 showErrorWithText:@" Address line 1 minimum 2 characters"];
 //        [self showViewAddress];
-        [self.navigationController.view makeToast:@"Address line 1 minimum 2 characters"
+        [self.navigationController.view makeToast:@"Address Line1 minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -822,7 +822,7 @@
 //        [_TXT_city showError];
 //        [_TXT_city showErrorWithText:@" Please enter city"];
 //        [self showViewAddress];
-        [self.navigationController.view makeToast:@"Please enter city"
+        [self.navigationController.view makeToast:@"Please enter City"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -844,7 +844,7 @@
         [_TXT_country becomeFirstResponder];
 //        [_TXT_country showError];
 //        [_TXT_country showErrorWithText:@" Please select country"];
-        [self.navigationController.view makeToast:@"Please select country"
+        [self.navigationController.view makeToast:@"Please select Country"
                                          duration:2.0
                                          position:CSToastPositionCenter];
         
@@ -862,7 +862,7 @@
         [_TXT_zip becomeFirstResponder];
 //        [_TXT_zip showError];
 //        [_TXT_zip showErrorWithText:@" Please enter zipcode code"];
-        [self.navigationController.view makeToast:@"Please enter zipcode code"
+        [self.navigationController.view makeToast:@"Please enter Zip Code"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -872,7 +872,17 @@
         [_TXT_zip becomeFirstResponder];
 //        [_TXT_zip showError];
 //        [_TXT_zip showErrorWithText:@" Zipcode minimum 4 characters"];
-        [self.navigationController.view makeToast:@"Zipcode minimum 4 characters"
+        [self.navigationController.view makeToast:@"Zip Code minimum 4 characters"
+                                         duration:2.0
+                                         position:CSToastPositionCenter];
+    }
+    else if ([_TXT_phonenumber.text isEqualToString:@""])
+    {
+        [self showViewAddress];
+        [_TXT_phonenumber becomeFirstResponder];
+        //        [_TXT_phonenumber showError];
+        //        [_TXT_phonenumber showErrorWithText:@" Please enter more than 5 numbers"];
+        [self.navigationController.view makeToast:@"Please enter Phone Number"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -1173,7 +1183,7 @@
         //Keyboard becomes visible
         [UIView beginAnimations:nil context:NULL];
         // [UIView setAnimationDuration:0.25];
-        self.view.frame = CGRectMake(0,-110,self.view.frame.size.width,self.view.frame.size.height);
+        self.navigationController.view.frame = CGRectMake(0,-110,self.view.frame.size.width,self.view.frame.size.height);
         [UIView commitAnimations];
         //}
     }
@@ -1188,7 +1198,7 @@
         [textField resignFirstResponder];
         [UIView beginAnimations:nil context:NULL];
         
-        self.view.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height);
+        self.navigationController.view.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height);
         [UIView commitAnimations];
         [UIView beginAnimations:nil context:NULL];
         
@@ -1900,10 +1910,16 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
     }
 }
 
--(void) BTN_applyMETH
+-(void) end_EDITING
 {
+    [_TXT_getpromocode resignFirstResponder];
+    [self.navigationController.view endEditing:YES];
+    
+    [activityIndicatorView stopAnimating];
+    VW_overlay.hidden = YES;
+    
     if (_TXT_getpromocode.text.length == 0) {
-        [_TXT_getpromocode resignFirstResponder];
+        
         _BTN_apply.hidden = NO;
         _TXT_getpromocode.hidden = NO;
         
@@ -1912,15 +1928,22 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
     }
     else
     {
-//        [self API_apply_Promocode];
-        
+        //        [self API_apply_Promocode];
         VW_overlay.hidden = NO;
         [activityIndicatorView startAnimating];
         
         [self performSelector:@selector(API_apply_Promocode) withObject:activityIndicatorView afterDelay:0.01];
+        
     }
-    
 }
+-(void) BTN_applyMETH
+{
+    VW_overlay.hidden = NO;
+    [activityIndicatorView startAnimating];
+    
+    [self performSelector:@selector(end_EDITING) withObject:activityIndicatorView afterDelay:0.01];
+}
+
 -(void) BTN_closeMETH
 {
     VW_overlay.hidden = NO;
@@ -1930,8 +1953,9 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
 
 -(void) API_apply_Promocode
 {
+    
+    
     NSString *STR_promo = _TXT_getpromocode.text;
-    [_TXT_getpromocode resignFirstResponder];
     NSError *error;
     NSError *err;
     NSHTTPURLResponse *response = nil;
@@ -1986,12 +2010,16 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
                     {
                         if ([[dict valueForKey:@"status"]isEqualToString:@"Failure"])
                         {
+                            [self.view endEditing:YES];
+                            [activityIndicatorView stopAnimating];
+                            VW_overlay.hidden = YES;
+                            
                             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Code" message:[dict valueForKey:@"message"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
                             [alert show];
                         }
                         else
                         {
-                            [_TXT_getpromocode resignFirstResponder];
+          
                             _BTN_apply.hidden = YES;
                             _TXT_getpromocode.hidden = YES;
                             

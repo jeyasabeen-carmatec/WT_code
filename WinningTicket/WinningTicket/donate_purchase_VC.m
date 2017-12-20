@@ -330,7 +330,7 @@
     NSString *show = [NSString stringWithFormat:@"$%.2f",[[temp_resp valueForKey:@"price"] floatValue]];
     //    NSString *place = @"Make A Wish Foundation of Central Florida’s 4th Annual Golf Event";
     NSString *ticketnumber = [temp_resp valueForKey:@"code"];
-    NSString *club_name = [temp_resp valueForKey:@"event_name"];
+    NSString *club_name = [[temp_resp valueForKey:@"event_name"] capitalizedString];
 //    NSString *qty = [NSString stringWithFormat:@"Qty: %@",[temp_resp valueForKey:@"quantity"]];
     
     NSString *text = [NSString stringWithFormat:@"%@\n%@ - %@\n",show,ticketnumber,club_name];

@@ -124,7 +124,8 @@
                 
                 NSString *des = [[dict valueForKey:@"name"] capitalizedString];
                 NSString *code = [NSString stringWithFormat:@"%@",[dict valueForKey:@"code"]];
-                NSString *text = [NSString stringWithFormat:@"%@\n%@",code,des];
+                NSString *organization_name = [NSString stringWithFormat:@"%@",[dict valueForKey:@"organization_name"]];
+                NSString *text = [NSString stringWithFormat:@"%@\n%@\n%@",organization_name,code,des];
                 NSDictionary *attribs = @{
                                           NSForegroundColorAttributeName:[UIColor darkGrayColor],
                                           NSFontAttributeName: [UIFont fontWithName:@"Gotham-Book" size:17]
@@ -141,6 +142,10 @@
                 NSRange greenTextRange = [text rangeOfString:code];
                 [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-Book" size:17.0]}
                                         range:greenTextRange];
+                
+                NSRange orgTextRange = [text rangeOfString:organization_name];
+                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamMedium" size:17.0]}
+                                        range:orgTextRange];
                 
                 orginal_width = _des_cription.frame.size.width;
                 

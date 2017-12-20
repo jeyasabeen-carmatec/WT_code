@@ -16,65 +16,74 @@
         <array key="GothamBook Regular.otf">
             <string>GothamBook</string>
         </array>
+        <array key="Montserrat-MediumItalic.ttf">
+            <string>Montserrat-MediumItalic</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="166" id="qm3-IQ-Ygg" customClass="auction_CellTableViewCell">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="166" id="lAq-PS-5Jd" customClass="auction_CellTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="768" height="166"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qm3-IQ-Ygg" id="LKM-EV-FVq">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lAq-PS-5Jd" id="VOu-dO-MpU">
                 <rect key="frame" x="0.0" y="0.0" width="768" height="165.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kSs-Lh-n37">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y3h-D2-QpH">
                         <rect key="frame" x="7" y="7" width="153" height="153"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="153" id="1A3-Ga-6WR"/>
-                            <constraint firstAttribute="height" constant="153" id="77i-bx-BhT"/>
+                            <constraint firstAttribute="width" constant="153" id="Gof-gY-dOn"/>
+                            <constraint firstAttribute="height" constant="153" id="xmb-3X-yGx"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRg-cC-aEy" customClass="LBL_verALIGHN">
-                        <rect key="frame" x="168" y="13" width="600" height="103"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwl-qV-Ius" customClass="LBL_verALIGHN">
+                        <rect key="frame" x="168" y="8" width="600" height="108"/>
                         <fontDescription key="fontDescription" name="GothamBook" family="GothamBook" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zx-mT-BKk">
-                        <rect key="frame" x="718" y="9" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujJ-yk-1Tq">
+                        <rect key="frame" x="756" y="14" width="0.0" height="14"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="kTH-cD-qis"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Montserrat-MediumItalic" family="Montserrat" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Jq-Le-4mG" customClass="BTN_borderwidth">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FzZ-xJ-mrJ" customClass="BTN_borderwidth">
                         <rect key="frame" x="416.5" y="121" width="103" height="33"/>
                         <color key="backgroundColor" red="0.090196078430000007" green="0.63137254899999995" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="103" id="dWh-zh-9nt"/>
-                            <constraint firstAttribute="height" constant="33" id="ruj-GT-e5N"/>
+                            <constraint firstAttribute="width" constant="103" id="9s2-E2-jk3"/>
+                            <constraint firstAttribute="height" constant="33" id="WSh-Ur-1ui"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="13"/>
                         <state key="normal" title="VIEW ITEM"/>
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="kSs-Lh-n37" firstAttribute="top" secondItem="LKM-EV-FVq" secondAttribute="top" constant="7" id="8Xf-rk-K2H"/>
-                    <constraint firstItem="3Jq-Le-4mG" firstAttribute="top" secondItem="vRg-cC-aEy" secondAttribute="bottom" constant="5" id="Msg-yF-AfG"/>
-                    <constraint firstAttribute="trailing" secondItem="vRg-cC-aEy" secondAttribute="trailing" id="NjN-Gs-oyB"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="kSs-Lh-n37" secondAttribute="bottom" constant="6" id="Xuu-vU-etB"/>
-                    <constraint firstItem="3Jq-Le-4mG" firstAttribute="centerX" secondItem="vRg-cC-aEy" secondAttribute="centerX" id="bsW-CE-hVn"/>
-                    <constraint firstItem="vRg-cC-aEy" firstAttribute="leading" secondItem="kSs-Lh-n37" secondAttribute="trailing" constant="8" id="deV-lP-ZXK"/>
-                    <constraint firstItem="vRg-cC-aEy" firstAttribute="top" secondItem="LKM-EV-FVq" secondAttribute="topMargin" constant="5" id="mU0-KR-M5P"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="3Jq-Le-4mG" secondAttribute="bottom" constant="3.5" id="pET-7U-yQW"/>
-                    <constraint firstItem="kSs-Lh-n37" firstAttribute="leading" secondItem="LKM-EV-FVq" secondAttribute="leading" constant="7" id="wq6-5v-XgB"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ujJ-yk-1Tq" secondAttribute="trailing" constant="4" id="0r7-Ns-Xzp"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="FzZ-xJ-mrJ" secondAttribute="bottom" constant="3.5" id="4Iu-fS-vaq"/>
+                    <constraint firstItem="ujJ-yk-1Tq" firstAttribute="top" secondItem="VOu-dO-MpU" secondAttribute="topMargin" constant="6" id="Gzn-12-Sbr"/>
+                    <constraint firstItem="FzZ-xJ-mrJ" firstAttribute="centerX" secondItem="gwl-qV-Ius" secondAttribute="centerX" id="MbM-tB-FCC"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="y3h-D2-QpH" secondAttribute="bottom" constant="6" id="OJj-dl-VMj"/>
+                    <constraint firstItem="gwl-qV-Ius" firstAttribute="top" secondItem="VOu-dO-MpU" secondAttribute="topMargin" id="RBW-nX-K1q"/>
+                    <constraint firstItem="y3h-D2-QpH" firstAttribute="centerY" secondItem="VOu-dO-MpU" secondAttribute="centerY" id="XLJ-8L-EID"/>
+                    <constraint firstItem="gwl-qV-Ius" firstAttribute="leading" secondItem="y3h-D2-QpH" secondAttribute="trailing" constant="8" id="YPu-kX-ClY"/>
+                    <constraint firstItem="y3h-D2-QpH" firstAttribute="leading" secondItem="VOu-dO-MpU" secondAttribute="leading" constant="7" id="edr-Fe-QFb"/>
+                    <constraint firstAttribute="trailing" secondItem="gwl-qV-Ius" secondAttribute="trailing" id="opx-xC-rhn"/>
+                    <constraint firstItem="y3h-D2-QpH" firstAttribute="top" relation="greaterThanOrEqual" secondItem="VOu-dO-MpU" secondAttribute="top" constant="7" id="vDR-Y9-Zyp"/>
+                    <constraint firstItem="FzZ-xJ-mrJ" firstAttribute="top" secondItem="gwl-qV-Ius" secondAttribute="bottom" constant="5" id="zTP-RJ-Rm4"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="BTN_viewITEM" destination="3Jq-Le-4mG" id="UHe-1y-0zH"/>
-                <outlet property="bid_Lbl" destination="6zx-mT-BKk" id="ImL-w0-ej2"/>
-                <outlet property="image_display" destination="kSs-Lh-n37" id="t3V-wE-6kH"/>
-                <outlet property="name_lbl" destination="vRg-cC-aEy" id="jhj-WW-kCd"/>
+                <outlet property="BTN_viewITEM" destination="FzZ-xJ-mrJ" id="dOx-oc-5Gj"/>
+                <outlet property="bid_Lbl" destination="ujJ-yk-1Tq" id="89k-CC-hww"/>
+                <outlet property="image_display" destination="y3h-D2-QpH" id="l22-nW-z8v"/>
+                <outlet property="name_lbl" destination="gwl-qV-Ius" id="VIE-kb-V3B"/>
             </connections>
             <point key="canvasLocation" x="-11.5" y="-112"/>
         </tableViewCell>

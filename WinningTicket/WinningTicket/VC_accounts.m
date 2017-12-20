@@ -803,7 +803,7 @@
             else
             {
                tempdict=[account_data valueForKey:@"user"];
-                NSString *name_STR = [NSString stringWithFormat:@"%@ %@",[tempdict valueForKey:@"first_name"],[tempdict valueForKey:@"last_name"]];
+                NSString *name_STR = [NSString stringWithFormat:@"%@ %@",[[tempdict valueForKey:@"first_name"] capitalizedString],[[tempdict valueForKey:@"last_name"] capitalizedString]];
                 name_STR = [name_STR stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
                 name_STR = [name_STR stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                 

@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Update_Score.h"
+#import "data_SEGMENT.h"
 #import "KSJActionSocket.h"
 
-@interface VC_scoreBoard : UIViewController <UITableViewDelegate, UITableViewDataSource,Update_Score>
+@interface VC_scoreBoard : UIViewController <UITableViewDelegate, UITableViewDataSource,Update_Score,data_SEGMENT>
 
 @property (nonatomic, retain) IBOutlet UIView *VW_navBAR;
 @property (nonatomic,weak) IBOutlet UILabel *lbl_Nav_mainTitl;
