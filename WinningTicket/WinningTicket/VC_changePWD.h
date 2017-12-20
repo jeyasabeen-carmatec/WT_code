@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *TXT_currentPWD;
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *TXT_newPWD;
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *TXT_confirmnewPWD;
+
 @property(nonatomic,weak)IBOutlet UILabel *Stat_label;
 @property(nonatomic,weak)IBOutlet UIButton *done_Btn;
 @property(nonatomic,weak)IBOutlet UIView *actview;

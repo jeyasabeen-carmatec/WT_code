@@ -12,6 +12,6 @@
 
 @optional
 
--(void) get_SCORE:(NSString *)STR_score;
+-(void) get_SCORE:(NSString *)STR_score get_HCP:(NSString *)ST_HCP;
 
 @end

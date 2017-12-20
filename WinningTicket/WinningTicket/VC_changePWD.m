@@ -229,7 +229,7 @@
         [_TXT_currentPWD becomeFirstResponder];
 //        [_TXT_currentPWD showError];
 //        [_TXT_currentPWD showErrorWithText:@" Please enter current password"];
-        [self.view makeToast:@"Please enter current password"
+        [self.view makeToast:@"Please enter Current Password"
                                          duration:2.0
                                          position:CSToastPositionCenter];
         
@@ -240,7 +240,7 @@
 //        [_TXT_currentPWD showError];
 //        [_TXT_currentPWD showErrorWithText:@" Current password should have minimum 8 characters"];
         
-        [self.view makeToast:@"Current password should have minimum 8 characters"
+        [self.view makeToast:@"Current Password should have minimum 8 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
 
@@ -251,7 +251,7 @@
 //        [_TXT_newPWD showError];
 //        [_TXT_newPWD showErrorWithText:@" Please enter new password"];
         
-        [self.view makeToast:@"Please enter new password"
+        [self.view makeToast:@"Please enter New Password"
                                          duration:2.0
                                          position:CSToastPositionCenter];
         
@@ -262,7 +262,7 @@
 //        [_TXT_newPWD showError];
 //        [_TXT_newPWD showErrorWithText:@" New Password should have minimum 8 chraters"];
         
-        [self.view makeToast:@"New Password should have minimum 8 chraters"
+        [self.view makeToast:@"New Password should have minimum 8 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
         
@@ -273,7 +273,7 @@
 //        [_TXT_confirmnewPWD showError];
 //        [_TXT_confirmnewPWD showErrorWithText:@" Please enter confirm Password"];
         
-        [self.view makeToast:@"Please enter confirm Password"
+        [self.view makeToast:@"Please enter Confirm Password"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -283,7 +283,7 @@
 //        [_TXT_confirmnewPWD showError];
 //        [_TXT_confirmnewPWD showErrorWithText:@" Confirm Password should have minimum 8 chraters"];
         
-        [self.view makeToast:@"Confirm Password should have minimum 8 chraters"
+        [self.view makeToast:@"Confirm Password should have minimum 8 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -346,7 +346,7 @@
                NSString *status=[json_DATA valueForKey:@"message"];
                
                
-               if([status isEqualToString:@"Password has been changed successfully."])
+               if([status isEqualToString:@"Password has been changed successfully"])
                {
                    
                    [activityIndicatorView stopAnimating];
@@ -444,7 +444,7 @@
                    frame_TMP.origin.y = _TXT_confirmnewPWD.frame.origin.y + _TXT_confirmnewPWD.frame.size.height + 15;
                    _done_Btn.frame = frame_TMP;
                    
-                   _Stat_label.text=[json_DATA valueForKey:@"message"];
+                   _Stat_label.text= @"Confirm Password doesnot match";//[json_DATA valueForKey:@"message"];
                    _Stat_label.backgroundColor=[UIColor redColor];
                    
                }

@@ -1029,7 +1029,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
     }
     else if(amount_str.length == 0  &&  [_TXT_amount.text isEqualToString:@" 0.00"])
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please Enter Any amount" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please enter an Amount" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
         [_TXT_amount becomeFirstResponder];
     }

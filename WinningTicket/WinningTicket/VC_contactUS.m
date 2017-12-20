@@ -289,7 +289,7 @@
 //        [_TXT_fname showError];
 //        [_TXT_fname showErrorWithText:@" Plese Enter First name "];
         
-        [self.view makeToast:@"Plese Enter First name"
+        [self.view makeToast:@"Please enter First Name"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -300,7 +300,7 @@
 //        [_TXT_fname showError];
 //        [_TXT_fname showErrorWithText:@" First name minimum 2 Character"];
         
-        [self.view makeToast:@"First name minimum 2 Character"
+        [self.view makeToast:@"First name minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -310,7 +310,7 @@
 //        [_TXT_email showError];
 //        [_TXT_email showErrorWithText:@" Please Enter a valid Email address"];
         
-        [self.view makeToast:@"Please Enter a valid Email address"
+        [self.view makeToast:@"Please enter a valid Email Address"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -321,7 +321,7 @@
 //        [_TXT_phone showError];
 //        [_TXT_phone showErrorWithText:@" Please enter phone number"];
         
-        [self.view makeToast:@"Please enter phone number"
+        [self.view makeToast:@"Please enter Phone Number"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -332,7 +332,7 @@
 //        [_TXT_phone showError];
 //        [_TXT_phone showErrorWithText:@" Phone number minimum 5 Numbers"];
         
-        [self.view makeToast:@"Phone number minimum 5 Numbers"
+        [self.view makeToast:@"Phone Number minimum 5 numbers"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -342,16 +342,17 @@
 //        [_TXT_subject showError];
 //        [_TXT_subject showErrorWithText:@" Please Enter Subject"];
         
-        [self.view makeToast:@"Please Enter Subject"
+        [self.view makeToast:@"Please enter Subject"
                                          duration:2.0
                                          position:CSToastPositionCenter];
 
     }
+    
     else if([_TXT_VW_message.text isEqualToString:@""] || [_TXT_VW_message.text isEqualToString:@"Your Message"])
     {
         [_TXT_VW_message becomeFirstResponder];
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please Enter any Message" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please enter any Message" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
 
     }
@@ -435,7 +436,7 @@
                     [activityIndicatorView stopAnimating];
                     VW_overlay.hidden = YES;
                     
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please Check the Details" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please check the details" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                     [alert show];
                     
                     

@@ -42,7 +42,7 @@
     VW_overlay.hidden = YES;
    
 
-    NSLog(@"Data from prev vc %@",_STR_parSTR);
+    NSLog(@"Data from prev vc %@ handicap =%@",_STR_parSTR,_STR_HCP);
     
     collection_arr = [NSArray arrayWithObjects:@"12",@"11",@"10",@"9",@"8",@"7",@"6",@"5",@"4",@"3",@"2",@"1",@"12",@"11",@"10",@"9",@"8",@"7",@"6",@"5",@"4",@"3",@"2",@"1",nil];//
 //    collection_dat = [NSArray arrayWithObjects:@"",@"",@"",@"",@"",@"",@"Eagle",@"Birdie",@"parrot",@"Bogey",@"DoubleBogey",@"",@"",@"",@"",@"",@"",@"",@"Eagle",@"Birdie",@"parrot",@"Bogey",@"DoubleBogey",@"",nil];//
@@ -145,9 +145,9 @@
     ARR_grossScore *store_ARR = [ARR_grossScore ARR_values];
     [store_ARR.ARR_score addObject:[collection_arr objectAtIndex:INDX_selecterdl.row]];
     
-    if(_delegate && [_delegate respondsToSelector:@selector(get_SCORE:)])
+    if(_delegate && [_delegate respondsToSelector:@selector(get_SCORE:get_HCP:)])
     {
-        [_delegate get_SCORE:[NSString stringWithFormat:@"%@",[collection_arr objectAtIndex:INDX_selecterdl.row]]]; //[ARR_grossScore ARR_values].ARR_score
+        [_delegate get_SCORE:[NSString stringWithFormat:@"%@",[collection_arr objectAtIndex:INDX_selecterdl.row]] get_HCP:_STR_HCP]; //[ARR_grossScore ARR_values].ARR_score
     }
     
     [activityIndicatorView stopAnimating];

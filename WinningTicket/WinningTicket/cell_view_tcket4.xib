@@ -24,15 +24,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Winning Ticket Includes" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="njD-R2-Vbl">
-                        <rect key="frame" x="22" y="9" width="296" height="28"/>
+                        <rect key="frame" x="22" y="7" width="296" height="28"/>
                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="njD-R2-Vbl" secondAttribute="trailing" constant="2" id="4ic-Y4-1Bq"/>
-                    <constraint firstItem="njD-R2-Vbl" firstAttribute="top" secondItem="E3U-qb-ELg" secondAttribute="top" constant="9" id="U2g-nh-cmt"/>
-                    <constraint firstAttribute="bottom" secondItem="njD-R2-Vbl" secondAttribute="bottom" constant="5.5" id="ZnT-kn-wvn"/>
+                    <constraint firstItem="njD-R2-Vbl" firstAttribute="top" secondItem="E3U-qb-ELg" secondAttribute="top" constant="7" id="U2g-nh-cmt"/>
+                    <constraint firstAttribute="bottom" secondItem="njD-R2-Vbl" secondAttribute="bottom" constant="7.5" id="ZnT-kn-wvn"/>
                     <constraint firstItem="njD-R2-Vbl" firstAttribute="leading" secondItem="E3U-qb-ELg" secondAttribute="leading" constant="22" id="mYV-yV-Ygd"/>
                 </constraints>
             </tableViewCellContentView>

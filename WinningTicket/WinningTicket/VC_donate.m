@@ -1334,7 +1334,7 @@
     if([_TXTVW_organisationname.text isEqualToString:@"Select Event"] || [_TXTVW_organisationname.text isEqualToString:@""])
     {
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please Select Organisation" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please select Event" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
 
          [_TXTVW_organisationname becomeFirstResponder];
@@ -1342,7 +1342,7 @@
     }
     else if([_TXT_getamount.text isEqualToString:@"0.00"] || [_TXT_getamount.text isEqualToString:@" 0.00"])
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please Enter Amount" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please enter Amount" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
         
         [_TXT_getamount becomeFirstResponder];
@@ -1354,7 +1354,7 @@
 //        [_TXT_firstname showError];
 //        [_TXT_firstname showErrorWithText:@" Plese enter first name"];
         
-        [self.view makeToast:@"Plese enter first name"
+        [self.view makeToast:@"Please enter First Name"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -1366,7 +1366,7 @@
 //        [_TXT_firstname showError];
 //        [_TXT_firstname showErrorWithText:@" First name minimum 2 characters"];
         
-        [self.view makeToast:@"First name minimum 2 characters"
+        [self.view makeToast:@"First Name minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -1377,7 +1377,7 @@
 //        [_TXT_address1 showError];
 //        [_TXT_address1 showErrorWithText:@" Please enter address line 1"];
         
-        [self.view makeToast:@"Please enter address line 1"
+        [self.view makeToast:@"Please enter Address Line1"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -1388,9 +1388,20 @@
 //        [_TXT_address1 showError];
 //        [_TXT_address1 showErrorWithText:@" Address line 1 minimum 2 characters"];
         
-        [self.view makeToast:@"Address line 1 minimum 2 characters"
+        [self.view makeToast:@"Address Line1 minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
+    }
+    else if([_TXT_address2.text isEqualToString:@""])
+    {
+        [self VIEWaddress];
+        [_TXT_address1 becomeFirstResponder];
+        //        [_TXT_address1 showError];
+        //        [_TXT_address1 showErrorWithText:@" Please enter address line 1"];
+        
+        [self.view makeToast:@"Please enter Address Line2"
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
     else  if(addr_line_two.length != 0 && _TXT_address2.text.length < 2)
     {
@@ -1399,7 +1410,7 @@
 //        [_TXT_address2 showError];
 //        [_TXT_address2 showErrorWithText:@" Address line 2 minimum 2 characters"];
         
-        [self.view makeToast:@"Address line 2 minimum 2 characters"
+        [self.view makeToast:@"Address Line2 minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -1410,7 +1421,7 @@
 //        [_TXT_lastname showError];
 //        [_TXT_lastname showErrorWithText:@" Last name minimum 2 characters"];
         
-        [self.view makeToast:@"Last name minimum 2 characters"
+        [self.view makeToast:@"Last Name minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -1421,7 +1432,7 @@
 //        [_TXT_city showError];
 //        [_TXT_city showErrorWithText:@" Please enter city"];
         
-        [self.view makeToast:@"Please enter city"
+        [self.view makeToast:@"Please enter City"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -1443,7 +1454,7 @@
 //        [_TXT_country showError];
 //        [_TXT_country showErrorWithText:@" Please Select country"];
         
-        [self.view makeToast:@"Please Select country"
+        [self.view makeToast:@"Please select Country"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -1455,7 +1466,7 @@
 //        [_TXT_zip showError];
 //        [_TXT_zip showErrorWithText:@" Please enter zipcode"];
         
-        [self.view makeToast:@"Please enter zipcode"
+        [self.view makeToast:@"Please enter Zip Code"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -1466,7 +1477,7 @@
 //        [_TXT_zip showError];
 //        [_TXT_zip showErrorWithText:@" Zipcode minimum 4 characters"];
         
-        [self.view makeToast:@"Zipcode minimum 4 characters"
+        [self.view makeToast:@"Zip Code minimum 4 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -1477,7 +1488,7 @@
 //        [_TXT_phonenumber showError];
 //        [_TXT_phonenumber showErrorWithText:@" Please enter phone number"];
         
-        [self.view makeToast:@"Please enter phone number"
+        [self.view makeToast:@"Please enter Phone Number"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -1489,7 +1500,7 @@
 //        [_TXT_phonenumber showError];
 //        [_TXT_phonenumber showErrorWithText:@" Phone number minimum 5 numbers"];
         
-        [self.view makeToast:@"Phone number minimum 5 numbers"
+        [self.view makeToast:@"Phone Number minimum 5 numbers"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }

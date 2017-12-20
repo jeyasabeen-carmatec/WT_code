@@ -13,60 +13,75 @@
         <array key="Gotham Bold Regular.ttf">
             <string>GothamBold</string>
         </array>
-        <array key="GothamBook Regular.otf">
-            <string>GothamBook</string>
+        <array key="Montserrat-Bold.ttf">
+            <string>Montserrat-Bold</string>
         </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="Cell_headerSection">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="p4E-LV-FBt" customClass="Cell_headerSection">
             <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p4E-LV-FBt" id="wCK-B8-iGa">
                 <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQ5-cp-UXL">
-                        <rect key="frame" x="25" y="11" width="621" height="18.5"/>
-                        <fontDescription key="fontDescription" name="GothamBook" family="GothamBook" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94M-Q6-gbA">
+                        <rect key="frame" x="19" y="12" width="579" height="21"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NxK-Fr-9vY">
-                        <rect key="frame" x="654" y="12" width="42" height="11"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UdR-7b-Sqt">
+                        <rect key="frame" x="654" y="11" width="42" height="21.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="42" id="mAl-Kd-XXp"/>
+                            <constraint firstAttribute="width" constant="42" id="3lK-yR-5EK"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="12"/>
+                        <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aR-2x-pMH">
-                        <rect key="frame" x="710" y="11" width="42" height="11"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pq-2f-Ijn">
+                        <rect key="frame" x="711" y="11" width="42" height="21.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="42" id="peS-eM-8gB"/>
+                            <constraint firstAttribute="width" constant="42" id="5n9-Ef-wRF"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="12"/>
+                        <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h24-yP-OCX">
+                        <rect key="frame" x="606" y="11" width="29" height="21.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="29" id="cvy-Om-7hl"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="GothamBold" family="Gotham Bold" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="6aR-2x-pMH" firstAttribute="leading" secondItem="NxK-Fr-9vY" secondAttribute="trailing" constant="14" id="8VY-vd-KzB"/>
-                    <constraint firstItem="6aR-2x-pMH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="Atx-de-CoJ"/>
-                    <constraint firstItem="gQ5-cp-UXL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="QeR-tr-dUm"/>
-                    <constraint firstItem="gQ5-cp-UXL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="17" id="edN-bB-gsQ"/>
-                    <constraint firstItem="NxK-Fr-9vY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="o5b-Ra-X4H"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="6aR-2x-pMH" secondAttribute="trailing" constant="8" id="u82-qZ-4J1"/>
-                    <constraint firstItem="NxK-Fr-9vY" firstAttribute="leading" secondItem="gQ5-cp-UXL" secondAttribute="trailing" constant="8" id="uRG-bS-meF"/>
+                    <constraint firstItem="h24-yP-OCX" firstAttribute="top" secondItem="wCK-B8-iGa" secondAttribute="topMargin" constant="3" id="0xE-2M-oR7"/>
+                    <constraint firstItem="h24-yP-OCX" firstAttribute="leading" secondItem="94M-Q6-gbA" secondAttribute="trailing" constant="8" id="Or3-2P-dnG"/>
+                    <constraint firstItem="UdR-7b-Sqt" firstAttribute="centerY" secondItem="wCK-B8-iGa" secondAttribute="centerY" id="PFS-zW-5dE"/>
+                    <constraint firstItem="UdR-7b-Sqt" firstAttribute="leading" secondItem="h24-yP-OCX" secondAttribute="trailing" constant="19" id="Ydi-Yy-Cbj"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="3pq-2f-Ijn" secondAttribute="trailing" constant="7" id="Yuj-DK-iGd"/>
+                    <constraint firstItem="94M-Q6-gbA" firstAttribute="top" secondItem="wCK-B8-iGa" secondAttribute="topMargin" constant="4" id="ZJq-nN-rC0"/>
+                    <constraint firstItem="3pq-2f-Ijn" firstAttribute="centerY" secondItem="wCK-B8-iGa" secondAttribute="centerY" id="ZmT-0G-EAM"/>
+                    <constraint firstItem="h24-yP-OCX" firstAttribute="centerY" secondItem="wCK-B8-iGa" secondAttribute="centerY" id="chn-Kv-hJI"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="94M-Q6-gbA" secondAttribute="bottom" constant="2.5" id="dNA-5l-RrQ"/>
+                    <constraint firstItem="UdR-7b-Sqt" firstAttribute="top" secondItem="wCK-B8-iGa" secondAttribute="topMargin" constant="3" id="tZE-8u-xz4"/>
+                    <constraint firstItem="3pq-2f-Ijn" firstAttribute="top" secondItem="wCK-B8-iGa" secondAttribute="topMargin" constant="3" id="uG0-oc-WLb"/>
+                    <constraint firstItem="3pq-2f-Ijn" firstAttribute="leading" secondItem="UdR-7b-Sqt" secondAttribute="trailing" constant="15" id="ul2-tO-Ujz"/>
+                    <constraint firstItem="94M-Q6-gbA" firstAttribute="leading" secondItem="wCK-B8-iGa" secondAttribute="leadingMargin" constant="11" id="yYL-qA-R0r"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.92549019610000005" green="0.94117647059999998" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
-                <outlet property="lbl_email" destination="6aR-2x-pMH" id="24N-RX-s2H"/>
-                <outlet property="lbl_text" destination="NxK-Fr-9vY" id="tbg-vY-JRn"/>
-                <outlet property="lbl_title" destination="gQ5-cp-UXL" id="gKq-64-cH5"/>
+                <outlet property="lbl_email" destination="3pq-2f-Ijn" id="wi1-Ld-2NR"/>
+                <outlet property="lbl_push" destination="h24-yP-OCX" id="B12-0g-otS"/>
+                <outlet property="lbl_text" destination="UdR-7b-Sqt" id="zEp-x1-Dgp"/>
+                <outlet property="lbl_title" destination="94M-Q6-gbA" id="Esv-xE-wKG"/>
             </connections>
         </tableViewCell>
     </objects>

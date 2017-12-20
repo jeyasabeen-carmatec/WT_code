@@ -214,15 +214,31 @@
     [cell.IMG_giftIcon sd_setImageWithURL:[NSURL URLWithString:STR_url]
                               placeholderImage:[UIImage imageNamed:@"square-2"]];
     
-    cell.IMG_giftIcon.layer.borderWidth = 1.0f;
-    cell.IMG_giftIcon.layer.borderColor = [UIColor blackColor].CGColor;
+//    cell.IMG_giftIcon.layer.borderWidth = 1.0f;
+//    cell.IMG_giftIcon.layer.borderColor = [UIColor blackColor].CGColor;
     
     [cell.BTN_viewOffer setTag:indexPath.row];
     [cell.BTN_viewOffer addTarget:self action:@selector(viewoffer:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
 }
-
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // Remove seperator inset
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    // Prevent the cell from inheriting the Table View's margin settings
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    
+    // Explictly set your cell's layout margins
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
 
 -(void) viewoffer :(UIButton *)sender
 {

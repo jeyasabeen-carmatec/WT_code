@@ -402,7 +402,7 @@
 //        [_TXT_fname showError];
 //        [_TXT_fname showErrorWithText:@" Plese enter first name "];
         
-        [self.view makeToast:@"Plese enter first name"
+        [self.view makeToast:@"Please enter First Name"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -413,7 +413,7 @@
 //        [_TXT_fname showError];
 //        [_TXT_fname showErrorWithText:@" First name minimum 2 characters"];
         
-        [self.view makeToast:@"First name minimum 2 characters"
+        [self.view makeToast:@"First Name minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
         
@@ -424,7 +424,7 @@
 //        [_TXT_username showError];
 //        [_TXT_username showErrorWithText:@" Please enter address line 1"];
         
-        [self.view makeToast:@"Please enter address line 1"
+        [self.view makeToast:@"Please enter Address Line1"
                                          duration:2.0
                                          position:CSToastPositionCenter];
         
@@ -435,7 +435,7 @@
 //        [_TXT_username showError];
 //        [_TXT_username showErrorWithText:@" Address line 1 minimum 2 characters"];
         
-        [self.view makeToast:@"Address line 1 minimum 2 characters"
+        [self.view makeToast:@"Address Line1 minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
         
@@ -447,7 +447,7 @@
 //        [_TXT_addr1 showError];
 //        [_TXT_addr1 showErrorWithText:@" Please enter address line 2"];
         
-        [self.view makeToast:@"Please enter address line 2"
+        [self.view makeToast:@"Please enter Address Line2"
                                          duration:2.0
                                          position:CSToastPositionCenter];
         
@@ -458,7 +458,7 @@
 //        [_TXT_addr1 showError];
 //        [_TXT_addr1 showErrorWithText:@" Address line 2 minimum 2 characters"];
         
-        [self.view makeToast:@"Address line 2 minimum 2 characters"
+        [self.view makeToast:@"Address Line2 minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
         
@@ -469,7 +469,7 @@
 //        [_TXT_city showError];
 //        [_TXT_city showErrorWithText:@" Please enter city"];
         
-        [self.view makeToast:@"Please enter city"
+        [self.view makeToast:@"Please enter City"
                                          duration:2.0
                                          position:CSToastPositionCenter];
         
@@ -491,7 +491,7 @@
 //        [_TXT_zip showError];
 //        [_TXT_zip showErrorWithText:@" Please enter zipcode"];
         
-        [self.view makeToast:@"Please enter zipcode"
+        [self.view makeToast:@"Please enter Zip Code"
                                          duration:2.0
                                          position:CSToastPositionCenter];
         
@@ -502,7 +502,7 @@
 //        [_TXT_zip showError];
 //        [_TXT_zip showErrorWithText:@" Zipcode minimum 3 characters"];
         
-        [self.view makeToast:@"Zipcode minimum 3 characters"
+        [self.view makeToast:@"Zip Code minimum 3 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
         
@@ -513,7 +513,7 @@
 //        [_TXT_phone showError];
 //        [_TXT_phone showErrorWithText:@" Please enter phone number"];
         
-        [self.view makeToast:@"Please enter phone number"
+        [self.view makeToast:@"Please enter Phone Number"
                                          duration:2.0
                                          position:CSToastPositionCenter];
         
@@ -523,7 +523,7 @@
         [_TXT_phone becomeFirstResponder];
 //        [_TXT_phone showError];
 //        [_TXT_phone showErrorWithText:@" Phone number minimum 5 numbers"];
-        [self.view makeToast:@"Phone number minimum 5 numbers"
+        [self.view makeToast:@"Phone Number minimum 5 numbers"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -533,7 +533,7 @@
 //        [_TXT_country showError];
 //        [_TXT_country showErrorWithText:@" Please select country"];
         
-        [self.view makeToast:@"Please select country"
+        [self.view makeToast:@"Please select Country"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
@@ -776,7 +776,7 @@
                     VW_overlay.hidden = YES;
                     [activityIndicatorView stopAnimating];
                     
-                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Details Successfully Updated" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Details updated successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                     [alert show];
                     [self dismissViewControllerAnimated:YES completion:nil];
                     
@@ -785,7 +785,7 @@
                 {
                     VW_overlay.hidden = YES;
                     [activityIndicatorView stopAnimating];
-                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Please Check The Details" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Please check the details" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                     [alert show];
                     
                 }
@@ -801,7 +801,7 @@
         {
             [activityIndicatorView stopAnimating];
             VW_overlay.hidden = YES;
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Please Check your Connection." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Please check your connection." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
 
         
