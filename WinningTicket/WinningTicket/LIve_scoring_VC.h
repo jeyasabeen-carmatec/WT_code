@@ -26,5 +26,13 @@
 @property (nonatomic,weak) IBOutlet UILabel *event_dtl_lbl;
 @property (nonatomic,weak) IBOutlet UILabel *event_addr_lbl;
 
+@property (nonatomic,weak) IBOutlet UIView *VW_mainCont;
+@property (nonatomic,weak) IBOutlet UIView *VW_contents;
+@property (nonatomic,weak) IBOutlet UICollectionView *collec_contents;
+@property (nonatomic,weak) IBOutlet UIButton *BTN_continue;
+
+
+@property (nonatomic,weak) IBOutlet UIScrollView *SCRL_contents;
+
 
 @end

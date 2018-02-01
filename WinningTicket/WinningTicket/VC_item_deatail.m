@@ -663,6 +663,7 @@
             highlightView.tag = 1;
             [_lbl_itemNAME insertSubview:highlightView atIndex:0];
             
+            
             [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:19.0]}
                                     range:ename];
             [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Bold" size:21.0]}

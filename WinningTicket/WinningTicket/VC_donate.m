@@ -883,6 +883,7 @@
             final_frame.size.height = _TXTVW_organisationname.contentSize.height;
             _TXTVW_organisationname.frame = final_frame;
             
+    
             final_frame = _lbl_titledonationAMT.frame;
             final_frame.origin.y = _TXTVW_organisationname.frame.origin.y + _TXTVW_organisationname.frame.size.height + 10;
             _lbl_titledonationAMT.frame = final_frame;
@@ -991,15 +992,30 @@
             }
             else
             {
-                CGRect frame_lbl = _LBLwallet_balence.frame;
-                frame_lbl.origin.y = _BTN_deduct_wallet.frame.origin.y + _BTN_deduct_wallet.frame.size.height + 10;
-                _LBLwallet_balence.frame = frame_lbl;
-                
-                frame_lbl = _VW_wallet.frame;
-                frame_lbl.origin.y = _LBLwallet_balence.frame.origin.y + _LBLwallet_balence.frame.size.height + 10;
-                _VW_wallet.frame = frame_lbl;
-                
-                VW_frame.size.height = _VW_wallet.frame.origin.y + _VW_wallet.frame.size.height;
+                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+                    CGRect frame_lbl = _LBLwallet_balence.frame;
+                    frame_lbl.origin.y = _BTN_deduct_wallet.frame.origin.y + _BTN_deduct_wallet.frame.size.height - 15;
+                    _LBLwallet_balence.frame = frame_lbl;
+                    
+                    frame_lbl = _VW_wallet.frame;
+                    frame_lbl.origin.y = _LBLwallet_balence.frame.origin.y + _LBLwallet_balence.frame.size.height - 15;
+                    _VW_wallet.frame = frame_lbl;
+                    
+                    VW_frame.size.height = _VW_wallet.frame.origin.y + _VW_wallet.frame.size.height;
+                }
+                else
+                {
+                    CGRect frame_lbl = _LBLwallet_balence.frame;
+                    frame_lbl.origin.y = _BTN_deduct_wallet.frame.origin.y + _BTN_deduct_wallet.frame.size.height + 10;
+                    _LBLwallet_balence.frame = frame_lbl;
+                    
+                    frame_lbl = _VW_wallet.frame;
+                    frame_lbl.origin.y = _LBLwallet_balence.frame.origin.y + _LBLwallet_balence.frame.size.height + 10;
+                    _VW_wallet.frame = frame_lbl;
+                    
+                    VW_frame.size.height = _VW_wallet.frame.origin.y + _VW_wallet.frame.size.height;
+                }
+               
             }
             VW_frame.size.width = _scroll_Contents.frame.size.width;
             _VW_organisationdetail.frame = VW_frame;
@@ -1064,58 +1080,102 @@
     }
     if(_VW_address.hidden == NO)
     {
-        
-        CGRect final_frame = _TXTVW_organisationname.frame;
-        final_frame.size.height = _TXTVW_organisationname.contentSize.height;
-        _TXTVW_organisationname.frame = final_frame;
-        
-        final_frame = _lbl_titledonationAMT.frame;
-        final_frame.origin.y = _TXTVW_organisationname.frame.origin.y + _TXTVW_organisationname.frame.size.height + 10;
-        _lbl_titledonationAMT.frame = final_frame;
-        
-        final_frame = _lbl_currencyTYP.frame;
-        final_frame.origin.y = _lbl_titledonationAMT.frame.origin.y + _lbl_titledonationAMT.frame.size.height + 10;
-        _lbl_currencyTYP.frame = final_frame;
-        
-        final_frame = _TXT_getamount.frame;
-        final_frame.origin.y = _lbl_currencyTYP.frame.origin.y;
-        _TXT_getamount.frame = final_frame;
-        
-        final_frame = _BTN_deduct_wallet.frame;
-        final_frame.origin.y = _TXT_getamount.frame.origin.y + _TXT_getamount.frame.size.height + 10;
-        _BTN_deduct_wallet.frame = final_frame;
-        
-        final_frame = _LBL_arrow_wallet.frame;
-        final_frame.origin.y = _BTN_deduct_wallet.frame.origin.y;
-        _LBL_arrow_wallet.frame = final_frame;
-        
-        CGRect VW_frame = _VW_organisationdetail.frame;
-        if (_VW_wallet.hidden == YES) {
-            VW_frame.size.height = _BTN_deduct_wallet.frame.origin.y + _BTN_deduct_wallet.frame.size.height;
-        }
-        else
-        {
-            CGRect frame_lbl = _LBLwallet_balence.frame;
-            frame_lbl.origin.y = _BTN_deduct_wallet.frame.origin.y + _BTN_deduct_wallet.frame.size.height + 10;
-            _LBLwallet_balence.frame = frame_lbl;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            CGRect final_frame = _TXTVW_organisationname.frame;
+            final_frame.size.height = _TXTVW_organisationname.contentSize.height;
+            _TXTVW_organisationname.frame = final_frame;
             
-            frame_lbl = _VW_wallet.frame;
-            frame_lbl.origin.y = _LBLwallet_balence.frame.origin.y + _LBLwallet_balence.frame.size.height + 10;
-            _VW_wallet.frame = frame_lbl;
+            final_frame = _lbl_titledonationAMT.frame;
+            final_frame.origin.y = _TXTVW_organisationname.frame.origin.y + _TXTVW_organisationname.frame.size.height - 15;
+            _lbl_titledonationAMT.frame = final_frame;
             
-            VW_frame.size.height = _VW_wallet.frame.origin.y + _VW_wallet.frame.size.height;
+            final_frame = _lbl_currencyTYP.frame;
+            final_frame.origin.y = _lbl_titledonationAMT.frame.origin.y + _lbl_titledonationAMT.frame.size.height - 15;
+            _lbl_currencyTYP.frame = final_frame;
+            
+            final_frame = _TXT_getamount.frame;
+            final_frame.origin.y = _lbl_currencyTYP.frame.origin.y;
+            _TXT_getamount.frame = final_frame;
+            
+            final_frame = _BTN_deduct_wallet.frame;
+            final_frame.origin.y = _TXT_getamount.frame.origin.y + _TXT_getamount.frame.size.height + 10;
+            _BTN_deduct_wallet.frame = final_frame;
+            
+            final_frame = _LBL_arrow_wallet.frame;
+            final_frame.origin.y = _BTN_deduct_wallet.frame.origin.y;
+            _LBL_arrow_wallet.frame = final_frame;
+            
+            CGRect VW_frame = _VW_organisationdetail.frame;
+            if (_VW_wallet.hidden == YES) {
+                VW_frame.size.height = _BTN_deduct_wallet.frame.origin.y + _BTN_deduct_wallet.frame.size.height;
+            }
+            else
+            {
+                CGRect frame_lbl = _LBLwallet_balence.frame;
+                frame_lbl.origin.y = _BTN_deduct_wallet.frame.origin.y + _BTN_deduct_wallet.frame.size.height - 15;
+                _LBLwallet_balence.frame = frame_lbl;
+                
+                frame_lbl = _VW_wallet.frame;
+                frame_lbl.origin.y = _LBLwallet_balence.frame.origin.y + _LBLwallet_balence.frame.size.height - 15;
+                _VW_wallet.frame = frame_lbl;
+                
+                VW_frame.size.height = _VW_wallet.frame.origin.y + _VW_wallet.frame.size.height;
+            }
+            VW_frame.size.width = _scroll_Contents.frame.size.width;
+            _VW_organisationdetail.frame = VW_frame;
+        } else {
+            CGRect final_frame = _TXTVW_organisationname.frame;
+            final_frame.size.height = _TXTVW_organisationname.contentSize.height;
+            _TXTVW_organisationname.frame = final_frame;
+            
+            final_frame = _lbl_titledonationAMT.frame;
+            final_frame.origin.y = _TXTVW_organisationname.frame.origin.y + _TXTVW_organisationname.frame.size.height + 10;
+            _lbl_titledonationAMT.frame = final_frame;
+            
+            final_frame = _lbl_currencyTYP.frame;
+            final_frame.origin.y = _lbl_titledonationAMT.frame.origin.y + _lbl_titledonationAMT.frame.size.height + 10;
+            _lbl_currencyTYP.frame = final_frame;
+            
+            final_frame = _TXT_getamount.frame;
+            final_frame.origin.y = _lbl_currencyTYP.frame.origin.y;
+            _TXT_getamount.frame = final_frame;
+            
+            final_frame = _BTN_deduct_wallet.frame;
+            final_frame.origin.y = _TXT_getamount.frame.origin.y + _TXT_getamount.frame.size.height + 10;
+            _BTN_deduct_wallet.frame = final_frame;
+            
+            final_frame = _LBL_arrow_wallet.frame;
+            final_frame.origin.y = _BTN_deduct_wallet.frame.origin.y;
+            _LBL_arrow_wallet.frame = final_frame;
+            
+            CGRect VW_frame = _VW_organisationdetail.frame;
+            if (_VW_wallet.hidden == YES) {
+                VW_frame.size.height = _BTN_deduct_wallet.frame.origin.y + _BTN_deduct_wallet.frame.size.height;
+            }
+            else
+            {
+                CGRect frame_lbl = _LBLwallet_balence.frame;
+                frame_lbl.origin.y = _BTN_deduct_wallet.frame.origin.y + _BTN_deduct_wallet.frame.size.height + 10;
+                _LBLwallet_balence.frame = frame_lbl;
+                
+                frame_lbl = _VW_wallet.frame;
+                frame_lbl.origin.y = _LBLwallet_balence.frame.origin.y + _LBLwallet_balence.frame.size.height + 10;
+                _VW_wallet.frame = frame_lbl;
+                
+                VW_frame.size.height = _VW_wallet.frame.origin.y + _VW_wallet.frame.size.height;
+            }
+            VW_frame.size.width = _scroll_Contents.frame.size.width;
+            _VW_organisationdetail.frame = VW_frame;
         }
-        VW_frame.size.width = _scroll_Contents.frame.size.width;
-        _VW_organisationdetail.frame = VW_frame;
-        
-        CGRect frame_old;
-        frame_old = _lbl_address.frame;
-        frame_old.origin.y= _VW_titladdress.frame.size.height+_VW_titladdress.frame.origin.y+10;
-        _lbl_address.frame=frame_old;
-        
-        frame_old = _BTN_deposit.frame;
-        frame_old.origin.y =  _lbl_address.frame.origin.y + _lbl_address.frame.size.height + 10;
-        _BTN_deposit.frame=frame_old;
+            
+            CGRect frame_old;
+            frame_old = _lbl_address.frame;
+            frame_old.origin.y= _VW_titladdress.frame.size.height+_VW_titladdress.frame.origin.y+10;
+            _lbl_address.frame=frame_old;
+            
+            frame_old = _BTN_deposit.frame;
+            frame_old.origin.y =  _lbl_address.frame.origin.y + _lbl_address.frame.size.height + 10;
+            _BTN_deposit.frame=frame_old;
         
         original_height =  self.BTN_deposit.frame.origin.y + _BTN_deposit.frame.size.height + 20;
         
@@ -2147,72 +2207,213 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
         [UIView commitAnimations];
         
         
-        CGRect frame_new = _LBLwallet_balence.frame;
-        frame_new.origin.y = _BTN_deduct_wallet.frame.origin.y + _BTN_deduct_wallet.frame.size.height + 10;
-        _LBLwallet_balence.frame = frame_new;
-        
-        frame_new = _VW_wallet.frame;
-        frame_new.origin.y = _LBLwallet_balence.frame.origin.y + _LBLwallet_balence.frame.size.height + 10;
-        _VW_wallet.frame = frame_new;
-        
-        CGRect frame_ap = _VW_organisationdetail.frame;
-        frame_ap.size.height = _VW_wallet.frame.origin.y + _VW_wallet.frame.size.height + 10;
-        [UIView animateWithDuration:0.4f
-                         animations:^{
-                             _VW_organisationdetail.frame = frame_ap;
-                         }];
-        [UIView commitAnimations];
-        
-        CGRect frame_bill_addr = _VW_titladdress.frame;
-        frame_bill_addr.origin.y = frame_ap.origin.y + frame_ap.size.height;
-        [UIView beginAnimations:@"bucketsOff" context:NULL];
-        [UIView setAnimationDuration:0.4f];
-        _VW_titladdress.frame = frame_bill_addr;
-        [UIView commitAnimations];
-        
-        
-        CGRect frame_addr = _VW_address.frame;
-        CGRect frme_lbl = _lbl_address.frame;
-        
-        if (_lbl_address.hidden == YES) {
-            frame_addr.origin.y = _VW_titladdress.frame.origin.y + _VW_titladdress.frame.size.height;
-        }
-        else
-        {
-            frme_lbl.origin.y = _VW_titladdress.frame.origin.y + _VW_titladdress.frame.size.height + 10;
-        }
-        
-        
-        if (_lbl_address.hidden == NO) {
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            CGRect frame_new = _LBLwallet_balence.frame;
+            frame_new.origin.y = _BTN_deduct_wallet.frame.origin.y + _BTN_deduct_wallet.frame.size.height - 15;
+            _LBLwallet_balence.frame = frame_new;
+            
+            frame_new = _VW_wallet.frame;
+            frame_new.origin.y = _LBLwallet_balence.frame.origin.y + _LBLwallet_balence.frame.size.height - 15;
+            _VW_wallet.frame = frame_new;
+            
+            CGRect frame_ap = _VW_organisationdetail.frame;
+            frame_ap.size.height = _VW_wallet.frame.origin.y + _VW_wallet.frame.size.height;
             [UIView animateWithDuration:0.4f
                              animations:^{
-                                 _lbl_address.frame = frme_lbl;
+                                 _VW_organisationdetail.frame = frame_ap;
+                             }];
+            [UIView commitAnimations];
+            
+            CGRect frame_bill_addr = _VW_titladdress.frame;
+            frame_bill_addr.origin.y = frame_ap.origin.y + frame_ap.size.height;
+            [UIView beginAnimations:@"bucketsOff" context:NULL];
+            [UIView setAnimationDuration:0.4f];
+            _VW_titladdress.frame = frame_bill_addr;
+            [UIView commitAnimations];
+            
+            
+            CGRect frame_addr = _VW_address.frame;
+            CGRect frme_lbl = _lbl_address.frame;
+            
+            if (_lbl_address.hidden == YES) {
+                frame_addr.origin.y = _VW_titladdress.frame.origin.y + _VW_titladdress.frame.size.height;
+            }
+            else
+            {
+                frme_lbl.origin.y = _VW_titladdress.frame.origin.y + _VW_titladdress.frame.size.height + 5;
+            }
+            
+            
+            if (_lbl_address.hidden == NO) {
+                [UIView animateWithDuration:0.4f
+                                 animations:^{
+                                     _lbl_address.frame = frme_lbl;
+                                 }];
+                [UIView commitAnimations];
+            }
+            else
+            {
+                [UIView animateWithDuration:0.4f
+                                 animations:^{
+                                     _VW_address.frame = frame_addr;
+                                 }];
+                [UIView commitAnimations];
+            }
+            
+            CGRect frame_BTN = _BTN_deposit.frame;
+            if (_lbl_address.hidden == YES) {
+                frame_BTN.origin.y = _VW_address.frame.origin.y + _VW_address.frame.size.height + 5;
+            }
+            else
+            {
+                frame_BTN.origin.y = _lbl_address.frame.origin.y + _lbl_address.frame.size.height + 5;
+            }
+            
+            [UIView animateWithDuration:0.4f
+                             animations:^{
+                                 _BTN_deposit.frame = frame_BTN;
                              }];
             [UIView commitAnimations];
         }
         else
         {
-            [UIView animateWithDuration:0.4f
-                             animations:^{
-                                 _VW_address.frame = frame_addr;
-                             }];
-            [UIView commitAnimations];
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+                CGRect frame_new = _LBLwallet_balence.frame;
+                frame_new.origin.y = _BTN_deduct_wallet.frame.origin.y + _BTN_deduct_wallet.frame.size.height - 15;
+                _LBLwallet_balence.frame = frame_new;
+                
+                frame_new = _VW_wallet.frame;
+                frame_new.origin.y = _LBLwallet_balence.frame.origin.y + _LBLwallet_balence.frame.size.height - 15;
+                _VW_wallet.frame = frame_new;
+                
+                CGRect frame_ap = _VW_organisationdetail.frame;
+                frame_ap.size.height = _VW_wallet.frame.origin.y + _VW_wallet.frame.size.height + 10;
+                [UIView animateWithDuration:0.4f
+                                 animations:^{
+                                     _VW_organisationdetail.frame = frame_ap;
+                                 }];
+                [UIView commitAnimations];
+                
+                CGRect frame_bill_addr = _VW_titladdress.frame;
+                frame_bill_addr.origin.y = frame_ap.origin.y + frame_ap.size.height;
+                [UIView beginAnimations:@"bucketsOff" context:NULL];
+                [UIView setAnimationDuration:0.4f];
+                _VW_titladdress.frame = frame_bill_addr;
+                [UIView commitAnimations];
+                
+                
+                CGRect frame_addr = _VW_address.frame;
+                CGRect frme_lbl = _lbl_address.frame;
+                
+                if (_lbl_address.hidden == YES) {
+                    frame_addr.origin.y = _VW_titladdress.frame.origin.y + _VW_titladdress.frame.size.height;
+                }
+                else
+                {
+                    frme_lbl.origin.y = _VW_titladdress.frame.origin.y + _VW_titladdress.frame.size.height + 5;
+                }
+                
+                
+                if (_lbl_address.hidden == NO) {
+                    [UIView animateWithDuration:0.4f
+                                     animations:^{
+                                         _lbl_address.frame = frme_lbl;
+                                     }];
+                    [UIView commitAnimations];
+                }
+                else
+                {
+                    [UIView animateWithDuration:0.4f
+                                     animations:^{
+                                         _VW_address.frame = frame_addr;
+                                     }];
+                    [UIView commitAnimations];
+                }
+                
+                CGRect frame_BTN = _BTN_deposit.frame;
+                if (_lbl_address.hidden == YES) {
+                    frame_BTN.origin.y = _VW_address.frame.origin.y + _VW_address.frame.size.height + 10;
+                }
+                else
+                {
+                    frame_BTN.origin.y = _lbl_address.frame.origin.y + _lbl_address.frame.size.height + 10;
+                }
+                
+                [UIView animateWithDuration:0.4f
+                                 animations:^{
+                                     _BTN_deposit.frame = frame_BTN;
+                                 }];
+                [UIView commitAnimations];
+            } else {
+                CGRect frame_new = _LBLwallet_balence.frame;
+                frame_new.origin.y = _BTN_deduct_wallet.frame.origin.y + _BTN_deduct_wallet.frame.size.height + 10;
+                _LBLwallet_balence.frame = frame_new;
+                
+                frame_new = _VW_wallet.frame;
+                frame_new.origin.y = _LBLwallet_balence.frame.origin.y + _LBLwallet_balence.frame.size.height + 10;
+                _VW_wallet.frame = frame_new;
+                
+                CGRect frame_ap = _VW_organisationdetail.frame;
+                frame_ap.size.height = _VW_wallet.frame.origin.y + _VW_wallet.frame.size.height + 10;
+                [UIView animateWithDuration:0.4f
+                                 animations:^{
+                                     _VW_organisationdetail.frame = frame_ap;
+                                 }];
+                [UIView commitAnimations];
+                
+                CGRect frame_bill_addr = _VW_titladdress.frame;
+                frame_bill_addr.origin.y = frame_ap.origin.y + frame_ap.size.height;
+                [UIView beginAnimations:@"bucketsOff" context:NULL];
+                [UIView setAnimationDuration:0.4f];
+                _VW_titladdress.frame = frame_bill_addr;
+                [UIView commitAnimations];
+                
+                
+                CGRect frame_addr = _VW_address.frame;
+                CGRect frme_lbl = _lbl_address.frame;
+                
+                if (_lbl_address.hidden == YES) {
+                    frame_addr.origin.y = _VW_titladdress.frame.origin.y + _VW_titladdress.frame.size.height;
+                }
+                else
+                {
+                    frme_lbl.origin.y = _VW_titladdress.frame.origin.y + _VW_titladdress.frame.size.height + 10;
+                }
+                
+                
+                if (_lbl_address.hidden == NO) {
+                    [UIView animateWithDuration:0.4f
+                                     animations:^{
+                                         _lbl_address.frame = frme_lbl;
+                                     }];
+                    [UIView commitAnimations];
+                }
+                else
+                {
+                    [UIView animateWithDuration:0.4f
+                                     animations:^{
+                                         _VW_address.frame = frame_addr;
+                                     }];
+                    [UIView commitAnimations];
+                }
+                
+                CGRect frame_BTN = _BTN_deposit.frame;
+                if (_lbl_address.hidden == YES) {
+                    frame_BTN.origin.y = _VW_address.frame.origin.y + _VW_address.frame.size.height + 10;
+                }
+                else
+                {
+                    frame_BTN.origin.y = _lbl_address.frame.origin.y + _lbl_address.frame.size.height + 10;
+                }
+                
+                [UIView animateWithDuration:0.4f
+                                 animations:^{
+                                     _BTN_deposit.frame = frame_BTN;
+                                 }];
+                [UIView commitAnimations];
+            }
         }
         
-        CGRect frame_BTN = _BTN_deposit.frame;
-        if (_lbl_address.hidden == YES) {
-            frame_BTN.origin.y = _VW_address.frame.origin.y + _VW_address.frame.size.height + 10;
-        }
-        else
-        {
-            frame_BTN.origin.y = _lbl_address.frame.origin.y + _lbl_address.frame.size.height + 10;
-        }
-        
-        [UIView animateWithDuration:0.4f
-                         animations:^{
-                             _BTN_deposit.frame = frame_BTN;
-                         }];
-        [UIView commitAnimations];
         
         original_height =  self.BTN_deposit.frame.origin.y + _BTN_deposit.frame.size.height + 20;
         [self viewDidLayoutSubviews];

@@ -10,4 +10,7 @@
 
 @interface VC_howitworks : UIViewController
 
+@property (nonatomic, weak) IBOutlet UIView *VW_contents;
+@property (nonatomic, weak) IBOutlet UIScrollView *scroll_contents;
+
 @end

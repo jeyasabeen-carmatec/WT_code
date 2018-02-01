@@ -112,16 +112,6 @@
             _TXT_email.text=[user_data valueForKey:@"email"];
             _TXT_email.delegate = self;
             
-            _TXT_username.layer.cornerRadius = 5.0f;
-            _TXT_username.layer.masksToBounds = YES;
-            _TXT_username.layer.borderWidth = 2.0f;
-            _TXT_username.layer.borderColor = [UIColor grayColor].CGColor;
-            _TXT_username.text=[user_data valueForKey:@"email"];
-            _TXT_username.delegate = self;
-            _TXT_username.tag = 3;
-            _TXT_username.enabled = YES;
-            
-            
             
             _TXT_addr1.layer.cornerRadius = 5.0f;
             _TXT_addr1.layer.masksToBounds = YES;
@@ -418,9 +408,9 @@
                                          position:CSToastPositionCenter];
         
     }
-    else if([_TXT_username.text isEqualToString:@""])
+    else if([_TXT_addr1.text isEqualToString:@""])
     {
-        [_TXT_username becomeFirstResponder];
+        [_TXT_addr1 becomeFirstResponder];
 //        [_TXT_username showError];
 //        [_TXT_username showErrorWithText:@" Please enter address line 1"];
         
@@ -429,9 +419,9 @@
                                          position:CSToastPositionCenter];
         
     }
-    else if (_TXT_username.text.length < 2)
+    else if (_TXT_addr1.text.length < 2)
     {
-        [_TXT_username becomeFirstResponder];
+        [_TXT_addr1 becomeFirstResponder];
 //        [_TXT_username showError];
 //        [_TXT_username showErrorWithText:@" Address line 1 minimum 2 characters"];
         
@@ -441,20 +431,9 @@
         
     }
 
-    else if([_TXT_addr1.text isEqualToString:@""])
+    else if (![_TXT_addr2.text isEqualToString:@""] && _TXT_addr2.text.length < 2)
     {
-        [_TXT_addr1 becomeFirstResponder];
-//        [_TXT_addr1 showError];
-//        [_TXT_addr1 showErrorWithText:@" Please enter address line 2"];
-        
-        [self.view makeToast:@"Please enter Address Line2"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
-        
-    }
-    else if (_TXT_addr1.text.length < 2)
-    {
-        [_TXT_addr1 becomeFirstResponder];
+        [_TXT_addr2 becomeFirstResponder];
 //        [_TXT_addr1 showError];
 //        [_TXT_addr1 showErrorWithText:@" Address line 2 minimum 2 characters"];
         
@@ -717,7 +696,7 @@
 
 #pragma mark - BTN Actions
 -(void)save_api
-    {
+{
         NSString *fname = _TXT_fname.text;
         NSString *lname = _TXT_lname.text;
        
@@ -778,8 +757,9 @@
                     
                     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Details updated successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                     [alert show];
-                    [self dismissViewControllerAnimated:YES completion:nil];
                     
+                    [self.view endEditing:YES];
+                    [self performSelector:@selector(dismiss_VC) withObject:activityIndicatorView afterDelay:0.01];
                 }
                 else
                 {
@@ -810,8 +790,10 @@
 }
         
     
-
-    
+-(void) dismiss_VC
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 

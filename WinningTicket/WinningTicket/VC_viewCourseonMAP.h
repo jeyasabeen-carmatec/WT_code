@@ -37,4 +37,7 @@
 @property (nonatomic,weak) IBOutlet UILabel *lbl_yards;
 @property (nonatomic,weak) IBOutlet UIView *VW_score;
 
+@property (nonatomic,weak) IBOutlet UIButton *BTN_next;
+@property (nonatomic,weak) IBOutlet UIButton *BTN_prev;
+
 @end

@@ -3021,7 +3021,7 @@
             
             if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
             {
-                return FR_height - 30;
+                return FR_height - 60;
             }
             else
             {
@@ -3673,6 +3673,7 @@
                                                                error:&error];
         
         NSString *STR_type;
+        
         @try {
             STR_type = [json valueForKey:@"type"];
         } @catch (NSException *exception) {

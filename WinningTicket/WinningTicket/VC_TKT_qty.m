@@ -495,10 +495,10 @@
     }
 }
 
+#pragma mark - Tap Gesture
 -(void) Tap_DTECt :(UITapGestureRecognizer *)sender
 {
 }
-#pragma mark - Tap Gesture
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
     [_TXT_qty resignFirstResponder];

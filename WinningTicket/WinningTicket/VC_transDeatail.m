@@ -184,16 +184,16 @@
                                                attributes:attribs];
         
         NSRange cmp = [text rangeOfString:order_id];
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        {
-            [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:22.0]}
-                                    range:cmp];
-        }
-        else
-        {
+//        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//        {
+//            [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:22.0]}
+//                                    range:cmp];
+//        }
+//        else
+//        {
             [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
                                     range:cmp];
-        }
+//        }
         
         [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: selected_color,NSForegroundColorAttributeName : selected_color} range:range_one_empty];
         
@@ -226,16 +226,16 @@
         NSRange cmp = [trans_typ rangeOfString:STR_amount];
         NSRange range_2_empty = [trans_typ rangeOfString:empty_txt1];
         
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        {
-            [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:32.0]}
-                                    range:cmp];
-        }
-        else
-        {
+//        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//        {
+//            [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:32.0]}
+//                                    range:cmp];
+//        }
+//        else
+//        {
             [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:30.0]}
                                     range:cmp];
-        }
+//        }
         
         [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_2_empty];
         
@@ -331,24 +331,24 @@
                                                        attributes:attribs];
                 
                 NSRange cmp = [STR_detailLBL rangeOfString:STR_paymntDetail];
-                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-                {
-                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                            range:cmp];
-                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                            range:event_range];
-                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                            range:org_range];
-                }
-                else
-                {
+//                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//                {
+//                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                            range:cmp];
+//                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                            range:event_range];
+//                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                            range:org_range];
+//                }
+//                else
+//                {
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                             range:cmp];
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                             range:event_range];
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                             range:org_range];
-                }
+//                }
                 
                 [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line];
                 
@@ -385,24 +385,24 @@
                                                        attributes:attribs];
                 
                 NSRange cmp = [STR_detailLBL rangeOfString:STR_paymntDetail];
-                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-                {
-                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                            range:cmp];
-                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                            range:event_range];
-                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                            range:org_range];
-                }
-                else
-                {
+//                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//                {
+//                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                            range:cmp];
+//                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                            range:event_range];
+//                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                            range:org_range];
+//                }
+//                else
+//                {
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                             range:cmp];
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                             range:event_range];
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                             range:org_range];
-                }
+//                }
                 
                 [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line];
                 
@@ -437,24 +437,24 @@
                                                    attributes:attribs];
             
             NSRange cmp = [STR_detailLBL rangeOfString:STR_paymntDetail];
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-            {
-                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                        range:cmp];
-                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                        range:event_range];
-                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                        range:org_range];
-            }
-            else
-            {
+//            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//            {
+//                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                        range:cmp];
+//                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                        range:event_range];
+//                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                        range:org_range];
+//            }
+//            else
+//            {
                 [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                         range:cmp];
                 [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                         range:event_range];
                 [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                         range:org_range];
-            }
+//            }
             
             [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line];
             
@@ -494,16 +494,16 @@
                                                    attributes:attribs];
             
             NSRange cmp = [STR_detailLBL rangeOfString:STR_paymntDetail];
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-            {
-                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                        range:cmp];
-            }
-            else
-            {
+//            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//            {
+//                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                        range:cmp];
+//            }
+//            else
+//            {
                 [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                         range:cmp];
-            }
+//            }
             
             [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line];
             
@@ -531,16 +531,16 @@
                                                    attributes:attribs];
             
             NSRange cmp = [STR_detailLBL rangeOfString:STR_paymntDetail];
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-            {
-                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                        range:cmp];
-            }
-            else
-            {
+//            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//            {
+//                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                        range:cmp];
+//            }
+//            else
+//            {
                 [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                         range:cmp];
-            }
+//            }
             
             [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line];
             
@@ -598,24 +598,24 @@
                                                        attributes:attribs];
                 
                 NSRange cmp = [STR_detailLBL rangeOfString:STR_paymntDetail];
-                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-                {
-                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                            range:cmp];
-                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                            range:event_range];
-                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                            range:org_range];
-                }
-                else
-                {
+//                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//                {
+//                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                            range:cmp];
+//                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                            range:event_range];
+//                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                            range:org_range];
+//                }
+//                else
+//                {
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                             range:cmp];
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                             range:event_range];
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                             range:org_range];
-                }
+//                }
                 
                 [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line];
                 
@@ -652,24 +652,24 @@
                                                        attributes:attribs];
                 
                 NSRange cmp = [STR_detailLBL rangeOfString:STR_paymntDetail];
-                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-                {
-                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                            range:cmp];
-                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                            range:event_range];
-                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                            range:org_range];
-                }
-                else
-                {
+//                if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//                {
+//                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                            range:cmp];
+//                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                            range:event_range];
+//                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                            range:org_range];
+//                }
+//                else
+//                {
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                             range:cmp];
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                             range:event_range];
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                             range:org_range];
-                }
+//                }
                 
                 [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line];
                 
@@ -700,24 +700,24 @@
                                                            attributes:attribs];
                     
                     NSRange cmp = [STR_detailLBL rangeOfString:STR_paymntDetail];
-                    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-                    {
-                        [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                                range:cmp];
-                        [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                                range:event_range];
-                        [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                                range:org_range];
-                    }
-                    else
-                    {
+//                    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//                    {
+//                        [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                                range:cmp];
+//                        [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                                range:event_range];
+//                        [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                                range:org_range];
+//                    }
+//                    else
+//                    {
                         [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                                 range:cmp];
                         [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                                 range:event_range];
                         [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                                 range:org_range];
-                    }
+//                    }
                     
                     [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line];
                     
@@ -754,24 +754,24 @@
                                                    attributes:attribs];
             
             NSRange cmp = [STR_detailLBL rangeOfString:STR_paymntDetail];
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-            {
-                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                        range:cmp];
-                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                        range:event_range];
-                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
-                                        range:org_range];
-            }
-            else
-            {
+//            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//            {
+//                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                        range:cmp];
+//                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                        range:event_range];
+//                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:20.0]}
+//                                        range:org_range];
+//            }
+//            else
+//            {
                 [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                         range:cmp];
                 [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                         range:event_range];
                 [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:18.0]}
                                         range:org_range];
-            }
+//            }
             
             [attributedText setAttributes:@{NSFontAttributeName:small_text_font,NSBackgroundColorAttributeName: [UIColor whiteColor],NSForegroundColorAttributeName : [UIColor whiteColor]} range:range_empty_line];
             

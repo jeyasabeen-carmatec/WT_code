@@ -135,6 +135,17 @@
     VW_overlay.hidden = YES;
 }
 
+#pragma mark - UITextField deligate
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    NSString *password = [[NSUserDefaults standardUserDefaults] valueForKey:@"loginPWD"];
+    if (![_TXT_currentPWD.text isEqualToString:password])
+    {
+        [self.view makeToast:@"Wrong Current Password entered"
+                    duration:2.0
+                    position:CSToastPositionCenter];
+    }
+}
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
@@ -197,9 +208,6 @@
         
             return YES;
     }
-    
-
-    
     return YES;
 }
 #pragma mark - BTN Actions
@@ -224,6 +232,7 @@
 }
 -(void)done_btnclicked
 {
+    
     if([_TXT_currentPWD.text isEqualToString:@""])
     {
         [_TXT_currentPWD becomeFirstResponder];
