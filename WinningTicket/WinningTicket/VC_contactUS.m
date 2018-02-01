@@ -14,7 +14,7 @@
 #import "UIView+Toast.h"
 
 
-@interface VC_contactUS ()<UITextFieldDelegate,UITextViewDelegate,UIAlertViewDelegate>
+@interface VC_contactUS ()<UITextFieldDelegate,UITextViewDelegate,UIAlertViewDelegate,UIGestureRecognizerDelegate> //
 {
     UIView *VW_overlay;
     UIActivityIndicatorView *activityIndicatorView;
@@ -28,6 +28,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(Tap_DTECt:)];
+    [tap setCancelsTouchesInView:NO];
+    tap.delegate = self;
+    [self.view addGestureRecognizer:tap];
     
     [self setup_VIEW];
 }
@@ -145,6 +150,12 @@
 {
     _TXT_VW_message.text=@"";
 }
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([_TXT_VW_message.text isEqualToString:@""]) {
+        _TXT_VW_message.text = @"Your Message";
+    }
+}
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     [textView resignFirstResponder];
@@ -216,7 +227,7 @@
     if (string.length != 0) {
         [textField becomeFirstResponder];
     }
-    
+
     if(textField == _TXT_fname)
     {
         NSInteger inte = textField.text.length;
@@ -285,7 +296,7 @@
    
     if([_TXT_fname.text isEqualToString:@""])
     {
-        [_TXT_fname becomeFirstResponder];
+//        [_TXT_fname becomeFirstResponder];
 //        [_TXT_fname showError];
 //        [_TXT_fname showErrorWithText:@" Plese Enter First name "];
         
@@ -296,7 +307,7 @@
     
     else if(_TXT_fname.text.length < 2)
     {
-        [_TXT_fname becomeFirstResponder];
+//        [_TXT_fname becomeFirstResponder];
 //        [_TXT_fname showError];
 //        [_TXT_fname showErrorWithText:@" First name minimum 2 Character"];
         
@@ -306,7 +317,7 @@
     }
     else if([emailTest evaluateWithObject:text_to_compare_email] == NO)
     {
-        [_TXT_email becomeFirstResponder];
+//        [_TXT_email becomeFirstResponder];
 //        [_TXT_email showError];
 //        [_TXT_email showErrorWithText:@" Please Enter a valid Email address"];
         
@@ -317,7 +328,7 @@
 
     else if([_TXT_phone.text isEqualToString:@""])
     {
-        [_TXT_phone becomeFirstResponder];
+//        [_TXT_phone becomeFirstResponder];
 //        [_TXT_phone showError];
 //        [_TXT_phone showErrorWithText:@" Please enter phone number"];
         
@@ -328,7 +339,7 @@
     
     else if (_TXT_phone.text.length < 5)
     {
-        [_TXT_phone becomeFirstResponder];
+//        [_TXT_phone becomeFirstResponder];
 //        [_TXT_phone showError];
 //        [_TXT_phone showErrorWithText:@" Phone number minimum 5 Numbers"];
         
@@ -338,7 +349,7 @@
     }
     else if([_TXT_subject.text isEqualToString:@""])
     {
-        [_TXT_subject becomeFirstResponder];
+//        [_TXT_subject becomeFirstResponder];
 //        [_TXT_subject showError];
 //        [_TXT_subject showErrorWithText:@" Please Enter Subject"];
         
@@ -350,7 +361,7 @@
     
     else if([_TXT_VW_message.text isEqualToString:@""] || [_TXT_VW_message.text isEqualToString:@"Your Message"])
     {
-        [_TXT_VW_message becomeFirstResponder];
+//        [_TXT_VW_message becomeFirstResponder];
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please enter any Message" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
@@ -359,10 +370,35 @@
 
     else
     {
-    VW_overlay.hidden = NO;
-    [activityIndicatorView startAnimating];
-    [self performSelector:@selector(save_api) withObject:activityIndicatorView afterDelay:0.01];
+        [self.view endEditing:YES];
+        VW_overlay.hidden = NO;
+        [activityIndicatorView startAnimating];
+        [self performSelector:@selector(save_api) withObject:activityIndicatorView afterDelay:0.01];
     }
+}
+
+-(void) Tap_DTECt :(UITapGestureRecognizer *)sender
+{
+}
+#pragma mark - Tap Gesture
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    [self.view endEditing:YES];
+//    [_TXT_fname resignFirstResponder];
+//    [_TXT_lname resignFirstResponder];
+//    [_TXT_email resignFirstResponder];
+//    [_TXT_phone resignFirstResponder];
+//    [_TXT_subject resignFirstResponder];
+//    [_TXT_VW_message resignFirstResponder];
+    
+    if ([touch.view isDescendantOfView:_BTn_send]) {
+        return NO;
+    }
+//    else if ([touch.view isDescendantOfView:_BTN_submit_paypal]) {
+//        return NO;
+//    }
+    
+    return YES;
 }
 
 -(void)save_api
@@ -422,12 +458,18 @@
                 NSString *status=[json_DATA valueForKey:@"status"];
                 if([status isEqualToString:@"Success"])
                 {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Thank you. We aim to respond to your request within 48 hours." delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+                    [alert show];
+                    
+                    
+                    
+                    
+                    [self.view endEditing:YES];
+                    
                     [activityIndicatorView stopAnimating];
                     VW_overlay.hidden = YES;
                     
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Thank you. We aim to respond to your request within 48 hours." delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-                    [alert show];
-                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [self performSelector:@selector(dismiss_VBC) withObject:nil afterDelay:0.1];
                     
                 }
                 else
@@ -456,6 +498,11 @@
     
     }
     
+}
+
+-(void) dismiss_VBC
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 //- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

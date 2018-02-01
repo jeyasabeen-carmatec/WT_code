@@ -973,14 +973,22 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
                 }
                 else
                 {
-                    [self dismissViewControllerAnimated:YES completion:nil];
+//                    [self dismissViewControllerAnimated:YES completion:nil];
                     UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:@"Funds added successfully" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+                    alert.delegate = self;
+                    alert.tag = 1;
                     [alert show];
                 }
             }
         }
         @catch (NSException *exception)
         {
+//            if (json_DATA_one) {
+//                if ([[json_DATA_one valueForKey:@"status"] isEqualToString:@"Failure"]) {
+//                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Amount must be greater than zero." delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+//                    [alert show];
+//                }
+//            }
             [self sessionOUT];
         }
     }
@@ -1000,7 +1008,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
         [activityIndicatorView startAnimating];
         [self performSelector:@selector(get_client_TOKEN) withObject:activityIndicatorView afterDelay:0.01];
     }
-    else if(![amount_str isEqualToString:@""]  && ![temp_str isEqualToString:@"0.00"])
+    if(![amount_str isEqualToString:@""]  && ![temp_str isEqualToString:@"0.00"])
     {
         
         // temp_str=amount_str;
@@ -1027,7 +1035,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
         
         //}
     }
-    else if(amount_str.length == 0  &&  [_TXT_amount.text isEqualToString:@" 0.00"])
+    else if(amount_str.length == 0  &&  [_TXT_amount.text isEqualToString:@"0.00"])
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please enter an Amount" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
@@ -1138,6 +1146,14 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
 //
 //    
 //}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 1) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    NSLog(@"Button index = %ld",(long)buttonIndex);
+}
 
 #pragma mark - Session OUT
 - (void) sessionOUT

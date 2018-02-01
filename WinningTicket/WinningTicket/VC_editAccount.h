@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *TXT_fname;
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *TXT_lname;
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *TXT_email;
-@property (weak, nonatomic) IBOutlet ACFloatingTextField *TXT_username;
+//@property (weak, nonatomic) IBOutlet ACFloatingTextField *TXT_username;
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *TXT_addr1;
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *TXT_addr2;
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *TXT_city;

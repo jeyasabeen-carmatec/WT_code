@@ -92,9 +92,9 @@
                     
                     // Red text attributes
                     //            UIColor *redColor = [UIColor redColor];
-                    NSRange cmp = [text rangeOfString:pricee_STR];// * Notice that usage of rangeOfString in this case may cause some bugs - I use it here only for demonstration
-                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-Book" size:17.0]}
-                                            range:cmp];
+//                    NSRange cmp = [text rangeOfString:pricee_STR];// * Notice that usage of rangeOfString in this case may cause some bugs - I use it here only for demonstration
+//                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-Book" size:17.0]}
+//                                            range:cmp];
                     
                     
                     self.lbl_availableBAL.attributedText = attributedText;
@@ -190,7 +190,7 @@
         // Red text attributes
         //            UIColor *redColor = [UIColor redColor];
         NSRange cmp = [print_TXT rangeOfString:cur];// * Notice that usage of rangeOfString in this case may cause some bugs - I use it here only for demonstration
-        [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"FontAwesome" size:21.0f],NSForegroundColorAttributeName : [UIColor colorWithRed:0.42 green:0.45 blue:0.49 alpha:1.0]}
+        [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"FontAwesome" size:17.0f],NSForegroundColorAttributeName : [UIColor colorWithRed:0.42 green:0.45 blue:0.49 alpha:1.0]}
                                 range:cmp];
         
         
@@ -215,7 +215,7 @@
         // Red text attributes
         //            UIColor *redColor = [UIColor redColor];
         NSRange cmp = [print_TXT rangeOfString:cur];// * Notice that usage of rangeOfString in this case may cause some bugs - I use it here only for demonstration
-        [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"FontAwesome" size:21.0f],NSForegroundColorAttributeName : [UIColor colorWithRed:0.42 green:0.45 blue:0.49 alpha:1.0]}
+        [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"FontAwesome" size:17.0f],NSForegroundColorAttributeName : [UIColor colorWithRed:0.42 green:0.45 blue:0.49 alpha:1.0]}
                                 range:cmp];
         
         
@@ -392,13 +392,15 @@
     }
 else if ([_TXT_amtpaypal.text isEqualToString:@"0.00"] || [_TXT_amtpaypal.text isEqualToString:@" 0.00"])
         {
-            [_TXT_amtpaypal becomeFirstResponder];
+//            [_TXT_amtpaypal becomeFirstResponder];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please enter Amount" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
         }
     
     else
         {
+            [self.view endEditing:YES];
+            [_TXT_amtpaypal resignFirstResponder];
             VW_overlay.hidden = NO;
             [activityIndicatorView startAnimating];
             [self performSelector:@selector(api_amount_paypal) withObject:activityIndicatorView afterDelay:0.01];
@@ -409,8 +411,6 @@ else if ([_TXT_amtpaypal.text isEqualToString:@"0.00"] || [_TXT_amtpaypal.text i
 
 -(void)api_amount_paypal
 {
-
-    
     NSString *amount_paypal = _TXT_amtpaypal.text;
     amount_paypal = [amount_paypal stringByReplacingOccurrencesOfString:@"," withString:@""];
     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
@@ -468,25 +468,27 @@ else if ([_TXT_amtpaypal.text isEqualToString:@"0.00"] || [_TXT_amtpaypal.text i
                 
                 if([status isEqualToString:@"Success"])
                 {
-                    [activityIndicatorView stopAnimating];
-                    VW_overlay.hidden=YES;
+//                    [activityIndicatorView stopAnimating];
+//                    VW_overlay.hidden=YES;
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+                    alert.tag = 1;
+                    alert.delegate = self;
                     [alert show];
                     
                 }
                 else if(error)
                 {
                     _TXT_amtpaypal.text = @"0.00";
-                    [activityIndicatorView stopAnimating];
-                    VW_overlay.hidden=YES;
+//                    [activityIndicatorView stopAnimating];
+//                    VW_overlay.hidden=YES;
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"You do not have enough funds in your account to withdraw that amount." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                     [alert show];
                 }
                 
                 else
                 {
-                    [activityIndicatorView stopAnimating];
-                    VW_overlay.hidden=YES;
+//                    [activityIndicatorView stopAnimating];
+//                    VW_overlay.hidden=YES;
                     
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                     [alert show];
@@ -501,19 +503,29 @@ else if ([_TXT_amtpaypal.text isEqualToString:@"0.00"] || [_TXT_amtpaypal.text i
      }
     else
     {
-        [activityIndicatorView stopAnimating];
-        VW_overlay.hidden=YES;
+//        [activityIndicatorView stopAnimating];
+//        VW_overlay.hidden=YES;
 
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
 
     }
+    [activityIndicatorView stopAnimating];
+    VW_overlay.hidden=YES;
 }
 #pragma Alertview Methods
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == [alertView firstOtherButtonIndex]) {
-        [self myaccount_API_calling];
+    if (alertView.tag == 1) {
+//        [self myaccount_API_calling];
+//        [activityIndicatorView stopAnimating];
+//        VW_overlay.hidden = YES;
+        [_TXT_amtpaypal resignFirstResponder];
+        [self performSelector:@selector(dismiss_VC) withObject:nil afterDelay:1.0];
     }
+}
+-(void) dismiss_VC
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)myaccount_API_calling
 {
@@ -564,6 +576,8 @@ else if ([_TXT_amtpaypal.text isEqualToString:@"0.00"] || [_TXT_amtpaypal.text i
 -(void)submitClicked_account
 {
     NSLog(@"Tappd order detail");
+//    [self.view endEditing:YES];
+    [_TXT_amtpaypal resignFirstResponder];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"This option will be available in next version" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
     [alert show];
 }

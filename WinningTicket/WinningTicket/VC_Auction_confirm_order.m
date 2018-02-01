@@ -436,7 +436,7 @@
             _lbl_datasubtotal.frame = frame_rect;
             
             frame_rect = _VW_line3.frame;
-            frame_rect.origin.y = _lbl_datasubtotal.frame.origin.y + _lbl_datasubtotal.frame.size.height + 10;
+            frame_rect.origin.y = _lbl_titletotal.frame.origin.y + _lbl_titletotal.frame.size.height + 10;
             _VW_line3.frame = frame_rect;
             
             

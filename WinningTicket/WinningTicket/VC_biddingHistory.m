@@ -198,7 +198,7 @@
             bidcell.amount.textColor = [UIColor colorWithRed:0.00 green:0.65 blue:0.32 alpha:1.0];
             [bidcell.AC_no setFont:[UIFont fontWithName:@"GothamMedium" size:bidcell.AC_no.font.pointSize]];
 
-            status_lbl = @"wininng bid";
+            status_lbl = @"Winning bid";
             date_lbl = [NSString stringWithFormat:@"%@\n%@",date_TXT,status_lbl];
             
         }

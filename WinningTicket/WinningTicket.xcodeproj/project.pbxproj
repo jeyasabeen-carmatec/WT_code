@@ -8,6 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		0794DD6D28F5CCD42CBF0E75 /* libPods-WinningTicket_Universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF95C9B9EE59230A8BE59B4D /* libPods-WinningTicket_Universal.a */; };
+		73D0D4031FFCDF6300F7D17B /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D0D3FD1FFCDF6300F7D17B /* 3.png */; };
+		73D0D4041FFCDF6300F7D17B /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D0D3FE1FFCDF6300F7D17B /* 4.png */; };
+		73D0D4051FFCDF6300F7D17B /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D0D3FF1FFCDF6300F7D17B /* 5.png */; };
+		73D0D4061FFCDF6300F7D17B /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D0D4001FFCDF6300F7D17B /* 6.png */; };
+		73D0D4071FFCDF6300F7D17B /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D0D4011FFCDF6300F7D17B /* 1.png */; };
+		73D0D4081FFCDF6300F7D17B /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D0D4021FFCDF6300F7D17B /* 2.png */; };
+		73D0D41A1FFE355F00F7D17B /* VC_select_Hole.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D0D4191FFE355F00F7D17B /* VC_select_Hole.m */; };
+		73EFC52B2021C06D00C35373 /* DISTRIBUTE.png in Resources */ = {isa = PBXBuildFile; fileRef = 73EFC5222021C06D00C35373 /* DISTRIBUTE.png */; };
+		73EFC52C2021C06D00C35373 /* DONATE_CSH.png in Resources */ = {isa = PBXBuildFile; fileRef = 73EFC5232021C06D00C35373 /* DONATE_CSH.png */; };
+		73EFC52D2021C06D00C35373 /* DOWNLOADAPP.png in Resources */ = {isa = PBXBuildFile; fileRef = 73EFC5242021C06D00C35373 /* DOWNLOADAPP.png */; };
+		73EFC52E2021C06D00C35373 /* ENTREVNTCODE.png in Resources */ = {isa = PBXBuildFile; fileRef = 73EFC5252021C06D00C35373 /* ENTREVNTCODE.png */; };
+		73EFC52F2021C06D00C35373 /* PURCHASETKT.png in Resources */ = {isa = PBXBuildFile; fileRef = 73EFC5262021C06D00C35373 /* PURCHASETKT.png */; };
+		73EFC5302021C06D00C35373 /* RAISEMONEY.png in Resources */ = {isa = PBXBuildFile; fileRef = 73EFC5272021C06D00C35373 /* RAISEMONEY.png */; };
+		73EFC5312021C06D00C35373 /* SETTINGS1.png in Resources */ = {isa = PBXBuildFile; fileRef = 73EFC5282021C06D00C35373 /* SETTINGS1.png */; };
+		73EFC5322021C06D00C35373 /* SPONSER_ENT.png in Resources */ = {isa = PBXBuildFile; fileRef = 73EFC5292021C06D00C35373 /* SPONSER_ENT.png */; };
+		73EFC5332021C06D00C35373 /* VERIFIEDACC.png in Resources */ = {isa = PBXBuildFile; fileRef = 73EFC52A2021C06D00C35373 /* VERIFIEDACC.png */; };
+		73EFC5352021C29900C35373 /* arrowHIW.png in Resources */ = {isa = PBXBuildFile; fileRef = 73EFC5342021C29900C35373 /* arrowHIW.png */; };
 		BE0055D41EC2DA1100E95941 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0055D21EC2DA1100E95941 /* ViewController.m */; };
 		BE0055FE1EC44BF800E95941 /* purchase_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE0055FD1EC44BF800E95941 /* purchase_Cell.xib */; };
 		BE0056061EC44C3600E95941 /* purchase_Cell~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE0056051EC44C3600E95941 /* purchase_Cell~iPad.xib */; };
@@ -414,6 +431,24 @@
 
 /* Begin PBXFileReference section */
 		100F6CFB58002025B4D6A523 /* Pods-WinningTicket_Universal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WinningTicket_Universal.release.xcconfig"; path = "Pods/Target Support Files/Pods-WinningTicket_Universal/Pods-WinningTicket_Universal.release.xcconfig"; sourceTree = "<group>"; };
+		73D0D3FD1FFCDF6300F7D17B /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		73D0D3FE1FFCDF6300F7D17B /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		73D0D3FF1FFCDF6300F7D17B /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		73D0D4001FFCDF6300F7D17B /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
+		73D0D4011FFCDF6300F7D17B /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		73D0D4021FFCDF6300F7D17B /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		73D0D4181FFE355F00F7D17B /* VC_select_Hole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VC_select_Hole.h; sourceTree = "<group>"; };
+		73D0D4191FFE355F00F7D17B /* VC_select_Hole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VC_select_Hole.m; sourceTree = "<group>"; };
+		73EFC5222021C06D00C35373 /* DISTRIBUTE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DISTRIBUTE.png; sourceTree = "<group>"; };
+		73EFC5232021C06D00C35373 /* DONATE_CSH.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DONATE_CSH.png; sourceTree = "<group>"; };
+		73EFC5242021C06D00C35373 /* DOWNLOADAPP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DOWNLOADAPP.png; sourceTree = "<group>"; };
+		73EFC5252021C06D00C35373 /* ENTREVNTCODE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ENTREVNTCODE.png; sourceTree = "<group>"; };
+		73EFC5262021C06D00C35373 /* PURCHASETKT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PURCHASETKT.png; sourceTree = "<group>"; };
+		73EFC5272021C06D00C35373 /* RAISEMONEY.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RAISEMONEY.png; sourceTree = "<group>"; };
+		73EFC5282021C06D00C35373 /* SETTINGS1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SETTINGS1.png; sourceTree = "<group>"; };
+		73EFC5292021C06D00C35373 /* SPONSER_ENT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SPONSER_ENT.png; sourceTree = "<group>"; };
+		73EFC52A2021C06D00C35373 /* VERIFIEDACC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VERIFIEDACC.png; sourceTree = "<group>"; };
+		73EFC5342021C29900C35373 /* arrowHIW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowHIW.png; sourceTree = "<group>"; };
 		9A96F8B73B7AD6AB5DD2F7AC /* Pods-WinningTicket_Universal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WinningTicket_Universal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WinningTicket_Universal/Pods-WinningTicket_Universal.debug.xcconfig"; sourceTree = "<group>"; };
 		BE0055D11EC2DA1100E95941 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		BE0055D21EC2DA1100E95941 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -1003,6 +1038,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		73D0D4111FFE2B3300F7D17B /* Select_HOLE */ = {
+			isa = PBXGroup;
+			children = (
+				73D0D4181FFE355F00F7D17B /* VC_select_Hole.h */,
+				73D0D4191FFE355F00F7D17B /* VC_select_Hole.m */,
+			);
+			name = Select_HOLE;
+			sourceTree = "<group>";
+		};
 		BE1165271FA07B7000A4003C /* customUIButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -1198,6 +1242,7 @@
 		BE2DC7611F7290C40097443E /* ScoreBoard */ = {
 			isa = PBXGroup;
 			children = (
+				73D0D4111FFE2B3300F7D17B /* Select_HOLE */,
 				BEC8EEBB1FD6526C00AE084D /* ViewCourseonMAP */,
 				BEE6448A1F878D36006D28FD /* customCell_leaderBoard */,
 				BEE643A41F753528006D28FD /* Custom_cell_scoreboard */,
@@ -1499,6 +1544,16 @@
 		BE888A3C1E93772900656580 /* Howitworks */ = {
 			isa = PBXGroup;
 			children = (
+				73EFC5342021C29900C35373 /* arrowHIW.png */,
+				73EFC5222021C06D00C35373 /* DISTRIBUTE.png */,
+				73EFC5232021C06D00C35373 /* DONATE_CSH.png */,
+				73EFC5242021C06D00C35373 /* DOWNLOADAPP.png */,
+				73EFC5252021C06D00C35373 /* ENTREVNTCODE.png */,
+				73EFC5262021C06D00C35373 /* PURCHASETKT.png */,
+				73EFC5272021C06D00C35373 /* RAISEMONEY.png */,
+				73EFC5282021C06D00C35373 /* SETTINGS1.png */,
+				73EFC5292021C06D00C35373 /* SPONSER_ENT.png */,
+				73EFC52A2021C06D00C35373 /* VERIFIEDACC.png */,
 				BE888A3D1E93775500656580 /* VC_howitworks.h */,
 				BE888A3E1E93775500656580 /* VC_howitworks.m */,
 			);
@@ -1861,6 +1916,12 @@
 		BEC8EEBB1FD6526C00AE084D /* ViewCourseonMAP */ = {
 			isa = PBXGroup;
 			children = (
+				73D0D3FD1FFCDF6300F7D17B /* 3.png */,
+				73D0D3FE1FFCDF6300F7D17B /* 4.png */,
+				73D0D3FF1FFCDF6300F7D17B /* 5.png */,
+				73D0D4001FFCDF6300F7D17B /* 6.png */,
+				73D0D4011FFCDF6300F7D17B /* 1.png */,
+				73D0D4021FFCDF6300F7D17B /* 2.png */,
 				BEC8EEBC1FD652D600AE084D /* VC_viewCourseonMAP.h */,
 				BEC8EEBD1FD652D600AE084D /* VC_viewCourseonMAP.m */,
 				BEAAD30B1FE7904A00A7597B /* data_SEGMENT.h */,
@@ -2459,6 +2520,7 @@
 				BEFC205B1F0619290067717D /* Montserrat-BoldItalic.ttf in Resources */,
 				BEB49DC91E76B3A900209E63 /* overlay---35%25-opacity.png in Resources */,
 				BED71F301EE7EDCF00492E97 /* gotham-bold-italic.otf in Resources */,
+				73D0D4041FFCDF6300F7D17B /* 4.png in Resources */,
 				BE1165CE1FA84C3100A4003C /* Grey.png in Resources */,
 				BE4EEEB81ED2AAB9003C1C24 /* dotActive.png in Resources */,
 				BEC3E8661F22160E000ACB97 /* World.png in Resources */,
@@ -2466,6 +2528,7 @@
 				BE11659D1FA748A900A4003C /* INDIANA.png in Resources */,
 				BE37FC501F5E6F9D0070EBB7 /* cell_auction_item_detail.xib in Resources */,
 				BEFC203E1F0243DE0067717D /* Default-568h@2x.png in Resources */,
+				73D0D4061FFCDF6300F7D17B /* 6.png in Resources */,
 				BEA875EA1E8D06CA00EFBB7F /* sec0_3.png in Resources */,
 				BE37FC001F56CF990070EBB7 /* 50@4x.png in Resources */,
 				BE37FBFD1F56CF990070EBB7 /* 50.png in Resources */,
@@ -2475,6 +2538,7 @@
 				BE1165A51FA748A900A4003C /* MICHIGAN.png in Resources */,
 				BEA875921E89007B00EFBB7F /* UI_01.png in Resources */,
 				BE37FC511F5E6F9D0070EBB7 /* cell_auction_item_detail~IPad.xib in Resources */,
+				73D0D4081FFCDF6300F7D17B /* 2.png in Resources */,
 				BE1165A11FA748A900A4003C /* LOUISIANA.png in Resources */,
 				BEC3E7EE1F1E12CA000ACB97 /* hh.png in Resources */,
 				BEA875DE1E8CEE3E00EFBB7F /* Gotham Condensed Book Regular.otf in Resources */,
@@ -2488,6 +2552,7 @@
 				BEC3E8631F22160E000ACB97 /* Call.png in Resources */,
 				BEB49DCB1E76B3A900209E63 /* fontawesome-webfont.ttf in Resources */,
 				BECD7C811EF141990037A968 /* cell_add_referral~ipad.xib in Resources */,
+				73EFC5322021C06D00C35373 /* SPONSER_ENT.png in Resources */,
 				BEB49DE01F3888340087E5BE /* globe.jpg in Resources */,
 				BE1165AD1FA748A900A4003C /* NEWJERSEY.png in Resources */,
 				BE1165B11FA748A900A4003C /* NORTHDAKOTA.png in Resources */,
@@ -2518,9 +2583,11 @@
 				BEC3E8651F22160E000ACB97 /* Location.png in Resources */,
 				BE1165981FA748A900A4003C /* FLORIDA.png in Resources */,
 				BE1165A71FA748A900A4003C /* MISSISSIPPI.png in Resources */,
+				73EFC52B2021C06D00C35373 /* DISTRIBUTE.png in Resources */,
 				BE1165C31FA8352300A4003C /* WT_default_Course.png in Resources */,
 				BE37FC4A1F5E6F430070EBB7 /* Bidding _history~ipad.xib in Resources */,
 				BE1CFD151FC7E284000EA72A /* cell_view_tcket4~iPad.xib in Resources */,
+				73EFC52E2021C06D00C35373 /* ENTREVNTCODE.png in Resources */,
 				BEFC20681F0619290067717D /* Montserrat-Thin.ttf in Resources */,
 				BE1CFCF01FC59BCB000EA72A /* cell_view_ticket1.xib in Resources */,
 				BE1165A01FA748A900A4003C /* KENTUCKY.png in Resources */,
@@ -2560,8 +2627,11 @@
 				BE1165911FA748A900A4003C /* ALASKA.png in Resources */,
 				BEE643AE1F753694006D28FD /* Score_cell1.xib in Resources */,
 				BEA875D61E8CEB5A00EFBB7F /* sec1_2.png in Resources */,
+				73EFC5332021C06D00C35373 /* VERIFIEDACC.png in Resources */,
+				73EFC5352021C29900C35373 /* arrowHIW.png in Resources */,
 				BEFC205D1F0619290067717D /* Montserrat-ExtraBoldItalic.ttf in Resources */,
 				BEB702C51ECDC24C004CB729 /* LaunchScreen.storyboard in Resources */,
+				73EFC5312021C06D00C35373 /* SETTINGS1.png in Resources */,
 				BE7BE8AC1F99DC6400925683 /* PRIVATE_1.png in Resources */,
 				BE1CFCF51FC59BE4000EA72A /* cell_view_ticket1~iPad.xib in Resources */,
 				BECD7C771EF1413D0037A968 /* cell_edit_referral~ipad.xib in Resources */,
@@ -2572,7 +2642,9 @@
 				BECD7C6B1EF1404E0037A968 /* referal_cell.xib in Resources */,
 				BEA875DA1E8CEB5A00EFBB7F /* sec1_6.png in Resources */,
 				BEA875B31E8CDF1400EFBB7F /* profile_pic.png in Resources */,
+				73D0D4031FFCDF6300F7D17B /* 3.png in Resources */,
 				BE1165931FA748A900A4003C /* ARKANSAS.png in Resources */,
+				73EFC52C2021C06D00C35373 /* DONATE_CSH.png in Resources */,
 				BEFC206A1F0619290067717D /* OFL.txt in Resources */,
 				BED71F7C1EE9216C00492E97 /* Info.plist in Resources */,
 				BE1165BB1FA748A900A4003C /* UTAH.png in Resources */,
@@ -2583,9 +2655,11 @@
 				BEB49DD41E76B3A900209E63 /* Logo_WT.png in Resources */,
 				BE1CFD061FC7D7F8000EA72A /* Cell_view_ticket3.xib in Resources */,
 				BEC3BDBE1EAA255700AD97E4 /* GothamBook Regular.otf in Resources */,
+				73EFC52F2021C06D00C35373 /* PURCHASETKT.png in Resources */,
 				BE1165A61FA748A900A4003C /* MINNESOTA.png in Resources */,
 				BE1165951FA748A900A4003C /* COLORADO.png in Resources */,
 				BE1165AF1FA748A900A4003C /* NEWYORK.png in Resources */,
+				73D0D4051FFCDF6300F7D17B /* 5.png in Resources */,
 				BEFC205E1F0619290067717D /* Montserrat-ExtraLight.ttf in Resources */,
 				BECD7C761EF1413D0037A968 /* cell_edit_referral.xib in Resources */,
 				BEA875C31E8CE05E00EFBB7F /* cellACCOUNTS~iPad.xib in Resources */,
@@ -2638,6 +2712,7 @@
 				BE1CFCD21FC57C81000EA72A /* Cell_gift_header~iPad.xib in Resources */,
 				BE1F1DC61F135FFA00B06903 /* referal_cell_ipad.xib in Resources */,
 				BEE644FC1F8BA99C006D28FD /* CELL_leader.xib in Resources */,
+				73EFC52D2021C06D00C35373 /* DOWNLOADAPP.png in Resources */,
 				BE1165B21FA748A900A4003C /* OHIO.png in Resources */,
 				BE1CFD201FC7F01F000EA72A /* Collection_cell_ticketSponser.xib in Resources */,
 				BEFC20611F0619290067717D /* Montserrat-Light.ttf in Resources */,
@@ -2648,7 +2723,9 @@
 				BE1165961FA748A900A4003C /* CONNECTICUT.png in Resources */,
 				BE11652E1FA0A51F00A4003C /* auction_CellTableViewCell~iPad.xib in Resources */,
 				BE1165A41FA748A900A4003C /* Massachusetts.png in Resources */,
+				73EFC5302021C06D00C35373 /* RAISEMONEY.png in Resources */,
 				BE4EEEB91ED2AAB9003C1C24 /* dotActive@2x.png in Resources */,
+				73D0D4071FFCDF6300F7D17B /* 1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2860,6 +2937,7 @@
 				BEB702EC1ECEC660004CB729 /* DragTableGestureObserver_ot.m in Sources */,
 				BE888A351E93639D00656580 /* Cell_notifications.m in Sources */,
 				BE811F671EBB632B003D7C0B /* DGActivityIndicatorAnimation.m in Sources */,
+				73D0D41A1FFE355F00F7D17B /* VC_select_Hole.m in Sources */,
 				BE1165311FA1ABC900A4003C /* LBL_verALIGHN.m in Sources */,
 				BE9DCF9C1EE019BD00E92FD8 /* ADD_Funds_CollectionViewCell.m in Sources */,
 				BECD7C711EF140C60037A968 /* VC_editRefferel.m in Sources */,
@@ -2892,8 +2970,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WinningTicket_Universal.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Aromal P. Rajagopal (CPRZV94W5U)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Aromal P. Rajagopal (CPRZV94W5U)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Carmatec IT Solutions Private Limited (4MCGAH3G26)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Carmatec IT Solutions Private Limited (4MCGAH3G26)";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4MCGAH3G26;
 				GCC_PREFIX_HEADER = WinningTicket/WinningTicket.pch;
@@ -2902,8 +2980,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.carmatec.WinningTicket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0007f77e-8780-4009-97f4-a8cb28049e01";
-				PROVISIONING_PROFILE_SPECIFIER = WT_DEV_new;
+				PROVISIONING_PROFILE = "7d3f505f-aa01-4a99-a3be-76a1a54b1cf4";
+				PROVISIONING_PROFILE_SPECIFIER = WT_adhoc_new;
 				SWIFT_OBJC_BRIDGING_HEADER = "WinningTicket/WinningTicket_Universal-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -2919,8 +2997,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WinningTicket_Universal.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Aromal P. Rajagopal (CPRZV94W5U)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Aromal P. Rajagopal (CPRZV94W5U)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Carmatec IT Solutions Private Limited (4MCGAH3G26)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Carmatec IT Solutions Private Limited (4MCGAH3G26)";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4MCGAH3G26;
 				GCC_PREFIX_HEADER = WinningTicket/WinningTicket.pch;
@@ -2929,8 +3007,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.carmatec.WinningTicket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0007f77e-8780-4009-97f4-a8cb28049e01";
-				PROVISIONING_PROFILE_SPECIFIER = WT_DEV_new;
+				PROVISIONING_PROFILE = "7d3f505f-aa01-4a99-a3be-76a1a54b1cf4";
+				PROVISIONING_PROFILE_SPECIFIER = WT_adhoc_new;
 				SWIFT_OBJC_BRIDGING_HEADER = "WinningTicket/WinningTicket_Universal-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2959,8 +3037,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Aromal P. Rajagopal (CPRZV94W5U)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Aromal P. Rajagopal (CPRZV94W5U)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Carmatec IT Solutions Private Limited (4MCGAH3G26)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Carmatec IT Solutions Private Limited (4MCGAH3G26)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 4MCGAH3G26;
@@ -2983,7 +3061,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "0007f77e-8780-4009-97f4-a8cb28049e01";
+				PROVISIONING_PROFILE = "7d3f505f-aa01-4a99-a3be-76a1a54b1cf4";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3011,8 +3089,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Aromal P. Rajagopal (CPRZV94W5U)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Aromal P. Rajagopal (CPRZV94W5U)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Carmatec IT Solutions Private Limited (4MCGAH3G26)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Carmatec IT Solutions Private Limited (4MCGAH3G26)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 4MCGAH3G26;
@@ -3028,7 +3106,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "0007f77e-8780-4009-97f4-a8cb28049e01";
+				PROVISIONING_PROFILE = "7d3f505f-aa01-4a99-a3be-76a1a54b1cf4";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

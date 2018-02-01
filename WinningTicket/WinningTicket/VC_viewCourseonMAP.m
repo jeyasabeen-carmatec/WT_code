@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "HMSegmentedControl.h"
 
+
 @interface VC_viewCourseonMAP ()<CLLocationManagerDelegate,UIGestureRecognizerDelegate>
 {
     UIView *VW_overlay;
@@ -146,16 +147,6 @@
 //        }
 //    }
     
-    for (UIGestureRecognizer *gestureRecognizer in self.mapView.gestureRecognizers) {
-//
-        if ([gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]])
-        {
-//            UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]init];
-            [gestureRecognizer addTarget:self action:@selector(handlePan:)];
-//            longPressGestureRecognizer.delegate = self;
-//            [self.mapView addGestureRecognizer:longPressGestureRecognizer];
-        }
-    }
     
     
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:loc_middle.latitude
@@ -180,8 +171,8 @@
             case 0:
             {
 //                UIImage *image_icon = [UIImage imageNamed:@"GOlf-Icon"];
-                UIImageView *img_icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 16, 16)];
-                img_icon.backgroundColor = self.view.tintColor;
+                UIImageView *img_icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+                img_icon.image = [UIImage imageNamed:@"4"];
                 img_icon.layer.cornerRadius = 8;
                 img_icon.layer.masksToBounds = YES;
 //                img_icon.image = [UIImage imageNamed:@"GOlf-Icon"];
@@ -198,13 +189,15 @@
                 marker.accessibilityFrame = CGRectMake(marker.accessibilityFrame.origin.x, marker.accessibilityFrame.origin.y+20, marker.accessibilityFrame.size.width, marker.accessibilityFrame.size.height);
                 marker.map = self.mapView;
                 marker.draggable = true;
+                
+                
             }
                 break;
                 
             case 1:
             {
                 UIImageView *img_icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
-                img_icon.backgroundColor = [UIColor whiteColor];
+                img_icon.image = [UIImage imageNamed:@"1"];
                 img_icon.layer.cornerRadius = 11;
                 img_icon.layer.masksToBounds = YES;
                 GMSMarker *marker = [[GMSMarker alloc] init];
@@ -224,7 +217,7 @@
             case 2:
             {
                 UIImageView *img_icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-                img_icon.backgroundColor = [UIColor whiteColor];
+                img_icon.image = [UIImage imageNamed:@"2"];
                 img_icon.layer.cornerRadius = 20;
                 img_icon.layer.masksToBounds = YES;
                 
@@ -464,8 +457,8 @@
         switch (i) {
             case 0:
             {
-                UIImageView *img_icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 16, 16)];
-                img_icon.backgroundColor = self.view.tintColor;
+                UIImageView *img_icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+                img_icon.image = [UIImage imageNamed:@"4"];
                 img_icon.layer.cornerRadius = 8;
                 img_icon.layer.masksToBounds = YES;
                 GMSMarker *marker = [[GMSMarker alloc] init];
@@ -482,7 +475,7 @@
             case 1:
             {
                 UIImageView *img_icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
-                img_icon.backgroundColor = [UIColor whiteColor];
+                img_icon.image = [UIImage imageNamed:@"1"];
                 img_icon.layer.cornerRadius = 11;
                 img_icon.layer.masksToBounds = YES;
                 GMSMarker *marker = [[GMSMarker alloc] init];
@@ -499,7 +492,7 @@
             case 2:
             {
                 UIImageView *img_icon = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-                img_icon.backgroundColor = [UIColor whiteColor];
+                img_icon.image = [UIImage imageNamed:@"2"];
                 img_icon.layer.cornerRadius = 20;
                 img_icon.layer.masksToBounds = YES;
                 

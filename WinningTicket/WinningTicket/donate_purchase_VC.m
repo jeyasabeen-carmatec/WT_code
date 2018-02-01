@@ -637,7 +637,7 @@
         }
         else
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Donation Successfully done" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Donation successfully done" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
             [alert show];
             
             [self load_VC];
