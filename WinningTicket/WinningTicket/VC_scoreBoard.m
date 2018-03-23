@@ -3282,7 +3282,7 @@
 //            ARR_netScore = [[NSMutableArray alloc] init];
             ARR_color = [[NSMutableArray alloc] init];
             ARR_holes = [[NSMutableArray alloc] init];
-            
+        [self HOLES_API];
             [ARR_holes addObjectsFromArray:[dict valueForKey:@"hole_info"]];
             
             for (int i = 0; i < [ARR_holes count]; i++) {
@@ -3319,8 +3319,7 @@
     NSHTTPURLResponse *response = nil;
     //    NSError *error;
     
-    
-    NSURL *urlProducts=[NSURL URLWithString:[NSString stringWithFormat:@"%@/hole_info/%@",SERVER_URL,[event valueForKey:@"id"]]];
+    NSURL *urlProducts=[NSURL URLWithString:[NSString stringWithFormat:@"%@hole_info/select_hole_info/%@",SERVER_URL,[event valueForKey:@"id"]]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
@@ -3473,8 +3472,6 @@
     }
     else
     {
-        [activityIndicatorView stopAnimating];
-        VW_overlay.hidden = YES;
         
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection Failed" message:@"Please retry" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];

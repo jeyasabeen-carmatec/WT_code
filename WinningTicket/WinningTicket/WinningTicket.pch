@@ -27,6 +27,13 @@
 //#define IMAGE_URL @"http://192.168.3.135:3000"
 //#define ACTION_CABLE @"192.168.3.135:3000/cable"
 
+//Tejeswi system1
+#define SERVER_URL @"http://192.168.0.62:3000/api/v1/"
+#define SERVER_USR @"http://192.168.0.62:3000/api/v1/users/"
+#define IMAGE_URL @"http://192.168.0.62:3000"
+#define ACTION_CABLE @"192.168.0.62:3000/cable"
+
+
 
 //http://192.168.3.40:3000
 
@@ -37,10 +44,10 @@
 //#define ACTION_CABLE @"192.168.3.12:3000/cable"
 
 //Staging Server new
-#define SERVER_URL @"http://winningticket.carmatec.com/api/v1/"
-#define SERVER_USR @"http://winningticket.carmatec.com/api/v1/users/"
-#define IMAGE_URL @"http://winningticket.carmatec.com"
-#define ACTION_CABLE @"104.37.188.213:3000/cable"
+//#define SERVER_URL @"http://winningticket.carmatec.com/api/v1/"
+//#define SERVER_USR @"http://winningticket.carmatec.com/api/v1/users/"
+//#define IMAGE_URL @"http://winningticket.carmatec.com"
+//#define ACTION_CABLE @"104.37.188.213:3000/cable"
 
 //Staging Server
 //#define SERVER_URL @"http://winningticket.carmatec.com/api/v1/"
