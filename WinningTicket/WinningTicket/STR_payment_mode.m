@@ -11,6 +11,7 @@
 @implementation STR_payment_mode
 
 @synthesize STR_paymentTYPE;
+
 +(STR_payment_mode *)PaymentTYPE {
     static dispatch_once_t pred;
     static STR_payment_mode *shared = nil;

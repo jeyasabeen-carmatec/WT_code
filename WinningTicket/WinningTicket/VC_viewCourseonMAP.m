@@ -17,6 +17,8 @@
     UIView *VW_overlay;
     UIActivityIndicatorView *activityIndicatorView;
     
+    int HOLE_NUMBER;
+    
     CLLocationManager *locationManager;
     CLLocationCoordinate2D loc_start;
     CLLocationCoordinate2D loc_end;
@@ -121,12 +123,12 @@
 //    double latitude_val = [[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"lat_STR"]] doubleValue];
 //    double longitude_val = [[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"long_STR"]] doubleValue];
     
-    _VW_score.layer.cornerRadius = 5.0f;
-    _VW_score.layer.masksToBounds = YES;
-    
-    _lbl_par.text = _STR_parSTR;
-    _lbl_hole.text = _STR_holeSTR;
-    _lbl_yards.text = _STR_yards;
+//    _VW_score.layer.cornerRadius = 5.0f;
+//    _VW_score.layer.masksToBounds = YES;
+//    
+//    _lbl_par.text = _STR_parSTR;
+//    _lbl_hole.text = _STR_holeSTR;
+//    _lbl_yards.text = _STR_yards;
     
     loc_start = CLLocationCoordinate2DMake(47.38135479698122, -122.26435018374639);
     loc_end = CLLocationCoordinate2DMake(47.383449, -122.267364);
@@ -149,8 +151,8 @@
     
     
     
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:loc_middle.latitude
-                                                            longitude:loc_middle.longitude
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:loc_end.latitude
+                                                            longitude:loc_end.longitude
                                                                  zoom:16];
     //    _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     //    self.mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
@@ -329,6 +331,7 @@
     //    _BTN_viewonMAP.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     //    _BTN_viewonMAP.titleLabel.textAlignment = NSTextAlignmentCenter;
     //    _BTN_viewonMAP.titleLabel.text = STR_title;
+    
     [_BTN_viewonMAP addSubview:lbl_title];
     
     _BTN_viewonMAP.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -339,7 +342,10 @@
     _BTN_viewonMAP.layer.masksToBounds = NO;
     _BTN_viewonMAP.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:_BTN_viewonMAP.bounds cornerRadius:_BTN_viewonMAP.layer.cornerRadius].CGPath;
     
+//    _BTN_leaveGame.userInteractionEnabled = NO;
     [_BTN_leaveGame addTarget:self action:@selector(ACTN_leaveGame) forControlEvents:UIControlEventTouchUpInside];
+    [_BTN_next addTarget:self action:@selector(ACTN_NEXT) forControlEvents:UIControlEventTouchUpInside];
+    [_BTN_prev addTarget:self action:@selector(ACTN_PREV) forControlEvents:UIControlEventTouchUpInside];
     
     _lbl_navTITLE.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"event_name"];
     
@@ -350,6 +356,9 @@
     
     self.segmentedControl4.userInteractionEnabled = YES;
     
+    VW_overlay.hidden = NO;
+    [activityIndicatorView startAnimating];
+    [self performSelector:@selector(API_HoleINFOS) withObject:activityIndicatorView afterDelay:0.01];
 }
 
 
@@ -417,9 +426,26 @@
 //}
 
 #pragma mark - Google map deligate
+-(BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker
+{
+    if ([marker.title isEqualToString:@"Hole"])
+    {
+        [self mapView:mapView didDragMarker:marker];
+    }
+    else if ([marker.title isEqualToString:@"Middle"])
+    {
+        [self mapView:mapView didDragMarker:marker];
+    }
+    else
+    {
+        [self mapView:mapView didDragMarker:marker];
+    }
+    return YES;
+}
+
 -(void)mapView:(GMSMapView *)mapView didEndDraggingMarker:(GMSMarker *)marker{
 //    if ([marker.userData isEqualToString:@"xMark"])
-        NSLog(@"marker dragged to location: %f,%f", marker.position.latitude, marker.position.longitude);
+    NSLog(@"marker dragged to location: %f,%f", marker.position.latitude, marker.position.longitude);
     if ([marker.title isEqualToString:@"Hole"])
     {
         loc_end = CLLocationCoordinate2DMake(marker.position.latitude, marker.position.longitude);
@@ -602,7 +628,6 @@
 
 //    [activityIndicatorView stopAnimating];
 //    VW_overlay.hidden = YES;
-    
 //    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
@@ -707,6 +732,88 @@
         default:
             break;
     }
+}
+
+
+#pragma mark - API integration
+-(void) API_HoleINFOS
+{
+    NSError *error;
+    NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"upcoming_events"] options:NSASCIIStringEncoding error:&error];
+    
+    NSDictionary *event = [dict valueForKey:@"event"];
+    
+    NSHTTPURLResponse *response = nil;
+    
+    NSArray *temp_arr = [_STR_holeSTR componentsSeparatedByString:@" "];
+    HOLE_NUMBER = [[temp_arr objectAtIndex:1] intValue];
+    
+    NSString *url_STR = [NSString stringWithFormat:@"%@hole_info/course_map/%@/%@",SERVER_URL,[event valueForKey:@"id"],[temp_arr objectAtIndex:1]];
+    
+    NSURL *urlProducts=[NSURL URLWithString:url_STR];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:urlProducts];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPShouldHandleCookies:NO];
+    NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    
+    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if(aData)
+    {
+        NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
+        NSLog(@"Json response Leaders_API course_map rep = %@",dict);
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection Failed" message:@"Please retry" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [alert show];
+    }
+    
+    [activityIndicatorView stopAnimating];
+    VW_overlay.hidden = YES;
+}
+
+#pragma mark - NEXT/PREV ACTN
+-(void) ACTN_NEXT
+{
+    if (HOLE_NUMBER <= 17) {
+        _STR_holeSTR = [NSString stringWithFormat:@"Hole %i",HOLE_NUMBER + 1];
+//        _lbl_hole.text = _STR_holeSTR;
+        VW_overlay.hidden = NO;
+        [activityIndicatorView startAnimating];
+        [self performSelector:@selector(API_HoleINFOS) withObject:activityIndicatorView afterDelay:0.01];
+    }
+}
+-(void) ACTN_PREV
+{
+    if (HOLE_NUMBER >= 2) {
+        _STR_holeSTR = [NSString stringWithFormat:@"Hole %i",HOLE_NUMBER - 1];
+//        _lbl_hole.text = _STR_holeSTR;
+        VW_overlay.hidden = NO;
+        [activityIndicatorView startAnimating];
+        [self performSelector:@selector(API_HoleINFOS) withObject:activityIndicatorView afterDelay:0.01];
+    }
+}
+
+#pragma mark - Wind direction
+- (NSString *)windDirectionFromDegrees:(float)degrees
+{
+//    CGFloat degrees = 20.0f; //the value in degrees
+//    CGFloat radians = degrees * M_PI/180;
+//    imageView.transform = CGAffineTransformMakeRotation(radians);
+    
+    static NSArray *directions;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        directions = @[@"N", @"NNE", @"NE", @"ENE", @"E", @"ESE", @"SE", @"SSE",
+                       @"S", @"SSW", @"SW", @"WSW", @"W", @"WNW", @"NW", @"NNW"];
+    });
+    
+    int i = (degrees + 11.25)/22.5;
+    return directions[i % 16];
 }
 
 @end
