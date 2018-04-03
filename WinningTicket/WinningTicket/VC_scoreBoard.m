@@ -1296,6 +1296,16 @@
                 @try {
                     ARR_temp = [dictin_Scores valueForKey:@"hole_array"];
                     
+//                    NSSortDescriptor *delay = [NSSortDescriptor sortDescriptorWithKey:@"position.integerValue" ascending:YES];
+//                    [ARR_temp sortUsingDescriptors:[NSArray arrayWithObject:delay]];
+                    
+//                    NSSortDescriptor *sortByName = [NSSortDescriptor sortDescriptorWithKey:@"position"
+//                                                                                 ascending:YES];
+//                    NSArray *sortDescriptors = [NSArray arrayWithObject:sortByName];
+//                    NSArray *sortedArray = [ARR_temp sortedArrayUsingDescriptors:sortDescriptors];
+//                    
+//                    ARR_temp = sortedArray;
+                    
                     double DBL_totpar = 0,DBL_totSCR = 0,DBL_totNet = 0;
                     NSDictionary *dict_socre;
                     for (int i = 0; i < [ARR_temp count]; i ++) {
@@ -1505,7 +1515,7 @@
                             case 0:
                             {
                                 Dic_tmp = [ARR_temp objectAtIndex:0];
-                                NSString *par,*score,*net;
+                                NSString *par,*score,*net,*posit;
                                 
                                 par = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"par"]];
                                 par = [par stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -1518,6 +1528,10 @@
                                 net = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"net_score"]];
                                 net = [net stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                                 cell.lbl_Netscore1_1.text = net;
+                                
+                                posit = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"position"]];
+                                posit = [posit stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                                cell.lbl_position_1.text = posit;
                                 
                                 double DBL_totpar = 0,DBL_totSCR = 0;
                                     
@@ -1556,7 +1570,7 @@
                             case 1:
                             {
                                 Dic_tmp = [ARR_temp objectAtIndex:1];
-                                NSString *par,*score,*net;
+                                NSString *par,*score,*net,*posit;
                                 
                                 par = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"par"]];
                                 par = [par stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -1569,6 +1583,10 @@
                                 net = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"net_score"]];
                                 net = [net stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                                 cell.lbl_Netscore1_2.text = net;
+                                
+                                posit = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"position"]];
+                                posit = [posit stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                                cell.lbl_position_2.text = posit;
                                 
                                 double DBL_totpar = 0,DBL_totSCR = 0;
                                 
@@ -1608,7 +1626,7 @@
                             case 2:
                             {
                                 Dic_tmp = [ARR_temp objectAtIndex:2];
-                                NSString *par,*score,*net;
+                                NSString *par,*score,*net,*posit;
                                 
                                 par = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"par"]];
                                 par = [par stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -1621,6 +1639,11 @@
                                 net = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"net_score"]];
                                 net = [net stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                                 cell.lbl_Netscore1_3.text = net;
+                                
+                                
+                                posit = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"position"]];
+                                posit = [posit stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                                cell.lbl_position_3.text = posit;
                                 
                                 double DBL_totpar = 0,DBL_totSCR = 0;
                                 
@@ -1659,7 +1682,7 @@
                             case 3:
                             {
                                 Dic_tmp = [ARR_temp objectAtIndex:3];
-                                NSString *par,*score,*net;
+                                NSString *par,*score,*net,*posit;
                                 
                                 par = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"par"]];
                                 par = [par stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -1672,6 +1695,10 @@
                                 net = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"net_score"]];
                                 net = [net stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                                 cell.lbl_Netscore1_4.text = net;
+                                
+                                posit = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"position"]];
+                                posit = [posit stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                                cell.lbl_position_4.text = posit;
                                 
                                 double DBL_totpar = 0,DBL_totSCR = 0;
                                 
@@ -1710,7 +1737,7 @@
                             case 4:
                             {
                                 Dic_tmp = [ARR_temp objectAtIndex:4];
-                                NSString *par,*score,*net;
+                                NSString *par,*score,*net,*posit;
                                 
                                 par = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"par"]];
                                 par = [par stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -1723,6 +1750,10 @@
                                 net = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"net_score"]];
                                 net = [net stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                                 cell.lbl_Netscore1_5.text = net;
+                                
+                                posit = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"position"]];
+                                posit = [posit stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                                cell.lbl_position_5.text = posit;
                                 
                                 double DBL_totpar = 0,DBL_totSCR = 0;
                                 
@@ -1761,7 +1792,7 @@
                             case 5:
                             {
                                 Dic_tmp = [ARR_temp objectAtIndex:5];
-                                NSString *par,*score,*net;
+                                NSString *par,*score,*net,*posit;
                                 
                                 par = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"par"]];
                                 par = [par stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -1774,6 +1805,10 @@
                                 net = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"net_score"]];
                                 net = [net stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                                 cell.lbl_Netscore1_6.text = net;
+                                
+                                posit = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"position"]];
+                                posit = [posit stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                                cell.lbl_position_6.text = posit;
                                 
                                 double DBL_totpar = 0,DBL_totSCR = 0;
                                 
@@ -1812,7 +1847,7 @@
                             case 6:
                             {
                                 Dic_tmp = [ARR_temp objectAtIndex:6];
-                                NSString *par,*score,*net;
+                                NSString *par,*score,*net,*posit;
                                 
                                 par = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"par"]];
                                 par = [par stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -1825,6 +1860,10 @@
                                 net = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"net_score"]];
                                 net = [net stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                                 cell.lbl_Netscore1_7.text = net;
+                                
+                                posit = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"position"]];
+                                posit = [posit stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                                cell.lbl_position_7.text = posit;
                                 
                                 double DBL_totpar = 0,DBL_totSCR = 0;
                                 
@@ -1864,7 +1903,7 @@
                             case 7:
                             {
                                 Dic_tmp = [ARR_temp objectAtIndex:7];
-                                NSString *par,*score,*net;
+                                NSString *par,*score,*net,*posit;
                                 
                                 par = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"par"]];
                                 par = [par stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -1877,6 +1916,10 @@
                                 net = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"net_score"]];
                                 net = [net stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                                 cell.lbl_Netscore1_8.text = net;
+                                
+                                posit = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"position"]];
+                                posit = [posit stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                                cell.lbl_position_8.text = posit;
                                 
                                 double DBL_totpar = 0,DBL_totSCR = 0;
                                 
@@ -1915,7 +1958,7 @@
                             case 8:
                             {
                                 Dic_tmp = [ARR_temp objectAtIndex:8];
-                                NSString *par,*score,*net;
+                                NSString *par,*score,*net,*posit;
                                 
                                 par = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"par"]];
                                 par = [par stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -1929,6 +1972,9 @@
                                 net = [net stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                                 cell.lbl_Netscore1_9.text = net;
                                 
+                                posit = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"position"]];
+                                posit = [posit stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                                cell.lbl_position_9.text = posit;
                                 
                                 double DBL_totpar = 0,DBL_totSCR = 0;
                                 
@@ -1968,7 +2014,7 @@
                             case 9:
                             {
                                 Dic_tmp = [ARR_temp objectAtIndex:9];
-                                NSString *par,*score,*net;
+                                NSString *par,*score,*net,*posit;
                                 
                                 par = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"par"]];
                                 par = [par stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -1981,6 +2027,10 @@
                                 net = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"net_score"]];
                                 net = [net stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                                 cell.lbl_Netscore2_1.text = net;
+                                
+                                posit = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"position"]];
+                                posit = [posit stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                                cell.lbl_position_10.text = posit;
                                 
                                 double DBL_totpar1 = 0,DBL_totSCR1 = 0;
                                 
@@ -2069,7 +2119,7 @@
                             case 10:
                             {
                                 Dic_tmp = [ARR_temp objectAtIndex:10];
-                                NSString *par,*score,*net;
+                                NSString *par,*score,*net,*posit;
                                 
                                 par = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"par"]];
                                 par = [par stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -2082,6 +2132,10 @@
                                 net = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"net_score"]];
                                 net = [net stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                                 cell.lbl_Netscore2_2.text = net;
+                                
+                                posit = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"position"]];
+                                posit = [posit stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                                cell.lbl_position_11.text = posit;
                                 
                                 double DBL_totpar1 = 0,DBL_totSCR1 = 0;
                                 
@@ -2121,7 +2175,7 @@
                             case 11:
                             {
                                 Dic_tmp = [ARR_temp objectAtIndex:11];
-                                NSString *par,*score,*net;
+                                NSString *par,*score,*net,*posit;
                                 
                                 par = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"par"]];
                                 par = [par stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -2134,6 +2188,10 @@
                                 net = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"net_score"]];
                                 net = [net stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                                 cell.lbl_Netscore2_3.text = net;
+                                
+                                posit = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"position"]];
+                                posit = [posit stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                                cell.lbl_position_12.text = posit;
                                 
                                 double DBL_totpar1 = 0,DBL_totSCR1 = 0;
                                 
@@ -2173,7 +2231,7 @@
                             case 12:
                             {
                                 Dic_tmp = [ARR_temp objectAtIndex:12];
-                                NSString *par,*score,*net;
+                                NSString *par,*score,*net,*posit;
                                 
                                 par = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"par"]];
                                 par = [par stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -2186,6 +2244,10 @@
                                 net = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"net_score"]];
                                 net = [net stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                                 cell.lbl_Netscore2_4.text = net;
+                                
+                                posit = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"position"]];
+                                posit = [posit stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                                cell.lbl_position_13.text = posit;
                                 
                                 double DBL_totpar1 = 0,DBL_totSCR1 = 0;
                                 
@@ -2224,7 +2286,7 @@
                             case 13:
                             {
                                 Dic_tmp = [ARR_temp objectAtIndex:13];
-                                NSString *par,*score,*net;
+                                NSString *par,*score,*net,*posit;
                                 
                                 par = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"par"]];
                                 par = [par stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -2237,6 +2299,10 @@
                                 net = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"net_score"]];
                                 net = [net stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                                 cell.lbl_Netscore2_5.text = net;
+                                
+                                posit = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"position"]];
+                                posit = [posit stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                                cell.lbl_position_14.text = posit;
                                 
                                 double DBL_totpar1 = 0,DBL_totSCR1 = 0;
                                 
@@ -2275,7 +2341,7 @@
                             case 14:
                             {
                                 Dic_tmp = [ARR_temp objectAtIndex:14];
-                                NSString *par,*score,*net;
+                                NSString *par,*score,*net,*posit;
                                 
                                 par = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"par"]];
                                 par = [par stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -2288,6 +2354,10 @@
                                 net = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"net_score"]];
                                 net = [net stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                                 cell.lbl_Netscore2_6.text = net;
+                                
+                                posit = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"position"]];
+                                posit = [posit stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                                cell.lbl_position_15.text = posit;
                                 
                                 double DBL_totpar1 = 0,DBL_totSCR1 = 0;
                                 
@@ -2326,7 +2396,7 @@
                             case 15:
                             {
                                 Dic_tmp = [ARR_temp objectAtIndex:15];
-                                NSString *par,*score,*net;
+                                NSString *par,*score,*net,*posit;
                                 
                                 par = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"par"]];
                                 par = [par stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -2339,6 +2409,10 @@
                                 net = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"net_score"]];
                                 net = [net stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                                 cell.lbl_Netscore2_7.text = net;
+                                
+                                posit = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"position"]];
+                                posit = [posit stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                                cell.lbl_position_16.text = posit;
                                 
                                 double DBL_totpar1 = 0,DBL_totSCR1 = 0;
                                 
@@ -2378,7 +2452,7 @@
                             case 16:
                             {
                                 Dic_tmp = [ARR_temp objectAtIndex:16];
-                                NSString *par,*score,*net;
+                                NSString *par,*score,*net,*posit;
                                 
                                 par = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"par"]];
                                 par = [par stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -2391,6 +2465,10 @@
                                 net = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"net_score"]];
                                 net = [net stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                                 cell.lbl_Netscore2_8.text = net;
+                                
+                                posit = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"position"]];
+                                posit = [posit stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                                cell.lbl_position_17.text = posit;
                                 
                                 double DBL_totpar1 = 0,DBL_totSCR1 = 0;
                                 
@@ -2430,7 +2508,7 @@
                             case 17:
                             {
                                 Dic_tmp = [ARR_temp objectAtIndex:17];
-                                NSString *par,*score,*net;
+                                NSString *par,*score,*net,*posit;
                                 
                                 par = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"par"]];
                                 par = [par stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -2443,6 +2521,10 @@
                                 net = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"net_score"]];
                                 net = [net stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                                 cell.lbl_Netscore2_9.text = net;
+                                
+                                posit = [NSString stringWithFormat:@"%@",[Dic_tmp valueForKey:@"position"]];
+                                posit = [posit stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
+                                cell.lbl_position_18.text = posit;
                                 
                                 double DBL_totpar1 = 0,DBL_totSCR1 = 0;
                                 
@@ -2714,7 +2796,15 @@
                 STR_HCP = @"";
             }
             else{
-                STR_HCP = [NSString stringWithFormat:@"HCP %@",STR_HCP];
+                NSString *firstLetter = [STR_HCP substringToIndex:1];
+                if ([firstLetter isEqualToString:@"-"] || [firstLetter isEqualToString:@"0"])
+                {
+                    STR_HCP = [NSString stringWithFormat:@"HCP %@",STR_HCP];
+                }
+                else
+                {
+                    STR_HCP = [NSString stringWithFormat:@"HCP +%@",STR_HCP];
+                }
             }
             
             if (!STR_total) {
@@ -2864,8 +2954,13 @@
             UIImage * resultImage_hole = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             cell.lbl_hole.backgroundColor = [UIColor colorWithPatternImage:resultImage_hole];
-                        
-            cell.lbl_distance.text = [NSString stringWithFormat:@"%@",[DICTN_info valueForKey:@"yards"]];
+            
+            NSString *STR_yards = [DICTN_info valueForKey:@"yards"];
+            if (!STR_yards || [STR_yards isKindOfClass:[NSNull class]]) {
+                STR_yards = @"";
+            }
+            
+            cell.lbl_distance.text = [NSString stringWithFormat:@"%@",STR_yards];
             
             frame_lbl = cell.lbl_distance.frame;
             frame_lbl.origin.x = cell.lbl_hole.frame.origin.x + cell.lbl_hole.frame.size.width;
@@ -2892,7 +2987,7 @@
                 cell.lbl_gross_score.textColor = [UIColor whiteColor];
                 [cell setSelected:YES animated:YES];
             }
-            
+
             NSString *STR_grossSCORE = [NSString stringWithFormat:@"%@",[DICTN_info valueForKey:@"gross_score"]];
             
             if ([STR_grossSCORE isEqualToString:@"<null>"]) {
@@ -2980,7 +3075,11 @@
             UIGraphicsEndImageContext();
             [cell.lbl_net_score setBackgroundColor:[UIColor colorWithPatternImage:resultImage_Net_scr]];
             
-            cell.lbl_handicap.text = [NSString stringWithFormat:@"%@",[DICTN_info valueForKey:@"handicap"]];
+            NSString *STR_handicap = [DICTN_info valueForKey:@"handicap"];
+            if (!STR_handicap || [STR_handicap isKindOfClass:[NSNull class]]) {
+                STR_handicap = @"";
+            }
+            cell.lbl_handicap.text = [NSString stringWithFormat:@"%@",STR_handicap];
             
             frame_lbl = cell.lbl_handicap.frame;
             frame_lbl.origin.x = cell.lbl_net_score.frame.origin.x + cell.lbl_net_score.frame.size.width;
@@ -3284,6 +3383,11 @@
             ARR_holes = [[NSMutableArray alloc] init];
         [self HOLES_API];
             [ARR_holes addObjectsFromArray:[dict valueForKey:@"hole_info"]];
+        
+//        NSSortDescriptor *delay = [NSSortDescriptor sortDescriptorWithKey:@"position.integerValue" ascending:YES];
+//        [ARR_holes sortUsingDescriptors:[NSArray arrayWithObject:delay]];
+        
+        NSLog(@"Sorted list 2 %@",ARR_holes);
             
             for (int i = 0; i < [ARR_holes count]; i++) {
                 NSDictionary *dictin_TEMP = @{@"color":@"",@"index":@""};
@@ -3343,6 +3447,11 @@
             [ARR_holes removeAllObjects];
             [ARR_holes addObjectsFromArray:[dict valueForKey:@"hole_info"]];
             //        NSLog(@"Json response Hole = %@",dict);
+        
+//        NSSortDescriptor *delay = [NSSortDescriptor sortDescriptorWithKey:@"position.integerValue" ascending:YES];
+//        [ARR_holes sortUsingDescriptors:[NSArray arrayWithObject:delay]];
+        
+        NSLog(@"Sorted list 1 %@",ARR_holes);
             
 //            for (int i = 0; i < [ARR_holes count]; i++) {
 //                [ARR_grossScore addObject:@""];

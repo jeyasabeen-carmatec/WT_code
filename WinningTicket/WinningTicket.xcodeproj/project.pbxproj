@@ -8,6 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		0794DD6D28F5CCD42CBF0E75 /* libPods-WinningTicket_Universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF95C9B9EE59230A8BE59B4D /* libPods-WinningTicket_Universal.a */; };
+		735AB925206BA391002C5FF7 /* E.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB915206BA391002C5FF7 /* E.png */; };
+		735AB926206BA391002C5FF7 /* ENE.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB916206BA391002C5FF7 /* ENE.png */; };
+		735AB927206BA391002C5FF7 /* ESE.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB917206BA391002C5FF7 /* ESE.png */; };
+		735AB928206BA391002C5FF7 /* N.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB918206BA391002C5FF7 /* N.png */; };
+		735AB929206BA391002C5FF7 /* NE.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB919206BA391002C5FF7 /* NE.png */; };
+		735AB92A206BA391002C5FF7 /* NNE.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB91A206BA391002C5FF7 /* NNE.png */; };
+		735AB92B206BA391002C5FF7 /* NNW.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB91B206BA391002C5FF7 /* NNW.png */; };
+		735AB92C206BA391002C5FF7 /* NW.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB91C206BA391002C5FF7 /* NW.png */; };
+		735AB92D206BA391002C5FF7 /* S.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB91D206BA391002C5FF7 /* S.png */; };
+		735AB92E206BA391002C5FF7 /* SE.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB91E206BA391002C5FF7 /* SE.png */; };
+		735AB92F206BA391002C5FF7 /* SSE.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB91F206BA391002C5FF7 /* SSE.png */; };
+		735AB930206BA391002C5FF7 /* SSW.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB920206BA391002C5FF7 /* SSW.png */; };
+		735AB931206BA391002C5FF7 /* SW.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB921206BA391002C5FF7 /* SW.png */; };
+		735AB932206BA391002C5FF7 /* W.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB922206BA391002C5FF7 /* W.png */; };
+		735AB933206BA391002C5FF7 /* WNW.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB923206BA391002C5FF7 /* WNW.png */; };
+		735AB934206BA391002C5FF7 /* WSW.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB924206BA391002C5FF7 /* WSW.png */; };
+		735AB936206BA65B002C5FF7 /* e1_thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB935206BA65B002C5FF7 /* e1_thumb.png */; };
 		73D0D4031FFCDF6300F7D17B /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D0D3FD1FFCDF6300F7D17B /* 3.png */; };
 		73D0D4041FFCDF6300F7D17B /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D0D3FE1FFCDF6300F7D17B /* 4.png */; };
 		73D0D4051FFCDF6300F7D17B /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D0D3FF1FFCDF6300F7D17B /* 5.png */; };
@@ -432,6 +449,23 @@
 
 /* Begin PBXFileReference section */
 		100F6CFB58002025B4D6A523 /* Pods-WinningTicket_Universal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WinningTicket_Universal.release.xcconfig"; path = "Pods/Target Support Files/Pods-WinningTicket_Universal/Pods-WinningTicket_Universal.release.xcconfig"; sourceTree = "<group>"; };
+		735AB915206BA391002C5FF7 /* E.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = E.png; sourceTree = "<group>"; };
+		735AB916206BA391002C5FF7 /* ENE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ENE.png; sourceTree = "<group>"; };
+		735AB917206BA391002C5FF7 /* ESE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ESE.png; sourceTree = "<group>"; };
+		735AB918206BA391002C5FF7 /* N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = N.png; sourceTree = "<group>"; };
+		735AB919206BA391002C5FF7 /* NE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NE.png; sourceTree = "<group>"; };
+		735AB91A206BA391002C5FF7 /* NNE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NNE.png; sourceTree = "<group>"; };
+		735AB91B206BA391002C5FF7 /* NNW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NNW.png; sourceTree = "<group>"; };
+		735AB91C206BA391002C5FF7 /* NW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NW.png; sourceTree = "<group>"; };
+		735AB91D206BA391002C5FF7 /* S.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = S.png; sourceTree = "<group>"; };
+		735AB91E206BA391002C5FF7 /* SE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SE.png; sourceTree = "<group>"; };
+		735AB91F206BA391002C5FF7 /* SSE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SSE.png; sourceTree = "<group>"; };
+		735AB920206BA391002C5FF7 /* SSW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SSW.png; sourceTree = "<group>"; };
+		735AB921206BA391002C5FF7 /* SW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SW.png; sourceTree = "<group>"; };
+		735AB922206BA391002C5FF7 /* W.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = W.png; sourceTree = "<group>"; };
+		735AB923206BA391002C5FF7 /* WNW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WNW.png; sourceTree = "<group>"; };
+		735AB924206BA391002C5FF7 /* WSW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WSW.png; sourceTree = "<group>"; };
+		735AB935206BA65B002C5FF7 /* e1_thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e1_thumb.png; sourceTree = "<group>"; };
 		73D0D3FD1FFCDF6300F7D17B /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		73D0D3FE1FFCDF6300F7D17B /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
 		73D0D3FF1FFCDF6300F7D17B /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
@@ -1042,6 +1076,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		735AB914206BA37A002C5FF7 /* IMG_Wind */ = {
+			isa = PBXGroup;
+			children = (
+				735AB935206BA65B002C5FF7 /* e1_thumb.png */,
+				735AB915206BA391002C5FF7 /* E.png */,
+				735AB916206BA391002C5FF7 /* ENE.png */,
+				735AB917206BA391002C5FF7 /* ESE.png */,
+				735AB918206BA391002C5FF7 /* N.png */,
+				735AB919206BA391002C5FF7 /* NE.png */,
+				735AB91A206BA391002C5FF7 /* NNE.png */,
+				735AB91B206BA391002C5FF7 /* NNW.png */,
+				735AB91C206BA391002C5FF7 /* NW.png */,
+				735AB91D206BA391002C5FF7 /* S.png */,
+				735AB91E206BA391002C5FF7 /* SE.png */,
+				735AB91F206BA391002C5FF7 /* SSE.png */,
+				735AB920206BA391002C5FF7 /* SSW.png */,
+				735AB921206BA391002C5FF7 /* SW.png */,
+				735AB922206BA391002C5FF7 /* W.png */,
+				735AB923206BA391002C5FF7 /* WNW.png */,
+				735AB924206BA391002C5FF7 /* WSW.png */,
+			);
+			name = IMG_Wind;
+			sourceTree = "<group>";
+		};
 		73D0D4111FFE2B3300F7D17B /* Select_HOLE */ = {
 			isa = PBXGroup;
 			children = (
@@ -1940,6 +1998,7 @@
 				BEC8EEBC1FD652D600AE084D /* VC_viewCourseonMAP.h */,
 				BEC8EEBD1FD652D600AE084D /* VC_viewCourseonMAP.m */,
 				BEAAD30B1FE7904A00A7597B /* data_SEGMENT.h */,
+				735AB914206BA37A002C5FF7 /* IMG_Wind */,
 			);
 			name = ViewCourseonMAP;
 			sourceTree = "<group>";
@@ -2536,6 +2595,7 @@
 				BEFC205B1F0619290067717D /* Montserrat-BoldItalic.ttf in Resources */,
 				BEB49DC91E76B3A900209E63 /* overlay---35%25-opacity.png in Resources */,
 				BED71F301EE7EDCF00492E97 /* gotham-bold-italic.otf in Resources */,
+				735AB928206BA391002C5FF7 /* N.png in Resources */,
 				73D0D4041FFCDF6300F7D17B /* 4.png in Resources */,
 				BE1165CE1FA84C3100A4003C /* Grey.png in Resources */,
 				BE4EEEB81ED2AAB9003C1C24 /* dotActive.png in Resources */,
@@ -2568,6 +2628,7 @@
 				BEC3E8631F22160E000ACB97 /* Call.png in Resources */,
 				BEB49DCB1E76B3A900209E63 /* fontawesome-webfont.ttf in Resources */,
 				BECD7C811EF141990037A968 /* cell_add_referral~ipad.xib in Resources */,
+				735AB932206BA391002C5FF7 /* W.png in Resources */,
 				73EFC5322021C06D00C35373 /* SPONSER_ENT.png in Resources */,
 				BEB49DE01F3888340087E5BE /* globe.jpg in Resources */,
 				BE1165AD1FA748A900A4003C /* NEWJERSEY.png in Resources */,
@@ -2582,6 +2643,7 @@
 				BE1165AE1FA748A900A4003C /* NEWMEXICO.png in Resources */,
 				BEFC20631F0619290067717D /* Montserrat-Medium.ttf in Resources */,
 				BECD7C931EF142A70037A968 /* gotham-light-italic.otf in Resources */,
+				735AB92A206BA391002C5FF7 /* NNE.png in Resources */,
 				BEFCD31B1F1C93860005D82D /* courseCollectionCELL.xib in Resources */,
 				BEE643B31F7536C8006D28FD /* Score_cell1~iPad.xib in Resources */,
 				BEA875D41E8CEB5A00EFBB7F /* sec1_0.png in Resources */,
@@ -2595,6 +2657,7 @@
 				BE1CFCFA1FC59C12000EA72A /* cell_view_ticket2.xib in Resources */,
 				BE7BE8691F96176500925683 /* Cell_headerSection.xib in Resources */,
 				BED71F321EE7F0C200492E97 /* gotham-medium-italic.otf in Resources */,
+				735AB925206BA391002C5FF7 /* E.png in Resources */,
 				BEE644981F878DDA006D28FD /* CEL_titl_leader~iPad.xib in Resources */,
 				BEC3E8651F22160E000ACB97 /* Location.png in Resources */,
 				BE1165981FA748A900A4003C /* FLORIDA.png in Resources */,
@@ -2622,7 +2685,9 @@
 				BE1165BF1FA748A900A4003C /* WESTVIRGINIA.png in Resources */,
 				BE4EEEBA1ED2AAB9003C1C24 /* dotActive@3x.png in Resources */,
 				BED71F8C1EEA8CEE00492E97 /* cell_EMPTY_val.xib in Resources */,
+				735AB931206BA391002C5FF7 /* SW.png in Resources */,
 				BE1165A21FA748A900A4003C /* MAINE.png in Resources */,
+				735AB926206BA391002C5FF7 /* ENE.png in Resources */,
 				BE1165CD1FA84C3100A4003C /* Grey_3.png in Resources */,
 				BE1165B31FA748A900A4003C /* OKLAHOMA.png in Resources */,
 				BE1165901FA748A900A4003C /* ALABAMA.png in Resources */,
@@ -2644,18 +2709,23 @@
 				BEE643AE1F753694006D28FD /* Score_cell1.xib in Resources */,
 				BEA875D61E8CEB5A00EFBB7F /* sec1_2.png in Resources */,
 				73EFC5332021C06D00C35373 /* VERIFIEDACC.png in Resources */,
+				735AB92C206BA391002C5FF7 /* NW.png in Resources */,
+				735AB92E206BA391002C5FF7 /* SE.png in Resources */,
 				73EFC5352021C29900C35373 /* arrowHIW.png in Resources */,
 				BEFC205D1F0619290067717D /* Montserrat-ExtraBoldItalic.ttf in Resources */,
 				BEB702C51ECDC24C004CB729 /* LaunchScreen.storyboard in Resources */,
 				73EFC5312021C06D00C35373 /* SETTINGS1.png in Resources */,
 				BE7BE8AC1F99DC6400925683 /* PRIVATE_1.png in Resources */,
+				735AB934206BA391002C5FF7 /* WSW.png in Resources */,
 				BE1CFCF51FC59BE4000EA72A /* cell_view_ticket1~iPad.xib in Resources */,
 				BECD7C771EF1413D0037A968 /* cell_edit_referral~ipad.xib in Resources */,
+				735AB936206BA65B002C5FF7 /* e1_thumb.png in Resources */,
 				BE11659C1FA748A900A4003C /* ILLINOIS.png in Resources */,
 				BECD7C8A1EF142180037A968 /* affiliate_filter_cell_ipad.xib in Resources */,
 				BE1165AC1FA748A900A4003C /* NEWHAMPSHIRE.png in Resources */,
 				BEC3E7F01F1E12E5000ACB97 /* GOlf-Icon.png in Resources */,
 				BECD7C6B1EF1404E0037A968 /* referal_cell.xib in Resources */,
+				735AB927206BA391002C5FF7 /* ESE.png in Resources */,
 				BEA875DA1E8CEB5A00EFBB7F /* sec1_6.png in Resources */,
 				BEA875B31E8CDF1400EFBB7F /* profile_pic.png in Resources */,
 				73D0D4031FFCDF6300F7D17B /* 3.png in Resources */,
@@ -2664,6 +2734,7 @@
 				BEFC206A1F0619290067717D /* OFL.txt in Resources */,
 				BED71F7C1EE9216C00492E97 /* Info.plist in Resources */,
 				BE1165BB1FA748A900A4003C /* UTAH.png in Resources */,
+				735AB929206BA391002C5FF7 /* NE.png in Resources */,
 				BE888A361E93639D00656580 /* Cell_notifications.xib in Resources */,
 				BEB745821F4AE47B00C39359 /* Search_cell.xib in Resources */,
 				BE888A271E926EF000656580 /* CELL_trans_hstry.xib in Resources */,
@@ -2679,6 +2750,7 @@
 				BEFC205E1F0619290067717D /* Montserrat-ExtraLight.ttf in Resources */,
 				BECD7C761EF1413D0037A968 /* cell_edit_referral.xib in Resources */,
 				BEA875C31E8CE05E00EFBB7F /* cellACCOUNTS~iPad.xib in Resources */,
+				735AB92F206BA391002C5FF7 /* SSE.png in Resources */,
 				BE1CFCE61FC57D81000EA72A /* cell_giftContents~iPad.xib in Resources */,
 				BE2F998E1F9F257700E84A88 /* bg.png in Resources */,
 				BE11659E1FA748A900A4003C /* IOWA.png in Resources */,
@@ -2689,6 +2761,7 @@
 				BE1165CC1FA84C3100A4003C /* Grey_2.png in Resources */,
 				BEA875E21E8CEE7500EFBB7F /* Gotham Book Regular.otf in Resources */,
 				BE1165C11FA748A900A4003C /* WYOMING.png in Resources */,
+				735AB92B206BA391002C5FF7 /* NNW.png in Resources */,
 				BE7BE8AD1F99DC6400925683 /* PUBLIC.png in Resources */,
 				BEFC20621F0619290067717D /* Montserrat-LightItalic.ttf in Resources */,
 				BE1165A81FA748A900A4003C /* MISSOURI.png in Resources */,
@@ -2733,10 +2806,13 @@
 				BE1CFD201FC7F01F000EA72A /* Collection_cell_ticketSponser.xib in Resources */,
 				BEFC20611F0619290067717D /* Montserrat-Light.ttf in Resources */,
 				BEB702C21ECDC135004CB729 /* TBL_VW_Cell_EVENTS~iPad.xib in Resources */,
+				735AB933206BA391002C5FF7 /* WNW.png in Resources */,
 				BE1165B41FA748A900A4003C /* OREGON.png in Resources */,
 				BEB49DD51E76B3A900209E63 /* BG_WT.png in Resources */,
+				735AB930206BA391002C5FF7 /* SSW.png in Resources */,
 				BE888A2C1E926F1000656580 /* CELL_trans_hstry~iPad.xib in Resources */,
 				BE1165961FA748A900A4003C /* CONNECTICUT.png in Resources */,
+				735AB92D206BA391002C5FF7 /* S.png in Resources */,
 				BE11652E1FA0A51F00A4003C /* auction_CellTableViewCell~iPad.xib in Resources */,
 				BE1165A41FA748A900A4003C /* Massachusetts.png in Resources */,
 				73EFC5302021C06D00C35373 /* RAISEMONEY.png in Resources */,
@@ -2988,7 +3064,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WinningTicket_Universal.entitlements;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4MCGAH3G26;
 				GCC_PREFIX_HEADER = WinningTicket/WinningTicket.pch;
@@ -2997,8 +3073,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.carmatec.WinningTicket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "50f6b6ef-4b2e-4d80-8fae-6016b86930e0";
-				PROVISIONING_PROFILE_SPECIFIER = DEV_WT;
+				PROVISIONING_PROFILE = "3f16ac69-4b2b-4975-ab14-0afd3d2e9720";
+				PROVISIONING_PROFILE_SPECIFIER = ADHOC_WT;
 				SWIFT_OBJC_BRIDGING_HEADER = "WinningTicket/WinningTicket_Universal-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -3015,7 +3091,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WinningTicket_Universal.entitlements;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4MCGAH3G26;
 				GCC_PREFIX_HEADER = WinningTicket/WinningTicket.pch;
@@ -3024,8 +3100,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.carmatec.WinningTicket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "50f6b6ef-4b2e-4d80-8fae-6016b86930e0";
-				PROVISIONING_PROFILE_SPECIFIER = DEV_WT;
+				PROVISIONING_PROFILE = "3f16ac69-4b2b-4975-ab14-0afd3d2e9720";
+				PROVISIONING_PROFILE_SPECIFIER = ADHOC_WT;
 				SWIFT_OBJC_BRIDGING_HEADER = "WinningTicket/WinningTicket_Universal-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3058,7 +3134,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 4MCGAH3G26;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3078,7 +3154,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "0ad1f107-baed-4b8a-a0b8-15648b950345";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3110,7 +3186,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 4MCGAH3G26;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3123,7 +3199,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "0ad1f107-baed-4b8a-a0b8-15648b950345";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
