@@ -215,6 +215,9 @@ UIActivityIndicatorView *activityIndicatorView;
 #pragma mark - Uiview customisation
 -(void) setup_VIEW
 {
+    
+    _lbl_eventNAme.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"event_name"];
+    
     _VW_mainCont.frame = [UIScreen mainScreen].bounds;
     [self.view addSubview:_VW_mainCont];
     
@@ -224,7 +227,7 @@ UIActivityIndicatorView *activityIndicatorView;
     _collec_contents.delegate = self;
     
     
-    [_collec_contents reloadData];
+    
   //  [_collec_contents layoutIfNeeded];
     
 //    [_collec_contents.collectionViewLayout prepareLayout];
@@ -238,6 +241,13 @@ UIActivityIndicatorView *activityIndicatorView;
 //    needOUT = quotient + remainder;
     
     CGRect frame_rect = _collec_contents.frame;
+    frame_rect.size.width = _scroll_content.contentSize.width - 20;
+    _collec_contents.frame = frame_rect;
+    
+    
+    [_collec_contents reloadData];
+    
+    frame_rect = _collec_contents.frame;
     frame_rect.size.height =  _collec_contents.collectionViewLayout.collectionViewContentSize.height;//needOUT * 91;
     _collec_contents.frame = frame_rect;
     
@@ -292,6 +302,8 @@ UIActivityIndicatorView *activityIndicatorView;
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     cell.layer.borderWidth = 3.0f;
     cell.layer.borderColor = self.view.tintColor.CGColor;
+    [[NSUserDefaults standardUserDefaults] setObject:[[holes_arr objectAtIndex:indexPath.row] valueForKey:@"hole_num"] forKey:@"hole_number"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
     
     NSLog(@"Selected index = %ld",(long)indexPath.row);
 }
@@ -301,8 +313,8 @@ UIActivityIndicatorView *activityIndicatorView;
 //    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
 //    cell.contentView.backgroundColor = [UIColor colorWithRed:0.87 green:0.87 blue:0.87 alpha:1.0];
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    [[NSUserDefaults standardUserDefaults] setObject:[[holes_arr objectAtIndex:indexPath.row] valueForKey:@"hole_num"] forKey:@"hole_number"];
-    [[NSUserDefaults standardUserDefaults]synchronize];
+//    [[NSUserDefaults standardUserDefaults] setObject:[[holes_arr objectAtIndex:indexPath.row] valueForKey:@"hole_num"] forKey:@"hole_number"];
+//    [[NSUserDefaults standardUserDefaults]synchronize];
     cell.layer.borderColor = [UIColor clearColor].CGColor;
 }
 

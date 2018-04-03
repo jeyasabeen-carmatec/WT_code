@@ -174,7 +174,7 @@
             NSLog(@"Image Url is %@",[NSString stringWithFormat:@"%@%@",IMAGE_URL,[temp_dict valueForKey:@"avatar_url"]]);
             
             [_img_event sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_URL,[temp_dict valueForKey:@"avatar_url"]]]
-                          placeholderImage:[UIImage imageNamed:@"Logo_WT.png"]];
+                          placeholderImage:[UIImage imageNamed:@"square-2"]];
             //    _img_event.contentMode = UIViewContentModeScaleAspectFit;
             
             float image_height = _img_event.frame.size.height;

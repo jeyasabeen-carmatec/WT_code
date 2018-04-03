@@ -2783,6 +2783,7 @@
                         <outlet property="event_dtl_lbl" destination="9pe-2g-fkc" id="Qsx-TC-mwh"/>
                         <outlet property="event_location" destination="Eip-Np-2PO" id="PVG-hw-0Dx"/>
                         <outlet property="event_name" destination="Czj-Hu-P3F" id="KLX-r7-hoB"/>
+                        <outlet property="lbl_eventNAme" destination="2WZ-xS-PTp" id="wNe-89-6DL"/>
                         <outlet property="live_score" destination="Ybk-Mp-MG1" id="sGw-ui-eW0"/>
                         <outlet property="live_score_lbl" destination="b2q-xa-lrA" id="Wsp-Np-jZT"/>
                         <outlet property="location_description" destination="JXB-7b-hSd" id="59S-bf-T7g"/>
@@ -2800,16 +2801,16 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="400"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2WZ-xS-PTp">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2WZ-xS-PTp">
+                            <rect key="frame" x="0.0" y="3" width="320" height="21"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your starting hole:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7PM-RX-44s">
-                            <rect key="frame" x="0.0" y="29" width="320" height="36"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select your starting hole:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7PM-RX-44s">
+                            <rect key="frame" x="0.0" y="28" width="320" height="36"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="19"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -2827,7 +2828,7 @@
                             <cells>
                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="j4T-I1-y0S" customClass="VC_score_collection">
                                     <rect key="frame" x="0.0" y="0.0" width="81" height="81"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                         <rect key="frame" x="0.0" y="0.0" width="81" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -3218,114 +3219,108 @@ holes on the course.</string>
                                     <outlet property="delegate" destination="uGv-cK-FOa" id="VYS-Gh-4kH"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" id="9nF-RZ-snG">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1245" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="none" minimumFontSize="4" id="U56-dI-1nh">
+                                <rect key="frame" x="215" y="86" width="105" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.337890625" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" misplaced="YES" id="ixu-cu-0M6">
                                 <rect key="frame" x="0.0" y="86" width="79" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="   HOLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nnX-Pf-0HT">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   HOLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fW2-cF-rxE">
                                         <rect key="frame" x="1" y="0.0" width="50" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="9"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="   PAR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NBC-h2-NhV">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   PAR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jj2-pS-2f2">
                                         <rect key="frame" x="1" y="29" width="50" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="9"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="   YARDS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JLc-O3-gpI">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   YARDS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GUY-5p-S93">
                                         <rect key="frame" x="1" y="58" width="50" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="9"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" misplaced="YES" id="nUX-QT-9ec">
+                                    <view contentMode="scaleToFill" id="0c1-HJ-BI3">
                                         <rect key="frame" x="0.0" y="130" width="79" height="32"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="e1_thumb.png" id="9aL-93-V5R">
+                                                <rect key="frame" x="3" y="6" width="31" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="NE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2wd-Rj-d8n">
+                                                <rect key="frame" x="40" y="0.0" width="39" height="13"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="10"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="145.5 MPH" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="none" minimumFontSize="5" id="5VH-XQ-v78">
+                                                <rect key="frame" x="40" y="16" width="39" height="13"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="10"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.34000000000000002" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" id="pxD-QF-Rcw">
+                                    <view contentMode="scaleToFill" id="XR3-8w-jVa">
                                         <rect key="frame" x="0.0" y="81" width="79" height="49"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.10697183098591548" colorSpace="calibratedRGB"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="E.png" id="CuL-xe-QvM">
+                                                <rect key="frame" x="17" y="2" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.106971831" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" id="Bvn-Tn-BeB">
+                                    <view contentMode="scaleToFill" id="IuW-9Q-CCy">
                                         <rect key="frame" x="50" y="0.0" width="29" height="81"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RnQ-eE-aNq">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a86-A0-vPm">
                                                 <rect key="frame" x="4" y="0.0" width="21" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="10"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ewq-Ox-d4Y">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="K5N-TQ-KPE">
                                                 <rect key="frame" x="4" y="30" width="21" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="10"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="888" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vgT-of-egw">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="888" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G8i-5M-hDP">
                                                 <rect key="frame" x="4" y="59" width="21" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="10"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.34000000000000002" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.57602851089999996" green="0.58209196890000003" blue="0.58209196890000003" alpha="0.79962588030000004" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1245" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="14" id="U56-dI-1nh">
-                                <rect key="frame" x="215" y="86" width="105" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.337890625" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="30"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="YARDS TO BACK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YIH-0Z-8sz">
-                                <rect key="frame" x="215" y="116" width="105" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.337890625" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="11"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1245" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="14" id="Ckk-rJ-kBc">
-                                <rect key="frame" x="215" y="131" width="105" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.337890625" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="30"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="YARDS TO CENTER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hhj-nE-27s">
-                                <rect key="frame" x="215" y="161" width="105" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.337890625" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="11"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1245" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="14" id="QBe-5B-9Nv">
-                                <rect key="frame" x="215" y="176" width="105" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.337890625" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="30"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="YARDS TO FRONT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ibZ-BB-WtC">
-                                <rect key="frame" x="215" y="206" width="105" height="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="YARDS TO CENTER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YIH-0Z-8sz">
+                                <rect key="frame" x="215" y="127" width="105" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.337890625" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="11"/>
@@ -3366,11 +3361,17 @@ holes on the course.</string>
                         <outlet property="BTN_next" destination="XlE-x2-euK" id="3ve-71-YWd"/>
                         <outlet property="BTN_prev" destination="NZd-bv-amJ" id="jGc-cy-gQ3"/>
                         <outlet property="BTN_viewonMAP" destination="yTV-08-VEW" id="hh6-ww-7vZ"/>
+                        <outlet property="IMG_wind_DIREC" destination="CuL-xe-QvM" id="tJ5-s9-GEb"/>
                         <outlet property="VW_end_Game" destination="aib-yD-3EG" id="qJo-rd-SbT"/>
                         <outlet property="VW_navBAR" destination="XLh-DP-4Uw" id="nBy-ED-vjx"/>
                         <outlet property="VW_segment" destination="gjK-CY-PPp" id="RAS-uQ-0Hn"/>
                         <outlet property="lbl_Nav_mainTitl" destination="DkJ-Ul-rhy" id="PJT-tR-zJ3"/>
+                        <outlet property="lbl_WND_Direc" destination="2wd-Rj-d8n" id="erg-9A-jGT"/>
+                        <outlet property="lbl_WND_SPD" destination="5VH-XQ-v78" id="lXh-Dx-fhV"/>
+                        <outlet property="lbl_hole" destination="a86-A0-vPm" id="tMW-gm-OgB"/>
                         <outlet property="lbl_navTITLE" destination="nTz-cs-IBY" id="zEc-aB-RpO"/>
+                        <outlet property="lbl_par" destination="K5N-TQ-KPE" id="pWG-nL-QiD"/>
+                        <outlet property="lbl_yards" destination="G8i-5M-hDP" id="UqK-Jc-MeG"/>
                         <outlet property="lbl_yardsToHole" destination="U56-dI-1nh" id="5El-JE-CzH"/>
                         <outlet property="mapView" destination="Fon-dz-oKN" id="QZo-mT-LjH"/>
                     </connections>
@@ -9232,6 +9233,7 @@ Team1</string>
         <image name="DISTRIBUTE.png" width="129" height="150"/>
         <image name="DONATE_CSH.png" width="150" height="148"/>
         <image name="DOWNLOADAPP.png" width="150" height="84"/>
+        <image name="E.png" width="136" height="136"/>
         <image name="ENTREVNTCODE.png" width="150" height="151"/>
         <image name="Image" width="25" height="25"/>
         <image name="Image-1" width="25" height="25"/>
@@ -9250,6 +9252,7 @@ Team1</string>
         <image name="close-2.png" width="64" height="64"/>
         <image name="cross_black.png" width="64" height="64"/>
         <image name="detail_baground.png" width="100" height="40"/>
+        <image name="e1_thumb.png" width="89" height="69"/>
         <image name="globe.jpg" width="200" height="200"/>
         <image name="login_transparent.png" width="1213" height="353"/>
         <image name="profile_pic.png" width="73" height="73"/>
@@ -9261,9 +9264,9 @@ Team1</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="kVz-KM-DVq"/>
-        <segue reference="jMh-2b-WDa"/>
-        <segue reference="95q-65-OkS"/>
-        <segue reference="yxA-85-JlB"/>
+        <segue reference="IG7-eM-0BG"/>
+        <segue reference="jsW-pc-cw1"/>
+        <segue reference="6Iw-xR-hwg"/>
         <segue reference="I1e-PC-gD9"/>
         <segue reference="AmC-Xg-ce2"/>
         <segue reference="D2f-xd-0V5"/>

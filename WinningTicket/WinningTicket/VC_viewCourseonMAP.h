@@ -32,12 +32,16 @@
 @property (nonatomic,weak) IBOutlet UIButton *BTN_continue_playing;
 
 @property (nonatomic,weak) IBOutlet UILabel *lbl_yardsToHole;
-//@property (nonatomic,weak) IBOutlet UILabel *lbl_hole;
-//@property (nonatomic,weak) IBOutlet UILabel *lbl_par;
-//@property (nonatomic,weak) IBOutlet UILabel *lbl_yards;
+@property (nonatomic,weak) IBOutlet UILabel *lbl_hole;
+@property (nonatomic,weak) IBOutlet UILabel *lbl_par;
+@property (nonatomic,weak) IBOutlet UILabel *lbl_yards;
 //@property (nonatomic,weak) IBOutlet UIView *VW_score;
 
 @property (nonatomic,weak) IBOutlet UIButton *BTN_next;
 @property (nonatomic,weak) IBOutlet UIButton *BTN_prev;
+
+@property (nonatomic,weak) IBOutlet UIImageView *IMG_wind_DIREC;
+@property (nonatomic,weak) IBOutlet UILabel *lbl_WND_SPD;
+@property (nonatomic,weak) IBOutlet UILabel *lbl_WND_Direc;
 
 @end

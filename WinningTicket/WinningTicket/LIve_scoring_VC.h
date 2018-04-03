@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LIve_scoring_VC : UIViewController
+
 @property (nonatomic,weak) IBOutlet UIScrollView *scroll_content;
 @property (nonatomic,weak) IBOutlet UIImageView *main_img;
 @property (nonatomic,weak) IBOutlet UILabel *live_score_lbl;
@@ -33,6 +34,9 @@
 
 
 @property (nonatomic,weak) IBOutlet UIScrollView *SCRL_contents;
+
+
+@property (nonatomic,weak) IBOutlet UILabel *lbl_eventNAme;
 
 
 @end
