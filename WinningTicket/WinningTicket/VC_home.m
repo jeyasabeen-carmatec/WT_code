@@ -20,7 +20,7 @@
     NSArray *ARR_allevent,*ARR_upcommingevent;
     UIView *VW_overlay;
     UIActivityIndicatorView *activityIndicatorView;
-//    UILabel *loadingLabel;
+    //    UILabel *loadingLabel;
     
     CGRect frame_IMAGE,frame_VIEW;
     float diff;
@@ -43,15 +43,15 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
+ #pragma mark - Navigation
  
-*/
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ 
+ */
 -(void) viewWillAppear:(BOOL)animated
 {
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
@@ -79,20 +79,20 @@
     
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-//    VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.clipsToBounds = YES;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
     
-//    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
-//    loadingLabel.backgroundColor = [UIColor clearColor];
-//    loadingLabel.textColor = [UIColor whiteColor];
-//    loadingLabel.adjustsFontSizeToFitWidth = YES;
-//    loadingLabel.textAlignment = NSTextAlignmentCenter;
-//    loadingLabel.text = @"Loading...";
-//    
-//    [VW_overlay addSubview:loadingLabel];
+    //    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
+    //    loadingLabel.backgroundColor = [UIColor clearColor];
+    //    loadingLabel.textColor = [UIColor whiteColor];
+    //    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    //    loadingLabel.textAlignment = NSTextAlignmentCenter;
+    //    loadingLabel.text = @"Loading...";
+    //
+    //    [VW_overlay addSubview:loadingLabel];
     activityIndicatorView.center = VW_overlay.center;
     [VW_overlay addSubview:activityIndicatorView];
     VW_overlay.center = self.view.center;
@@ -110,8 +110,8 @@
         }
         else
         {
-//            UIColor *tintcolor=[UIColor blueColor];
-//            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
+            //            UIColor *tintcolor=[UIColor blueColor];
+            //            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
         }
     }
     
@@ -141,23 +141,23 @@
     
     [_tab_HOME setSelectedItem:[_tab_HOME.items objectAtIndex:0]];
     [_segment_bottom setSelectedSegmentIndex:0];
-
+    
     
     _lbl_titl_event_code.hidden = YES;
     _VW_hold_code.hidden = YES;
     
-//    _BTN_cancel.layer.borderWidth = 1.0f;
-//    _BTN_cancel.layer.borderColor = [UIColor blackColor].CGColor;
+    //    _BTN_cancel.layer.borderWidth = 1.0f;
+    //    _BTN_cancel.layer.borderColor = [UIColor blackColor].CGColor;
     _BTN_cancel.hidden = YES;
     
-//    _BTN_enter_event_code.layer.borderWidth = 1.0f;
-//    _BTN_enter_event_code.layer.borderColor = [UIColor blackColor].CGColor;
+    //    _BTN_enter_event_code.layer.borderWidth = 1.0f;
+    //    _BTN_enter_event_code.layer.borderColor = [UIColor blackColor].CGColor;
     _BTN_enter_event_code.hidden = YES;
     _BTN_enter_event_code.enabled = NO;
-//    _BTN_enter_event_code.alpha = 0.5;
+    //    _BTN_enter_event_code.alpha = 0.5;
     
-//    _BTN_view_all_event.layer.borderWidth = 1.0f;
-//    _BTN_view_all_event.layer.borderColor = [UIColor blackColor].CGColor;
+    //    _BTN_view_all_event.layer.borderWidth = 1.0f;
+    //    _BTN_view_all_event.layer.borderColor = [UIColor blackColor].CGColor;
     
     [_BTN_view_all_event addTarget:self action:@selector(BTN_enter_event_code:) forControlEvents:UIControlEventTouchUpInside];
     [_BTN_cancel addTarget:self action:@selector(BTN_cancel:) forControlEvents:UIControlEventTouchUpInside];
@@ -170,9 +170,9 @@
     _TXT_4.tag = 4;
     _TXT_5.tag = 5;
     
-
-    if (_BTN_view_all_event.hidden == YES) {
     
+    if (_BTN_view_all_event.hidden == YES) {
+        
         _TXT_0.text = @"";
         _TXT_1.text = @"";
         _TXT_2.text = @"";
@@ -235,15 +235,15 @@
     new_frame.size.height = [self allEvent_height];
     _tbl_all_event.frame = new_frame;
     
-//    _BTN_all_event.layer.borderWidth = 1.0f;
-//    _BTN_all_event.layer.borderColor = [UIColor blackColor].CGColor;
+    //    _BTN_all_event.layer.borderWidth = 1.0f;
+    //    _BTN_all_event.layer.borderColor = [UIColor blackColor].CGColor;
     new_frame = _BTN_all_event.frame;
     new_frame.origin.y = _tbl_all_event.frame.origin.y + [self allEvent_height] + 15;
     new_frame.size.height = _BTN_all_event.frame.size.height;
     _BTN_all_event.frame = new_frame;
     
     [_BTN_all_event addTarget:self action:@selector(get_ALLevents) forControlEvents:UIControlEventTouchUpInside];
-//    [_VW_Scroll_CONTENT addSubview:_BTN_all_event];
+    //    [_VW_Scroll_CONTENT addSubview:_BTN_all_event];
     
     CGRect frame = _scroll_content.frame;
     frame.origin.y = 0.0f;
@@ -253,7 +253,7 @@
     _VW_Scroll_CONTENT.frame = frame;
     
     [_scroll_content addSubview:_VW_Scroll_CONTENT];
-//    CGRect new_frame = _scroll_content.frame;
+    //    CGRect new_frame = _scroll_content.frame;
     
     [[NSUserDefaults standardUserDefaults] setValue:@"contributor" forKey:@"LoginSTAT"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -447,8 +447,8 @@
             
             cell.lbl_event_time.text = [self getLocalDateTimeFromUTC:[temp_DICN valueForKey:@"start_date"]];
             
-//            cell.BTN_View_detail.layer.borderWidth = 1.0f;
-//            cell.BTN_View_detail.layer.borderColor = [UIColor blackColor].CGColor;
+            //            cell.BTN_View_detail.layer.borderWidth = 1.0f;
+            //            cell.BTN_View_detail.layer.borderColor = [UIColor blackColor].CGColor;
             
             [cell.BTN_View_detail setTag:indexPath.row];
             [cell.BTN_View_detail addTarget:self action:@selector(BTN_UP_COMNG_EVENT:) forControlEvents:UIControlEventTouchUpInside];
@@ -515,8 +515,8 @@
             
             cell.lbl_event_time.text = [self getLocalDateTimeFromUTC:[temp_DICN valueForKey:@"start_date"]];
             
-//            cell.BTN_View_detail.layer.borderWidth = 1.0f;
-//            cell.BTN_View_detail.layer.borderColor = [UIColor blackColor].CGColor;
+            //            cell.BTN_View_detail.layer.borderWidth = 1.0f;
+            //            cell.BTN_View_detail.layer.borderColor = [UIColor blackColor].CGColor;
             
             [cell.BTN_View_detail setTag:indexPath.row];
             [cell.BTN_View_detail addTarget:self action:@selector(BTN_ALL_EVENT:) forControlEvents:UIControlEventTouchUpInside];
@@ -554,7 +554,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     NSLog(@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"event_id"]);
     
-//    [self geteventcode];
+    //    [self geteventcode];
     VW_overlay.hidden = NO;
     [activityIndicatorView startAnimating];
     [self performSelector:@selector(geteventcode) withObject:activityIndicatorView afterDelay:0.01];
@@ -572,7 +572,7 @@
     [[NSUserDefaults standardUserDefaults] setValue:[dictdat valueForKey:@"id"] forKey:@"event_id"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-//    [self performSegueWithIdentifier:@"hometoeventdetail" sender:self];
+    //    [self performSegueWithIdentifier:@"hometoeventdetail" sender:self];
     VW_overlay.hidden = NO;
     [activityIndicatorView startAnimating];
     [self performSelector:@selector(geteventcode) withObject:activityIndicatorView afterDelay:0.01];
@@ -665,7 +665,7 @@
                     animations:NULL
                     completion:NULL];
     [self.BTN_enter_event_code  setHidden:YES];
-//    [self sessionOUT];
+    //    [self sessionOUT];
     [self.view endEditing:YES];
 }
 -(void)BTN_enter_code:(id)sender
@@ -737,28 +737,28 @@
             {
                 textField.text = string;
                 [nextResponder becomeFirstResponder];
-//                if (textField == _TXT_1) {
-//                    _TXT_0.secureTextEntry = YES;
-//                }
-//                else if(textField == _TXT_2)
-//                {
-//                    _TXT_1.secureTextEntry = YES;
-//                }
-//                else if(textField == _TXT_3)
-//                {
-//                    _TXT_2.secureTextEntry = YES;
-//                }
-//                else if(textField == _TXT_4)
-//                {
-//                    _TXT_3.secureTextEntry = YES;
-//                }
-//                else
-               /* if(textField == _TXT_5)
-                {
-                    _BTN_enter_event_code.enabled = YES;
-                    _BTN_enter_event_code.alpha = 1.0;
-//                    _TXT_4.secureTextEntry = YES;
-                }*/
+                //                if (textField == _TXT_1) {
+                //                    _TXT_0.secureTextEntry = YES;
+                //                }
+                //                else if(textField == _TXT_2)
+                //                {
+                //                    _TXT_1.secureTextEntry = YES;
+                //                }
+                //                else if(textField == _TXT_3)
+                //                {
+                //                    _TXT_2.secureTextEntry = YES;
+                //                }
+                //                else if(textField == _TXT_4)
+                //                {
+                //                    _TXT_3.secureTextEntry = YES;
+                //                }
+                //                else
+                /* if(textField == _TXT_5)
+                 {
+                 _BTN_enter_event_code.enabled = YES;
+                 _BTN_enter_event_code.alpha = 1.0;
+                 //                    _TXT_4.secureTextEntry = YES;
+                 }*/
             }
         }
         
@@ -771,50 +771,50 @@
     else
     {
         
-//        _BTN_enter_event_code.alpha = 0.5;
+        //        _BTN_enter_event_code.alpha = 0.5;
         
         /* This is client feed back */
-      /*  NSInteger prevTag = textField.tag - 1;
-        UIResponder* prev = [textField.superview viewWithTag:prevTag];
-        if (! prev)
-        {
-            prev = [textField.superview viewWithTag:0];
-        }
-        else
-        {
-            textField.text = @"";
-            if (textField == _TXT_1) {
-                _TXT_0.secureTextEntry = NO;
-            }
-            else if(textField == _TXT_2)
-            {
-                _TXT_1.secureTextEntry = NO;
-            }
-            else if(textField == _TXT_3)
-            {
-                _TXT_2.secureTextEntry = NO;
-            }
-            else if(textField == _TXT_4)
-            {
-                _TXT_3.secureTextEntry = NO;
-            }
-            else if(textField == _TXT_5)
-            {
-                _TXT_4.secureTextEntry = NO;
-            }
-        }
-        
-        if (prevTag == 0)
-        {
-            _TXT_0.text = @"";
-            _TXT_0.secureTextEntry = NO;
-            [_TXT_0 becomeFirstResponder];
-        }
-        else
-        {
-            [prev becomeFirstResponder];
-        }
-        return NO;*/
+        /*  NSInteger prevTag = textField.tag - 1;
+         UIResponder* prev = [textField.superview viewWithTag:prevTag];
+         if (! prev)
+         {
+         prev = [textField.superview viewWithTag:0];
+         }
+         else
+         {
+         textField.text = @"";
+         if (textField == _TXT_1) {
+         _TXT_0.secureTextEntry = NO;
+         }
+         else if(textField == _TXT_2)
+         {
+         _TXT_1.secureTextEntry = NO;
+         }
+         else if(textField == _TXT_3)
+         {
+         _TXT_2.secureTextEntry = NO;
+         }
+         else if(textField == _TXT_4)
+         {
+         _TXT_3.secureTextEntry = NO;
+         }
+         else if(textField == _TXT_5)
+         {
+         _TXT_4.secureTextEntry = NO;
+         }
+         }
+         
+         if (prevTag == 0)
+         {
+         _TXT_0.text = @"";
+         _TXT_0.secureTextEntry = NO;
+         [_TXT_0 becomeFirstResponder];
+         }
+         else
+         {
+         [prev becomeFirstResponder];
+         }
+         return NO;*/
         
         /* This is client feed back */
     }
@@ -855,7 +855,7 @@
 #pragma mark - Date Convert
 -(NSString *)getLocalDateTimeFromUTC:(NSString *)strDate
 {
-
+    
     NSLog(@"Date Input tbl %@",strDate);
     
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
@@ -882,7 +882,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -892,8 +892,8 @@
         
         [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"upcoming_events"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-            
-//            [self performSegueWithIdentifier:@"hometoeventdetail" sender:self];
+        
+        //            [self performSegueWithIdentifier:@"hometoeventdetail" sender:self];
         [self performSegueWithIdentifier:@"hometoEvent_detail" sender:self];
     }
     else
@@ -942,7 +942,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     //    [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -983,7 +983,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     [request setHTTPBody:postData];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -1045,7 +1045,7 @@
 
 #pragma mark - Scroll view deligate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{    
+{
     NSLog(@"Scroll view called");
     CGFloat yVelocity = [scrollView.panGestureRecognizer velocityInView:scrollView].y;
     if (yVelocity < 0)
@@ -1140,7 +1140,7 @@
             frame_scroll.origin.y = _scroll_content.frame.origin.y - diff;
             frame_scroll.size.height = _scroll_content.frame.size.height + diff;
             
-//            [UIView beginAnimations:@"bucketsOff" context:nil];
+            //            [UIView beginAnimations:@"bucketsOff" context:nil];
             [UIView beginAnimations:@"bucketsOff" context:NULL];
             // [UIView setAnimationDuration:0.25];
             _VW_IMG_BG.frame = frame_VW;
@@ -1155,7 +1155,7 @@
         NSLog(@"Swipe Down");
         if (_VW_IMG_BG.frame.size.height <= 80)
         {
-//            diff = diff + 80;
+            //            diff = diff + 80;
             
             CGRect frame_hold_VW = _VW_hold_BTN.frame;
             frame_hold_VW.origin.y = frame_VIEW.origin.y + frame_VIEW.size.height;
@@ -1170,7 +1170,7 @@
             // [UIView setAnimationDuration:0.25];
             _VW_IMG_BG.frame = frame_VIEW;
             _IMG_logo_WT.frame = frame_IMAGE;
-             _VW_hold_BTN.frame = frame_hold_VW;
+            _VW_hold_BTN.frame = frame_hold_VW;
             _scroll_content.frame = frame_scroll;
             [UIView commitAnimations];
         }
@@ -1202,22 +1202,22 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
     {
-//        [activityIndicatorView stopAnimating];
-//        VW_overlay.hidden = YES;
+        //        [activityIndicatorView stopAnimating];
+        //        VW_overlay.hidden = YES;
         
         [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"User_data"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         //        NSLog(@" THe user data is :%@",[[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"User_data"]);
         //        [self performSegueWithIdentifier:@"accountstoeditprofileidentifier" sender:self];
         //        [self parse_listEvents_api];
-//        VW_overlay.hidden = NO;
-//        [activityIndicatorView startAnimating];
-//        [self performSelector:@selector(parse_listEvents_api) withObject:activityIndicatorView afterDelay:0.01];
+        //        VW_overlay.hidden = NO;
+        //        [activityIndicatorView startAnimating];
+        //        [self performSelector:@selector(parse_listEvents_api) withObject:activityIndicatorView afterDelay:0.01];
     }
     else
     {
@@ -1231,3 +1231,4 @@
 }
 
 @end
+

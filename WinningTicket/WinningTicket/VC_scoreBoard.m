@@ -33,8 +33,8 @@
     NSString *STR_psition;
     
     NSIndexPath *INdex_Selected,*INDX_STR,*INDX_expanded;
-//    NSMutableArray *ARR_netScore;
-//    NSMutableArray *ARR_grossScore;
+    //    NSMutableArray *ARR_netScore;
+    //    NSMutableArray *ARR_grossScore;
     NSMutableArray *ARR_color;
     
     NSMutableDictionary *DICTIN_PlayerINfo;
@@ -101,7 +101,7 @@
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.minimumLineHeight = 14.5f;
     paragraphStyle.maximumLineHeight = 14.5f;
-    paragraphStyle.alignment = NSTextAlignmentCenter; 
+    paragraphStyle.alignment = NSTextAlignmentCenter;
     NSDictionary *attributes = @{NSFontAttributeName:font,
                                  NSParagraphStyleAttributeName:paragraphStyle
                                  };
@@ -139,7 +139,7 @@
     //    paragraphStyle.lineSpacing = 2.0;
     //    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [STR_title length])];
     
-
+    
     CGRect frame_BTN = _BTN_viewonMAP.frame;
     frame_BTN.size.width = (_TBL_scores.frame.size.width / 5) + 20;
     frame_BTN.size.height = (_TBL_scores.frame.size.width / 5) + 20;
@@ -250,7 +250,7 @@
         case 0:
         {
             NSLog(@"Index 0");
-
+            
             NSString *STR_nav_title = @"Your Scorecard";
             _lbl_Nav_mainTitl.text = [STR_nav_title uppercaseString];
             _TBL_leaderboard.hidden = YES;
@@ -261,25 +261,25 @@
         case 1:
         {
             
-//            if (VW_overlay.hidden == NO) {
-//                NSLog(@"Index 1");
+            //            if (VW_overlay.hidden == NO) {
+            //                NSLog(@"Index 1");
             
             self.expandingIndexPath = nil;
             self.expandedIndexPath = nil;
             
-                VW_overlay.hidden = NO;
-                [activityIndicatorView startAnimating];
-                [self performSelector:@selector(Leaders_API) withObject:activityIndicatorView afterDelay:0.01];
+            VW_overlay.hidden = NO;
+            [activityIndicatorView startAnimating];
+            [self performSelector:@selector(Leaders_API) withObject:activityIndicatorView afterDelay:0.01];
             
-             NSString *STR_nav_title = @"Live Leaderboard";
-                _lbl_Nav_mainTitl.text = [STR_nav_title uppercaseString];
-                _TBL_scores.hidden = YES;
-                _TBL_leaderboard.hidden = NO;
-//            }
-//            else
-//            {
-//                _segmentedControl4.selectedSegmentIndex = 0;
-//            }
+            NSString *STR_nav_title = @"Live Leaderboard";
+            _lbl_Nav_mainTitl.text = [STR_nav_title uppercaseString];
+            _TBL_scores.hidden = YES;
+            _TBL_leaderboard.hidden = NO;
+            //            }
+            //            else
+            //            {
+            //                _segmentedControl4.selectedSegmentIndex = 0;
+            //            }
         }
             break;
             
@@ -295,13 +295,13 @@
 #pragma mark - UIButton Actions
 -(void) ACTN_leaveGame
 {
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Leave Game" message:@"Are you sure to leave the game" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok",@"Cancel", nil];
-//    alert.tag = 1;
-//    [alert show];
+    //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm Leave Game" message:@"Are you sure to leave the game" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok",@"Cancel", nil];
+    //    alert.tag = 1;
+    //    [alert show];
     
     self.segmentedControl4.userInteractionEnabled = NO;
     _BTN_viewonMAP.userInteractionEnabled = NO;
-
+    
     _VW_end_Game.center = self.view.center;
     _VW_end_Game.layer.cornerRadius = 5.0f;
     _VW_end_Game.layer.masksToBounds = YES;
@@ -346,7 +346,7 @@
     [self performSegueWithIdentifier:@"scorebordtomapIdentifier" sender:self];
     [activityIndicatorView stopAnimating];
     VW_overlay.hidden = YES;
-
+    
 }
 
 -(void) ACTN_btnPLUS
@@ -398,7 +398,7 @@
         _TXT_Handicap.text = [NSString stringWithFormat:@"%.0f",VAL_STR];
         
         NSString *text_STR;
-
+        
         
         if (VAL_STR == 0) {
             text_STR = [NSString stringWithFormat:@"There will be no effect on your gross score."];
@@ -498,7 +498,7 @@
                     cell = [nib objectAtIndex:0];
                 }
                 
-//                cell.lbl_leader.text = [NSString stringWithFormat:@"Leader at index %ld",indexPath.row -2];
+                //                cell.lbl_leader.text = [NSString stringWithFormat:@"Leader at index %ld",indexPath.row -2];
                 float FR_width = (_TBL_leaderboard.frame.size.width - width_titles) / 9;
                 float FR_height = (FR_width * 8) + 34;
                 float FR_originalHT = (FR_height - 35) / 8;
@@ -507,7 +507,7 @@
                 CGRect rectVW = cell.VW_hor1.frame;
                 rectVW.origin.x = 0;
                 rectVW.origin.y = FR_originalHT;
-//                rectVW.size.width = width_titles /2;
+                //                rectVW.size.width = width_titles /2;
                 cell.VW_hor1.frame = rectVW;
                 
                 //This is label
@@ -657,7 +657,7 @@
                 cell.lbl_par1_9.frame = rectVW;
                 
                 rectVW = cell.lbl_tot_par1.frame;
-//                rectVW.origin.x = cell.lbl_par1_9.frame.origin.x + cell.lbl_par1_9.frame.size.width + 1;
+                //                rectVW.origin.x = cell.lbl_par1_9.frame.origin.x + cell.lbl_par1_9.frame.size.width + 1;
                 rectVW.origin.y = cell.VW_hor1.frame.origin.y + 2;
                 rectVW.size.height = FR_width - 1;
                 cell.lbl_tot_par1.frame = rectVW;
@@ -712,7 +712,7 @@
                 cell.VW_vertical_S_1_8.frame = rectVW;
                 
                 //This is VW
-                rectVW = cell.VW_hor2.frame; 
+                rectVW = cell.VW_hor2.frame;
                 rectVW.origin.x = 0;
                 rectVW.origin.y = FR_originalHT * 2;
                 cell.VW_hor2.frame = rectVW;
@@ -732,7 +732,7 @@
                 rectVW.size.width = FR_width - 6.5;
                 rectVW.size.height = FR_width - 6.5;
                 cell.lbl_score1_2.frame = rectVW;
-
+                
                 rectVW = cell.lbl_score1_3.frame;
                 rectVW.origin.x = cell.lbl_score1_2.frame.origin.x + cell.lbl_score1_2.frame.size.width + 6.5;
                 rectVW.origin.y = cell.VW_hor2.frame.origin.y + 4;
@@ -783,7 +783,7 @@
                 cell.lbl_score1_9.frame = rectVW;
                 
                 rectVW = cell.lbl_tot_score1.frame;
-//                rectVW.origin.x = cell.lbl_score1_9.frame.origin.x + cell.lbl_score1_9.frame.size.width + 1;
+                //                rectVW.origin.x = cell.lbl_score1_9.frame.origin.x + cell.lbl_score1_9.frame.size.width + 1;
                 rectVW.origin.y = cell.VW_hor2.frame.origin.y + 1;
                 rectVW.size.height = FR_width - 1;
                 cell.lbl_tot_score1.frame = rectVW;
@@ -866,7 +866,7 @@
                 cell.lbl_Netscore1_9.frame = rectVW;
                 
                 rectVW = cell.lbl_tot_Netscore1.frame;
-//                rectVW.origin.x = cell.lbl_Netscore1_9.frame.origin.x + cell.lbl_Netscore1_9.frame.size.width + 1;
+                //                rectVW.origin.x = cell.lbl_Netscore1_9.frame.origin.x + cell.lbl_Netscore1_9.frame.size.width + 1;
                 rectVW.origin.y = cell.VW_hor3.frame.origin.y + 1;
                 rectVW.size.height = FR_width - 1;
                 cell.lbl_tot_Netscore1.frame = rectVW;
@@ -1027,7 +1027,7 @@
                 cell.lbl_par2_9.frame = rectVW;
                 
                 rectVW = cell.lbl_tot_par2.frame;
-//                rectVW.origin.x = cell.lbl_par2_9.frame.origin.x + cell.lbl_par2_9.frame.size.width + 1;
+                //                rectVW.origin.x = cell.lbl_par2_9.frame.origin.x + cell.lbl_par2_9.frame.size.width + 1;
                 rectVW.origin.y = cell.VW_hor5.frame.origin.y + 1;
                 rectVW.size.height = FR_width - 1;
                 cell.lbl_tot_par2.frame = rectVW;
@@ -1160,7 +1160,7 @@
                 cell.lbl_score2_9.frame = rectVW;
                 
                 rectVW = cell.lbl_tot_score2.frame;
-//                rectVW.origin.x = cell.lbl_score2_9.frame.origin.x + cell.lbl_score2_9.frame.size.width + 1;
+                //                rectVW.origin.x = cell.lbl_score2_9.frame.origin.x + cell.lbl_score2_9.frame.size.width + 1;
                 rectVW.origin.y = cell.VW_hor6.frame.origin.y + 1;
                 rectVW.size.height = FR_width - 1;
                 cell.lbl_tot_score2.frame = rectVW;
@@ -1243,7 +1243,7 @@
                 cell.lbl_Netscore2_9.frame = rectVW;
                 
                 rectVW = cell.lbl_tot_Netscore2.frame;
-//                rectVW.origin.x = cell.lbl_Netscore2_9.frame.origin.x + cell.lbl_Netscore2_9.frame.size.width + 1;
+                //                rectVW.origin.x = cell.lbl_Netscore2_9.frame.origin.x + cell.lbl_Netscore2_9.frame.size.width + 1;
                 rectVW.origin.y = cell.VW_hor7.frame.origin.y + 1;
                 rectVW.size.height = FR_width - 1;
                 cell.lbl_tot_Netscore2.frame = rectVW;
@@ -1296,15 +1296,15 @@
                 @try {
                     ARR_temp = [dictin_Scores valueForKey:@"hole_array"];
                     
-//                    NSSortDescriptor *delay = [NSSortDescriptor sortDescriptorWithKey:@"position.integerValue" ascending:YES];
-//                    [ARR_temp sortUsingDescriptors:[NSArray arrayWithObject:delay]];
+                    //                    NSSortDescriptor *delay = [NSSortDescriptor sortDescriptorWithKey:@"position.integerValue" ascending:YES];
+                    //                    [ARR_temp sortUsingDescriptors:[NSArray arrayWithObject:delay]];
                     
-//                    NSSortDescriptor *sortByName = [NSSortDescriptor sortDescriptorWithKey:@"position"
-//                                                                                 ascending:YES];
-//                    NSArray *sortDescriptors = [NSArray arrayWithObject:sortByName];
-//                    NSArray *sortedArray = [ARR_temp sortedArrayUsingDescriptors:sortDescriptors];
-//                    
-//                    ARR_temp = sortedArray;
+                    //                    NSSortDescriptor *sortByName = [NSSortDescriptor sortDescriptorWithKey:@"position"
+                    //                                                                                 ascending:YES];
+                    //                    NSArray *sortDescriptors = [NSArray arrayWithObject:sortByName];
+                    //                    NSArray *sortedArray = [ARR_temp sortedArrayUsingDescriptors:sortDescriptors];
+                    //
+                    //                    ARR_temp = sortedArray;
                     
                     double DBL_totpar = 0,DBL_totSCR = 0,DBL_totNet = 0;
                     NSDictionary *dict_socre;
@@ -1334,21 +1334,21 @@
                     NSString *STR_disp_PAR;
                     
                     if (DBL_totpar != 0) {
-//                        cell.lbl_result_PAR.text = [NSString stringWithFormat:@"Par %.0f",DBL_totpar];
+                        //                        cell.lbl_result_PAR.text = [NSString stringWithFormat:@"Par %.0f",DBL_totpar];
                         STR_disp_PAR = [NSString stringWithFormat:@"%@ %.0f",STR_title_PAR,DBL_totpar];
                     }
                     else
                     {
-//                        cell.lbl_result_PAR.text = @"Par 0";
+                        //                        cell.lbl_result_PAR.text = @"Par 0";
                         STR_disp_PAR = [NSString stringWithFormat:@"%@ 0",STR_title_PAR];
                     }
                     
                     
                     
                     NSDictionary *attribs1 = @{
-                                              NSForegroundColorAttributeName: cell.lbl_result_PAR.textColor,
-                                              NSFontAttributeName: cell.lbl_result_PAR.font
-                                              };
+                                               NSForegroundColorAttributeName: cell.lbl_result_PAR.textColor,
+                                               NSFontAttributeName: cell.lbl_result_PAR.font
+                                               };
                     NSMutableAttributedString *attributedText1 =
                     [[NSMutableAttributedString alloc] initWithString:STR_disp_PAR
                                                            attributes:attribs1];
@@ -1359,12 +1359,12 @@
                     if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
                     {
                         [attributedText1 setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamMedium" size:17.0f],NSForegroundColorAttributeName : [UIColor blackColor]}
-                                                range:cmp];
+                                                 range:cmp];
                     }
                     else
                     {
                         [attributedText1 setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamMedium" size:15.0f],NSForegroundColorAttributeName : [UIColor blackColor]}
-                                                range:cmp];
+                                                 range:cmp];
                         
                     }
                     cell.lbl_result_PAR.attributedText = attributedText1;
@@ -1394,8 +1394,8 @@
                     NSString *STR_title_Pos = @"Pos";
                     
                     NSString *STR_disp_score = [NSString stringWithFormat:@"%@ %.0f/%.0f",STR_title_Socre,DBL_totSCR,DBL_totNet];
-//                    cell.lbl_result_score.text = [NSString stringWithFormat:@"Score %.0f/%.0f",DBL_totSCR,DBL_totNet];
-//                    cell.lbl_result_position.text = [NSString stringWithFormat:@"Pos T-%@",STR_position];
+                    //                    cell.lbl_result_score.text = [NSString stringWithFormat:@"Score %.0f/%.0f",DBL_totSCR,DBL_totNet];
+                    //                    cell.lbl_result_position.text = [NSString stringWithFormat:@"Pos T-%@",STR_position];
                     
                     NSDictionary *attribs = @{
                                               NSForegroundColorAttributeName: cell.lbl_result_score.textColor,
@@ -1460,7 +1460,7 @@
                         STR_update_handicap = [NSString stringWithFormat:@"%.0f",handicap];
                     }
                     
-//                    cell.lbl_result_hcp.text = [NSString stringWithFormat:@"HCP %@",STR_update_handicap];
+                    //                    cell.lbl_result_hcp.text = [NSString stringWithFormat:@"HCP %@",STR_update_handicap];
                     
                     NSString *STR_title_HCP = @"HCP";
                     NSString *STR_disp_HCP = [NSString stringWithFormat:@"%@ %@",STR_title_HCP,STR_update_handicap];
@@ -1488,21 +1488,21 @@
                     }
                     cell.lbl_result_hcp.attributedText = attributedText;
                     
-//                    if (DBL_totSCR != 0) {
-//                        cell.lbl_result_score.text = [NSString stringWithFormat:@"Score %.0f",DBL_totSCR];
-//                    }
-//                    else
-//                    {
-//                        cell.lbl_result_score.text = @" Score 0";
-//                    }
-//                    
-//                    if (DBL_totNet != 0) {
-//                        cell.lbl_tot_Netscore1.text = [NSString stringWithFormat:@"%.0f",DBL_totNet];
-//                    }
-//                    else
-//                    {
-//                        cell.lbl_tot_Netscore1.text = @"0";
-//                    }
+                    //                    if (DBL_totSCR != 0) {
+                    //                        cell.lbl_result_score.text = [NSString stringWithFormat:@"Score %.0f",DBL_totSCR];
+                    //                    }
+                    //                    else
+                    //                    {
+                    //                        cell.lbl_result_score.text = @" Score 0";
+                    //                    }
+                    //
+                    //                    if (DBL_totNet != 0) {
+                    //                        cell.lbl_tot_Netscore1.text = [NSString stringWithFormat:@"%.0f",DBL_totNet];
+                    //                    }
+                    //                    else
+                    //                    {
+                    //                        cell.lbl_tot_Netscore1.text = @"0";
+                    //                    }
                     
                 } @catch (NSException *exception) {
                     NSLog(@"Exception expanding cell %@",exception);
@@ -1534,18 +1534,18 @@
                                 cell.lbl_position_1.text = posit;
                                 
                                 double DBL_totpar = 0,DBL_totSCR = 0;
-                                    
-                                    @try {
-                                        DBL_totpar = [[Dic_tmp valueForKey:@"par"] doubleValue];
-                                    } @catch (NSException *exception) {
-                                        NSLog(@"Exception Totl score section 1 %@",exception);
-                                    }
-                                    
-                                    @try {
-                                        DBL_totSCR = [[Dic_tmp valueForKey:@"gross_score"] doubleValue];
-                                    } @catch (NSException *exception) {
-                                        NSLog(@"Exception Totl score section 1 %@",exception);
-                                    }
+                                
+                                @try {
+                                    DBL_totpar = [[Dic_tmp valueForKey:@"par"] doubleValue];
+                                } @catch (NSException *exception) {
+                                    NSLog(@"Exception Totl score section 1 %@",exception);
+                                }
+                                
+                                @try {
+                                    DBL_totSCR = [[Dic_tmp valueForKey:@"gross_score"] doubleValue];
+                                } @catch (NSException *exception) {
+                                    NSLog(@"Exception Totl score section 1 %@",exception);
+                                }
                                 
                                 
                                 if (DBL_totSCR != DBL_totpar) {
@@ -2607,7 +2607,7 @@
                                 {
                                     cell.lbl_tot_Netscore2.text = @"0";
                                 }
-                        
+                                
                             }
                                 break;
                                 
@@ -2643,7 +2643,7 @@
                 NSIndexPath *theIndexPath = [self actualIndexPathForTappedIndexPath:indexPath];
                 NSDictionary *Dictn_contents = [ARR_leaders objectAtIndex:[theIndexPath row]-1];
                 NSDictionary *Nextval;
-//                float cur_position = [[Dictn_contents valueForKey:@"user_position"] floatValue];
+                //                float cur_position = [[Dictn_contents valueForKey:@"user_position"] floatValue];
                 float next_posi = 0.00;
                 float cur_position = 0.00;
                 
@@ -2670,21 +2670,21 @@
                 
                 if ([theIndexPath row] -1 != 0) {
                     if ([ARR_leaders count] > 1) {
-//                        Nextval = [ARR_leaders objectAtIndex:[theIndexPath row]];
+                        //                        Nextval = [ARR_leaders objectAtIndex:[theIndexPath row]];
                         Nextval = [ARR_leaders objectAtIndex:[theIndexPath row]- 2];
                     }
                 }
-//                else
-//                {
-//                    
-//                }
+                //                else
+                //                {
+                //
+                //                }
                 
                 /*else
-                {
-                    if ([ARR_leaders count] > 1) {
-                        Nextval = [ARR_leaders objectAtIndex:[theIndexPath row]-1];
-                    }
-                }*/
+                 {
+                 if ([ARR_leaders count] > 1) {
+                 Nextval = [ARR_leaders objectAtIndex:[theIndexPath row]-1];
+                 }
+                 }*/
                 
                 if (Nextval) {
                     next_posi = [[Nextval valueForKey:@"user_position"] floatValue];
@@ -2697,7 +2697,7 @@
                 {
                     STR_position_val = [NSString stringWithFormat:@"%.0f",cur_position];
                 }
-
+                
                 cell.lbl_Position.text = STR_position_val;
                 cell.lbl_playerNAme.text = [NSString stringWithFormat:@"  %@",[Dictn_contents valueForKey:@"user_name"]];
                 
@@ -2725,7 +2725,7 @@
                 } @catch (NSException *exception) {
                     str_01 = @"E";
                 }
-             
+                
                 
                 cell.lbl_Topar.text = [NSString stringWithFormat:@"%@",str_01];
                 
@@ -2815,7 +2815,7 @@
             
             
             NSString *text = [NSString stringWithFormat:@"%@\n%@ %@",STR_playerName,STR_team,STR_HCP];
-                        
+            
             // If attributed text is supported (iOS6+)
             if ([cell.lbl_playerName respondsToSelector:@selector(setAttributedText:)]) {
                 // Define general attributes for the entire text
@@ -2987,31 +2987,31 @@
                 cell.lbl_gross_score.textColor = [UIColor whiteColor];
                 [cell setSelected:YES animated:YES];
             }
-
+            
             NSString *STR_grossSCORE = [NSString stringWithFormat:@"%@",[DICTN_info valueForKey:@"gross_score"]];
             
             if ([STR_grossSCORE isEqualToString:@"<null>"]) {
-//                @try {
-//                    cell.lbl_gross_score.text = [ARR_grossScore objectAtIndex:indexPath.row - 1];
+                //                @try {
+                //                    cell.lbl_gross_score.text = [ARR_grossScore objectAtIndex:indexPath.row - 1];
                 
-//                } @catch (NSException *exception) {
-                    cell.lbl_gross_score.text = @"";
-//                }
+                //                } @catch (NSException *exception) {
+                cell.lbl_gross_score.text = @"";
+                //                }
             }
-//            else if (INdex_Selected.row == indexPath.row)
-//            {
-//                @try {
-//                    cell.lbl_gross_score.text = [ARR_grossScore objectAtIndex:indexPath.row - 1];
-//                    if ([[[ARR_color objectAtIndex:indexPath.row-1] valueForKey:@"color"] isEqualToString:@"blue"]) {
-//                        cell.lbl_gross_score.backgroundColor = cell.lbl_hole.backgroundColor;
-//                        [cell setSelected:YES animated:YES];
-//                    }
-                
-//                    NSLog(@"The value color %@\nThe value for index %@\n",[[ARR_color objectAtIndex:indexPath.row-1] valueForKey:@"color"],[[ARR_color objectAtIndex:indexPath.row-1] valueForKey:@"index"]);
-//                } @catch (NSException *exception) {
-//                    cell.lbl_gross_score.text = @"";
-//                }
-//            }
+            //            else if (INdex_Selected.row == indexPath.row)
+            //            {
+            //                @try {
+            //                    cell.lbl_gross_score.text = [ARR_grossScore objectAtIndex:indexPath.row - 1];
+            //                    if ([[[ARR_color objectAtIndex:indexPath.row-1] valueForKey:@"color"] isEqualToString:@"blue"]) {
+            //                        cell.lbl_gross_score.backgroundColor = cell.lbl_hole.backgroundColor;
+            //                        [cell setSelected:YES animated:YES];
+            //                    }
+            
+            //                    NSLog(@"The value color %@\nThe value for index %@\n",[[ARR_color objectAtIndex:indexPath.row-1] valueForKey:@"color"],[[ARR_color objectAtIndex:indexPath.row-1] valueForKey:@"index"]);
+            //                } @catch (NSException *exception) {
+            //                    cell.lbl_gross_score.text = @"";
+            //                }
+            //            }
             else
             {
                 cell.lbl_gross_score.text = STR_grossSCORE;
@@ -3028,34 +3028,34 @@
             cell.lbl_gross_score.layer.cornerRadius = 20;
             cell.lbl_gross_score.layer.masksToBounds = YES;
             
-//            cell.lbl_gross_score.center = cell.VW_grossScore.center;
+            //            cell.lbl_gross_score.center = cell.VW_grossScore.center;
             
             
-//            UIImage *Image_gross_scr = [UIImage imageNamed:@"Grey_1"];
-//            UIGraphicsBeginImageContextWithOptions(cell.VW_grossScore.frame.size, NO, 0.f);
-//            [Image_gross_scr drawInRect:CGRectMake(0.f, 0.f, cell.VW_grossScore.frame.size.width, cell.VW_grossScore.frame.size.height)];
-//            UIImage * resultImage_Gross_scr = UIGraphicsGetImageFromCurrentImageContext();
-//            UIGraphicsEndImageContext();
+            //            UIImage *Image_gross_scr = [UIImage imageNamed:@"Grey_1"];
+            //            UIGraphicsBeginImageContextWithOptions(cell.VW_grossScore.frame.size, NO, 0.f);
+            //            [Image_gross_scr drawInRect:CGRectMake(0.f, 0.f, cell.VW_grossScore.frame.size.width, cell.VW_grossScore.frame.size.height)];
+            //            UIImage * resultImage_Gross_scr = UIGraphicsGetImageFromCurrentImageContext();
+            //            UIGraphicsEndImageContext();
             [cell.VW_grossScore setBackgroundColor:[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0]];
             
             
             NSString *STR_NetSocre = [NSString stringWithFormat:@"%@",[DICTN_info valueForKey:@"net_score"]];
             
             if ([STR_NetSocre isEqualToString:@"<null>"]) {
-//                @try {
-//                    cell.lbl_net_score.text = [ARR_netScore objectAtIndex:indexPath.row - 1];
-//                } @catch (NSException *exception) {
-                    cell.lbl_net_score.text = @"";
-//                }
+                //                @try {
+                //                    cell.lbl_net_score.text = [ARR_netScore objectAtIndex:indexPath.row - 1];
+                //                } @catch (NSException *exception) {
+                cell.lbl_net_score.text = @"";
+                //                }
             }
-//            if (INdex_Selected.row == indexPath.row)
-//            {
-//                @try {
-//                    cell.lbl_net_score.text = [ARR_netScore objectAtIndex:indexPath.row - 1];
-//                } @catch (NSException *exception) {
-//                    cell.lbl_net_score.text = @"";
-//                }
-//            }
+            //            if (INdex_Selected.row == indexPath.row)
+            //            {
+            //                @try {
+            //                    cell.lbl_net_score.text = [ARR_netScore objectAtIndex:indexPath.row - 1];
+            //                } @catch (NSException *exception) {
+            //                    cell.lbl_net_score.text = @"";
+            //                }
+            //            }
             else
             {
                 cell.lbl_net_score.text = STR_NetSocre;
@@ -3204,7 +3204,7 @@
 {
     // deselect row
     [self.TBL_leaderboard deselectRowAtIndexPath:indexPath
-                             animated:NO];
+                                        animated:NO];
     
     // get the actual index path
     indexPath = [self actualIndexPathForTappedIndexPath:indexPath];
@@ -3225,11 +3225,11 @@
     }
     INDX_STR = indexPath;
     INDX_expanded = theExpandedIndexPath;
-//    [[NSUserDefaults standardUserDefaults] setObject:indexPath forKey:@"INDX_STR"];
-//    [[NSUserDefaults standardUserDefaults] setObject:theExpandedIndexPath forKey:@"INDX_expanded"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
+    //    [[NSUserDefaults standardUserDefaults] setObject:indexPath forKey:@"INDX_STR"];
+    //    [[NSUserDefaults standardUserDefaults] setObject:theExpandedIndexPath forKey:@"INDX_expanded"];
+    //    [[NSUserDefaults standardUserDefaults] synchronize];
     
-//    [self perform_CellUpdate];
+    //    [self perform_CellUpdate];
     VW_overlay.hidden = NO;
     [activityIndicatorView startAnimating];
     [self performSelector:@selector(perform_CellUpdate) withObject:activityIndicatorView afterDelay:0.01];
@@ -3315,7 +3315,7 @@
 #pragma mark - Update score Deligate
 -(void) get_SCORE:(NSString *)STR_score get_HCP:(NSString *)ST_HCP
 {
-
+    
     NSLog(@"Value return = %@ Index selected %ld hCP %@",STR_score,(long)INdex_Selected.row,ST_HCP);
     [self get_GRoss_SCORE:STR_score:ST_HCP];
     
@@ -3362,7 +3362,7 @@
     NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
     [request setHTTPBody:postData];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if(aData)
@@ -3376,25 +3376,25 @@
         DICTIN_PlayerINfo = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[NSString stringWithFormat:@"%@",[dict valueForKey:@"name"]],@"STR_playerName",@"",@"STR_team",[NSString stringWithFormat:@"%@",_TXT_Handicap.text],@"STR_HCP",[NSString stringWithFormat:@"%@",[dict valueForKey:@"total_score"]],@"Total", nil];
         
         
-//        if ([ARR_grossScore count] == 0) {
-//            ARR_grossScore = [[NSMutableArray alloc] init];
-//            ARR_netScore = [[NSMutableArray alloc] init];
-            ARR_color = [[NSMutableArray alloc] init];
-            ARR_holes = [[NSMutableArray alloc] init];
+        //        if ([ARR_grossScore count] == 0) {
+        //            ARR_grossScore = [[NSMutableArray alloc] init];
+        //            ARR_netScore = [[NSMutableArray alloc] init];
+        ARR_color = [[NSMutableArray alloc] init];
+        ARR_holes = [[NSMutableArray alloc] init];
         [self HOLES_API];
-            [ARR_holes addObjectsFromArray:[dict valueForKey:@"hole_info"]];
+        [ARR_holes addObjectsFromArray:[dict valueForKey:@"hole_info"]];
         
-//        NSSortDescriptor *delay = [NSSortDescriptor sortDescriptorWithKey:@"position.integerValue" ascending:YES];
-//        [ARR_holes sortUsingDescriptors:[NSArray arrayWithObject:delay]];
+        //        NSSortDescriptor *delay = [NSSortDescriptor sortDescriptorWithKey:@"position.integerValue" ascending:YES];
+        //        [ARR_holes sortUsingDescriptors:[NSArray arrayWithObject:delay]];
         
         NSLog(@"Sorted list 2 %@",ARR_holes);
-            
-            for (int i = 0; i < [ARR_holes count]; i++) {
-                NSDictionary *dictin_TEMP = @{@"color":@"",@"index":@""};
-//                [ARR_grossScore addObject:@""];
-//                [ARR_netScore addObject:@""];
-                [ARR_color addObject:dictin_TEMP];
-//            }
+        
+        for (int i = 0; i < [ARR_holes count]; i++) {
+            NSDictionary *dictin_TEMP = @{@"color":@"",@"index":@""};
+            //                [ARR_grossScore addObject:@""];
+            //                [ARR_netScore addObject:@""];
+            [ARR_color addObject:dictin_TEMP];
+            //            }
         }
         [_TBL_scores reloadData];
         
@@ -3430,7 +3430,7 @@
     [request setHTTPShouldHandleCookies:NO];
     NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if(aData)
@@ -3440,23 +3440,23 @@
         //        DICTIN_holes *globals = [DICTIN_holes dictionary_VAL];
         //        globals.Dictin_course = dict;
         
-//        if ([ARR_grossScore count] == 0) {
-//            ARR_grossScore = [[NSMutableArray alloc] init];
-//            ARR_netScore = [[NSMutableArray alloc] init];
+        //        if ([ARR_grossScore count] == 0) {
+        //            ARR_grossScore = [[NSMutableArray alloc] init];
+        //            ARR_netScore = [[NSMutableArray alloc] init];
         
-            [ARR_holes removeAllObjects];
-            [ARR_holes addObjectsFromArray:[dict valueForKey:@"hole_info"]];
-            //        NSLog(@"Json response Hole = %@",dict);
+        [ARR_holes removeAllObjects];
+        [ARR_holes addObjectsFromArray:[dict valueForKey:@"hole_info"]];
+        //        NSLog(@"Json response Hole = %@",dict);
         
-//        NSSortDescriptor *delay = [NSSortDescriptor sortDescriptorWithKey:@"position.integerValue" ascending:YES];
-//        [ARR_holes sortUsingDescriptors:[NSArray arrayWithObject:delay]];
+        //        NSSortDescriptor *delay = [NSSortDescriptor sortDescriptorWithKey:@"position.integerValue" ascending:YES];
+        //        [ARR_holes sortUsingDescriptors:[NSArray arrayWithObject:delay]];
         
         NSLog(@"Sorted list 1 %@",ARR_holes);
-            
-//            for (int i = 0; i < [ARR_holes count]; i++) {
-//                [ARR_grossScore addObject:@""];
-//                [ARR_netScore addObject:@""];
-//            }
+        
+        //            for (int i = 0; i < [ARR_holes count]; i++) {
+        //                [ARR_grossScore addObject:@""];
+        //                [ARR_netScore addObject:@""];
+        //            }
         [_TBL_scores reloadData];
     }
     else
@@ -3491,7 +3491,7 @@
     NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
     [request setHTTPBody:postData];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if(aData)
@@ -3499,7 +3499,7 @@
         NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
         NSLog(@"Json response get net Socre = %@",dict);
         
-//        DICTIN_PlayerINfo = @{@"STR_playerName":[NSString stringWithFormat:@"%@",[dict valueForKey:@"name"]],@"STR_team":@"Team 1",@"STR_HCP":[NSString stringWithFormat:@"%@",_TXT_Handicap.text],@"Total":[NSString stringWithFormat:@"%@",[dict valueForKey:@"total_score"]]};
+        //        DICTIN_PlayerINfo = @{@"STR_playerName":[NSString stringWithFormat:@"%@",[dict valueForKey:@"name"]],@"STR_team":@"Team 1",@"STR_HCP":[NSString stringWithFormat:@"%@",_TXT_Handicap.text],@"Total":[NSString stringWithFormat:@"%@",[dict valueForKey:@"total_score"]]};
         
         if (dict) {
             [DICTIN_PlayerINfo setObject:[NSString stringWithFormat:@"%@",[dict valueForKey:@"total_score"]]  forKey:@"Total"];
@@ -3512,8 +3512,8 @@
             NSDictionary *temp_dictin = [ARR_holes objectAtIndex:INdex_Selected.row-1];
             NSDictionary *sore_val = @{@"gross_score":gross_score,@"handicap":[temp_dictin valueForKey:@"handicap"],@"net_score":STR_netScore,@"par":[temp_dictin valueForKey:@"par"],@"position":[temp_dictin valueForKey:@"position"],@"yards":[temp_dictin valueForKey:@"yards"]};
             
-//            [ARR_netScore replaceObjectAtIndex:INdex_Selected.row-1 withObject:STR_netScore];
-//            [ARR_grossScore replaceObjectAtIndex:INdex_Selected.row-1 withObject:gross_score];
+            //            [ARR_netScore replaceObjectAtIndex:INdex_Selected.row-1 withObject:STR_netScore];
+            //            [ARR_grossScore replaceObjectAtIndex:INdex_Selected.row-1 withObject:gross_score];
             
             [ARR_holes replaceObjectAtIndex:INdex_Selected.row-1 withObject:sore_val];
             
@@ -3549,8 +3549,8 @@
     
     NSHTTPURLResponse *response = nil;
     
-//    NSDictionary *parameters = @{ @"handicap":  [NSString stringWithFormat:@"%@",_TXT_Handicap.text]};
-//    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
+    //    NSDictionary *parameters = @{ @"handicap":  [NSString stringWithFormat:@"%@",_TXT_Handicap.text]};
+    //    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
     
     NSURL *urlProducts=[NSURL URLWithString:[NSString stringWithFormat:@"%@hole_info/leader_board/%@",SERVER_URL,[event valueForKey:@"id"]]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -3558,9 +3558,9 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPShouldHandleCookies:NO];
     NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
-//    [request setHTTPBody:postData];
+    //    [request setHTTPBody:postData];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if(aData)
@@ -3571,7 +3571,7 @@
         ARR_leaders = [[NSMutableArray alloc] init];
         [ARR_leaders addObjectsFromArray:[dict valueForKey:@"leader_board"]];
         
-//        [ARR_leaders sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"total_score" ascending:YES]]];
+        //        [ARR_leaders sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"total_score" ascending:YES]]];
         
         if ([ARR_leaders count] != 0) {
             [_TBL_leaderboard reloadData];
@@ -3611,7 +3611,7 @@
     NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
     //    [request setHTTPBody:postData];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if(aData)
@@ -3619,7 +3619,7 @@
         dictin_Scores = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
         NSLog(@"Dictin score api = %@",dictin_Scores);
         
-//        STR_update_handicap = [dictin_Scores valueForKey:@"handicap"];
+        //        STR_update_handicap = [dictin_Scores valueForKey:@"handicap"];
         
     }
     else
@@ -3771,7 +3771,7 @@
         
         NSString *jsonDictionary = (NSString *)aData;
         
-//        NSLog(@"Json dictin live %@",jsonDictionary);
+        //        NSLog(@"Json dictin live %@",jsonDictionary);
         
         NSData *jsonData = [jsonDictionary dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData
@@ -3828,22 +3828,22 @@
                             NSArray *TMP_leder;
                             @try {
                                 /*TMP_leder = [json valueForKey:@"leader_board"];
-                                if ([TMP_leder count] > 0) {
-                                    ARR_leaders = [[NSMutableArray alloc] init];
-                                    [ARR_leaders addObjectsFromArray:TMP_leder];
-                                    
-                                    self.expandingIndexPath = nil;
-                                    self.expandedIndexPath = nil;
-                                    
-//                                    [UIView transitionWithView: self.TBL_leaderboard
-//                                                      duration: 0.35f
-//                                                       options: UIViewAnimationOptionTransitionCrossDissolve
-//                                                    animations: ^(void)
-//                                     {
-                                         [self.TBL_leaderboard reloadData];
-//                                     }
-//                                                    completion: nil];
-                                }*/
+                                 if ([TMP_leder count] > 0) {
+                                 ARR_leaders = [[NSMutableArray alloc] init];
+                                 [ARR_leaders addObjectsFromArray:TMP_leder];
+                                 
+                                 self.expandingIndexPath = nil;
+                                 self.expandedIndexPath = nil;
+                                 
+                                 //                                    [UIView transitionWithView: self.TBL_leaderboard
+                                 //                                                      duration: 0.35f
+                                 //                                                       options: UIViewAnimationOptionTransitionCrossDissolve
+                                 //                                                    animations: ^(void)
+                                 //                                     {
+                                 [self.TBL_leaderboard reloadData];
+                                 //                                     }
+                                 //                                                    completion: nil];
+                                 }*/
                             } @catch (NSException *exception) {
                                 NSLog(@"Exception update leaders %@",json);
                             }
@@ -3862,316 +3862,316 @@
                             @catch (NSException *exception)
                             {
                                 NSLog(@"Exception add new person %@",exception);
-//                                @try {
-//                                    static NSString *simpleTableIdentifier = @"SimpleTableItem";
-//                                    cell_player *cell = (cell_player *)[_TBL_leaderboard dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-//                                    if (cell == nil)
-//                                    {
-//                                        
-//                                        NSArray *nib;
-//                                        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-//                                        {
-//                                            nib = [[NSBundle mainBundle] loadNibNamed:@"cell_player~iPad" owner:self options:nil];
-//                                        }
-//                                        else
-//                                        {
-//                                            nib = [[NSBundle mainBundle] loadNibNamed:@"cell_player" owner:self options:nil];
-//                                        }
-//                                        cell = [nib objectAtIndex:0];
-//                                    }
-//                                    
-//                                    UITableView *tableview = self.TBL_leaderboard;    //set your tableview here
-//                                    for(int sectionI=0; sectionI < 1; sectionI++)
-//                                    {
-//                                        int rowCount = (int)[tableview numberOfRowsInSection:sectionI];
-//                                        for (int rowsI=1; rowsI < rowCount; rowsI++)
-//                                        {
-//                                            NSIndexPath *indxPath = [NSIndexPath indexPathForRow:rowsI inSection:sectionI];
-//                                            cell = (cell_player *)[_TBL_leaderboard cellForRowAtIndexPath:indxPath];
-//                                            NSString *user_id = cell.lbl_userID.text;
-//                                            int usr_id = [user_id intValue];
-//                                            
-//                                            NSString *STR_jsonUSer = [json valueForKey:@"user_id"];
-//                                            int jsonUSer = [STR_jsonUSer intValue];
-//                                            
-//                                            if (usr_id == jsonUSer) {
-//                                                NSInteger i = [self returnIndexFromDateProperty:[json valueForKey:@"user_id"]];
-//                                                NSDictionary *temp_dictin = [ARR_leaders objectAtIndex:i];
-//                                                NSString *user_id1 = [json valueForKey:@"user_id"];
-//                                                NSString *user_name = [temp_dictin valueForKey:@"user_name"];
-//                                                NSString *total_score = [json valueForKey:@"total_score"];
-//                                                NSString *position = [json valueForKey:@"position"];
-//                                                NSString *total_net_score;
-//                                                
-//                                                @try {
-//                                                    total_net_score = [json valueForKey:@"total_net_score"];
-//                                                } @catch (NSException *exception) {
-//                                                    total_net_score = [json valueForKey:@"total_score"];
-//                                                }
-//                                                
-//                                                NSDictionary *store_dictin = @{@"total_net_score":total_net_score,@"total_score":total_score,@"user_id":user_id1,@"user_name":user_name,@"position":position};
-//                                                [ARR_leaders replaceObjectAtIndex:i withObject:store_dictin];
-//                                                
-//                                                
-//                                                dispatch_async(dispatch_get_main_queue(), ^{
-//                                                    [self.TBL_leaderboard beginUpdates];
-//                                                    NSArray *indexPath0 = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:indxPath.row inSection:0]];
-//                                                    [self.TBL_leaderboard reloadRowsAtIndexPaths:indexPath0 withRowAnimation:UITableViewRowAnimationNone];
-//                                                    [self.TBL_leaderboard endUpdates];
-//                                                });
-//                                            }
-//                                        }
-//                                    }
-//                                } @catch (NSException *exception) {
-//                                    NSLog(@"Exception from update players %@",json);
-//                                    NSArray *ARR_tem;
-//                                    @try {
-//                                        ARR_tem = [json valueForKey:@"hole_array"];
-//                                        [dictin_Scores setObject:ARR_tem forKey:@"hole_array"];
-//                                        dispatch_async(dispatch_get_main_queue(), ^{
-//                                            self.expandingIndexPath = nil;
-//                                            self.expandedIndexPath = nil;
-//                                            [self.TBL_leaderboard reloadData];
-//                                        });
-//                                        
-//                                        NSDictionary *DICT_leader;
-//                                        @try {
-//                                            DICT_leader = [json valueForKey:@"score_card"];
-//                                            NSInteger i = [self returnIndexFromDateProperty:[json valueForKey:@"user_id"]];
-//                                            //                                            NSDictionary *temp_dictin = [ARR_leaders objectAtIndex:i];
-//                                            NSString *user_id1 = [json valueForKey:@"user_id"];
-//                                            NSString *user_name = [DICT_leader valueForKey:@"user_name"];
-//                                            NSString *total_score = [DICT_leader valueForKey:@"total_score"];
-//                                            NSString *total_net_score = [DICT_leader valueForKey:@"total_net_score"];
-//                                            //                                            NSString *total_gross_score = [DICT_leader valueForKey:@"total_gross_score"];
-//                                            //                                        NSString *user_handicap = [DICT_leader valueForKey:@"user_handicap"];
-//                                            NSString *user_position = [DICT_leader valueForKey:@"user_position"];
-//                                            
-//                                            NSDictionary *store_dictin = @{@"total_net_score":total_net_score,@"total_score":total_score,@"user_id":user_id1,@"user_name":user_name,@"user_position":user_position};
-//                                            [ARR_leaders replaceObjectAtIndex:i withObject:store_dictin];
-//                                            
-//                                            
-//                                            dispatch_async(dispatch_get_main_queue(), ^{
-//                                                self.expandingIndexPath = nil;
-//                                                self.expandedIndexPath = nil;
-//                                                [self.TBL_leaderboard reloadData];
-//                                                
-//                                            });
-//                                            
-//                                        }
-//                                        @catch (NSException *exception) {
-//                                            NSLog(@"Exception from %@",json);
-//                                        }
-//                                    }
-//                                    @catch (NSException *exception) {
-//                                        NSLog(@"Exception from %@",json);
-//                                    }
-                                    NSDictionary *DICT_leader;
+                                //                                @try {
+                                //                                    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+                                //                                    cell_player *cell = (cell_player *)[_TBL_leaderboard dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+                                //                                    if (cell == nil)
+                                //                                    {
+                                //
+                                //                                        NSArray *nib;
+                                //                                        if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+                                //                                        {
+                                //                                            nib = [[NSBundle mainBundle] loadNibNamed:@"cell_player~iPad" owner:self options:nil];
+                                //                                        }
+                                //                                        else
+                                //                                        {
+                                //                                            nib = [[NSBundle mainBundle] loadNibNamed:@"cell_player" owner:self options:nil];
+                                //                                        }
+                                //                                        cell = [nib objectAtIndex:0];
+                                //                                    }
+                                //
+                                //                                    UITableView *tableview = self.TBL_leaderboard;    //set your tableview here
+                                //                                    for(int sectionI=0; sectionI < 1; sectionI++)
+                                //                                    {
+                                //                                        int rowCount = (int)[tableview numberOfRowsInSection:sectionI];
+                                //                                        for (int rowsI=1; rowsI < rowCount; rowsI++)
+                                //                                        {
+                                //                                            NSIndexPath *indxPath = [NSIndexPath indexPathForRow:rowsI inSection:sectionI];
+                                //                                            cell = (cell_player *)[_TBL_leaderboard cellForRowAtIndexPath:indxPath];
+                                //                                            NSString *user_id = cell.lbl_userID.text;
+                                //                                            int usr_id = [user_id intValue];
+                                //
+                                //                                            NSString *STR_jsonUSer = [json valueForKey:@"user_id"];
+                                //                                            int jsonUSer = [STR_jsonUSer intValue];
+                                //
+                                //                                            if (usr_id == jsonUSer) {
+                                //                                                NSInteger i = [self returnIndexFromDateProperty:[json valueForKey:@"user_id"]];
+                                //                                                NSDictionary *temp_dictin = [ARR_leaders objectAtIndex:i];
+                                //                                                NSString *user_id1 = [json valueForKey:@"user_id"];
+                                //                                                NSString *user_name = [temp_dictin valueForKey:@"user_name"];
+                                //                                                NSString *total_score = [json valueForKey:@"total_score"];
+                                //                                                NSString *position = [json valueForKey:@"position"];
+                                //                                                NSString *total_net_score;
+                                //
+                                //                                                @try {
+                                //                                                    total_net_score = [json valueForKey:@"total_net_score"];
+                                //                                                } @catch (NSException *exception) {
+                                //                                                    total_net_score = [json valueForKey:@"total_score"];
+                                //                                                }
+                                //
+                                //                                                NSDictionary *store_dictin = @{@"total_net_score":total_net_score,@"total_score":total_score,@"user_id":user_id1,@"user_name":user_name,@"position":position};
+                                //                                                [ARR_leaders replaceObjectAtIndex:i withObject:store_dictin];
+                                //
+                                //
+                                //                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                //                                                    [self.TBL_leaderboard beginUpdates];
+                                //                                                    NSArray *indexPath0 = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:indxPath.row inSection:0]];
+                                //                                                    [self.TBL_leaderboard reloadRowsAtIndexPaths:indexPath0 withRowAnimation:UITableViewRowAnimationNone];
+                                //                                                    [self.TBL_leaderboard endUpdates];
+                                //                                                });
+                                //                                            }
+                                //                                        }
+                                //                                    }
+                                //                                } @catch (NSException *exception) {
+                                //                                    NSLog(@"Exception from update players %@",json);
+                                //                                    NSArray *ARR_tem;
+                                //                                    @try {
+                                //                                        ARR_tem = [json valueForKey:@"hole_array"];
+                                //                                        [dictin_Scores setObject:ARR_tem forKey:@"hole_array"];
+                                //                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                //                                            self.expandingIndexPath = nil;
+                                //                                            self.expandedIndexPath = nil;
+                                //                                            [self.TBL_leaderboard reloadData];
+                                //                                        });
+                                //
+                                //                                        NSDictionary *DICT_leader;
+                                //                                        @try {
+                                //                                            DICT_leader = [json valueForKey:@"score_card"];
+                                //                                            NSInteger i = [self returnIndexFromDateProperty:[json valueForKey:@"user_id"]];
+                                //                                            //                                            NSDictionary *temp_dictin = [ARR_leaders objectAtIndex:i];
+                                //                                            NSString *user_id1 = [json valueForKey:@"user_id"];
+                                //                                            NSString *user_name = [DICT_leader valueForKey:@"user_name"];
+                                //                                            NSString *total_score = [DICT_leader valueForKey:@"total_score"];
+                                //                                            NSString *total_net_score = [DICT_leader valueForKey:@"total_net_score"];
+                                //                                            //                                            NSString *total_gross_score = [DICT_leader valueForKey:@"total_gross_score"];
+                                //                                            //                                        NSString *user_handicap = [DICT_leader valueForKey:@"user_handicap"];
+                                //                                            NSString *user_position = [DICT_leader valueForKey:@"user_position"];
+                                //
+                                //                                            NSDictionary *store_dictin = @{@"total_net_score":total_net_score,@"total_score":total_score,@"user_id":user_id1,@"user_name":user_name,@"user_position":user_position};
+                                //                                            [ARR_leaders replaceObjectAtIndex:i withObject:store_dictin];
+                                //
+                                //
+                                //                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                //                                                self.expandingIndexPath = nil;
+                                //                                                self.expandedIndexPath = nil;
+                                //                                                [self.TBL_leaderboard reloadData];
+                                //
+                                //                                            });
+                                //
+                                //                                        }
+                                //                                        @catch (NSException *exception) {
+                                //                                            NSLog(@"Exception from %@",json);
+                                //                                        }
+                                //                                    }
+                                //                                    @catch (NSException *exception) {
+                                //                                        NSLog(@"Exception from %@",json);
+                                //                                    }
+                                NSDictionary *DICT_leader;
+                                @try {
+                                    DICT_leader = [json valueForKey:@"score_card"];
+                                    NSInteger i = [self returnIndexFromDateProperty:[json valueForKey:@"user_id"]];
+                                    //                                            NSDictionary *temp_dictin = [ARR_leaders objectAtIndex:i];
+                                    NSString *user_id1 = [json valueForKey:@"user_id"];
+                                    NSString *user_name = [DICT_leader valueForKey:@"user_name"];
+                                    NSString *total_score = [DICT_leader valueForKey:@"total_score"];
+                                    NSString *total_net_score = [DICT_leader valueForKey:@"total_net_score"];
+                                    //                                            NSString *total_gross_score = [DICT_leader valueForKey:@"total_gross_score"];
+                                    //                                        NSString *user_handicap = [DICT_leader valueForKey:@"user_handicap"];
+                                    NSString *user_position = [DICT_leader valueForKey:@"user_position"];
+                                    
+                                    NSDictionary *store_dictin = @{@"total_net_score":total_net_score,@"total_score":total_score,@"user_id":user_id1,@"user_name":user_name,@"user_position":user_position};
+                                    [ARR_leaders replaceObjectAtIndex:i withObject:store_dictin];
+                                    
+                                    
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        self.expandingIndexPath = nil;
+                                        self.expandedIndexPath = nil;
+                                        [self.TBL_leaderboard reloadData];
+                                        
+                                    });
+                                    
+                                }
+                                @catch (NSException *exception) {
+                                    NSLog(@"Exception from %@",json);
+                                    
                                     @try {
-                                        DICT_leader = [json valueForKey:@"score_card"];
-                                        NSInteger i = [self returnIndexFromDateProperty:[json valueForKey:@"user_id"]];
-                                        //                                            NSDictionary *temp_dictin = [ARR_leaders objectAtIndex:i];
-                                        NSString *user_id1 = [json valueForKey:@"user_id"];
-                                        NSString *user_name = [DICT_leader valueForKey:@"user_name"];
-                                        NSString *total_score = [DICT_leader valueForKey:@"total_score"];
-                                        NSString *total_net_score = [DICT_leader valueForKey:@"total_net_score"];
-                                        //                                            NSString *total_gross_score = [DICT_leader valueForKey:@"total_gross_score"];
-                                        //                                        NSString *user_handicap = [DICT_leader valueForKey:@"user_handicap"];
-                                        NSString *user_position = [DICT_leader valueForKey:@"user_position"];
-                                        
-                                        NSDictionary *store_dictin = @{@"total_net_score":total_net_score,@"total_score":total_score,@"user_id":user_id1,@"user_name":user_name,@"user_position":user_position};
-                                        [ARR_leaders replaceObjectAtIndex:i withObject:store_dictin];
-                                        
-                                        
-                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                        TMP_leder = [json valueForKey:@"leader_board"];
+                                        if ([TMP_leder count] > 0) {
+                                            ARR_leaders = [[NSMutableArray alloc] init];
+                                            [ARR_leaders addObjectsFromArray:TMP_leder];
+                                            
                                             self.expandingIndexPath = nil;
                                             self.expandedIndexPath = nil;
-                                            [self.TBL_leaderboard reloadData];
                                             
-                                        });
-                                        
-                                    }
-                                    @catch (NSException *exception) {
-                                        NSLog(@"Exception from %@",json);
-                                        
-                                        @try {
-                                            TMP_leder = [json valueForKey:@"leader_board"];
-                                            if ([TMP_leder count] > 0) {
-                                                ARR_leaders = [[NSMutableArray alloc] init];
-                                                [ARR_leaders addObjectsFromArray:TMP_leder];
-                                                
-                                                self.expandingIndexPath = nil;
-                                                self.expandedIndexPath = nil;
-                                                
-                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                            dispatch_async(dispatch_get_main_queue(), ^{
                                                 [UIView transitionWithView: self.TBL_leaderboard                                                                                                      duration: 0.35f                                                                                                        options: UIViewAnimationOptionTransitionCrossDissolve                                                                                                    animations: ^(void)
                                                  {
                                                      [self.TBL_leaderboard reloadData];
                                                  }                                                                                                  completion: nil];
-                                                    });
-                                            }
-                                                               
-                                        } @catch (NSException *exception) {
-                                            NSLog(@"Exception update leaders 1 %@",json);
+                                            });
                                         }
                                         
+                                    } @catch (NSException *exception) {
+                                        NSLog(@"Exception update leaders 1 %@",json);
                                     }
                                     
-//                                }
+                                }
+                                
+                                //                                }
                             }
                             
-//                            @try {
-//                                TMP_leder = [json valueForKey:@"leader_board"];
-//                                if ([TMP_leder count] > 0) {
-//                                    ARR_leaders = [[NSMutableArray alloc] init];
-//                                    [ARR_leaders addObjectsFromArray:TMP_leder];
-//                                    
-//                                    self.expandingIndexPath = nil;
-//                                    self.expandedIndexPath = nil;
-//                                    
-//                                    [UIView transitionWithView: self.TBL_leaderboard
-//                                                      duration: 0.35f
-//                                                       options: UIViewAnimationOptionTransitionCrossDissolve
-//                                                    animations: ^(void)
-//                                     {
-//                                         [self.TBL_leaderboard reloadData];
-//                                     }
-//                                                    completion: nil];
+                            //                            @try {
+                            //                                TMP_leder = [json valueForKey:@"leader_board"];
+                            //                                if ([TMP_leder count] > 0) {
+                            //                                    ARR_leaders = [[NSMutableArray alloc] init];
+                            //                                    [ARR_leaders addObjectsFromArray:TMP_leder];
+                            //
+                            //                                    self.expandingIndexPath = nil;
+                            //                                    self.expandedIndexPath = nil;
+                            //
+                            //                                    [UIView transitionWithView: self.TBL_leaderboard
+                            //                                                      duration: 0.35f
+                            //                                                       options: UIViewAnimationOptionTransitionCrossDissolve
+                            //                                                    animations: ^(void)
+                            //                                     {
+                            //                                         [self.TBL_leaderboard reloadData];
+                            //                                     }
+                            //                                                    completion: nil];
                             
-                                 /*   dispatch_async(dispatch_get_main_queue(), ^{
-                                        
-                                        if (!self.expandingIndexPath && !self.expandedIndexPath) {
-//                                            [self.TBL_leaderboard reloadData];
-                                            
-                                        }
-                                        else
-                                        {
-                                            NSString *STR_userID = [[NSUserDefaults standardUserDefaults] valueForKey:@"Selected_USER"];
-                                            int usr_id = [STR_userID intValue];
-                                            
-                                            NSString *STR_jsonUSer = [json valueForKey:@"user_id"];
-                                            int jsonUSer = [STR_jsonUSer intValue];
-                                            
-                                            NSMutableArray *ARR_tem = [[NSMutableArray alloc] init];
-                                            NSMutableArray *hole_array = [[NSMutableArray alloc] init];
-                                            if (usr_id == jsonUSer) //(dictin_Scores) //
-                                            {
-                                                NSLog(@"Score update");
-                                                
-                                                
-                                                NSString *STR_index = [json valueForKey:@"hole_number"];
-                                                int index = [STR_index intValue];
-                                                
-                                                @try {
-//                                                    ARR_tem = [json valueForKey:@"hole_array"];
-//                                                    NSDictionary *Dictin_score = @{@"gross_score":@"",@"handicap":@"",@"net_score":@"",@"par":@"",@"position":@"",@"yards":@""};
-//                                                    [dictin_Scores setObject:ARR_tem forKey:@"hole_array"];
-//                                                    STR_update_handicap = [json valueForKey:@"handicap"];
-                                                } @catch (NSException *exception) {
-                                                    NSString *STR_position;
-                                                    
-                                                    @try {
-                                                        STR_position = [json valueForKey:@"position"];
-                                                    } @catch (NSException *exception) {
-                                                        STR_position = @"0";
-                                                    }
-                                                    
-                                                    [hole_array addObjectsFromArray:[dictin_Scores valueForKey:@"hole_array"]];
-                                                    
-                                                    NSString *gross_score = [json valueForKey:@"gross_score"];
-                                                    NSString *handicap = [[hole_array objectAtIndex:index-1] valueForKey:@"handicap"];
-                                                    NSString *net_score = [json valueForKey:@"net_score"];
-                                                    NSString *par = [[hole_array objectAtIndex:index-1] valueForKey:@"par"];
-                                                    NSString *position = [NSString stringWithFormat:@"%d",index];
-                                                    NSString *yards = [[hole_array objectAtIndex:index-1] valueForKey:@"yards"];
-                                                    
-                                                    NSDictionary *dictin_temp = @{@"gross_score":gross_score,@"handicap":handicap,@"net_score":net_score,@"par":par,@"position":position,@"yards":yards};
-                                                    [hole_array replaceObjectAtIndex:index-1 withObject:dictin_temp];
-                                                    [dictin_Scores setObject:hole_array forKey:@"hole_array"];
-                                                    [dictin_Scores setObject:STR_position forKey:@"position"];
-                                                }
-                                                
-                                                [UIView transitionWithView: self.TBL_leaderboard
-                                                                  duration: 0.35f
-                                                                   options: UIViewAnimationOptionTransitionCrossDissolve
-                                                                animations: ^(void)
-                                                 {
-                                                     [self.TBL_leaderboard reloadData];
-                                                 }
-                                                                completion: nil];
-//                                                dispatch_async(dispatch_get_main_queue(), ^{
-//                                                    [self.TBL_leaderboard beginUpdates];
-//                                                    NSArray *indexPath0 = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:self.expandedIndexPath.row inSection:0]];
-//                                                    [self.TBL_leaderboard reloadRowsAtIndexPaths:indexPath0 withRowAnimation:UITableViewRowAnimationNone];
-//                                                    [self.TBL_leaderboard endUpdates];
-//                                                });
-                                            }
-                                        }
-                                        NSLog(@"The expanding index path %@\nExpanded index path %@",self.expandingIndexPath,self.expandedIndexPath);
-                                        
-                                    });*/
-                                    
-//                                }
-//                            } @catch (NSException *exception) {
-//                                NSLog(@"Exception update leaders %@",exception);
-//                                dispatch_async(dispatch_get_main_queue(), ^{
-//                                    
-//                                    NSString *STR_usr_id = [[NSUserDefaults standardUserDefaults] valueForKey:@"Selected_USER"];
-//                                    int usr_id = [STR_usr_id intValue];
-//                                    
-//                                    NSString *STR_jsonUSer = [json valueForKey:@"user_id"];
-//                                    int jsonUSer = [STR_jsonUSer intValue];
-//                                    
-//                                    NSArray *ARR_tem;
-//                                    NSMutableArray *hole_array = [[NSMutableArray alloc] init];
-//                                    if (dictin_Scores) {
-//                                        if (usr_id == jsonUSer) //(dictin_Scores) //
-//                                        {
-//                                            NSLog(@"Score update");
-//                                            
-//                                            
-//                                            NSString *STR_index = [json valueForKey:@"hole_number"];
-//                                            int index = [STR_index intValue];
-//                                            
-//                                            @try {
-//                                                ARR_tem = [json valueForKey:@"hole_array"];
-//                                                [dictin_Scores setObject:ARR_tem forKey:@"hole_array"];
-//                                                STR_update_handicap = [json valueForKey:@"handicap"];
-//                                            } @catch (NSException *exception) {
-//                                                NSString *STR_position;
-//                                                
-//                                                @try {
-//                                                    STR_position = [json valueForKey:@"position"];
-//                                                } @catch (NSException *exception) {
-//                                                    STR_position = @"0";
-//                                                }
-//                                                
-//                                                [hole_array addObjectsFromArray:[dictin_Scores valueForKey:@"hole_array"]];
-//                                                
-//                                                NSString *gross_score = [json valueForKey:@"gross_score"];
-//                                                NSString *handicap = [[hole_array objectAtIndex:index-1] valueForKey:@"handicap"];
-//                                                NSString *net_score = [json valueForKey:@"net_score"];
-//                                                NSString *par = [[hole_array objectAtIndex:index-1] valueForKey:@"par"];
-//                                                NSString *position = [NSString stringWithFormat:@"%d",index];
-//                                                NSString *yards = [[hole_array objectAtIndex:index-1] valueForKey:@"yards"];
-//                                                
-//                                                NSDictionary *dictin_temp = @{@"gross_score":gross_score,@"handicap":handicap,@"net_score":net_score,@"par":par,@"position":position,@"yards":yards};
-//                                                [hole_array replaceObjectAtIndex:index-1 withObject:dictin_temp];
-//                                                [dictin_Scores setObject:hole_array forKey:@"hole_array"];
-//                                                [dictin_Scores setObject:STR_position forKey:@"position"];
-//                                            }
-//                                            
-//                                            dispatch_async(dispatch_get_main_queue(), ^{
-//                                                [self.TBL_leaderboard beginUpdates];
-//                                                NSArray *indexPath0 = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:self.expandedIndexPath.row inSection:0]];
-//                                                [self.TBL_leaderboard reloadRowsAtIndexPaths:indexPath0 withRowAnimation:UITableViewRowAnimationNone];
-//                                                [self.TBL_leaderboard endUpdates];
-//                                            });
-//                                        }
-//                                    }
-//                                });
-//                                
-//                            }
+                            /*   dispatch_async(dispatch_get_main_queue(), ^{
+                             
+                             if (!self.expandingIndexPath && !self.expandedIndexPath) {
+                             //                                            [self.TBL_leaderboard reloadData];
+                             
+                             }
+                             else
+                             {
+                             NSString *STR_userID = [[NSUserDefaults standardUserDefaults] valueForKey:@"Selected_USER"];
+                             int usr_id = [STR_userID intValue];
+                             
+                             NSString *STR_jsonUSer = [json valueForKey:@"user_id"];
+                             int jsonUSer = [STR_jsonUSer intValue];
+                             
+                             NSMutableArray *ARR_tem = [[NSMutableArray alloc] init];
+                             NSMutableArray *hole_array = [[NSMutableArray alloc] init];
+                             if (usr_id == jsonUSer) //(dictin_Scores) //
+                             {
+                             NSLog(@"Score update");
+                             
+                             
+                             NSString *STR_index = [json valueForKey:@"hole_number"];
+                             int index = [STR_index intValue];
+                             
+                             @try {
+                             //                                                    ARR_tem = [json valueForKey:@"hole_array"];
+                             //                                                    NSDictionary *Dictin_score = @{@"gross_score":@"",@"handicap":@"",@"net_score":@"",@"par":@"",@"position":@"",@"yards":@""};
+                             //                                                    [dictin_Scores setObject:ARR_tem forKey:@"hole_array"];
+                             //                                                    STR_update_handicap = [json valueForKey:@"handicap"];
+                             } @catch (NSException *exception) {
+                             NSString *STR_position;
+                             
+                             @try {
+                             STR_position = [json valueForKey:@"position"];
+                             } @catch (NSException *exception) {
+                             STR_position = @"0";
+                             }
+                             
+                             [hole_array addObjectsFromArray:[dictin_Scores valueForKey:@"hole_array"]];
+                             
+                             NSString *gross_score = [json valueForKey:@"gross_score"];
+                             NSString *handicap = [[hole_array objectAtIndex:index-1] valueForKey:@"handicap"];
+                             NSString *net_score = [json valueForKey:@"net_score"];
+                             NSString *par = [[hole_array objectAtIndex:index-1] valueForKey:@"par"];
+                             NSString *position = [NSString stringWithFormat:@"%d",index];
+                             NSString *yards = [[hole_array objectAtIndex:index-1] valueForKey:@"yards"];
+                             
+                             NSDictionary *dictin_temp = @{@"gross_score":gross_score,@"handicap":handicap,@"net_score":net_score,@"par":par,@"position":position,@"yards":yards};
+                             [hole_array replaceObjectAtIndex:index-1 withObject:dictin_temp];
+                             [dictin_Scores setObject:hole_array forKey:@"hole_array"];
+                             [dictin_Scores setObject:STR_position forKey:@"position"];
+                             }
+                             
+                             [UIView transitionWithView: self.TBL_leaderboard
+                             duration: 0.35f
+                             options: UIViewAnimationOptionTransitionCrossDissolve
+                             animations: ^(void)
+                             {
+                             [self.TBL_leaderboard reloadData];
+                             }
+                             completion: nil];
+                             //                                                dispatch_async(dispatch_get_main_queue(), ^{
+                             //                                                    [self.TBL_leaderboard beginUpdates];
+                             //                                                    NSArray *indexPath0 = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:self.expandedIndexPath.row inSection:0]];
+                             //                                                    [self.TBL_leaderboard reloadRowsAtIndexPaths:indexPath0 withRowAnimation:UITableViewRowAnimationNone];
+                             //                                                    [self.TBL_leaderboard endUpdates];
+                             //                                                });
+                             }
+                             }
+                             NSLog(@"The expanding index path %@\nExpanded index path %@",self.expandingIndexPath,self.expandedIndexPath);
+                             
+                             });*/
+                            
+                            //                                }
+                            //                            } @catch (NSException *exception) {
+                            //                                NSLog(@"Exception update leaders %@",exception);
+                            //                                dispatch_async(dispatch_get_main_queue(), ^{
+                            //
+                            //                                    NSString *STR_usr_id = [[NSUserDefaults standardUserDefaults] valueForKey:@"Selected_USER"];
+                            //                                    int usr_id = [STR_usr_id intValue];
+                            //
+                            //                                    NSString *STR_jsonUSer = [json valueForKey:@"user_id"];
+                            //                                    int jsonUSer = [STR_jsonUSer intValue];
+                            //
+                            //                                    NSArray *ARR_tem;
+                            //                                    NSMutableArray *hole_array = [[NSMutableArray alloc] init];
+                            //                                    if (dictin_Scores) {
+                            //                                        if (usr_id == jsonUSer) //(dictin_Scores) //
+                            //                                        {
+                            //                                            NSLog(@"Score update");
+                            //
+                            //
+                            //                                            NSString *STR_index = [json valueForKey:@"hole_number"];
+                            //                                            int index = [STR_index intValue];
+                            //
+                            //                                            @try {
+                            //                                                ARR_tem = [json valueForKey:@"hole_array"];
+                            //                                                [dictin_Scores setObject:ARR_tem forKey:@"hole_array"];
+                            //                                                STR_update_handicap = [json valueForKey:@"handicap"];
+                            //                                            } @catch (NSException *exception) {
+                            //                                                NSString *STR_position;
+                            //
+                            //                                                @try {
+                            //                                                    STR_position = [json valueForKey:@"position"];
+                            //                                                } @catch (NSException *exception) {
+                            //                                                    STR_position = @"0";
+                            //                                                }
+                            //
+                            //                                                [hole_array addObjectsFromArray:[dictin_Scores valueForKey:@"hole_array"]];
+                            //
+                            //                                                NSString *gross_score = [json valueForKey:@"gross_score"];
+                            //                                                NSString *handicap = [[hole_array objectAtIndex:index-1] valueForKey:@"handicap"];
+                            //                                                NSString *net_score = [json valueForKey:@"net_score"];
+                            //                                                NSString *par = [[hole_array objectAtIndex:index-1] valueForKey:@"par"];
+                            //                                                NSString *position = [NSString stringWithFormat:@"%d",index];
+                            //                                                NSString *yards = [[hole_array objectAtIndex:index-1] valueForKey:@"yards"];
+                            //
+                            //                                                NSDictionary *dictin_temp = @{@"gross_score":gross_score,@"handicap":handicap,@"net_score":net_score,@"par":par,@"position":position,@"yards":yards};
+                            //                                                [hole_array replaceObjectAtIndex:index-1 withObject:dictin_temp];
+                            //                                                [dictin_Scores setObject:hole_array forKey:@"hole_array"];
+                            //                                                [dictin_Scores setObject:STR_position forKey:@"position"];
+                            //                                            }
+                            //
+                            //                                            dispatch_async(dispatch_get_main_queue(), ^{
+                            //                                                [self.TBL_leaderboard beginUpdates];
+                            //                                                NSArray *indexPath0 = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:self.expandedIndexPath.row inSection:0]];
+                            //                                                [self.TBL_leaderboard reloadRowsAtIndexPaths:indexPath0 withRowAnimation:UITableViewRowAnimationNone];
+                            //                                                [self.TBL_leaderboard endUpdates];
+                            //                                            });
+                            //                                        }
+                            //                                    }
+                            //                                });
+                            //
+                            //                            }
                         }
                     }
                 }
@@ -4211,9 +4211,9 @@
 - (void)actionSocket:(KSJActionSocket *)socket failedWithError:(NSError *)error
 {
     NSLog(@"Socket Closed %@",error);
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket closed condition" message:[NSString stringWithFormat:@"%@",error] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",@"Reconnect", nil];
-//    alert.tag = 2;
-//    [alert show];
+    //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket closed condition" message:[NSString stringWithFormat:@"%@",error] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",@"Reconnect", nil];
+    //    alert.tag = 2;
+    //    [alert show];
     
     [self.actionSocket close];
     self.actionSocket.delegate = Nil;
@@ -4227,9 +4227,9 @@
 - (void)actionSocket:(KSJActionSocket *)socket closedWithCode:(NSInteger)code reason:(NSString *)reason
 {
     NSLog(@"Error response %@",reason);
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket closed condition" message:[NSString stringWithFormat:@"%@",reason] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",@"Reconnect", nil];
-//    alert.tag = 3;
-//    [alert show];
+    //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket closed condition" message:[NSString stringWithFormat:@"%@",reason] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",@"Reconnect", nil];
+    //    alert.tag = 3;
+    //    [alert show];
     
     [self.actionSocket close];
     self.actionSocket.delegate = Nil;
@@ -4243,9 +4243,9 @@
 -(void)actionSocket:(KSJActionSocket *)socket closedWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean
 {
     NSLog(@"Socket cloased response %@",reason);
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket closed condition" message:[NSString stringWithFormat:@"%@",reason] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",@"Reconnect", nil];
-//    alert.tag = 4;
-//    [alert show];
+    //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Socket closed condition" message:[NSString stringWithFormat:@"%@",reason] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Close",@"Reconnect", nil];
+    //    alert.tag = 4;
+    //    [alert show];
     [self.actionSocket close];
     self.actionSocket.delegate = Nil;
     
@@ -4255,3 +4255,4 @@
     [self.actionSocket open];
 }
 @end
+

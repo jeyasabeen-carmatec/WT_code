@@ -27,6 +27,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *VW_contents;
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll_contents;
+@property (weak, nonatomic) IBOutlet UIButton *BTN_back;
 
 @property (weak, nonatomic) IBOutlet UIButton *BTN_viewTKT;
 @property (weak, nonatomic) IBOutlet UIButton *BTN_giftBAG;
@@ -36,3 +37,4 @@
 @property(nonatomic,weak) IBOutlet UILabel *lbl_nav_font;
 
 @end
+

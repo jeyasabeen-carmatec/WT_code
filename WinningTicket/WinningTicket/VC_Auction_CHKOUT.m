@@ -35,6 +35,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [_BTN_back addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [self setup_VIEW];
 }
 
@@ -44,14 +46,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -247,20 +249,20 @@
             
             NSString *item_name = [checkout_data valueForKey:@"item_name"];
             
-           // NSString *location=[NSString stringWithFormat:@"%@",[checkout_data valueForKey:@"location"]];
-         //   location = [location stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
+            // NSString *location=[NSString stringWithFormat:@"%@",[checkout_data valueForKey:@"location"]];
+            //   location = [location stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
             NSString *organization_name = [NSString stringWithFormat:@"%@",[checkout_data valueForKey:@"organization_name"]];
             organization_name = [organization_name stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
             
             NSString *STR_code = [NSString stringWithFormat:@"%@",[checkout_data valueForKey:@"code"]];
             STR_code = [STR_code stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
- 
+            
             NSString *text = [NSString stringWithFormat:@"%@\n%@ - %@",organization_name,STR_code,item_name];
             
             text = [text stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
             
-           
-
+            
+            
             
             
             if ([self.lbl_des_cription respondsToSelector:@selector(setAttributedText:)])
@@ -273,7 +275,7 @@
                 [[NSMutableAttributedString alloc] initWithString:text
                                                        attributes:attribs];
                 
-               
+                
                 
                 NSRange plce = [text rangeOfString:organization_name];
                 [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:15.0]}range:plce];
@@ -283,9 +285,9 @@
                 
                 NSRange code = [text rangeOfString:STR_code];
                 [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:15.0]}range:code];
-//                
-//                NSRange codeR = [text rangeOfString:location];
-//                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:15.0]}range:codeR];
+                //
+                //                NSRange codeR = [text rangeOfString:location];
+                //                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:15.0]}range:codeR];
                 
                 self.lbl_des_cription.attributedText = attributedText;
             }
@@ -692,8 +694,8 @@
     {
         [self showViewAddress];
         [_TXT_firstname becomeFirstResponder];
-//        [_TXT_firstname showError];
-//        [_TXT_firstname showErrorWithText:@" Please enter first name"];
+        //        [_TXT_firstname showError];
+        //        [_TXT_firstname showErrorWithText:@" Please enter first name"];
         //        [self showViewAddress];
         
         [self.navigationController.view makeToast:@"Please enter First Name"
@@ -704,8 +706,8 @@
     {
         [self showViewAddress];
         [_TXT_firstname becomeFirstResponder];
-//        [_TXT_firstname showError];
-//        [_TXT_firstname showErrorWithText:@" First name minimum 2 characters"];
+        //        [_TXT_firstname showError];
+        //        [_TXT_firstname showErrorWithText:@" First name minimum 2 characters"];
         
         [self.navigationController.view makeToast:@"First Name minimum 2 characters"
                                          duration:2.0
@@ -726,8 +728,8 @@
     {
         [self showViewAddress];
         [_TXT_address1 becomeFirstResponder];
-//        [_TXT_address1 showError];
-//        [_TXT_address1 showErrorWithText:@" Please enter address line 1"];
+        //        [_TXT_address1 showError];
+        //        [_TXT_address1 showErrorWithText:@" Please enter address line 1"];
         //        [self showViewAddress];
         
         [self.navigationController.view makeToast:@"Please enter Address Line1"
@@ -738,8 +740,8 @@
     {
         [self showViewAddress];
         [_TXT_address1 becomeFirstResponder];
-//        [_TXT_address1 showError];
-//        [_TXT_address1 showErrorWithText:@" Address line 1 minimum 2 characters"];
+        //        [_TXT_address1 showError];
+        //        [_TXT_address1 showErrorWithText:@" Address line 1 minimum 2 characters"];
         //        [self showViewAddress];
         
         [self.navigationController.view makeToast:@"Address Line1 minimum 2 characters"
@@ -757,8 +759,8 @@
     {
         [self showViewAddress];
         [_TXT_city becomeFirstResponder];
-//        [_TXT_city showError];
-//        [_TXT_city showErrorWithText:@" Please enter city"];
+        //        [_TXT_city showError];
+        //        [_TXT_city showErrorWithText:@" Please enter city"];
         //        [self showViewAddress];
         [self.navigationController.view makeToast:@"Please enter City"
                                          duration:2.0
@@ -768,8 +770,8 @@
     {
         [self showViewAddress];
         [_TXT_city becomeFirstResponder];
-//        [_TXT_city showError];
-//        [_TXT_city showErrorWithText:@" City minimum 2 characters"];
+        //        [_TXT_city showError];
+        //        [_TXT_city showErrorWithText:@" City minimum 2 characters"];
         //        [self showViewAddress];
         
         [self.navigationController.view makeToast:@"City minimum 2 characters"
@@ -781,8 +783,8 @@
     {
         [self showViewAddress];
         [_TXT_country becomeFirstResponder];
-//        [_TXT_country showError];
-//        [_TXT_country showErrorWithText:@" Please select country"];
+        //        [_TXT_country showError];
+        //        [_TXT_country showErrorWithText:@" Please select country"];
         
         [self.navigationController.view makeToast:@"Please select Country"
                                          duration:2.0
@@ -800,8 +802,8 @@
     {
         [self showViewAddress];
         [_TXT_zip becomeFirstResponder];
-//        [_TXT_zip showError];
-//        [_TXT_zip showErrorWithText:@" Please enter zipcode code"];
+        //        [_TXT_zip showError];
+        //        [_TXT_zip showErrorWithText:@" Please enter zipcode code"];
         
         [self.navigationController.view makeToast:@"Please enter Zip Code"
                                          duration:2.0
@@ -811,8 +813,8 @@
     {
         [self showViewAddress];
         [_TXT_zip becomeFirstResponder];
-//        [_TXT_zip showError];
-//        [_TXT_zip showErrorWithText:@" Zipcode minimum 4 characters"];
+        //        [_TXT_zip showError];
+        //        [_TXT_zip showErrorWithText:@" Zipcode minimum 4 characters"];
         
         [self.navigationController.view makeToast:@"Zip Code minimum 4 characters"
                                          duration:2.0
@@ -833,8 +835,8 @@
     {
         [self showViewAddress];
         [_TXT_phonenumber becomeFirstResponder];
-//        [_TXT_phonenumber showError];
-//        [_TXT_phonenumber showErrorWithText:@" Please enter more than 5 numbers"];
+        //        [_TXT_phonenumber showError];
+        //        [_TXT_phonenumber showErrorWithText:@" Please enter more than 5 numbers"];
         
         [self.navigationController.view makeToast:@"Please enter more than 5 numbers"
                                          duration:2.0
@@ -889,7 +891,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -960,41 +962,41 @@
      
      [self presentViewController:navigationController animated:YES completion:nil];*/
     
-   
-        BTDropInRequest *request = [[BTDropInRequest alloc] init];
-        BTDropInController *dropIn = [[BTDropInController alloc] initWithAuthorization:client_TOK request:request handler:^(BTDropInController * _Nonnull controller, BTDropInResult * _Nullable result, NSError * _Nullable error) {
+    
+    BTDropInRequest *request = [[BTDropInRequest alloc] init];
+    BTDropInController *dropIn = [[BTDropInController alloc] initWithAuthorization:client_TOK request:request handler:^(BTDropInController * _Nonnull controller, BTDropInResult * _Nullable result, NSError * _Nullable error) {
+        
+        if (error != nil) {
+            NSLog(@"ERROR");
+        } else if (result.cancelled) {
+            NSLog(@"CANCELLED");
+            [self dismissViewControllerAnimated:YES completion:NULL];
+        } else {
+            //                [self performSelector:@selector(dismiss_BT)
+            //                           withObject:nil
+            //                           afterDelay:0.0];
+            //                NSLog(@"Payment type = %@",result);
+            //                [[NSUserDefaults standardUserDefaults] setValue:result.paymentMethod.type forKey:@"paymentTYPE"];
+            //                [[NSUserDefaults standardUserDefaults] synchronize];
             
-            if (error != nil) {
-                NSLog(@"ERROR");
-            } else if (result.cancelled) {
-                NSLog(@"CANCELLED");
-                [self dismissViewControllerAnimated:YES completion:NULL];
-            } else {
-                //                [self performSelector:@selector(dismiss_BT)
-                //                           withObject:nil
-                //                           afterDelay:0.0];
-//                NSLog(@"Payment type = %@",result);
-//                [[NSUserDefaults standardUserDefaults] setValue:result.paymentMethod.type forKey:@"paymentTYPE"];
-//                [[NSUserDefaults standardUserDefaults] synchronize];
-                
-                STR_payment_mode *payment_mode = [STR_payment_mode PaymentTYPE];
-                NSString *switch_STAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
-                
-                if(total != 0.00 && [switch_STAT isEqualToString:@"SWITCH_ON"])
-                {
-                    payment_mode.STR_paymentTYPE = [NSString stringWithFormat:@"Wallet & %@",result.paymentMethod.type];
-                }
-                else
-                {
-                    payment_mode.STR_paymentTYPE = result.paymentMethod.type;
-                }
-                
-                [self postNonceToServer:result.paymentMethod.nonce];
-                [self dismissViewControllerAnimated:YES completion:NULL];
+            STR_payment_mode *payment_mode = [STR_payment_mode PaymentTYPE];
+            NSString *switch_STAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
+            
+            if(total != 0.00 && [switch_STAT isEqualToString:@"SWITCH_ON"])
+            {
+                payment_mode.STR_paymentTYPE = [NSString stringWithFormat:@"Wallet & %@",result.paymentMethod.type];
             }
-        }];
-        [self presentViewController:dropIn animated:YES completion:nil];
-   
+            else
+            {
+                payment_mode.STR_paymentTYPE = result.paymentMethod.type;
+            }
+            
+            [self postNonceToServer:result.paymentMethod.nonce];
+            [self dismissViewControllerAnimated:YES completion:NULL];
+        }
+    }];
+    [self presentViewController:dropIn animated:YES completion:nil];
+    
 }
 
 
@@ -1129,7 +1131,7 @@
         return [string isEqualToString:filtered];
     }
     
-        if(textField.tag==8)
+    if(textField.tag==8)
     {
         NSInteger inte = textField.text.length;
         if(inte >= 8)
@@ -1457,7 +1459,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
             [request setURL:urlProducts];
             [request setHTTPMethod:@"POST"];
             [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-            [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+            [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
             [request setHTTPBody:postData];
             [request setHTTPShouldHandleCookies:NO];
             NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -1517,7 +1519,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     //    [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -1555,3 +1557,4 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
 }
 
 @end
+

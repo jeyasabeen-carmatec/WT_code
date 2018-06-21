@@ -37,33 +37,33 @@
     [self setup_VIEW];
     
     /*Text field event listener*/
-//    [_TXT_places addTarget:self action:@selector(TXT_Place_change) forControlEvents:UIControlEventEditingChanged];
-//    [_TXT_courses addTarget:self action:@selector(TXT_Course_chage) forControlEvents:UIControlEventEditingChanged];
+    //    [_TXT_places addTarget:self action:@selector(TXT_Place_change) forControlEvents:UIControlEventEditingChanged];
+    //    [_TXT_courses addTarget:self action:@selector(TXT_Course_chage) forControlEvents:UIControlEventEditingChanged];
     /*Text field event listener*/
     
     /*Add clear button in text field*/
-//    clearButton_places = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [clearButton_places setImage:[UIImage imageNamed:@"cross_black"] forState:UIControlStateNormal];
-//    [clearButton_places setFrame:CGRectMake(-10, 0, 20, 20)];
-//    
-//    clearButton_places.layer.cornerRadius = 10.0f;
-//    clearButton_places.layer.masksToBounds = YES;
-//    clearButton_places.layer.borderWidth = 1.0f;
-//    clearButton_places.layer.borderColor = [UIColor blackColor].CGColor;
-//    
-//    [clearButton_places addTarget:self action:@selector(clearTextField_places) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    _TXT_places.rightViewMode = UITextFieldViewModeWhileEditing;
-//    [_TXT_places setRightView:clearButton_places];
-//    
-//    clearButton_courses = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [clearButton_courses setImage:[UIImage imageNamed:@"cross_black"] forState:UIControlStateNormal];
-//    [clearButton_courses setFrame:CGRectMake(-10, 0, 20, 20)];
-//    
-//    clearButton_courses.layer.cornerRadius = 10.0f;
-//    clearButton_courses.layer.masksToBounds = YES;
-//    clearButton_courses.layer.borderWidth = 1.0f;
-//    clearButton_courses.layer.borderColor = [UIColor blackColor].CGColor;
+    //    clearButton_places = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    [clearButton_places setImage:[UIImage imageNamed:@"cross_black"] forState:UIControlStateNormal];
+    //    [clearButton_places setFrame:CGRectMake(-10, 0, 20, 20)];
+    //
+    //    clearButton_places.layer.cornerRadius = 10.0f;
+    //    clearButton_places.layer.masksToBounds = YES;
+    //    clearButton_places.layer.borderWidth = 1.0f;
+    //    clearButton_places.layer.borderColor = [UIColor blackColor].CGColor;
+    //
+    //    [clearButton_places addTarget:self action:@selector(clearTextField_places) forControlEvents:UIControlEventTouchUpInside];
+    //
+    //    _TXT_places.rightViewMode = UITextFieldViewModeWhileEditing;
+    //    [_TXT_places setRightView:clearButton_places];
+    //
+    //    clearButton_courses = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    [clearButton_courses setImage:[UIImage imageNamed:@"cross_black"] forState:UIControlStateNormal];
+    //    [clearButton_courses setFrame:CGRectMake(-10, 0, 20, 20)];
+    //
+    //    clearButton_courses.layer.cornerRadius = 10.0f;
+    //    clearButton_courses.layer.masksToBounds = YES;
+    //    clearButton_courses.layer.borderWidth = 1.0f;
+    //    clearButton_courses.layer.borderColor = [UIColor blackColor].CGColor;
     UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     numberToolbar.barStyle = UIBarStyleBlackTranslucent;
     [numberToolbar sizeToFit];
@@ -87,19 +87,19 @@
     [clear addTarget:self action:@selector(buttonClick_courses) forControlEvents:UIControlEventTouchUpInside];
     
     [courses_toolbar addSubview:clear];
-
-    _TXT_courses.inputAccessoryView = courses_toolbar;
-  
     
-//    [clearButton_courses addTarget:self action:@selector(clearTextField_courses) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    _TXT_courses.rightViewMode = UITextFieldViewModeWhileEditing;
-//    [_TXT_courses setRightView:clearButton_courses];
+    _TXT_courses.inputAccessoryView = courses_toolbar;
+    
+    
+    //    [clearButton_courses addTarget:self action:@selector(clearTextField_courses) forControlEvents:UIControlEventTouchUpInside];
+    //
+    //    _TXT_courses.rightViewMode = UITextFieldViewModeWhileEditing;
+    //    [_TXT_courses setRightView:clearButton_courses];
     /*Add clear button in text field*/
     
-//    VW_overlay.hidden = NO;
-//    [activityIndicatorView startAnimating];
-//    [self performSelector:@selector(API_searchbylocation) withObject:activityIndicatorView afterDelay:0.01];
+    //    VW_overlay.hidden = NO;
+    //    [activityIndicatorView startAnimating];
+    //    [self performSelector:@selector(API_searchbylocation) withObject:activityIndicatorView afterDelay:0.01];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -108,14 +108,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - Uiview customisation
 -(void) setup_VIEW
@@ -145,7 +145,7 @@
     [self.view addSubview:VW_overlay];
     
     VW_overlay.hidden = YES;
-   
+    
     
     _TBL_places.estimatedRowHeight = 10.0;
     _TBL_places.rowHeight = UITableViewAutomaticDimension;
@@ -175,7 +175,7 @@
     [_TXT_places resignFirstResponder];
     _TXT_places.text = @"";
     _TBL_places.hidden = YES;
-//    [_TXT_places becomeFirstResponder];
+    //    [_TXT_places becomeFirstResponder];
     [_TXT_places resignFirstResponder];
     _TXT_places.text = @"";
     _TBL_places.hidden = YES;
@@ -189,7 +189,7 @@
     [_TXT_courses resignFirstResponder];
     _TXT_courses.text = @"";
     _TBL_courses.hidden = YES;
-//    [_TXT_courses becomeFirstResponder];
+    //    [_TXT_courses becomeFirstResponder];
     [_TXT_courses resignFirstResponder];
     _TXT_courses.text = @"";
     _TBL_courses.hidden = YES;
@@ -251,7 +251,7 @@
         }
         else
         {
-//            [self TXT_Place_change];
+            //            [self TXT_Place_change];
             if (string.length == 1 && textField.text.length == 0)
             {
                 if ([_TXT_courses.text length] == 0)
@@ -291,7 +291,7 @@
         }
         else
         {
-//            [self TXT_Course_chage];
+            //            [self TXT_Course_chage];
             if (string.length == 1 && textField.text.length == 0)
             {
                 if ([_TXT_places.text length] == 0)
@@ -404,113 +404,113 @@
     _TBL_courses.hidden = NO;
 }
 
-#pragma mark - Api calling 
+#pragma mark - Api calling
 //search_by_location
 /*-(void) API_searchbylocation
-{
-    NSHTTPURLResponse *response = nil;
-    NSError *error;
-    
-    NSString *urlGetuser =[NSString stringWithFormat:@"%@golfcourse/search_by_location",SERVER_URL];
-    NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:urlProducts];
-    [request setHTTPMethod:@"GET"];
-    [request setHTTPShouldHandleCookies:NO];
-    NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
-    
-    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    if(aData)
-    {
-        [activityIndicatorView stopAnimating];
-        VW_overlay.hidden = YES;
-        
-        NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
-        NSString *STR_error;
-        
-        @try {
-            STR_error = [dict valueForKey:@"error"];
-            if (STR_error) {
-                [self sessionOUT];
-            }
-        } @catch (NSException *exception) {
-            NSLog(@"Exception in courses %@",exception);
-            [self sessionOUT];
-        }
-        
-        NSMutableDictionary *json_DATA = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:kNilOptions error:&error];
-        
-        @try {
-            ARR_states = [json_DATA valueForKey:@"course_locations"];
-            ARR_sorted_states = ARR_states;
-            [_TBL_places reloadData];
-            [self API_searchbycourse];
-        } @catch (NSException *exception) {
-            NSLog(@"Exception %@",exception);
-        }
-        
-        NSLog(@"States array from VC Search Course= %@",ARR_states);
-    }
-    else
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Error" message:@"" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-        [alert show];
-    }
-    
-    [activityIndicatorView stopAnimating];
-    VW_overlay.hidden = YES;
-}*/
+ {
+ NSHTTPURLResponse *response = nil;
+ NSError *error;
+ 
+ NSString *urlGetuser =[NSString stringWithFormat:@"%@golfcourse/search_by_location",SERVER_URL];
+ NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
+ NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+ [request setURL:urlProducts];
+ [request setHTTPMethod:@"GET"];
+ [request setHTTPShouldHandleCookies:NO];
+ NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+ [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+ [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
+ 
+ NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+ if(aData)
+ {
+ [activityIndicatorView stopAnimating];
+ VW_overlay.hidden = YES;
+ 
+ NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
+ NSString *STR_error;
+ 
+ @try {
+ STR_error = [dict valueForKey:@"error"];
+ if (STR_error) {
+ [self sessionOUT];
+ }
+ } @catch (NSException *exception) {
+ NSLog(@"Exception in courses %@",exception);
+ [self sessionOUT];
+ }
+ 
+ NSMutableDictionary *json_DATA = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:kNilOptions error:&error];
+ 
+ @try {
+ ARR_states = [json_DATA valueForKey:@"course_locations"];
+ ARR_sorted_states = ARR_states;
+ [_TBL_places reloadData];
+ [self API_searchbycourse];
+ } @catch (NSException *exception) {
+ NSLog(@"Exception %@",exception);
+ }
+ 
+ NSLog(@"States array from VC Search Course= %@",ARR_states);
+ }
+ else
+ {
+ UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Error" message:@"" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+ [alert show];
+ }
+ 
+ [activityIndicatorView stopAnimating];
+ VW_overlay.hidden = YES;
+ }*/
 
 //Search by course name
 /*-(void) API_searchbycourse
-{
-    NSHTTPURLResponse *response = nil;
-    NSError *error;
-    
-    NSString *urlGetuser =[NSString stringWithFormat:@"%@golfcourse/search_by_course_name",SERVER_URL];
-    NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:urlProducts];
-    [request setHTTPMethod:@"GET"];
-    [request setHTTPShouldHandleCookies:NO];
-    NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
-    
-    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    if(aData)
-    {
-        [activityIndicatorView stopAnimating];
-        VW_overlay.hidden = YES;
-        
-        NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
-        NSString *STR_error;
-        
-        @try {
-            STR_error = [dict valueForKey:@"error"];
-            if (STR_error) {
-                [self sessionOUT];
-            }
-        } @catch (NSException *exception) {
-            NSLog(@"Exception in courses %@",exception);
-            [self sessionOUT];
-        }
-        
-        NSMutableDictionary *json_DATA = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:kNilOptions error:&error];
-        
-        @try {
-            ARR_courses = [json_DATA valueForKey:@"course_names"];
-            ARR_sorted_courses = ARR_courses;
-            [_TBL_courses reloadData];
-        } @catch (NSException *exception) {
-            NSLog(@"Exception %@",exception);
-        }
-        
-        NSLog(@"Course array from VC Search Course= %@",ARR_courses);
-    }
-}*/
+ {
+ NSHTTPURLResponse *response = nil;
+ NSError *error;
+ 
+ NSString *urlGetuser =[NSString stringWithFormat:@"%@golfcourse/search_by_course_name",SERVER_URL];
+ NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
+ NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+ [request setURL:urlProducts];
+ [request setHTTPMethod:@"GET"];
+ [request setHTTPShouldHandleCookies:NO];
+ NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+ [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+ [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
+ 
+ NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+ if(aData)
+ {
+ [activityIndicatorView stopAnimating];
+ VW_overlay.hidden = YES;
+ 
+ NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
+ NSString *STR_error;
+ 
+ @try {
+ STR_error = [dict valueForKey:@"error"];
+ if (STR_error) {
+ [self sessionOUT];
+ }
+ } @catch (NSException *exception) {
+ NSLog(@"Exception in courses %@",exception);
+ [self sessionOUT];
+ }
+ 
+ NSMutableDictionary *json_DATA = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:kNilOptions error:&error];
+ 
+ @try {
+ ARR_courses = [json_DATA valueForKey:@"course_names"];
+ ARR_sorted_courses = ARR_courses;
+ [_TBL_courses reloadData];
+ } @catch (NSException *exception) {
+ NSLog(@"Exception %@",exception);
+ }
+ 
+ NSLog(@"Course array from VC Search Course= %@",ARR_courses);
+ }
+ }*/
 
 //Search Auto prediction
 -(void) API_autosuggest_location :(NSDictionary *)Dictin_autosuggest
@@ -541,7 +541,7 @@
     [request setHTTPShouldHandleCookies:NO];
     NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if(aData)
@@ -589,7 +589,7 @@
             NSLog(@"Exception %@",exception);
         }
         
-//        NSLog(@"Course array from VC Search Course= %@",ARR_courses);
+        //        NSLog(@"Course array from VC Search Course= %@",ARR_courses);
     }
     
     [activityIndicatorView stopAnimating];
@@ -625,7 +625,7 @@
     [request setHTTPShouldHandleCookies:NO];
     NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if(aData)
@@ -682,8 +682,8 @@
 //Search BTN search
 -(void) API_search_BTN_act :(NSDictionary *)Dictin_autosuggest
 {
-//    NSHTTPURLResponse *response = nil;
-//    NSError *error;
+    //    NSHTTPURLResponse *response = nil;
+    //    NSError *error;
     NSString *urlGetuser;
     NSString *STR_location = [Dictin_autosuggest valueForKey:@"places"];
     NSString *STR_courses = [Dictin_autosuggest valueForKey:@"courses"];
@@ -705,43 +705,43 @@
     ARR_singleTON *globals = [ARR_singleTON dictin];
     globals.Dictin_course = [API_course API_courses:urlGetuser];
     
-//    urlGetuser = [urlGetuser stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-//    NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
-//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-//    [request setURL:urlProducts];
-//    [request setHTTPMethod:@"GET"];
-//    [request setHTTPShouldHandleCookies:NO];
-//    NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
-//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
-//    
-//    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-//    if(aData)
-//    {
-//        [activityIndicatorView stopAnimating];
-//        VW_overlay.hidden = YES;
-//        
-//        NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
-//        NSString *STR_error;
-//        
-//        @try {
-//            STR_error = [dict valueForKey:@"error"];
-//            if (STR_error) {
-//                [self sessionOUT];
-//            }
-//        } @catch (NSException *exception) {
-//            NSLog(@"Exception in courses %@",exception);
-//            [self sessionOUT];
-//        }
-//        
-//        NSMutableDictionary *json_DATA = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:kNilOptions error:&error];
-//
-//    }
-//    else
-//    {
-//        [activityIndicatorView stopAnimating];
-//        VW_overlay.hidden = YES;
-//    }
+    //    urlGetuser = [urlGetuser stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+    //    NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
+    //    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    //    [request setURL:urlProducts];
+    //    [request setHTTPMethod:@"GET"];
+    //    [request setHTTPShouldHandleCookies:NO];
+    //    NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+    //    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    //    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
+    //
+    //    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    //    if(aData)
+    //    {
+    //        [activityIndicatorView stopAnimating];
+    //        VW_overlay.hidden = YES;
+    //
+    //        NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
+    //        NSString *STR_error;
+    //
+    //        @try {
+    //            STR_error = [dict valueForKey:@"error"];
+    //            if (STR_error) {
+    //                [self sessionOUT];
+    //            }
+    //        } @catch (NSException *exception) {
+    //            NSLog(@"Exception in courses %@",exception);
+    //            [self sessionOUT];
+    //        }
+    //
+    //        NSMutableDictionary *json_DATA = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:kNilOptions error:&error];
+    //
+    //    }
+    //    else
+    //    {
+    //        [activityIndicatorView stopAnimating];
+    //        VW_overlay.hidden = YES;
+    //    }
     [self next_VC];
 }
 
@@ -814,16 +814,16 @@
     }
     @try {
         
-     
-    if (tableView == _TBL_courses) {
-        cell.lbl_eventName.text = [ARR_sorted_courses objectAtIndex:indexPath.row];
-    }
-    else
-    {
-        cell.lbl_eventName.text = [ARR_sorted_states objectAtIndex:indexPath.row];
-    }
-    cell.lbl_eventName.numberOfLines = 0;
-    [cell.lbl_eventName sizeToFit];
+        
+        if (tableView == _TBL_courses) {
+            cell.lbl_eventName.text = [ARR_sorted_courses objectAtIndex:indexPath.row];
+        }
+        else
+        {
+            cell.lbl_eventName.text = [ARR_sorted_states objectAtIndex:indexPath.row];
+        }
+        cell.lbl_eventName.numberOfLines = 0;
+        [cell.lbl_eventName sizeToFit];
     }
     @catch (NSException *exception) {
         [self sessionOUT];
@@ -856,7 +856,7 @@
 #pragma mark - Uitextfielddeligate
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-//    [textField resignFirstResponder];
+    //    [textField resignFirstResponder];
     if (textField == _TXT_courses) {
         [_TXT_courses resignFirstResponder];
         _TBL_courses.hidden = YES;
@@ -876,11 +876,11 @@
             _TBL_courses.hidden = YES;
             ARR_sorted_states = ARR_states;
             
-//            if ([ARR_sorted_states count] == 0) {
-//                VW_overlay.hidden = NO;
-//                [activityIndicatorView startAnimating];
-//                [self performSelector:@selector(API_searchbylocation) withObject:activityIndicatorView afterDelay:0.01];
-//            }
+            //            if ([ARR_sorted_states count] == 0) {
+            //                VW_overlay.hidden = NO;
+            //                [activityIndicatorView startAnimating];
+            //                [self performSelector:@selector(API_searchbylocation) withObject:activityIndicatorView afterDelay:0.01];
+            //            }
             
             [_TBL_places reloadData];
         }
@@ -899,11 +899,11 @@
             _TBL_courses.hidden = NO;
             ARR_sorted_courses = ARR_courses;
             
-//            if ([ARR_sorted_courses count] == 0) {
-//                VW_overlay.hidden = NO;
-//                [activityIndicatorView startAnimating];
-//                [self performSelector:@selector(API_searchbycourse) withObject:activityIndicatorView afterDelay:0.01];
-//            }
+            //            if ([ARR_sorted_courses count] == 0) {
+            //                VW_overlay.hidden = NO;
+            //                [activityIndicatorView startAnimating];
+            //                [self performSelector:@selector(API_searchbycourse) withObject:activityIndicatorView afterDelay:0.01];
+            //            }
             [_TBL_courses reloadData];
         }
         else
@@ -949,3 +949,4 @@
 
 
 @end
+

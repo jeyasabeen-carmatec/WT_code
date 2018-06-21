@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbl_datasubtotal;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_titletotal;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_datatotal;
+@property (nonatomic, retain) IBOutlet UIButton *BTN_back;
 
 //@property (weak, nonatomic) IBOutlet UIButton *BTN_order1;
 @property (weak, nonatomic) IBOutlet UIButton *BTN_order2;
@@ -51,3 +52,4 @@
 
 
 @end
+

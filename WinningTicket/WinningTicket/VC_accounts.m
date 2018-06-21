@@ -21,7 +21,7 @@
     UIView *VW_overlay,*profile_view;
     UIActivityIndicatorView *activityIndicatorView;
     NSDictionary *tempdict;
-//    UILabel *loadingLabel;
+    //    UILabel *loadingLabel;
 }
 
 @end
@@ -34,7 +34,7 @@
     
     
     
-//    [_TBL_contents reloadData];
+    //    [_TBL_contents reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,32 +43,32 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 -(void)viewWillAppear:(BOOL)animated
 {
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
     
-//    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
-//    loadingLabel.backgroundColor = [UIColor clearColor];
-//    loadingLabel.textColor = [UIColor whiteColor];
-//    loadingLabel.adjustsFontSizeToFitWidth = YES;
-//    loadingLabel.textAlignment = NSTextAlignmentCenter;
-//    loadingLabel.text = @"Loading...";
-//    
-//    [VW_overlay addSubview:loadingLabel];
+    //    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
+    //    loadingLabel.backgroundColor = [UIColor clearColor];
+    //    loadingLabel.textColor = [UIColor whiteColor];
+    //    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    //    loadingLabel.textAlignment = NSTextAlignmentCenter;
+    //    loadingLabel.text = @"Loading...";
+    //
+    //    [VW_overlay addSubview:loadingLabel];
     activityIndicatorView.center = VW_overlay.center;
     [VW_overlay addSubview:activityIndicatorView];
     VW_overlay.center = self.view.center;
@@ -128,7 +128,7 @@
     [tapGesture1 setDelegate:self];
     
     [_img_profile addGestureRecognizer:tapGesture1];
-
+    
 }
 -(void)tapGesture_profile
 {
@@ -137,12 +137,12 @@
     
     CGRect profile_frame;
     profile_frame = _VW_img_BG.frame;
-   
+    
     profile_frame.size.width = self.view.frame.size.width - 40;
     profile_frame.size.height = self.view.frame.size.width - 40;
     _VW_img_BG.frame = profile_frame;
-  _VW_img_BG.center = self.view.center;
-  //  profile.view.backgroundColor = [UIColor clearColor];
+    _VW_img_BG.center = self.view.center;
+    //  profile.view.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_VW_img_BG];
     
     
@@ -154,9 +154,9 @@
     } @catch (NSException *exception) {
         NSLog(@"Exception");
     }
-
     
-  
+    
+    
     VW_overlay.hidden = NO;
     _VW_img_BG.hidden = NO;
     
@@ -171,7 +171,7 @@
 -(void)hidde_VW
 {
     profile_view.hidden = YES;
-  
+    
 }
 #pragma mark - Tabbar deligate
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
@@ -300,7 +300,7 @@
 - (void)tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section
 {
     
-            view.tintColor = [UIColor clearColor];
+    view.tintColor = [UIColor clearColor];
     
 }
 
@@ -328,7 +328,7 @@
                     VW_overlay.hidden = NO;
                     [activityIndicatorView startAnimating];
                     [self performSelector:@selector(get_Denominations) withObject:activityIndicatorView afterDelay:0.01];
-                   
+                    
                 });
             }
                 break;
@@ -360,7 +360,7 @@
                 VW_overlay.hidden = NO;
                 [activityIndicatorView startAnimating];
                 [self performSelector:@selector(transaction_history) withObject:activityIndicatorView afterDelay:0.01];
-               
+                
                 
             }
                 break;
@@ -440,12 +440,12 @@
                 
             case 6:
             {
-               
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     VW_overlay.hidden = NO;
                     [activityIndicatorView startAnimating];
                     [self performSelector:@selector(myprofiledit) withObject:activityIndicatorView afterDelay:0.01];
-
+                    
                     
                     
                     
@@ -467,7 +467,7 @@
             case 8:
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
-//                    [self performSegueWithIdentifier:@"accounttowelcomescreen" sender:self];
+                    //                    [self performSegueWithIdentifier:@"accounttowelcomescreen" sender:self];
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log out" message:@"Please confirm" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Cancel",@"Ok", nil];
                     alert.tag = 1;
                     [alert show];
@@ -485,9 +485,9 @@
 {
     [activityIndicatorView stopAnimating];
     VW_overlay.hidden = YES;
-
+    
     [self performSegueWithIdentifier:@"accounttowithdrawalidentifier" sender:self];
-
+    
     
 }
 
@@ -559,63 +559,63 @@
 
 -(void)transaction_history
 {
-        NSError *error;
-        NSHTTPURLResponse *response = nil;
+    NSError *error;
+    NSHTTPURLResponse *response = nil;
+    
+    NSString *urlGetuser ;
+    
+    //    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    //    {
+    //        if ([UIScreen mainScreen].bounds.size.height > 667)
+    //        {
+    //            urlGetuser = [NSString stringWithFormat:@"%@payments/transaction_history",SERVER_URL];
+    //        }
+    //        else
+    //        {
+    //            urlGetuser =[NSString stringWithFormat:@"%@payments/transaction_history?page=10",SERVER_URL];
+    //        }
+    //        }
+    //       else
+    //       {
+    urlGetuser =[NSString stringWithFormat:@"%@payments/transaction_history",SERVER_URL];
+    
+    //        }
+    
+    
+    NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+    NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:urlProducts];
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
+    [request setHTTPShouldHandleCookies:NO];
+    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if (aData)
+    {
         
-        NSString *urlGetuser ;
+        [activityIndicatorView stopAnimating];
+        VW_overlay.hidden = YES;
+        [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"transaction_data"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [[NSUserDefaults standardUserDefaults] setObject:urlGetuser forKey:@"URL_SAVED_tran"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        
+        //        NSLog(@" THe user data is :%@",[[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"User_data"]);
+        [self performSegueWithIdentifier:@"acounttotransactionidentifier" sender:self];
+        
+        
+    }
+    else
+    {
+        [activityIndicatorView stopAnimating];
+        VW_overlay.hidden = YES;
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Interrupted" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [alert show];
+    }
     
-//    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-//    {
-//        if ([UIScreen mainScreen].bounds.size.height > 667)
-//        {
-//            urlGetuser = [NSString stringWithFormat:@"%@payments/transaction_history",SERVER_URL];
-//        }
-//        else
-//        {
-//            urlGetuser =[NSString stringWithFormat:@"%@payments/transaction_history?page=10",SERVER_URL];
-//        }
-//        }
-//       else
-//       {
-        urlGetuser =[NSString stringWithFormat:@"%@payments/transaction_history",SERVER_URL];
-           
-//        }
-    
-
-        NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
-        NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:urlProducts];
-        [request setHTTPMethod:@"GET"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
-        [request setHTTPShouldHandleCookies:NO];
-        NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        if (aData)
-        {
-            
-            [activityIndicatorView stopAnimating];
-            VW_overlay.hidden = YES;
-            [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"transaction_data"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            [[NSUserDefaults standardUserDefaults] setObject:urlGetuser forKey:@"URL_SAVED_tran"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-
-            
-            //        NSLog(@" THe user data is :%@",[[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"User_data"]);
-            [self performSegueWithIdentifier:@"acounttotransactionidentifier" sender:self];
-            
-            
-        }
-        else
-        {
-            [activityIndicatorView stopAnimating];
-            VW_overlay.hidden = YES;
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Interrupted" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-            [alert show];
-        }
-
 }
 
 -(void) get_Denominations
@@ -630,7 +630,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if(aData)
@@ -678,7 +678,7 @@
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if(aData)
@@ -730,7 +730,7 @@
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if(aData)
@@ -758,7 +758,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -802,15 +802,15 @@
             }
             else
             {
-               tempdict=[account_data valueForKey:@"user"];
+                tempdict=[account_data valueForKey:@"user"];
                 NSString *name_STR = [NSString stringWithFormat:@"%@ %@",[[tempdict valueForKey:@"first_name"] capitalizedString],[[tempdict valueForKey:@"last_name"] capitalizedString]];
                 name_STR = [name_STR stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
                 name_STR = [name_STR stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
                 
                 self.first_name.text = name_STR;
-//                [self.first_name sizeToFit];
+                //                [self.first_name sizeToFit];
                 self.last_name.text=[tempdict valueForKey:@"email"];
-//                [self.last_name sizeToFit];
+                //                [self.last_name sizeToFit];
                 NSString *amount=[NSString stringWithFormat:@"%.2f",[[account_data valueForKey:@"wallet"] floatValue]];
                 self.amount.text =[NSString stringWithFormat:@"$%@",amount];
                 
@@ -819,7 +819,7 @@
                 @try {
                     [_img_profile sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_URL,[tempdict valueForKey:@"avatar_url"]]]
                                     placeholderImage:[UIImage imageNamed:@"profile_pic.png"]];
-                
+                    
                     
                 } @catch (NSException *exception) {
                     NSLog(@"Exception");
@@ -835,7 +835,7 @@
     _img_profile.layer.cornerRadius = _img_profile.frame.size.width / 2;
     _img_profile.clipsToBounds = YES;
     
-
+    
     NSHTTPURLResponse *response = nil;
     
     NSString *urlGetuser =[NSString stringWithFormat:@"%@view_profile",SERVER_USR];
@@ -845,7 +845,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -856,7 +856,7 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         //        NSLog(@" THe user data is :%@",[[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"User_data"]);
         //        [self performSegueWithIdentifier:@"accountstoeditprofileidentifier" sender:self];
-//        [self parse_listEvents_api];
+        //        [self parse_listEvents_api];
     }
     else
     {
@@ -881,7 +881,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     //    [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -935,3 +935,4 @@
 }
 
 @end
+

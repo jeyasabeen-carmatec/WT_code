@@ -14,9 +14,9 @@
 {
     NSString *alert_TXT_email;
     UIView *VW_overlay;
-//    DGActivityIndicatorView *activityIndicatorView;
+    //    DGActivityIndicatorView *activityIndicatorView;
     UIActivityIndicatorView *activityIndicatorView;
-//    UILabel *loadingLabel;
+    //    UILabel *loadingLabel;
 }
 
 @end
@@ -28,8 +28,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-//    [self Country_api];
-//    [self State_api];
+    //    [self Country_api];
+    //    [self State_api];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
@@ -95,16 +95,16 @@
     }
     
     _VW_holdCNT.center = self.view.center;
-//    _VW_content.layer.borderWidth = 2.0f;
-//    _VW_content.layer.borderColor = [UIColor whiteColor].CGColor;
+    //    _VW_content.layer.borderWidth = 2.0f;
+    //    _VW_content.layer.borderColor = [UIColor whiteColor].CGColor;
     _VW_content.layer.cornerRadius = 5.0f;
     _VW_content.layer.masksToBounds = YES;
     
-//    _TXT_username.layer.cornerRadius = 5.0f;
-//    _TXT_username.layer.masksToBounds = YES;
-//    _TXT_username.layer.borderWidth = 2.0f;
-//    _TXT_username.layer.borderColor = [UIColor whiteColor].CGColor;
-//    _TXT_username.tag=1;
+    //    _TXT_username.layer.cornerRadius = 5.0f;
+    //    _TXT_username.layer.masksToBounds = YES;
+    //    _TXT_username.layer.borderWidth = 2.0f;
+    //    _TXT_username.layer.borderColor = [UIColor whiteColor].CGColor;
+    //    _TXT_username.tag=1;
     
     _TXT_username.layer.cornerRadius = 5.0f;
     _TXT_username.layer.masksToBounds = YES;
@@ -116,46 +116,46 @@
     _TXT_password.layer.masksToBounds = YES;
     _TXT_password.layer.borderWidth = 1.0f;
     _TXT_password.layer.borderColor = [UIColor whiteColor].CGColor;
-//    _TXT_password.enabled=NO;
+    //    _TXT_password.enabled=NO;
     _TXT_password.tag=2;
-
+    
     
     [_BTN_login addTarget:self action:@selector(action_LOGIN) forControlEvents:UIControlEventTouchUpInside];
     [_BTN_signup addTarget:self action:@selector(action_SIGHN_UP) forControlEvents:UIControlEventTouchUpInside];
     [_BTN_forget_PWD addTarget:self action:@selector(action_FORGET_PWD) forControlEvents:UIControlEventTouchUpInside];
-//    _BTN_login.enabled=NO;
+    //    _BTN_login.enabled=NO;
     
     /*VW_overlay = [[UIView alloc]init];
-    VW_overlay.frame = [UIScreen mainScreen].bounds;
-//    VW_overlay.center = self.view.center;
-    
-    [self.view addSubview:VW_overlay];
-    VW_overlay.backgroundColor = [UIColor blackColor];
-    VW_overlay.alpha = 0.2; */
+     VW_overlay.frame = [UIScreen mainScreen].bounds;
+     //    VW_overlay.center = self.view.center;
+     
+     [self.view addSubview:VW_overlay];
+     VW_overlay.backgroundColor = [UIColor blackColor];
+     VW_overlay.alpha = 0.2; */
     
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]; //[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-//    VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.clipsToBounds = YES;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
     
-//    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
-//    loadingLabel.backgroundColor = [UIColor clearColor];
-//    loadingLabel.textColor = [UIColor whiteColor];
-//    loadingLabel.adjustsFontSizeToFitWidth = YES;
-//    loadingLabel.textAlignment = NSTextAlignmentCenter;
-//    loadingLabel.text = @"Loading...";
-//    
-//    [VW_overlay addSubview:loadingLabel];
+    //    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
+    //    loadingLabel.backgroundColor = [UIColor clearColor];
+    //    loadingLabel.textColor = [UIColor whiteColor];
+    //    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    //    loadingLabel.textAlignment = NSTextAlignmentCenter;
+    //    loadingLabel.text = @"Loading...";
+    //
+    //    [VW_overlay addSubview:loadingLabel];
     activityIndicatorView.center = VW_overlay.center;
     [VW_overlay addSubview:activityIndicatorView];
     VW_overlay.center = self.view.center;
     [self.view addSubview:VW_overlay];
     
     VW_overlay.hidden = YES;
-
+    
 }
 
 -(void) backAction
@@ -169,12 +169,12 @@
 {
     if(textField.tag==1)
     {
-    [textField setTintColor:[UIColor whiteColor]];
-    //if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-   // {
+        [textField setTintColor:[UIColor whiteColor]];
+        //if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        // {
         //Keyboard becomes visible
-       
-    //}
+        
+        //}
     }
     [UIView beginAnimations:nil context:NULL];
     // [UIView setAnimationDuration:0.25];
@@ -210,7 +210,7 @@
             // if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
             // {
             //keyboard will hide
-                       // }
+            // }
         }
         else{
             
@@ -222,7 +222,7 @@
     // [UIView setAnimationDuration:0.25];
     self.view.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height);
     [UIView commitAnimations];
-
+    
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -256,7 +256,7 @@
 }
 -(void) action_SIGHN_UP
 {
-//    [self performSegueWithIdentifier:@"sighnupviewcontroller" sender:self];
+    //    [self performSegueWithIdentifier:@"sighnupviewcontroller" sender:self];
 }
 -(void) action_FORGET_PWD
 {
@@ -275,17 +275,17 @@
     }];
     
     self.submit_action = [UIAlertAction actionWithTitle:@"Submit"
-                                             style:UIAlertActionStyleDefault
+                                                  style:UIAlertActionStyleDefault
                                                 handler:^(UIAlertAction *action) {
-                alert_TXT_email= alertController.textFields[0].text;
-//                                                    [self forgot_PWD];
+                                                    alert_TXT_email= alertController.textFields[0].text;
+                                                    //                                                    [self forgot_PWD];
                                                     VW_overlay.hidden = NO;
                                                     [activityIndicatorView startAnimating];
                                                     [self performSelector:@selector(forgot_PWD) withObject:activityIndicatorView afterDelay:0.01];
                                                 }];
-
-     [alertController addAction:self.submit_action];
-     self.submit_action.enabled = NO;
+    
+    [alertController addAction:self.submit_action];
+    self.submit_action.enabled = NO;
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         
@@ -321,17 +321,17 @@
         [textField becomeFirstResponder];
     }
     
-//    if (textField == _TXT_password && string.length != 0) {
-//        [textField becomeFirstResponder];
-//    }
+    //    if (textField == _TXT_password && string.length != 0) {
+    //        [textField becomeFirstResponder];
+    //    }
     /* This is client feed back */
     
     return YES;
 }
 
 //- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+// Get the new view controller using [segue destinationViewController].
+// Pass the selected object to the new view controller.
 //}
 
 
@@ -341,12 +341,12 @@
 {
     NSString *username = _TXT_username.text;
     NSString *password = _TXT_password.text;
-
+    
     NSError *error;
     NSError *err;
     NSHTTPURLResponse *response = nil;
     NSDictionary *parameters = @{ @"user": @{ @"email":username , @"password":password } };
-
+    
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&err];
     NSString *urlGetuser = [NSString stringWithFormat:@"%@users/sign_in",SERVER_URL];
     NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
@@ -434,12 +434,12 @@
         [activityIndicatorView stopAnimating];
         VW_overlay.hidden = YES;
         NSLog(@"Error %@",err);
-//        UIAlertController *alertcontrollertwo=[UIAlertController alertControllerWithTitle: @"Server Not Coneected"message: @"Please Check your Connection."
-//                                                                           preferredStyle:UIAlertControllerStyleAlert];
-//        [alertcontrollertwo addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-//            
-//        }]];
-//        [self presentViewController:alertcontrollertwo animated:YES completion:nil];
+        //        UIAlertController *alertcontrollertwo=[UIAlertController alertControllerWithTitle: @"Server Not Coneected"message: @"Please Check your Connection."
+        //                                                                           preferredStyle:UIAlertControllerStyleAlert];
+        //        [alertcontrollertwo addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        //
+        //        }]];
+        //        [self presentViewController:alertcontrollertwo animated:YES completion:nil];
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Failed" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
@@ -451,12 +451,12 @@
 -(void)forgot_PWD
 {
     NSString *email = alert_TXT_email;
-
+    
     NSError *error;
     NSError *err;
     NSHTTPURLResponse *response = nil;
     NSDictionary *parameters = @{ @"user": @{ @"email": email } };
-
+    
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&err];
     NSString *urlGetuser =[NSString stringWithFormat:@"%@forgot_password",SERVER_USR];
     NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
@@ -517,8 +517,8 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
-//    [request setHTTPShouldHandleCookies:NO];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
+    //    [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
     {
@@ -534,7 +534,7 @@
                                                          name:@"NEW_TOKEN_AVAILABLE"
                                                        object:nil];
         }
-
+        
         [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"JsonEventlist"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
@@ -567,7 +567,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     [request setHTTPBody:postData];
     
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -596,43 +596,43 @@
 }
 
 /*-(void)myaccount_API_calling
-{
-    NSError *error;
-    NSHTTPURLResponse *response = nil;
-    
-    NSString *urlGetuser =[NSString stringWithFormat:@"%@my_account",SERVER_USR];
-    NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
-    NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:urlProducts];
-    [request setHTTPMethod:@"GET"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
-    [request setHTTPShouldHandleCookies:NO];
-    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    if (aData)
-    {
-        [activityIndicatorView stopAnimating];
-        VW_overlay.hidden = YES;
-        [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"Account_data"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        //        NSLog(@" THe user data is :%@",[[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"User_data"]);
-        //        [self performSegueWithIdentifier:@"accountstoeditprofileidentifier" sender:self];
-        VW_overlay.hidden = NO;
-        [activityIndicatorView startAnimating];
-        [self performSelector:@selector(myprofileapicalling) withObject:activityIndicatorView afterDelay:0.01];
-//        [self myprofileapicalling];
-    }
-    else
-    {
-        [activityIndicatorView stopAnimating];
-        VW_overlay.hidden = YES;
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Interrupted" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-        [alert show];
-    }
-    
-}*/
+ {
+ NSError *error;
+ NSHTTPURLResponse *response = nil;
+ 
+ NSString *urlGetuser =[NSString stringWithFormat:@"%@my_account",SERVER_USR];
+ NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+ NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
+ NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+ [request setURL:urlProducts];
+ [request setHTTPMethod:@"GET"];
+ [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+ [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
+ [request setHTTPShouldHandleCookies:NO];
+ NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+ if (aData)
+ {
+ [activityIndicatorView stopAnimating];
+ VW_overlay.hidden = YES;
+ [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"Account_data"];
+ [[NSUserDefaults standardUserDefaults] synchronize];
+ //        NSLog(@" THe user data is :%@",[[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"User_data"]);
+ //        [self performSegueWithIdentifier:@"accountstoeditprofileidentifier" sender:self];
+ VW_overlay.hidden = NO;
+ [activityIndicatorView startAnimating];
+ [self performSelector:@selector(myprofileapicalling) withObject:activityIndicatorView afterDelay:0.01];
+ //        [self myprofileapicalling];
+ }
+ else
+ {
+ [activityIndicatorView stopAnimating];
+ VW_overlay.hidden = YES;
+ 
+ UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Interrupted" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+ [alert show];
+ }
+ 
+ }*/
 -(void)myprofileapicalling
 {
     NSError *error;
@@ -645,7 +645,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -657,7 +657,7 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         //        NSLog(@" THe user data is :%@",[[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"User_data"]);
         //        [self performSegueWithIdentifier:@"accountstoeditprofileidentifier" sender:self];
-//        [self parse_listEvents_api];
+        //        [self parse_listEvents_api];
         VW_overlay.hidden = NO;
         [activityIndicatorView startAnimating];
         [self performSelector:@selector(parse_listEvents_api) withObject:activityIndicatorView afterDelay:0.01];
@@ -674,3 +674,4 @@
 }
 
 @end
+

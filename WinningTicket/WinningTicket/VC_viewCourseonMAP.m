@@ -56,8 +56,8 @@
     
     [self checkApplicationHasLocationServicesPermission];
     
-//    NSLog(@"The wind direction %@",[self windDirectionFromDegrees:199.501]);
-
+    //    NSLog(@"The wind direction %@",[self windDirectionFromDegrees:199.501]);
+    
     VW_overlay.hidden = NO;
     [activityIndicatorView startAnimating];
     [self performSelector:@selector(API_HoleINFOS) withObject:activityIndicatorView afterDelay:0.01];
@@ -69,14 +69,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -94,9 +94,9 @@
     else
     {
         
-//        VW_overlay.hidden = NO;
-//        [activityIndicatorView startAnimating];
-//        [self performSelector:@selector(setep_VIEW) withObject:activityIndicatorView afterDelay:0.01];
+        //        VW_overlay.hidden = NO;
+        //        [activityIndicatorView startAnimating];
+        //        [self performSelector:@selector(setep_VIEW) withObject:activityIndicatorView afterDelay:0.01];
         
         locationManager = [[CLLocationManager alloc] init];
         locationManager.delegate = self;
@@ -129,20 +129,20 @@
 -(void) setep_VIEW
 {
     
-//    [CATransaction begin];
-//    [CATransaction setAnimationDuration:2.0];
-//    marker.position = coordindates;
-//    [CATransaction commit];
+    //    [CATransaction begin];
+    //    [CATransaction setAnimationDuration:2.0];
+    //    marker.position = coordindates;
+    //    [CATransaction commit];
     
-//    double latitude_val = [[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"lat_STR"]] doubleValue];
-//    double longitude_val = [[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"long_STR"]] doubleValue];
+    //    double latitude_val = [[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"lat_STR"]] doubleValue];
+    //    double longitude_val = [[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"long_STR"]] doubleValue];
     
-//    _VW_score.layer.cornerRadius = 5.0f;sd
-//    _VW_score.layer.masksToBounds = YES;
-//    
-//    _lbl_par.text = _STR_parSTR;
-//    _lbl_hole.text = _STR_holeSTR;
-//    _lbl_yards.text = _STR_yards;
+    //    _VW_score.layer.cornerRadius = 5.0f;sd
+    //    _VW_score.layer.masksToBounds = YES;
+    //
+    //    _lbl_par.text = _STR_parSTR;
+    //    _lbl_hole.text = _STR_holeSTR;
+    //    _lbl_yards.text = _STR_yards;
     
     
     CGRect frame_BTN = _BTN_viewonMAP.frame;
@@ -171,7 +171,7 @@
     _BTN_viewonMAP.layer.masksToBounds = NO;
     _BTN_viewonMAP.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:_BTN_viewonMAP.bounds cornerRadius:_BTN_viewonMAP.layer.cornerRadius].CGPath;
     
-//    _BTN_leaveGame.userInteractionEnabled = NO;
+    //    _BTN_leaveGame.userInteractionEnabled = NO;
     [_BTN_leaveGame addTarget:self action:@selector(ACTN_leaveGame) forControlEvents:UIControlEventTouchUpInside];
     [_BTN_next addTarget:self action:@selector(ACTN_NEXT) forControlEvents:UIControlEventTouchUpInside];
     [_BTN_prev addTarget:self action:@selector(ACTN_PREV) forControlEvents:UIControlEventTouchUpInside];
@@ -185,24 +185,34 @@
     
     self.segmentedControl4.userInteractionEnabled = YES;
     
+    UITapGestureRecognizer *touchTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapTouchTap:)];
+    [self.mapView addGestureRecognizer:touchTap];
+    
 }
 
+#pragma mark - TAP on MAP
+-(void)tapTouchTap:(UITapGestureRecognizer*)touchGesture
+{
+    CGPoint point = [touchGesture locationInView:self.view];
+    CLLocationCoordinate2D coord = [self.mapView.projection coordinateForPoint:point];
+    NSLog(@"tapTouchTap %f %f", coord.latitude, coord.longitude);
+}
 
 - (CLLocationCoordinate2D)findCenterPoint:(CLLocationCoordinate2D)c1 :(CLLocationCoordinate2D)c2
 {
-//    c1.latitude = ToRadian(c1.latitude);
-//    c2.latitude = ToRadian(c2.latitude);
-//    CLLocationDegrees dLon = ToRadian(c2.longitude - c1.longitude);
-//    CLLocationDegrees bx = cos(c2.latitude) * cos(dLon);
-//    CLLocationDegrees by = cos(c2.latitude) * sin(dLon);
-//    CLLocationDegrees latitude = atan2(sin(c1.latitude) + sin(c2.latitude), sqrt((cos(c1.latitude) + bx) * (cos(c1.latitude) + bx) + by*by));
-//    CLLocationDegrees longitude = ToRadian(c1.longitude) + atan2(by, cos(c1.latitude) + bx);
-//    
-//    CLLocationCoordinate2D midpointCoordinate;
-//    midpointCoordinate.longitude = ToDegrees(longitude);
-//    midpointCoordinate.latitude = ToDegrees(latitude);
-//    
-//    return midpointCoordinate;
+    //    c1.latitude = ToRadian(c1.latitude);
+    //    c2.latitude = ToRadian(c2.latitude);
+    //    CLLocationDegrees dLon = ToRadian(c2.longitude - c1.longitude);
+    //    CLLocationDegrees bx = cos(c2.latitude) * cos(dLon);
+    //    CLLocationDegrees by = cos(c2.latitude) * sin(dLon);
+    //    CLLocationDegrees latitude = atan2(sin(c1.latitude) + sin(c2.latitude), sqrt((cos(c1.latitude) + bx) * (cos(c1.latitude) + bx) + by*by));
+    //    CLLocationDegrees longitude = ToRadian(c1.longitude) + atan2(by, cos(c1.latitude) + bx);
+    //
+    //    CLLocationCoordinate2D midpointCoordinate;
+    //    midpointCoordinate.longitude = ToDegrees(longitude);
+    //    midpointCoordinate.latitude = ToDegrees(latitude);
+    //
+    //    return midpointCoordinate;
     
     
     CLLocationCoordinate2D centerPoint;
@@ -213,43 +223,43 @@
     return centerPoint;
     
     
-//    CLLocationCoordinate2D centerPoint;
-//    
-//    centerPoint.longitude = (topLeft.longitude + bottomRight.longitude) / 2;
-//    if (fabs(bottomRight.longitude - topLeft.longitude) > 180)
-//    {
-//        if (centerPoint.longitude > 0)
-//        {
-//            centerPoint.longitude = centerPoint.longitude + 180;
-//        } else {
-//            centerPoint.longitude = centerPoint.longitude - 180;
-//        }
-//    }
-//    
-//    centerPoint.latitude = asin((sin(bottomRight.latitude) + sin(topLeft.latitude))/2);
-//    
-//    return centerPoint;
+    //    CLLocationCoordinate2D centerPoint;
+    //
+    //    centerPoint.longitude = (topLeft.longitude + bottomRight.longitude) / 2;
+    //    if (fabs(bottomRight.longitude - topLeft.longitude) > 180)
+    //    {
+    //        if (centerPoint.longitude > 0)
+    //        {
+    //            centerPoint.longitude = centerPoint.longitude + 180;
+    //        } else {
+    //            centerPoint.longitude = centerPoint.longitude - 180;
+    //        }
+    //    }
+    //
+    //    centerPoint.latitude = asin((sin(bottomRight.latitude) + sin(topLeft.latitude))/2);
+    //
+    //    return centerPoint;
     
-//    CLLocationCoordinate2D center;
-//    
-//    double lon1 = c1.longitude * M_PI / 180;
-//    double lon2 = c2.longitude * M_PI / 100;
-//    
-//    double lat1 = c1.latitude * M_PI / 180;
-//    double lat2 = c2.latitude * M_PI / 100;
-//    
-//    double dLon = lon2 - lon1;
-//    
-//    double x = cos(lat2) * cos(dLon);
-//    double y = cos(lat2) * sin(dLon);
-//    
-//    double lat3 = atan2( sin(lat1) + sin(lat2), sqrt((cos(lat1) + x) * (cos(lat1) + x) + y * y) );
-//    double lon3 = lon1 + atan2(y, cos(lat1) + x);
-//    
-//    center.latitude  = lat3 * 180 / M_PI;
-//    center.longitude = lon3 * 180 / M_PI;
-//    
-//    return center;
+    //    CLLocationCoordinate2D center;
+    //
+    //    double lon1 = c1.longitude * M_PI / 180;
+    //    double lon2 = c2.longitude * M_PI / 100;
+    //
+    //    double lat1 = c1.latitude * M_PI / 180;
+    //    double lat2 = c2.latitude * M_PI / 100;
+    //
+    //    double dLon = lon2 - lon1;
+    //
+    //    double x = cos(lat2) * cos(dLon);
+    //    double y = cos(lat2) * sin(dLon);
+    //
+    //    double lat3 = atan2( sin(lat1) + sin(lat2), sqrt((cos(lat1) + x) * (cos(lat1) + x) + y * y) );
+    //    double lon3 = lon1 + atan2(y, cos(lat1) + x);
+    //
+    //    center.latitude  = lat3 * 180 / M_PI;
+    //    center.longitude = lon3 * 180 / M_PI;
+    //
+    //    return center;
 }
 
 #pragma mark - Location Manager
@@ -286,7 +296,7 @@
                     marker.groundAnchor = CGPointMake(0.5, 0.5);
                     //    [marker setDraggable: YES];
                     marker.map = self.mapView;
-//                    marker.draggable = true;
+                    //                    marker.draggable = true;
                 }
                     break;
                     
@@ -303,7 +313,7 @@
                     marker.groundAnchor = CGPointMake(0.5, 0.5);
                     //    [marker setDraggable: YES];
                     marker.map = self.mapView;
-//                    marker.draggable = true;
+                    marker.draggable = true;
                 }
                     break;
                     
@@ -417,35 +427,35 @@
     
     
     
-//    VW_overlay.hidden = NO;
-//    [activityIndicatorView startAnimating];
-//    [self performSelector:@selector(API_Whether) withObject:activityIndicatorView afterDelay:0.01];
+    //    VW_overlay.hidden = NO;
+    //    [activityIndicatorView startAnimating];
+    //    [self performSelector:@selector(API_Whether) withObject:activityIndicatorView afterDelay:0.01];
     
     
     
-//    manager.delegate = nil;
+    //    manager.delegate = nil;
     
-//   [self setep_VIEW];
+    //   [self setep_VIEW];
     
-   /* for (id gestureRecognizer in self.mapView.gestureRecognizers)
-    {
-        if ([gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]])
-        {
-            UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]init];
-            longPressGestureRecognizer.minimumPressDuration = 0.0;
-            longPressGestureRecognizer.delegate = self;
-            [self.mapView addGestureRecognizer:longPressGestureRecognizer];
-        }
-    }*/
+    /* for (id gestureRecognizer in self.mapView.gestureRecognizers)
+     {
+     if ([gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]])
+     {
+     UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]init];
+     longPressGestureRecognizer.minimumPressDuration = 0.0;
+     longPressGestureRecognizer.delegate = self;
+     [self.mapView addGestureRecognizer:longPressGestureRecognizer];
+     }
+     }*/
     
-//    VW_overlay.hidden = NO;
-//    [activityIndicatorView startAnimating];
-//    [self performSelector:@selector(setep_VIEW) withObject:activityIndicatorView afterDelay:0.01];
+    //    VW_overlay.hidden = NO;
+    //    [activityIndicatorView startAnimating];
+    //    [self performSelector:@selector(setep_VIEW) withObject:activityIndicatorView afterDelay:0.01];
     
     /* GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:newLocation.coordinate.latitude
      longitude:newLocation.coordinate.longitude
      zoom:6];
-         _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+     _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
      [self.mapView animateToCameraPosition:camera];*/
     
 }
@@ -468,12 +478,12 @@
 //        [self mapView:mapView didDragMarker:marker];
 //    }
 //    else
-    
+
 //    if ([marker.title isEqualToString:@"Middle"])
 //    {
 //        [self mapView:mapView didDragMarker:marker];
 //    }
-    
+
 //    else
 //    {
 //        [self mapView:mapView didDragMarker:marker];
@@ -483,7 +493,7 @@
 //}
 
 -(void)mapView:(GMSMapView *)mapView didEndDraggingMarker:(GMSMarker *)marker{
-//    if ([marker.userData isEqualToString:@"xMark"])
+    //    if ([marker.userData isEqualToString:@"xMark"])
     NSLog(@"marker dragged to location: %f,%f", marker.position.latitude, marker.position.longitude);
     if ([marker.title isEqualToString:@"Hole"])
     {
@@ -533,7 +543,7 @@
                 marker.groundAnchor = CGPointMake(0.5, 0.5);
                 //    [marker setDraggable: YES];
                 marker.map = self.mapView;
-//                marker.draggable = true;
+                //                marker.draggable = true;
             }
                 break;
                 
@@ -550,7 +560,7 @@
                 marker.groundAnchor = CGPointMake(0.5, 0.5);
                 //    [marker setDraggable: YES];
                 marker.map = self.mapView;
-//                marker.draggable = true;
+                marker.draggable = true;
             }
                 break;
                 
@@ -666,10 +676,10 @@
 
 -(void) dismiss_COntroller
 {
-
-//    [activityIndicatorView stopAnimating];
-//    VW_overlay.hidden = YES;
-//    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    //    [activityIndicatorView stopAnimating];
+    //    VW_overlay.hidden = YES;
+    //    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
@@ -698,13 +708,13 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     if(_segmentdelegate && [_segmentdelegate respondsToSelector:@selector(leave_game_tapped:)])
     {
-        [_segmentdelegate leave_game_tapped:@"leave_Game"]; 
+        [_segmentdelegate leave_game_tapped:@"leave_Game"];
     }
 }
 -(void) ACT_continue_playing
 {
     self.segmentedControl4.userInteractionEnabled = YES;
-       
+    
     _VW_end_Game.hidden = YES;
     VW_overlay.hidden = YES;
 }
@@ -740,7 +750,7 @@
     
     [self.segmentedControl4 setSelectedSegmentIndex:UISegmentedControlNoSegment];
     
-//    self.segmentedControl4.userInteractionEnabled = NO;
+    //    self.segmentedControl4.userInteractionEnabled = NO;
     _BTN_viewonMAP.userInteractionEnabled = NO;
 }
 
@@ -797,9 +807,9 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPShouldHandleCookies:NO];
     NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
-
+    
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if(aData)
@@ -886,7 +896,7 @@
                         //                circ.map = self.mapView;
                         marker.accessibilityFrame = CGRectMake(marker.accessibilityFrame.origin.x, marker.accessibilityFrame.origin.y+20, marker.accessibilityFrame.size.width, marker.accessibilityFrame.size.height);
                         marker.map = self.mapView;
-//                        marker.draggable = true;
+                        //                        marker.draggable = true;
                         
                         
                     }
@@ -908,7 +918,7 @@
                         //                frame_marker.origin.x = 5;
                         //                frame_marker.origin.y = -5;
                         marker.map = self.mapView;
-//                        marker.draggable = true;
+                        marker.draggable = true;
                     }
                         break;
                         
@@ -1067,10 +1077,10 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPShouldHandleCookies:NO];
-
+    
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if(aData)
     {
@@ -1083,7 +1093,7 @@
             _lbl_WND_SPD.text = [NSString stringWithFormat:@"%.f MPH",[str_spd floatValue]];
         } @catch (NSException *exception) {
             _lbl_WND_SPD.text = @"";//[NSString stringWithFormat:@"0 MPH"]
-//            _IMG_wind_DIREC.hidden = YES;
+            //            _IMG_wind_DIREC.hidden = YES;
         }
         
         @try {
@@ -1093,7 +1103,7 @@
             _IMG_wind_DIREC.hidden = NO;
         } @catch (NSException *exception) {
             _lbl_WND_Direc.text = @""; //E
-//            _IMG_wind_DIREC.image = [UIImage imageNamed:@"E"];
+            //            _IMG_wind_DIREC.image = [UIImage imageNamed:@"E"];
             _IMG_wind_DIREC.hidden = YES;
         }
     }
@@ -1103,8 +1113,8 @@
         [alert show];
     }
     
-//    [activityIndicatorView stopAnimating];
-//    VW_overlay.hidden = YES;
+    //    [activityIndicatorView stopAnimating];
+    //    VW_overlay.hidden = YES;
 }
 
 
@@ -1113,7 +1123,7 @@
 {
     if (HOLE_NUMBER <= 17) {
         _STR_holeSTR = [NSString stringWithFormat:@"Hole %i",HOLE_NUMBER + 1];
-//        _lbl_hole.text = _STR_holeSTR;
+        //        _lbl_hole.text = _STR_holeSTR;
         VW_overlay.hidden = NO;
         [activityIndicatorView startAnimating];
         [self performSelector:@selector(API_HoleINFOS) withObject:activityIndicatorView afterDelay:0.01];
@@ -1123,7 +1133,7 @@
 {
     if (HOLE_NUMBER >= 2) {
         _STR_holeSTR = [NSString stringWithFormat:@"Hole %i",HOLE_NUMBER - 1];
-//        _lbl_hole.text = _STR_holeSTR;
+        //        _lbl_hole.text = _STR_holeSTR;
         VW_overlay.hidden = NO;
         [activityIndicatorView startAnimating];
         [self performSelector:@selector(API_HoleINFOS) withObject:activityIndicatorView afterDelay:0.01];
@@ -1145,3 +1155,4 @@
 }
 
 @end
+

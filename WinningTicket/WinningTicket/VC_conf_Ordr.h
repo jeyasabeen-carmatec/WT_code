@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *BTN_checkout;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll_contents;
+@property (nonatomic, retain) IBOutlet UIButton *BTN_back;
 
 #pragma account view
 @property (weak, nonatomic) IBOutlet UIView *VW_line;
@@ -49,3 +50,4 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbl_nav_font;
 
 @end
+

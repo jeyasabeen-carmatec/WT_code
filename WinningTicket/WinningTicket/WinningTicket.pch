@@ -35,11 +35,11 @@
 
 //http://192.168.3.40:3000
 
-//Anandh system
-//#define SERVER_URL @"http://192.168.3.12:3000/api/v1/"
-//#define SERVER_USR @"http://192.168.3.12:3000/api/v1/users/"
-//#define IMAGE_URL @"http://192.168.3.12:3000"
-//#define ACTION_CABLE @"192.168.3.12:3000/cable"
+//Production system
+//#define SERVER_URL @"http://54.89.3.44/api/v1/"
+//#define SERVER_USR @"http://54.89.3.44/api/v1/users/"
+//#define IMAGE_URL @"http://54.89.3.44"
+//#define ACTION_CABLE @"ws://54.89.3.44/cable"
 
 //Staging Server new
 #define SERVER_URL @"http://winningticket.carmatec.com/api/v1/"
@@ -62,3 +62,4 @@
 //#define FONT_normal [UIFont fontWithName:@"GothamBook" size:17.0f]
 
 #endif /* WinningTicket_pch */
+

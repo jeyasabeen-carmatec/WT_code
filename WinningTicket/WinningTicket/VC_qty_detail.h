@@ -12,6 +12,8 @@
 
 @property (nonatomic, retain) IBOutlet UITableView *tbl_content;
 @property (nonatomic, retain) IBOutlet UIButton *BTN_checkout;
+@property (nonatomic, retain) IBOutlet UIButton *BTN_back;
+
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scroll_TBL;
 
@@ -30,3 +32,4 @@
 @property (nonatomic, retain) IBOutlet UILabel *lbl_nav_font;
 
 @end
+

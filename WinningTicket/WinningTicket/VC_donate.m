@@ -21,7 +21,7 @@
 {
     UIView *VW_overlay;
     UIActivityIndicatorView *activityIndicatorView;
-//    UILabel *loadingLabel;
+    //    UILabel *loadingLabel;
     NSMutableDictionary *states,*countryS;
     NSArray *sorted_STAES,*sorted_Contry,*sorted_Events;
 }
@@ -38,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(Tap_DTECt:)];
     [tap setCancelsTouchesInView:NO];
     tap.delegate = self;
@@ -57,25 +57,25 @@
     [super viewDidLayoutSubviews];
     [_scroll_Contents layoutIfNeeded];
     
-//    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-//    {
-        _scroll_Contents.contentSize = CGSizeMake(_scroll_Contents.frame.size.width, original_height);
-//    }
-//    else
-//    {
-//        _scroll_Contents.contentSize = CGSizeMake(_scroll_Contents.frame.size.width, 653);
-//    }
+    //    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    //    {
+    _scroll_Contents.contentSize = CGSizeMake(_scroll_Contents.frame.size.width, original_height);
+    //    }
+    //    else
+    //    {
+    //        _scroll_Contents.contentSize = CGSizeMake(_scroll_Contents.frame.size.width, 653);
+    //    }
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - UIView Customisation
 -(void) setup_view
@@ -115,14 +115,14 @@
     _VW_organisationdetail.frame = VW_frame;
     
     [self.scroll_Contents addSubview:_VW_organisationdetail];
-
+    
     VW_frame = _VW_titladdress.frame;
     VW_frame.origin.y = _VW_organisationdetail.frame.origin.y + _VW_organisationdetail.frame.size.height+10;
     VW_frame.size.width = _scroll_Contents.frame.size.width;
     _VW_titladdress.frame = VW_frame;
     
     [self.scroll_Contents addSubview:_VW_titladdress];
-      [_BTN_edit addTarget:self action:@selector(edit_BTN_action:) forControlEvents:UIControlEventTouchUpInside];
+    [_BTN_edit addTarget:self action:@selector(edit_BTN_action:) forControlEvents:UIControlEventTouchUpInside];
     
     _TXTVW_organisationname.layer.cornerRadius=3.0f;
     _TXTVW_organisationname.layer.borderWidth=2.0f;
@@ -141,12 +141,12 @@
     /*setting the frames for address label and button in old*/
     CGRect frame_old;
     frame_old = _lbl_address.frame;
-     frame_old.origin.y= _VW_titladdress.frame.size.height+_VW_titladdress.frame.origin.y+10;
+    frame_old.origin.y= _VW_titladdress.frame.size.height+_VW_titladdress.frame.origin.y+10;
     _lbl_address.frame=frame_old;
     [self get_EVENTS];
     NSData *aData=[[NSUserDefaults standardUserDefaults]valueForKey:@"User_data"] ;
     NSError *error;
-
+    
     if(aData)
     {
         NSMutableDictionary *user_DICTIN = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
@@ -305,7 +305,7 @@
                 [_SWITCH_wallet setOn:NO animated:YES];
                 NSString *chk_btn = [NSString stringWithFormat:@"%@",[user_DICTIN valueForKey:@"wallet"]];
                 if ([chk_btn isEqualToString:@"0"]) {
-//                    [_SWITCH_wallet setOn:NO animated:YES];
+                    //                    [_SWITCH_wallet setOn:NO animated:YES];
                     _SWITCH_wallet.enabled = NO;
                 }
                 
@@ -335,7 +335,7 @@
         }
         @catch (NSException *exception)
         {
-//            [self sessionOUT];
+            //            [self sessionOUT];
             NSLog(@"Exception VC donate %@",exception);
         }
     }
@@ -358,8 +358,8 @@
     
     
     
-        _VW_address.frame=CGRectMake(0, self.self.VW_titladdress.frame.origin.y+self.VW_titladdress.frame.size.height+10, self.scroll_Contents.frame.size.width, self.VW_address.frame.size.height);
-        [self.scroll_Contents addSubview:_VW_address];
+    _VW_address.frame=CGRectMake(0, self.self.VW_titladdress.frame.origin.y+self.VW_titladdress.frame.size.height+10, self.scroll_Contents.frame.size.width, self.VW_address.frame.size.height);
+    [self.scroll_Contents addSubview:_VW_address];
     _VW_address.hidden=YES;
     
     UIToolbar* conutry_close = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
@@ -473,26 +473,26 @@
     _TXT_phonenumber.backgroundColor = [UIColor whiteColor];
     _TXT_phonenumber.tag=9;
     _TXT_phonenumber.delegate=self;
-
+    
     [_BTN_deposit addTarget:self action:@selector(Deposit_Pressed) forControlEvents:UIControlEventTouchUpInside];
     [_SWITCH_wallet addTarget:self action:@selector(Switch_ACtion:) forControlEvents:UIControlEventValueChanged];
     
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
     
-//    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
-//    loadingLabel.backgroundColor = [UIColor clearColor];
-//    loadingLabel.textColor = [UIColor whiteColor];
-//    loadingLabel.adjustsFontSizeToFitWidth = YES;
-//    loadingLabel.textAlignment = NSTextAlignmentCenter;
-//    loadingLabel.text = @"Loading...";
-//    
-//    [VW_overlay addSubview:loadingLabel];
+    //    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
+    //    loadingLabel.backgroundColor = [UIColor clearColor];
+    //    loadingLabel.textColor = [UIColor whiteColor];
+    //    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    //    loadingLabel.textAlignment = NSTextAlignmentCenter;
+    //    loadingLabel.text = @"Loading...";
+    //
+    //    [VW_overlay addSubview:loadingLabel];
     activityIndicatorView.center = VW_overlay.center;
     [VW_overlay addSubview:activityIndicatorView];
     VW_overlay.center = self.view.center;
@@ -512,22 +512,22 @@
     NSString *str = _TXT_getamount.text;
     _TXT_getamount.text = [NSString stringWithFormat:@"%.02f",[str floatValue]];
     
-//       NSString *str = _TXT_getamount.text;
-//       str =[NSString stringWithFormat:@"%0.02f",[str floatValue]];
-//
-//     NSArray *arr = [str componentsSeparatedByString:@"."];
-//    _TXT_getamount.text = [NSString stringWithFormat:@"%@.00",[arr objectAtIndex:0]];
-//    NSString *str1 = [arr objectAtIndex:0];
-//    _TXT_getamount.selectedTextRange = str1.length;
-
+    //       NSString *str = _TXT_getamount.text;
+    //       str =[NSString stringWithFormat:@"%0.02f",[str floatValue]];
+    //
+    //     NSArray *arr = [str componentsSeparatedByString:@"."];
+    //    _TXT_getamount.text = [NSString stringWithFormat:@"%@.00",[arr objectAtIndex:0]];
+    //    NSString *str1 = [arr objectAtIndex:0];
+    //    _TXT_getamount.selectedTextRange = str1.length;
+    
     
 }
-#pragma mark - Edit button Clicked 
+#pragma mark - Edit button Clicked
 
 -(void) edit_BTN_action : (id) sender
 {
     [self VIEWaddress];
-
+    
 }
 -(void)VIEWaddress
 {
@@ -564,7 +564,7 @@
         [self viewDidLayoutSubviews];
     }
     
-
+    
 }
 
 
@@ -617,8 +617,8 @@
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-//        if(textField.tag==9)
-//        {
+    //        if(textField.tag==9)
+    //        {
     [UIView beginAnimations:nil context:NULL];
     
     self.view.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height);
@@ -627,7 +627,7 @@
     
     self.view.frame = CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height);
     [UIView commitAnimations];
-      // }
+    // }
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
@@ -841,7 +841,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Failed" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
     }
-        
+    
 }
 
 #pragma mark - UIPickerViewDelegate
@@ -858,7 +858,7 @@
         _arr=[_oraganisationpicker objectAtIndex:row];
         
         return [_arr objectAtIndex:1];
-//        NSLog(@"the temp arr:%@",arr);
+        //        NSLog(@"the temp arr:%@",arr);
     }
     
     return nil;
@@ -883,7 +883,7 @@
             final_frame.size.height = _TXTVW_organisationname.contentSize.height;
             _TXTVW_organisationname.frame = final_frame;
             
-    
+            
             final_frame = _lbl_titledonationAMT.frame;
             final_frame.origin.y = _TXTVW_organisationname.frame.origin.y + _TXTVW_organisationname.frame.size.height + 10;
             _lbl_titledonationAMT.frame = final_frame;
@@ -1015,7 +1015,7 @@
                     
                     VW_frame.size.height = _VW_wallet.frame.origin.y + _VW_wallet.frame.size.height;
                 }
-               
+                
             }
             VW_frame.size.width = _scroll_Contents.frame.size.width;
             _VW_organisationdetail.frame = VW_frame;
@@ -1167,21 +1167,21 @@
             VW_frame.size.width = _scroll_Contents.frame.size.width;
             _VW_organisationdetail.frame = VW_frame;
         }
-            
-            CGRect frame_old;
-            frame_old = _lbl_address.frame;
-            frame_old.origin.y= _VW_titladdress.frame.size.height+_VW_titladdress.frame.origin.y+10;
-            _lbl_address.frame=frame_old;
-            
-            frame_old = _BTN_deposit.frame;
-            frame_old.origin.y =  _lbl_address.frame.origin.y + _lbl_address.frame.size.height + 10;
-            _BTN_deposit.frame=frame_old;
+        
+        CGRect frame_old;
+        frame_old = _lbl_address.frame;
+        frame_old.origin.y= _VW_titladdress.frame.size.height+_VW_titladdress.frame.origin.y+10;
+        _lbl_address.frame=frame_old;
+        
+        frame_old = _BTN_deposit.frame;
+        frame_old.origin.y =  _lbl_address.frame.origin.y + _lbl_address.frame.size.height + 10;
+        _BTN_deposit.frame=frame_old;
         
         original_height =  self.BTN_deposit.frame.origin.y + _BTN_deposit.frame.size.height + 20;
         
         
         
-//        [UIView beginAnimations:@"LeftFlip" context:nil];
+        //        [UIView beginAnimations:@"LeftFlip" context:nil];
         [UIView setAnimationDuration:0.5];
         _VW_address.frame=CGRectMake(_VW_titladdress.frame.origin.x,_VW_titladdress.frame.origin.y+40,self.scroll_Contents.frame.size.width,_VW_address.frame.size.height);
         [self.scroll_Contents addSubview:_VW_address];
@@ -1290,104 +1290,104 @@
 {
     
     /*if([_TXTVW_organisationname.text isEqualToString:@""])
-  {
-      [_TXTVW_organisationname becomeFirstResponder];
-  }
-    else if([_TXT_getamount.text isEqualToString:@""])
-    {
-        [_TXT_getamount becomeFirstResponder];
-    }
-    else
-    {
-    NSString *amount = _TXT_getamount.text;
-       // int  k=[amount intValue];
-        
-        NSString *eventid=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"event_id_donate"]];
-       // int j=[eventid intValue];
-        
-        
-        NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-        f.numberStyle = NSNumberFormatterDecimalStyle;
-        NSNumber *number_amount = [f numberFromString:amount];
-        NSNumber *number_eventID = [f numberFromString:eventid];
+     {
+     [_TXTVW_organisationname becomeFirstResponder];
+     }
+     else if([_TXT_getamount.text isEqualToString:@""])
+     {
+     [_TXT_getamount becomeFirstResponder];
+     }
+     else
+     {
+     NSString *amount = _TXT_getamount.text;
+     // int  k=[amount intValue];
+     
+     NSString *eventid=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"event_id_donate"]];
+     // int j=[eventid intValue];
+     
+     
+     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+     f.numberStyle = NSNumberFormatterDecimalStyle;
+     NSNumber *number_amount = [f numberFromString:amount];
+     NSNumber *number_eventID = [f numberFromString:eventid];
+     
+     NSError *error;
+     NSHTTPURLResponse *response = nil;
+     NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+     //        NSDictionary *parameters = @{ @"price": @10,
+     //                                      @"event_id": @55 };
+     NSDictionary *parameters = @{ @"price":number_amount,
+     @"event_id":number_eventID };
+     NSLog(@"the post data is:%@",parameters);
+     //    self->activityIndicatorView.hidden=NO;
+     //    [self->activityIndicatorView startAnimating];
+     //    [self.view addSubview:activityIndicatorView];
+     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
+     NSString *urlGetuser =[NSString stringWithFormat:@"%@contributors/create",SERVER_URL];
+     NSLog(@"The url iS:%@",urlGetuser);
+     
+     NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
+     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+     [request setURL:urlProducts];
+     [request setHTTPMethod:@"POST"];
+     [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
+     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+     [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
+     [request setHTTPBody:postData];
+     [request setHTTPShouldHandleCookies:NO];
+     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+     if (aData)
+     {
+     //        self->activityIndicatorView.hidden=YES;
+     NSMutableDictionary *json_DATA_one = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
+     NSLog(@"error is:%@",error);
+     //        NSLog(@"The response %@",json_DATA_one);
+     NSString *status=[json_DATA_one valueForKey:@"message"];
+     if([status isEqualToString:@"Successfully donated."])
+     {
+     NSLog(@"The response %@",json_DATA_one);
+     UIAlertController *alertcontrollerone=[UIAlertController alertControllerWithTitle: @"Details"message: @"Details Successfully Posted" preferredStyle:UIAlertControllerStyleAlert];
+     [alertcontrollerone addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+     
+     }]];
+     [self presentViewController:alertcontrollerone animated:YES completion:nil];
+     
+     
+     }
+     else
+     {
+     
+     UIAlertController *alertcontrollertwo = [UIAlertController alertControllerWithTitle:@"Check Details" message: @"Please Check The Details" preferredStyle:UIAlertControllerStyleAlert];
+     [alertcontrollertwo addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+     
+     //                [self performSegueWithIdentifier:@"success_segue" sender:self];
+     
+     
+     }]];
+     [self presentViewController:alertcontrollertwo animated:YES completion:nil];
+     [self dismissViewControllerAnimated:YES completion:nil];
+     }
+     
+     }
+     
+     
+     
+     else
+     {
+     
+     UIAlertController *alertcontrollertwo=[UIAlertController alertControllerWithTitle: @"Server Not Coneected"message: @"Please Check your Connection."
+     preferredStyle:UIAlertControllerStyleAlert];
+     [alertcontrollertwo addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+     
+     }]];
+     [self presentViewController:alertcontrollertwo animated:YES completion:nil];
+     }
+     }*/
     
-    NSError *error;
-    NSHTTPURLResponse *response = nil;
-    NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
-//        NSDictionary *parameters = @{ @"price": @10,
-//                                      @"event_id": @55 };
-        NSDictionary *parameters = @{ @"price":number_amount,
-                                      @"event_id":number_eventID };
-           NSLog(@"the post data is:%@",parameters);
-//    self->activityIndicatorView.hidden=NO;
-//    [self->activityIndicatorView startAnimating];
-//    [self.view addSubview:activityIndicatorView];
-    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
-    NSString *urlGetuser =[NSString stringWithFormat:@"%@contributors/create",SERVER_URL];
-        NSLog(@"The url iS:%@",urlGetuser);
-    
-    NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:urlProducts];
-    [request setHTTPMethod:@"POST"];
-        [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
-    [request setHTTPBody:postData];
-    [request setHTTPShouldHandleCookies:NO];
-    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    if (aData)
-    {
-//        self->activityIndicatorView.hidden=YES;
-        NSMutableDictionary *json_DATA_one = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
-        NSLog(@"error is:%@",error);
-//        NSLog(@"The response %@",json_DATA_one);
-        NSString *status=[json_DATA_one valueForKey:@"message"];
-        if([status isEqualToString:@"Successfully donated."])
-        {
-            NSLog(@"The response %@",json_DATA_one);
-            UIAlertController *alertcontrollerone=[UIAlertController alertControllerWithTitle: @"Details"message: @"Details Successfully Posted" preferredStyle:UIAlertControllerStyleAlert];
-            [alertcontrollerone addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                
-            }]];
-            [self presentViewController:alertcontrollerone animated:YES completion:nil];
-            
-            
-        }
-        else
-        {
-            
-            UIAlertController *alertcontrollertwo = [UIAlertController alertControllerWithTitle:@"Check Details" message: @"Please Check The Details" preferredStyle:UIAlertControllerStyleAlert];
-            [alertcontrollertwo addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-                
-                //                [self performSegueWithIdentifier:@"success_segue" sender:self];
-                
-                
-            }]];
-            [self presentViewController:alertcontrollertwo animated:YES completion:nil];
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }
-        
-    }
     
     
-    
-    else
-    {
-        
-        UIAlertController *alertcontrollertwo=[UIAlertController alertControllerWithTitle: @"Server Not Coneected"message: @"Please Check your Connection."
-                                                                           preferredStyle:UIAlertControllerStyleAlert];
-        [alertcontrollertwo addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            
-        }]];
-        [self presentViewController:alertcontrollertwo animated:YES completion:nil];
-    }
-    }*/
-    
-    
-    
-//    NSString *text_to_compare=_TXT_phonenumber.text;
-//    NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
+    //    NSString *text_to_compare=_TXT_phonenumber.text;
+    //    NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
     NSString *addr_line_two = _TXT_address2.text;
     NSString *lst_name = _TXT_lastname.text;
     
@@ -1396,8 +1396,8 @@
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please select Event" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
-
-         [_TXTVW_organisationname becomeFirstResponder];
+        
+        [_TXTVW_organisationname becomeFirstResponder];
         
     }
     else if([_TXT_getamount.text isEqualToString:@"0.00"] || [_TXT_getamount.text isEqualToString:@" 0.00"])
@@ -1411,46 +1411,46 @@
     {
         [self VIEWaddress];
         [_TXT_firstname becomeFirstResponder];
-//        [_TXT_firstname showError];
-//        [_TXT_firstname showErrorWithText:@" Plese enter first name"];
+        //        [_TXT_firstname showError];
+        //        [_TXT_firstname showErrorWithText:@" Plese enter first name"];
         
         [self.view makeToast:@"Please enter First Name"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
-
+    
     else if(_TXT_firstname.text.length < 2)
     {
         [self VIEWaddress];
         [_TXT_firstname becomeFirstResponder];
-//        [_TXT_firstname showError];
-//        [_TXT_firstname showErrorWithText:@" First name minimum 2 characters"];
+        //        [_TXT_firstname showError];
+        //        [_TXT_firstname showErrorWithText:@" First name minimum 2 characters"];
         
         [self.view makeToast:@"First Name minimum 2 characters"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
     else if([_TXT_address1.text isEqualToString:@""])
     {
         [self VIEWaddress];
         [_TXT_address1 becomeFirstResponder];
-//        [_TXT_address1 showError];
-//        [_TXT_address1 showErrorWithText:@" Please enter address line 1"];
+        //        [_TXT_address1 showError];
+        //        [_TXT_address1 showErrorWithText:@" Please enter address line 1"];
         
         [self.view makeToast:@"Please enter Address Line1"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
     else if (_TXT_address1.text.length < 2)
     {
         [self VIEWaddress];
         [_TXT_address1 becomeFirstResponder];
-//        [_TXT_address1 showError];
-//        [_TXT_address1 showErrorWithText:@" Address line 1 minimum 2 characters"];
+        //        [_TXT_address1 showError];
+        //        [_TXT_address1 showErrorWithText:@" Address line 1 minimum 2 characters"];
         
         [self.view makeToast:@"Address Line1 minimum 2 characters"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
     else if([_TXT_address2.text isEqualToString:@""])
     {
@@ -1467,104 +1467,104 @@
     {
         [self VIEWaddress];
         [_TXT_address2 becomeFirstResponder];
-//        [_TXT_address2 showError];
-//        [_TXT_address2 showErrorWithText:@" Address line 2 minimum 2 characters"];
+        //        [_TXT_address2 showError];
+        //        [_TXT_address2 showErrorWithText:@" Address line 2 minimum 2 characters"];
         
         [self.view makeToast:@"Address Line2 minimum 2 characters"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
     else  if(lst_name.length != 0 && _TXT_lastname.text.length < 2)
     {
         [self VIEWaddress];
         [_TXT_lastname becomeFirstResponder];
-//        [_TXT_lastname showError];
-//        [_TXT_lastname showErrorWithText:@" Last name minimum 2 characters"];
+        //        [_TXT_lastname showError];
+        //        [_TXT_lastname showErrorWithText:@" Last name minimum 2 characters"];
         
         [self.view makeToast:@"Last Name minimum 2 characters"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
     else if([_TXT_city.text isEqualToString:@""])
     {
         [self VIEWaddress];
         [_TXT_city becomeFirstResponder];
-//        [_TXT_city showError];
-//        [_TXT_city showErrorWithText:@" Please enter city"];
+        //        [_TXT_city showError];
+        //        [_TXT_city showErrorWithText:@" Please enter city"];
         
         [self.view makeToast:@"Please enter City"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
     else if(_TXT_city.text.length < 2)
     {
         [self VIEWaddress];
         [_TXT_city becomeFirstResponder];
-//        [_TXT_city showError];
-//        [_TXT_city showErrorWithText:@" City minimum 2 characters"];
+        //        [_TXT_city showError];
+        //        [_TXT_city showErrorWithText:@" City minimum 2 characters"];
         
         [self.view makeToast:@"City minimum 2 characters"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
     else if([_TXT_country.text isEqualToString:@""])
     {
         [self VIEWaddress];
         [_TXT_country becomeFirstResponder];
-//        [_TXT_country showError];
-//        [_TXT_country showErrorWithText:@" Please Select country"];
+        //        [_TXT_country showError];
+        //        [_TXT_country showErrorWithText:@" Please Select country"];
         
         [self.view makeToast:@"Please select Country"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
-
+    
     else if([_TXT_zip.text isEqualToString:@""])
     {
         [self VIEWaddress];
         [_TXT_zip becomeFirstResponder];
-//        [_TXT_zip showError];
-//        [_TXT_zip showErrorWithText:@" Please enter zipcode"];
+        //        [_TXT_zip showError];
+        //        [_TXT_zip showErrorWithText:@" Please enter zipcode"];
         
         [self.view makeToast:@"Please enter Zip Code"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
     else if(_TXT_zip.text.length < 3)
     {
         [self VIEWaddress];
         [_TXT_zip becomeFirstResponder];
-//        [_TXT_zip showError];
-//        [_TXT_zip showErrorWithText:@" Zipcode minimum 4 characters"];
+        //        [_TXT_zip showError];
+        //        [_TXT_zip showErrorWithText:@" Zipcode minimum 4 characters"];
         
         [self.view makeToast:@"Zip Code minimum 4 characters"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
     else if([_TXT_phonenumber.text isEqualToString:@""])
     {
         [self VIEWaddress];
         [_TXT_phonenumber becomeFirstResponder];
-//        [_TXT_phonenumber showError];
-//        [_TXT_phonenumber showErrorWithText:@" Please enter phone number"];
+        //        [_TXT_phonenumber showError];
+        //        [_TXT_phonenumber showErrorWithText:@" Please enter phone number"];
         
         [self.view makeToast:@"Please enter Phone Number"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
-
+    
     else if (_TXT_phonenumber.text.length < 5)
     {
         [self VIEWaddress];
         [_TXT_phonenumber becomeFirstResponder];
-//        [_TXT_phonenumber showError];
-//        [_TXT_phonenumber showErrorWithText:@" Phone number minimum 5 numbers"];
+        //        [_TXT_phonenumber showError];
+        //        [_TXT_phonenumber showErrorWithText:@" Phone number minimum 5 numbers"];
         
         [self.view makeToast:@"Phone Number minimum 5 numbers"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
-      else
+    else
     {
         [self.view endEditing:TRUE];
         
@@ -1623,9 +1623,9 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:urlProducts];
     [request setHTTPMethod:@"POST"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     [request setHTTPBody:postData];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -1662,18 +1662,18 @@
                     f1.numberStyle = NSNumberFormatterDecimalStyle;
                     [f1 setPositiveFormat:@"0.##"];
                     NSNumber *wallet_val = [f1 numberFromString:[NSString stringWithFormat:@"%@",[ARR_tmp objectAtIndex:[ARR_tmp count]-1]]];
-                                               
-//                    NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
-//                    [fmt setPositiveFormat:@"0.##"];
-//                    float Float_amt = [[fmt numberFromString:_TXT_getamount.text] floatValue];
-//                    float Float_wallet_val = [[NSNumber numberWithFloat: floatValue]] floatValue];
+                    
+                    //                    NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+                    //                    [fmt setPositiveFormat:@"0.##"];
+                    //                    float Float_amt = [[fmt numberFromString:_TXT_getamount.text] floatValue];
+                    //                    float Float_wallet_val = [[NSNumber numberWithFloat: floatValue]] floatValue];
                     
                     if ([_SWITCH_wallet isOn] && ([wallet_val doubleValue] > [number_amount doubleValue])) {
                         VW_overlay.hidden = NO;
                         [activityIndicatorView startAnimating];
                         STR_payment_mode *payment_mode = [STR_payment_mode PaymentTYPE];
                         payment_mode.STR_paymentTYPE = @"Wallet";
-//                        [self performSelector:@selector(create_payment) withObject:activityIndicatorView afterDelay:0.01];
+                        //                        [self performSelector:@selector(create_payment) withObject:activityIndicatorView afterDelay:0.01];
                         [self performSelector:@selector(billing_Address) withObject:activityIndicatorView afterDelay:0.01];
                     }
                     else
@@ -1758,7 +1758,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     [request setHTTPBody:postData];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -1796,8 +1796,8 @@
 
 -(void) get_EVENTS
 {
-//    NSArray *arr_TEMP = [[NSArray alloc] initWithArray:[[[NSUserDefaults standardUserDefaults] valueForKey:@"eventsStored"] valueForKey:@"events"]];
-//    NSArray *sorted_org = [arr_TEMP sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+    //    NSArray *arr_TEMP = [[NSArray alloc] initWithArray:[[[NSUserDefaults standardUserDefaults] valueForKey:@"eventsStored"] valueForKey:@"events"]];
+    //    NSArray *sorted_org = [arr_TEMP sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
     _oraganisationpicker = [[[NSUserDefaults standardUserDefaults] valueForKey:@"eventsStored"] valueForKey:@"events"];
 }
 
@@ -1833,7 +1833,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -1854,46 +1854,46 @@
             }
             else
             {
-               
-                    BTDropInRequest *request = [[BTDropInRequest alloc] init];
-                    BTDropInController *dropIn = [[BTDropInController alloc] initWithAuthorization:[dict valueForKey:@"client_token"] request:request handler:^(BTDropInController * _Nonnull controller, BTDropInResult * _Nullable result, NSError * _Nullable error) {
+                
+                BTDropInRequest *request = [[BTDropInRequest alloc] init];
+                BTDropInController *dropIn = [[BTDropInController alloc] initWithAuthorization:[dict valueForKey:@"client_token"] request:request handler:^(BTDropInController * _Nonnull controller, BTDropInResult * _Nullable result, NSError * _Nullable error) {
+                    
+                    if (error != nil) {
+                        NSLog(@"ERROR");
+                    } else if (result.cancelled) {
+                        NSLog(@"CANCELLED");
+                        [self dismissViewControllerAnimated:YES completion:NULL];
+                    } else {
+                        //                    [self performSelector:@selector(dismiss_BT)
+                        //                               withObject:nil
+                        //                               afterDelay:1.0];
                         
-                        if (error != nil) {
-                            NSLog(@"ERROR");
-                        } else if (result.cancelled) {
-                            NSLog(@"CANCELLED");
-                            [self dismissViewControllerAnimated:YES completion:NULL];
-                        } else {
-                            //                    [self performSelector:@selector(dismiss_BT)
-                            //                               withObject:nil
-                            //                               afterDelay:1.0];
-                            
-//                            [[NSUserDefaults standardUserDefaults] setValue:result.paymentMethod.type forKey:@"paymentTYPE"];
-//                            [[NSUserDefaults standardUserDefaults] synchronize];
-                            
-                            STR_payment_mode *payment_mode = [STR_payment_mode PaymentTYPE];
-                            
-                            NSString *amount = _TXT_getamount.text;
-                            amount = [amount stringByReplacingOccurrencesOfString:@"," withString:@""];
-                            
-                            NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-                            f.numberStyle = NSNumberFormatterDecimalStyle;
-                            NSNumber *number_amount = [f numberFromString:amount];
-                            
-                            if(number_amount != 0 && [_SWITCH_wallet isOn])
-                            {
-                                payment_mode.STR_paymentTYPE = [NSString stringWithFormat:@"Wallet & %@",result.paymentMethod.type];
-                            }
-                            else
-                            {
-                                payment_mode.STR_paymentTYPE = result.paymentMethod.type;
-                            }
-                            
-                            [self postNonceToServer:result.paymentMethod.nonce];
-                            [self dismissViewControllerAnimated:YES completion:NULL];
+                        //                            [[NSUserDefaults standardUserDefaults] setValue:result.paymentMethod.type forKey:@"paymentTYPE"];
+                        //                            [[NSUserDefaults standardUserDefaults] synchronize];
+                        
+                        STR_payment_mode *payment_mode = [STR_payment_mode PaymentTYPE];
+                        
+                        NSString *amount = _TXT_getamount.text;
+                        amount = [amount stringByReplacingOccurrencesOfString:@"," withString:@""];
+                        
+                        NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+                        f.numberStyle = NSNumberFormatterDecimalStyle;
+                        NSNumber *number_amount = [f numberFromString:amount];
+                        
+                        if(number_amount != 0 && [_SWITCH_wallet isOn])
+                        {
+                            payment_mode.STR_paymentTYPE = [NSString stringWithFormat:@"Wallet & %@",result.paymentMethod.type];
                         }
-                    }];
-                    [self presentViewController:dropIn animated:YES completion:nil];
+                        else
+                        {
+                            payment_mode.STR_paymentTYPE = result.paymentMethod.type;
+                        }
+                        
+                        [self postNonceToServer:result.paymentMethod.nonce];
+                        [self dismissViewControllerAnimated:YES completion:NULL];
+                    }
+                }];
+                [self presentViewController:dropIn animated:YES completion:nil];
                 
             }
         }
@@ -1902,39 +1902,39 @@
             [self sessionOUT];
         }
         
-      /*  self.braintree = [Braintree braintreeWithClientToken:[dict valueForKey:@"client_token"]];
-        NSLog(@"dddd = %@",self.braintree);
-        
-        BTDropInViewController *dropInViewController = [self.braintree dropInViewControllerWithDelegate:self];
-        // This is where you might want to customize your Drop in. (See below.)
-        
-        // The way you present your BTDropInViewController instance is up to you.
-        // In this example, we wrap it in a new, modally presented navigation controller:
-        dropInViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                                              target:self
-                                                                                                              action:@selector(userDidCancelPayment)];
-        dropInViewController.view.tintColor = _BTN_deposit.backgroundColor;
-        
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:dropInViewController];
-        UIImage *new_image = [UIImage imageNamed:@"UI_01"];
-        UIImageView *temp_IMG = [[UIImageView alloc]initWithFrame:navigationController.navigationBar.frame];
-        temp_IMG.image = new_image;
-        
-        UIImage *newImage = [temp_IMG.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        UIGraphicsBeginImageContextWithOptions(temp_IMG.image.size, NO, newImage.scale);
-        [[UIColor blackColor] set];
-        [newImage drawInRect:CGRectMake(0, 0, temp_IMG.image.size.width, newImage.size.height)];
-        newImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        temp_IMG.image = newImage;
-        
-        [navigationController.navigationBar setBackgroundImage:temp_IMG.image
-                                                 forBarMetrics:UIBarMetricsDefault];
-        navigationController.navigationBar.shadowImage = [UIImage new];
-        navigationController.navigationBar.tintColor = [UIColor whiteColor];
-        
-        [self presentViewController:navigationController animated:YES completion:nil];*/
+        /*  self.braintree = [Braintree braintreeWithClientToken:[dict valueForKey:@"client_token"]];
+         NSLog(@"dddd = %@",self.braintree);
+         
+         BTDropInViewController *dropInViewController = [self.braintree dropInViewControllerWithDelegate:self];
+         // This is where you might want to customize your Drop in. (See below.)
+         
+         // The way you present your BTDropInViewController instance is up to you.
+         // In this example, we wrap it in a new, modally presented navigation controller:
+         dropInViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+         target:self
+         action:@selector(userDidCancelPayment)];
+         dropInViewController.view.tintColor = _BTN_deposit.backgroundColor;
+         
+         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:dropInViewController];
+         UIImage *new_image = [UIImage imageNamed:@"UI_01"];
+         UIImageView *temp_IMG = [[UIImageView alloc]initWithFrame:navigationController.navigationBar.frame];
+         temp_IMG.image = new_image;
+         
+         UIImage *newImage = [temp_IMG.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+         UIGraphicsBeginImageContextWithOptions(temp_IMG.image.size, NO, newImage.scale);
+         [[UIColor blackColor] set];
+         [newImage drawInRect:CGRectMake(0, 0, temp_IMG.image.size.width, newImage.size.height)];
+         newImage = UIGraphicsGetImageFromCurrentImageContext();
+         UIGraphicsEndImageContext();
+         
+         temp_IMG.image = newImage;
+         
+         [navigationController.navigationBar setBackgroundImage:temp_IMG.image
+         forBarMetrics:UIBarMetricsDefault];
+         navigationController.navigationBar.shadowImage = [UIImage new];
+         navigationController.navigationBar.tintColor = [UIColor whiteColor];
+         
+         [self presentViewController:navigationController animated:YES completion:nil];*/
     }
     else
     {
@@ -1994,7 +1994,7 @@
     [self performSelector:@selector(load_donatepurchase)
                withObject:activityIndicatorView
                afterDelay:1.0];
-   
+    
 }
 
 -(void)load_donatepurchase
@@ -2065,7 +2065,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
         VW_overlay.hidden = NO;
         [activityIndicatorView startAnimating];
         [self performSelector:@selector(billing_Address) withObject:activityIndicatorView afterDelay:0.01];
-//        [self performSelector:@selector(create_payment) withObject:activityIndicatorView afterDelay:0.01];
+        //        [self performSelector:@selector(create_payment) withObject:activityIndicatorView afterDelay:0.01];
     }
     else
     {
@@ -2101,8 +2101,8 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
     if ([_LBL_arrow_wallet.text isEqualToString:@""]) {
         _LBL_arrow_wallet.text = @"";
         
-//        _LBLwallet_balence.hidden = YES;
-//        _VW_wallet.hidden = YES;
+        //        _LBLwallet_balence.hidden = YES;
+        //        _VW_wallet.hidden = YES;
         
         [UIView transitionWithView:_LBLwallet_balence
                           duration:0.4
@@ -2118,13 +2118,13 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
                         completion:NULL];
         [_VW_wallet  setHidden:YES];
         
-//        CGRect frame_new = _LBLwallet_balence.frame;
-//        frame_new.origin.y = _BTN_deduct_wallet.frame.origin.y + _BTN_deduct_wallet.frame.size.height + 10;
-//        _LBLwallet_balence.frame = frame_new;
+        //        CGRect frame_new = _LBLwallet_balence.frame;
+        //        frame_new.origin.y = _BTN_deduct_wallet.frame.origin.y + _BTN_deduct_wallet.frame.size.height + 10;
+        //        _LBLwallet_balence.frame = frame_new;
         
-//        frame_new = _VW_wallet.frame;
-//        frame_new.origin.y = _LBLwallet_balence.frame.origin.y + _LBLwallet_balence.frame.size.height + 10;
-//        _VW_wallet.frame = frame_new;
+        //        frame_new = _VW_wallet.frame;
+        //        frame_new.origin.y = _LBLwallet_balence.frame.origin.y + _LBLwallet_balence.frame.size.height + 10;
+        //        _VW_wallet.frame = frame_new;
         
         CGRect frame_ap = _VW_organisationdetail.frame;
         frame_ap.size.height = _BTN_deduct_wallet.frame.origin.y + _BTN_deduct_wallet.frame.size.height + 10;
@@ -2429,3 +2429,4 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
 }
 
 @end
+

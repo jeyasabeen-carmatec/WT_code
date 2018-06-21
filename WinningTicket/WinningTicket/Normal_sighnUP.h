@@ -31,9 +31,11 @@
 
 @property (nonatomic, weak) IBOutlet UIButton *BTN_affiliateorcharity;
 @property (nonatomic, weak) IBOutlet UIButton *BTN_sighnUP;
+@property (nonatomic, weak) IBOutlet UIButton *BTN_back;
 
 @property (nonatomic, weak) IBOutlet UIView *IMG_BG;
 @property (nonatomic, weak) IBOutlet UIImageView *IMG_logo_WT;
 @property (nonatomic, weak) IBOutlet UIView *vw_background;;
 
 @end
+

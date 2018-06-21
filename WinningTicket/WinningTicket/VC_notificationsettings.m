@@ -60,8 +60,8 @@
     _tbl_contents.estimatedRowHeight = 10.0f;
     _tbl_contents.rowHeight = UITableViewAutomaticDimension;
     
-//    [_tbl_contents reloadData];
-//    [_tbl_contents sizeToFit];
+    //    [_tbl_contents reloadData];
+    //    [_tbl_contents sizeToFit];
     _tbl_contents.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -71,14 +71,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - view customisation
 -(void) setup_VIEW
@@ -112,15 +112,15 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     /*UILabel *label = [[UILabel alloc] init];
-    label.textColor = [UIColor blackColor];
-    
-    
-    
-    label.backgroundColor = [UIColor colorWithRed:0.93 green:0.94 blue:0.96 alpha:1.0];
-    
-    label.text = [NSString stringWithFormat:@"    %@",[[ARR_title objectAtIndex:section] uppercaseString]];
-    
-    return label;*/
+     label.textColor = [UIColor blackColor];
+     
+     
+     
+     label.backgroundColor = [UIColor colorWithRed:0.93 green:0.94 blue:0.96 alpha:1.0];
+     
+     label.text = [NSString stringWithFormat:@"    %@",[[ARR_title objectAtIndex:section] uppercaseString]];
+     
+     return label;*/
     
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
     
@@ -151,14 +151,14 @@
         cell.lbl_push.text = @"";
     }
     
-//    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-//    {
-//        cell.lbl_title.font = [UIFont fontWithName:@"Gotham-Book" size:20.0];
-//    }
-//    else
-//    {
-//        cell.lbl_title.font = [UIFont fontWithName:@"Gotham-Book" size:15.0];
-//    }
+    //    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+    //    {
+    //        cell.lbl_title.font = [UIFont fontWithName:@"Gotham-Book" size:20.0];
+    //    }
+    //    else
+    //    {
+    //        cell.lbl_title.font = [UIFont fontWithName:@"Gotham-Book" size:15.0];
+    //    }
     
     cell.lbl_title.text = [NSString stringWithFormat:@"%@",[[ARR_title objectAtIndex:section] uppercaseString]];
     
@@ -173,7 +173,7 @@
 //    CGFloat width = screenBounds.size.width;
 //    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 44)];
 //    view.backgroundColor = [UIColor clearColor];
-//    
+//
 //    return view;
 //}
 
@@ -395,50 +395,50 @@
     NSLog(@"icon name %@",icon_name);
     cell.lbl_title.text = icon_name;
     cell.lbl_title.numberOfLines = 0;
-//    [cell.lbl_title sizeToFit];
+    //    [cell.lbl_title sizeToFit];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     return cell;
 }
 /*-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 40.0f;
-}*/
+ {
+ return 40.0f;
+ }*/
 
 /*-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    NSDictionary *temp_DICN = [ARR_allevent objectAtIndex:indexPath.row];
-    NSString *str; //= [NSString stringWithFormat:@"%@",[temp_DICN valueForKey:@"Event_Name"]];
-    
-    if (indexPath.section == 0) {
-        str = [NSString stringWithFormat:@"%@",[ARR_promotion objectAtIndex:indexPath.row]];
-    }
-    else if (indexPath.section == 1)
-    {
-        str = [NSString stringWithFormat:@"%@",[ARR_events objectAtIndex:indexPath.row]];
-    }
-    else
-    {
-        str = [NSString stringWithFormat:@"%@",[ARR_actions objectAtIndex:indexPath.row]];
-    }
-    
-    CGSize labelWidth = CGSizeMake(_tbl_contents.frame.size.width - 16, CGFLOAT_MAX); // 300 is fixed width of label. You can change this value
-    CGRect textRect;
-    
-    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-    {
-        textRect = [str boundingRectWithSize:labelWidth options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-Book" size:22.0]} context:nil];
-    }
-    else
-    {
-        textRect = [str boundingRectWithSize:labelWidth options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-Book" size:17.0]} context:nil];
-    }
-    
-    
-    int calculatedHeight = textRect.size.height + 10;
-    
-    return calculatedHeight + 30;
-}*/
+ {
+ //    NSDictionary *temp_DICN = [ARR_allevent objectAtIndex:indexPath.row];
+ NSString *str; //= [NSString stringWithFormat:@"%@",[temp_DICN valueForKey:@"Event_Name"]];
+ 
+ if (indexPath.section == 0) {
+ str = [NSString stringWithFormat:@"%@",[ARR_promotion objectAtIndex:indexPath.row]];
+ }
+ else if (indexPath.section == 1)
+ {
+ str = [NSString stringWithFormat:@"%@",[ARR_events objectAtIndex:indexPath.row]];
+ }
+ else
+ {
+ str = [NSString stringWithFormat:@"%@",[ARR_actions objectAtIndex:indexPath.row]];
+ }
+ 
+ CGSize labelWidth = CGSizeMake(_tbl_contents.frame.size.width - 16, CGFLOAT_MAX); // 300 is fixed width of label. You can change this value
+ CGRect textRect;
+ 
+ if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+ {
+ textRect = [str boundingRectWithSize:labelWidth options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-Book" size:22.0]} context:nil];
+ }
+ else
+ {
+ textRect = [str boundingRectWithSize:labelWidth options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-Book" size:17.0]} context:nil];
+ }
+ 
+ 
+ int calculatedHeight = textRect.size.height + 10;
+ 
+ return calculatedHeight + 30;
+ }*/
 
 #pragma mark - BTN Actions
 -(IBAction)BTN_close:(id)sender
@@ -488,7 +488,7 @@
         }
     }
     
-//    [self API_notification_Upadte];
+    //    [self API_notification_Upadte];
     VW_overlay.hidden = NO;
     [activityIndicatorView startAnimating];
     [self performSelector:@selector(API_notification_Upadte) withObject:activityIndicatorView afterDelay:0.01];
@@ -536,7 +536,7 @@
         }
     }
     
-//    [self API_notification_Upadte];
+    //    [self API_notification_Upadte];
     VW_overlay.hidden = NO;
     [activityIndicatorView startAnimating];
     [self performSelector:@selector(API_notification_Upadte) withObject:activityIndicatorView afterDelay:0.01];
@@ -583,7 +583,7 @@
         }
     }
     
-//    [self API_notification_Upadte];
+    //    [self API_notification_Upadte];
     VW_overlay.hidden = NO;
     [activityIndicatorView startAnimating];
     [self performSelector:@selector(API_notification_Upadte) withObject:activityIndicatorView afterDelay:0.01];
@@ -603,7 +603,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
     {
@@ -631,7 +631,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     [request setHTTPBody:postData];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -645,3 +645,4 @@
 }
 
 @end
+

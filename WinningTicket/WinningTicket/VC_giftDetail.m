@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [_BTN_back addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [self setup_VIEW];
 }
 
@@ -33,14 +33,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/  //GIFTDET
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */  //GIFTDET
 
 #pragma mark - Uiview Customisation
 -(void) setup_VIEW
@@ -189,7 +189,7 @@
         NSString *STR_expire_STAT = [NSString stringWithFormat:@"%@",[temp_dictin valueForKey:@"offer_does_not_expire"]];
         
         if ([STR_expire_STAT isEqualToString:@"0"]) {
-
+            
             NSString *date_STR = [self getLocalDateTimeFromUTC:[temp_dictin valueForKey:@"offer_expires_date"]];
             cell.lbl_date.text = date_STR;
             
@@ -200,7 +200,7 @@
                 STR_directions = @" ";
             }
             
-           
+            
             NSAttributedString *attrStr = [[NSAttributedString alloc] initWithData:[STR_directions dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
             
             NSMutableAttributedString *res = [attrStr mutableCopy];
@@ -222,7 +222,7 @@
             [res endEditing];
             cell.lbl_directions.attributedText = res;
             
-//            cell.lbl_directions.text = STR_directions;
+            //            cell.lbl_directions.text = STR_directions;
         }
         else
         {
@@ -315,3 +315,4 @@
 
 
 @end
+

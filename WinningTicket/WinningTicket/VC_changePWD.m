@@ -16,7 +16,7 @@
 {
     UIView *VW_overlay;
     UIActivityIndicatorView *activityIndicatorView;
-//    UILabel *loadingLabel;
+    //    UILabel *loadingLabel;
     CGRect old_frame_lbl;
 }
 
@@ -37,14 +37,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - UIView Cutomisation
 -(void) setup_VIEW
@@ -103,29 +103,29 @@
     frame_TMP.origin.y = _TXT_confirmnewPWD.frame.origin.y + _TXT_confirmnewPWD.frame.size.height + 15;
     _done_Btn.frame = frame_TMP;
     
-//    _done_Btn.backgroundColor = [UIColor colorWithRed:0.08 green:0.63 blue:0.85 alpha:1.0];
+    //    _done_Btn.backgroundColor = [UIColor colorWithRed:0.08 green:0.63 blue:0.85 alpha:1.0];
     
     [_TXT_currentPWD addTarget:self action:@selector(textlength_Chnaged) forControlEvents:UIControlEventAllEvents];
     [_TXT_newPWD addTarget:self action:@selector(textlength_Chnaged) forControlEvents:UIControlEventAllEvents];
     [_TXT_confirmnewPWD addTarget:self action:@selector(textlength_Chnaged) forControlEvents:UIControlEventAllEvents];
-
+    
     [_done_Btn addTarget:self action:@selector(done_btnclicked) forControlEvents:UIControlEventTouchUpInside];
     
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
     
-//    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
-//    loadingLabel.backgroundColor = [UIColor clearColor];
-//    loadingLabel.textColor = [UIColor whiteColor];
-//    loadingLabel.adjustsFontSizeToFitWidth = YES;
-//    loadingLabel.textAlignment = NSTextAlignmentCenter;
-//    loadingLabel.text = @"Loading...";
-//    [VW_overlay addSubview:loadingLabel];
+    //    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
+    //    loadingLabel.backgroundColor = [UIColor clearColor];
+    //    loadingLabel.textColor = [UIColor whiteColor];
+    //    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    //    loadingLabel.textAlignment = NSTextAlignmentCenter;
+    //    loadingLabel.text = @"Loading...";
+    //    [VW_overlay addSubview:loadingLabel];
     
     activityIndicatorView.center = VW_overlay.center;
     [VW_overlay addSubview:activityIndicatorView];
@@ -186,7 +186,7 @@
             {
                 return NO;
             }
-           
+            
         }
         
         return YES;
@@ -204,31 +204,31 @@
             {
                 return NO;
             }
-         }
+        }
         
-            return YES;
+        return YES;
     }
     return YES;
 }
 #pragma mark - BTN Actions
 -(void)textlength_Chnaged
 {
-//    NSLog(@"currendpwd:%lu,%lu,%lu",_TXT_currentPWD.text.length,_TXT_newPWD.text.length,_TXT_confirmnewPWD.text.length);
-
-//    if(_TXT_currentPWD.text.length  >= 8 && _TXT_newPWD.text.length  >= 8 && _TXT_confirmnewPWD.text.length  >= 8)
-//    {
-//        _done_Btn.enabled = YES;
-//    }
-//    else
-//    {
-//        _done_Btn.backgroundColor = [UIColor lightGrayColor];
-//        
-//    }
-
+    //    NSLog(@"currendpwd:%lu,%lu,%lu",_TXT_currentPWD.text.length,_TXT_newPWD.text.length,_TXT_confirmnewPWD.text.length);
+    
+    //    if(_TXT_currentPWD.text.length  >= 8 && _TXT_newPWD.text.length  >= 8 && _TXT_confirmnewPWD.text.length  >= 8)
+    //    {
+    //        _done_Btn.enabled = YES;
+    //    }
+    //    else
+    //    {
+    //        _done_Btn.backgroundColor = [UIColor lightGrayColor];
+    //
+    //    }
+    
 }
 -(IBAction)BTN_close:(id)sender
 {
-      [self dismissViewControllerAnimated:NO completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 -(void)done_btnclicked
 {
@@ -236,67 +236,67 @@
     if([_TXT_currentPWD.text isEqualToString:@""])
     {
         [_TXT_currentPWD becomeFirstResponder];
-//        [_TXT_currentPWD showError];
-//        [_TXT_currentPWD showErrorWithText:@" Please enter current password"];
+        //        [_TXT_currentPWD showError];
+        //        [_TXT_currentPWD showErrorWithText:@" Please enter current password"];
         [self.view makeToast:@"Please enter Current Password"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
         
     }
     else if(_TXT_currentPWD.text.length < 8)
     {
         [_TXT_currentPWD becomeFirstResponder];
-//        [_TXT_currentPWD showError];
-//        [_TXT_currentPWD showErrorWithText:@" Current password should have minimum 8 characters"];
+        //        [_TXT_currentPWD showError];
+        //        [_TXT_currentPWD showErrorWithText:@" Current password should have minimum 8 characters"];
         
         [self.view makeToast:@"Current Password should have minimum 8 characters"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
-
+                    duration:2.0
+                    position:CSToastPositionCenter];
+        
     }
     else  if([_TXT_newPWD.text isEqualToString:@""])
     {
         [_TXT_newPWD becomeFirstResponder];
-//        [_TXT_newPWD showError];
-//        [_TXT_newPWD showErrorWithText:@" Please enter new password"];
+        //        [_TXT_newPWD showError];
+        //        [_TXT_newPWD showErrorWithText:@" Please enter new password"];
         
         [self.view makeToast:@"Please enter New Password"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
         
     }
     else  if(_TXT_newPWD.text.length < 8)
     {
         [_TXT_newPWD becomeFirstResponder];
-//        [_TXT_newPWD showError];
-//        [_TXT_newPWD showErrorWithText:@" New Password should have minimum 8 chraters"];
+        //        [_TXT_newPWD showError];
+        //        [_TXT_newPWD showErrorWithText:@" New Password should have minimum 8 chraters"];
         
         [self.view makeToast:@"New Password should have minimum 8 characters"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
         
     }
     else  if([_TXT_confirmnewPWD.text isEqualToString:@""])
     {
         [_TXT_confirmnewPWD becomeFirstResponder];
-//        [_TXT_confirmnewPWD showError];
-//        [_TXT_confirmnewPWD showErrorWithText:@" Please enter confirm Password"];
+        //        [_TXT_confirmnewPWD showError];
+        //        [_TXT_confirmnewPWD showErrorWithText:@" Please enter confirm Password"];
         
         [self.view makeToast:@"Please enter Confirm Password"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
     else  if(_TXT_confirmnewPWD.text.length < 8)
     {
         [_TXT_confirmnewPWD becomeFirstResponder];
-//        [_TXT_confirmnewPWD showError];
-//        [_TXT_confirmnewPWD showErrorWithText:@" Confirm Password should have minimum 8 chraters"];
+        //        [_TXT_confirmnewPWD showError];
+        //        [_TXT_confirmnewPWD showErrorWithText:@" Confirm Password should have minimum 8 chraters"];
         
         [self.view makeToast:@"Confirm Password should have minimum 8 characters"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
-
+    
     else
     {
         [self.view endEditing:TRUE];
@@ -304,10 +304,10 @@
         [activityIndicatorView startAnimating];
         VW_overlay.hidden=NO;
         [self performSelector:@selector(forgotapi) withObject:activityIndicatorView afterDelay:0.01];
-
+        
     }
     
-
+    
 }
 -(void)forgotapi
 {
@@ -323,7 +323,7 @@
     [self.actviewone startAnimating];
     [self.view addSubview:_actview];
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
-
+    
     
     NSString *urlGetuser =[NSString stringWithFormat:@"%@users/change_password",SERVER_URL];
     
@@ -332,142 +332,142 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     [request setHTTPBody:postData];
-
+    
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-   if (aData)
-   {
-    self.actview.hidden=YES;
-    NSMutableDictionary *json_DATA = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
-    NSLog(@"The response %@",json_DATA);
-       
-       @try
-       {
-           NSString *STR_error = [json_DATA valueForKey:@"error"];
-           if (STR_error)
-           {
-               [self sessionOUT];
-           }
-           else
-           {
-               NSString *status=[json_DATA valueForKey:@"message"];
-               
-               
-               if([status isEqualToString:@"Password has been changed successfully"])
-               {
-                   
-                   [activityIndicatorView stopAnimating];
-                   VW_overlay.hidden = YES;
-                   
-                   //        NSString *password = [[NSUserDefaults standardUserDefaults] valueForKey:@"loginPWD"];
-                   //        if (password) {
-                   //            [[NSUserDefaults standardUserDefaults] setValue:confirm_pwd forKey:@"loginPWD"];
-                   //            [[NSUserDefaults standardUserDefaults] synchronize];
-                   //        }
-                   
-                   _Stat_label.hidden=NO;
-                   _Stat_label.backgroundColor=[UIColor greenColor];
-                   
-                   CGRect frame_TMP = old_frame_lbl;
-                   _Stat_label.frame = frame_TMP;
-                   
-                   old_frame_lbl = _Stat_label.frame;
-                   
-                   frame_TMP = _lbl_icon1.frame;
-                   frame_TMP.origin.y = _Stat_label.frame.origin.y + _Stat_label.frame.size.height + 15;
-                   _lbl_icon1.frame = frame_TMP;
-                   
-                   frame_TMP = _TXT_currentPWD.frame;
-                   frame_TMP.origin.y = _Stat_label.frame.origin.y + _Stat_label.frame.size.height + 15;
-                   _TXT_currentPWD.frame = frame_TMP;
-                   
-                   frame_TMP = _lbl_icon2.frame;
-                   frame_TMP.origin.y = _lbl_icon1.frame.origin.y + _lbl_icon1.frame.size.height + 10;
-                   _lbl_icon2.frame = frame_TMP;
-                   
-                   frame_TMP = _TXT_newPWD.frame;
-                   frame_TMP.origin.y = _lbl_icon2.frame.origin.y;
-                   _TXT_newPWD.frame = frame_TMP;
-                   
-                   frame_TMP = _lbl_icon3.frame;
-                   frame_TMP.origin.y = _lbl_icon2.frame.origin.y + _lbl_icon2.frame.size.height + 10;
-                   _lbl_icon3.frame = frame_TMP;
-                   
-                   frame_TMP = _TXT_confirmnewPWD.frame;
-                   frame_TMP.origin.y = _lbl_icon3.frame.origin.y;
-                   _TXT_confirmnewPWD.frame = frame_TMP;
-                   
-                   frame_TMP = _done_Btn.frame;
-                   frame_TMP.origin.y = _TXT_confirmnewPWD.frame.origin.y + _TXT_confirmnewPWD.frame.size.height + 15;
-                   _done_Btn.frame = frame_TMP;
-                   
-                   
-                   [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
-                   _Stat_label.text=[json_DATA valueForKey:@"message"];
-                   
-                   [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"loginPWD"];
-                   [[NSUserDefaults standardUserDefaults] synchronize];
-                   
-                   
-               }
-               else
-               {
-                   
-                   [activityIndicatorView stopAnimating];
-                   VW_overlay.hidden = YES;
-                   _Stat_label.hidden=NO;
-                   [self performSelector:@selector(hiddenLabel_other) withObject:nil afterDelay:3];
-                   
-                   CGRect frame_TMP = old_frame_lbl;
-                   _Stat_label.frame = frame_TMP;
-                   
-                   old_frame_lbl = _Stat_label.frame;
-                   
-                   frame_TMP = _lbl_icon1.frame;
-                   frame_TMP.origin.y = _Stat_label.frame.origin.y + _Stat_label.frame.size.height + 15;
-                   _lbl_icon1.frame = frame_TMP;
-                   
-                   frame_TMP = _TXT_currentPWD.frame;
-                   frame_TMP.origin.y = _Stat_label.frame.origin.y + _Stat_label.frame.size.height + 15;
-                   _TXT_currentPWD.frame = frame_TMP;
-                   
-                   frame_TMP = _lbl_icon2.frame;
-                   frame_TMP.origin.y = _lbl_icon1.frame.origin.y + _lbl_icon1.frame.size.height + 10;
-                   _lbl_icon2.frame = frame_TMP;
-                   
-                   frame_TMP = _TXT_newPWD.frame;
-                   frame_TMP.origin.y = _lbl_icon2.frame.origin.y;
-                   _TXT_newPWD.frame = frame_TMP;
-                   
-                   frame_TMP = _lbl_icon3.frame;
-                   frame_TMP.origin.y = _lbl_icon2.frame.origin.y + _lbl_icon2.frame.size.height + 10;
-                   _lbl_icon3.frame = frame_TMP;
-                   
-                   frame_TMP = _TXT_confirmnewPWD.frame;
-                   frame_TMP.origin.y = _lbl_icon3.frame.origin.y;
-                   _TXT_confirmnewPWD.frame = frame_TMP;
-                   
-                   frame_TMP = _done_Btn.frame;
-                   frame_TMP.origin.y = _TXT_confirmnewPWD.frame.origin.y + _TXT_confirmnewPWD.frame.size.height + 15;
-                   _done_Btn.frame = frame_TMP;
-                   
-                   _Stat_label.text= @"Confirm Password doesnot match";//[json_DATA valueForKey:@"message"];
-                   _Stat_label.backgroundColor=[UIColor redColor];
-                   
-               }
-               
-               [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"JsonEventlist"];
-               [[NSUserDefaults standardUserDefaults] synchronize];
-           }
-       }
-       @catch (NSException *exception)
-       {
-           [self sessionOUT];
-       }
- }
-
+    if (aData)
+    {
+        self.actview.hidden=YES;
+        NSMutableDictionary *json_DATA = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
+        NSLog(@"The response %@",json_DATA);
+        
+        @try
+        {
+            NSString *STR_error = [json_DATA valueForKey:@"error"];
+            if (STR_error)
+            {
+                [self sessionOUT];
+            }
+            else
+            {
+                NSString *status=[json_DATA valueForKey:@"message"];
+                
+                
+                if([status isEqualToString:@"Password has been changed successfully"])
+                {
+                    
+                    [activityIndicatorView stopAnimating];
+                    VW_overlay.hidden = YES;
+                    
+                    //        NSString *password = [[NSUserDefaults standardUserDefaults] valueForKey:@"loginPWD"];
+                    //        if (password) {
+                    //            [[NSUserDefaults standardUserDefaults] setValue:confirm_pwd forKey:@"loginPWD"];
+                    //            [[NSUserDefaults standardUserDefaults] synchronize];
+                    //        }
+                    
+                    _Stat_label.hidden=NO;
+                    _Stat_label.backgroundColor=[UIColor greenColor];
+                    
+                    CGRect frame_TMP = old_frame_lbl;
+                    _Stat_label.frame = frame_TMP;
+                    
+                    old_frame_lbl = _Stat_label.frame;
+                    
+                    frame_TMP = _lbl_icon1.frame;
+                    frame_TMP.origin.y = _Stat_label.frame.origin.y + _Stat_label.frame.size.height + 15;
+                    _lbl_icon1.frame = frame_TMP;
+                    
+                    frame_TMP = _TXT_currentPWD.frame;
+                    frame_TMP.origin.y = _Stat_label.frame.origin.y + _Stat_label.frame.size.height + 15;
+                    _TXT_currentPWD.frame = frame_TMP;
+                    
+                    frame_TMP = _lbl_icon2.frame;
+                    frame_TMP.origin.y = _lbl_icon1.frame.origin.y + _lbl_icon1.frame.size.height + 10;
+                    _lbl_icon2.frame = frame_TMP;
+                    
+                    frame_TMP = _TXT_newPWD.frame;
+                    frame_TMP.origin.y = _lbl_icon2.frame.origin.y;
+                    _TXT_newPWD.frame = frame_TMP;
+                    
+                    frame_TMP = _lbl_icon3.frame;
+                    frame_TMP.origin.y = _lbl_icon2.frame.origin.y + _lbl_icon2.frame.size.height + 10;
+                    _lbl_icon3.frame = frame_TMP;
+                    
+                    frame_TMP = _TXT_confirmnewPWD.frame;
+                    frame_TMP.origin.y = _lbl_icon3.frame.origin.y;
+                    _TXT_confirmnewPWD.frame = frame_TMP;
+                    
+                    frame_TMP = _done_Btn.frame;
+                    frame_TMP.origin.y = _TXT_confirmnewPWD.frame.origin.y + _TXT_confirmnewPWD.frame.size.height + 15;
+                    _done_Btn.frame = frame_TMP;
+                    
+                    
+                    [self performSelector:@selector(hiddenLabel) withObject:nil afterDelay:3];
+                    _Stat_label.text=[json_DATA valueForKey:@"message"];
+                    
+                    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"loginPWD"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    
+                    
+                }
+                else
+                {
+                    
+                    [activityIndicatorView stopAnimating];
+                    VW_overlay.hidden = YES;
+                    _Stat_label.hidden=NO;
+                    [self performSelector:@selector(hiddenLabel_other) withObject:nil afterDelay:3];
+                    
+                    CGRect frame_TMP = old_frame_lbl;
+                    _Stat_label.frame = frame_TMP;
+                    
+                    old_frame_lbl = _Stat_label.frame;
+                    
+                    frame_TMP = _lbl_icon1.frame;
+                    frame_TMP.origin.y = _Stat_label.frame.origin.y + _Stat_label.frame.size.height + 15;
+                    _lbl_icon1.frame = frame_TMP;
+                    
+                    frame_TMP = _TXT_currentPWD.frame;
+                    frame_TMP.origin.y = _Stat_label.frame.origin.y + _Stat_label.frame.size.height + 15;
+                    _TXT_currentPWD.frame = frame_TMP;
+                    
+                    frame_TMP = _lbl_icon2.frame;
+                    frame_TMP.origin.y = _lbl_icon1.frame.origin.y + _lbl_icon1.frame.size.height + 10;
+                    _lbl_icon2.frame = frame_TMP;
+                    
+                    frame_TMP = _TXT_newPWD.frame;
+                    frame_TMP.origin.y = _lbl_icon2.frame.origin.y;
+                    _TXT_newPWD.frame = frame_TMP;
+                    
+                    frame_TMP = _lbl_icon3.frame;
+                    frame_TMP.origin.y = _lbl_icon2.frame.origin.y + _lbl_icon2.frame.size.height + 10;
+                    _lbl_icon3.frame = frame_TMP;
+                    
+                    frame_TMP = _TXT_confirmnewPWD.frame;
+                    frame_TMP.origin.y = _lbl_icon3.frame.origin.y;
+                    _TXT_confirmnewPWD.frame = frame_TMP;
+                    
+                    frame_TMP = _done_Btn.frame;
+                    frame_TMP.origin.y = _TXT_confirmnewPWD.frame.origin.y + _TXT_confirmnewPWD.frame.size.height + 15;
+                    _done_Btn.frame = frame_TMP;
+                    
+                    _Stat_label.text= @"Confirm Password doesnot match";//[json_DATA valueForKey:@"message"];
+                    _Stat_label.backgroundColor=[UIColor redColor];
+                    
+                }
+                
+                [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"JsonEventlist"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+            }
+        }
+        @catch (NSException *exception)
+        {
+            [self sessionOUT];
+        }
+    }
+    
 }
 - (void)hiddenLabel{
     _Stat_label.hidden = YES;
@@ -498,7 +498,7 @@
     frame_TMP = _done_Btn.frame;
     frame_TMP.origin.y = _TXT_confirmnewPWD.frame.origin.y + _TXT_confirmnewPWD.frame.size.height + 15;
     _done_Btn.frame = frame_TMP;
-     [self performSegueWithIdentifier:@"changepwdtoviewcontroller" sender:self];
+    [self performSegueWithIdentifier:@"changepwdtoviewcontroller" sender:self];
 }
 -(void) hiddenLabel_other
 {
@@ -548,3 +548,4 @@
 }
 
 @end
+

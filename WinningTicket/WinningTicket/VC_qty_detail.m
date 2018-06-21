@@ -21,7 +21,7 @@
     
     UIView *VW_overlay;
     UIActivityIndicatorView *activityIndicatorView;
-//    UILabel *loadingLabel;
+    //    UILabel *loadingLabel;
 }
 
 @end
@@ -31,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [_BTN_back addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     
     [self setup_View];
 }
@@ -57,10 +58,10 @@
        NSFontAttributeName:[UIFont fontWithName:@"FontAwesome" size:32.0f]
        } forState:UIControlStateNormal];
     
-//    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"cross"] style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
+    //    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"cross"] style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
     
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain
-                                      target:self action:@selector(backAction)];
+                                                                     target:self action:@selector(backAction)];
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -95,14 +96,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - button Selectors
 -(void) backAction
@@ -117,136 +118,23 @@
     
     purchase_Cell *pu_cell = [[purchase_Cell alloc]init];
     for(i = 0; i < userDetails.count; i++)
+    {
+        NSMutableDictionary *dict=[[NSMutableDictionary alloc]init];
+        dict = [userDetails objectAtIndex:i];
+        
+        NSString *email = [dict valueForKey:@"email"];
+        NSString *fname = [dict valueForKey:@"first_name"];
+        NSString *lname = [dict valueForKey:@"last_name"];
+        
+        if (fname.length < 2)
         {
-           NSMutableDictionary *dict=[[NSMutableDictionary alloc]init];
-           dict = [userDetails objectAtIndex:i];
-            
-            NSString *email = [dict valueForKey:@"email"];
-            NSString *fname = [dict valueForKey:@"first_name"];
-            NSString *lname = [dict valueForKey:@"last_name"];
-            
-            if (fname.length < 2)
+            if([fname isEqual:@""])
             {
-                if([fname isEqual:@""])
-                {
-//                    break;
-                }
-                else
-                {
-                    NSLog(@"emailnull index %i",i);
-                    NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
-                    NSLog(@"path  = %@",path);
-                    pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
-                    [pu_cell.fname becomeFirstResponder];
-//                    [pu_cell.fname showError];
-//                    [pu_cell.fname showErrorWithText:@" First name minimum 2 characters"];
-                    
-                    [self.navigationController.view makeToast:@"First Name minimum 2 characters"
-                                                     duration:2.0
-                                                     position:CSToastPositionCenter];
-                    
-                    break;
-                }
+                //                    break;
             }
-            
-            if (lname.length < 2)
+            else
             {
-                if([lname isEqual:@""])
-                {
-//                    break;
-                }
-                else
-                {
-                    NSLog(@"first_namenull index %i",i);
-                    NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
-                    NSLog(@"path  = %@",path);
-                    pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
-                    [pu_cell.lname becomeFirstResponder];
-//                    [pu_cell.lname showError];
-//                    [pu_cell.lname showErrorWithText:@" Last name minimum 2 Character"];
-                    [self.navigationController.view makeToast:@"Last Name minimum 2 Character"
-                                                     duration:2.0
-                                                     position:CSToastPositionCenter];
-                    break;
-                }
-            }
-            
-            if (email.length !=0) {
-                if([email isEqual:@""])
-                {
-//                    break;
-                }
-                else
-                {
-                    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
-                    if ([emailTest evaluateWithObject:email] == NO)
-                    {
-                        NSLog(@"last_namenull index %i",i);
-                        NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
-                        NSLog(@"path  = %@",path);
-                        pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
-                        [pu_cell.email becomeFirstResponder];
-//                        [pu_cell.email showError];
-//                        [pu_cell.email showErrorWithText:@" Email is not valid"];
-                        
-                        [self.navigationController.view makeToast:@"Email is not valid"
-                                                         duration:2.0
-                                                         position:CSToastPositionCenter];
-                        
-                        break;
-                    }
-                }
-            }
-            
-            if (fname.length >= 2 && [email isEqual:@""])
-            {
-                NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
-                NSLog(@"path  = %@",path);
-                pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
-                [pu_cell.email becomeFirstResponder];
-//                [pu_cell.email showError];
-//                [pu_cell.email showErrorWithText:@" Please enter valid email address"];
-                
-                [self.navigationController.view makeToast:@"Please enter Email"
-                                                 duration:2.0
-                                                 position:CSToastPositionCenter];
-                
-                break;
-            }
-            
-            if (fname.length >= 2 && [lname isEqual:@""])
-            {
-                NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
-                NSLog(@"path  = %@",path);
-                pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
-                [pu_cell.email becomeFirstResponder];
-                //                [pu_cell.email showError];
-                //                [pu_cell.email showErrorWithText:@" Please enter valid email address"];
-                
-                [self.navigationController.view makeToast:@"Please enter Last Name"
-                                                 duration:2.0
-                                                 position:CSToastPositionCenter];
-                
-                break;
-            }
-            
-            if (fname.length >= 2 && lname.length <2)
-            {
-                NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
-                NSLog(@"path  = %@",path);
-                pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
-                [pu_cell.email becomeFirstResponder];
-                //                [pu_cell.email showError];
-                //                [pu_cell.email showErrorWithText:@" Please enter valid email address"];
-                
-                [self.navigationController.view makeToast:@"Last Name minimum 2 characters"
-                                                 duration:2.0
-                                                 position:CSToastPositionCenter];
-                
-                break;
-            }
-            
-            if (email.length > 2 && [fname isEqualToString:@""]) {
+                NSLog(@"emailnull index %i",i);
                 NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
                 NSLog(@"path  = %@",path);
                 pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
@@ -254,21 +142,134 @@
                 //                    [pu_cell.fname showError];
                 //                    [pu_cell.fname showErrorWithText:@" First name minimum 2 characters"];
                 
-                [self.navigationController.view makeToast:@"Please enter First Name"
+                [self.navigationController.view makeToast:@"First Name minimum 2 characters"
+                                                 duration:2.0
+                                                 position:CSToastPositionCenter];
+                
+                break;
+            }
+        }
+        
+        if (lname.length < 2)
+        {
+            if([lname isEqual:@""])
+            {
+                //                    break;
+            }
+            else
+            {
+                NSLog(@"first_namenull index %i",i);
+                NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
+                NSLog(@"path  = %@",path);
+                pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
+                [pu_cell.lname becomeFirstResponder];
+                //                    [pu_cell.lname showError];
+                //                    [pu_cell.lname showErrorWithText:@" Last name minimum 2 Character"];
+                [self.navigationController.view makeToast:@"Last Name minimum 2 Character"
                                                  duration:2.0
                                                  position:CSToastPositionCenter];
                 break;
             }
+        }
+        
+        if (email.length !=0) {
+            if([email isEqual:@""])
+            {
+                //                    break;
+            }
+            else
+            {
+                NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
+                if ([emailTest evaluateWithObject:email] == NO)
+                {
+                    NSLog(@"last_namenull index %i",i);
+                    NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
+                    NSLog(@"path  = %@",path);
+                    pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
+                    [pu_cell.email becomeFirstResponder];
+                    //                        [pu_cell.email showError];
+                    //                        [pu_cell.email showErrorWithText:@" Email is not valid"];
+                    
+                    [self.navigationController.view makeToast:@"Email is not valid"
+                                                     duration:2.0
+                                                     position:CSToastPositionCenter];
+                    
+                    break;
+                }
+            }
+        }
+        
+        if (fname.length >= 2 && [email isEqual:@""])
+        {
+            NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
+            NSLog(@"path  = %@",path);
+            pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
+            [pu_cell.email becomeFirstResponder];
+            //                [pu_cell.email showError];
+            //                [pu_cell.email showErrorWithText:@" Please enter valid email address"];
+            
+            [self.navigationController.view makeToast:@"Please enter Email"
+                                             duration:2.0
+                                             position:CSToastPositionCenter];
+            
+            break;
+        }
+        
+        if (fname.length >= 2 && [lname isEqual:@""])
+        {
+            NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
+            NSLog(@"path  = %@",path);
+            pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
+            [pu_cell.email becomeFirstResponder];
+            //                [pu_cell.email showError];
+            //                [pu_cell.email showErrorWithText:@" Please enter valid email address"];
+            
+            [self.navigationController.view makeToast:@"Please enter Last Name"
+                                             duration:2.0
+                                             position:CSToastPositionCenter];
+            
+            break;
+        }
+        
+        if (fname.length >= 2 && lname.length <2)
+        {
+            NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
+            NSLog(@"path  = %@",path);
+            pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
+            [pu_cell.email becomeFirstResponder];
+            //                [pu_cell.email showError];
+            //                [pu_cell.email showErrorWithText:@" Please enter valid email address"];
+            
+            [self.navigationController.view makeToast:@"Last Name minimum 2 characters"
+                                             duration:2.0
+                                             position:CSToastPositionCenter];
+            
+            break;
+        }
+        
+        if (email.length > 2 && [fname isEqualToString:@""]) {
+            NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:0];
+            NSLog(@"path  = %@",path);
+            pu_cell = [self.tbl_content cellForRowAtIndexPath:path];
+            [pu_cell.fname becomeFirstResponder];
+            //                    [pu_cell.fname showError];
+            //                    [pu_cell.fname showErrorWithText:@" First name minimum 2 characters"];
+            
+            [self.navigationController.view makeToast:@"Please enter First Name"
+                                             duration:2.0
+                                             position:CSToastPositionCenter];
+            break;
+        }
     }
     
     if (i == userDetails.count) {
-//        [self qty_detailPage];
+        //        [self qty_detailPage];
         VW_overlay.hidden = NO;
         [activityIndicatorView startAnimating];
         [self performSelector:@selector(qty_detailPage) withObject:activityIndicatorView afterDelay:0.01];
     }
     
-//    [self myprofileapicalling];
+    //    [self myprofileapicalling];
     VW_overlay.hidden = NO;
     [activityIndicatorView startAnimating];
     [self performSelector:@selector(myprofileapicalling) withObject:activityIndicatorView afterDelay:0.01];
@@ -300,7 +301,7 @@
             [request setURL:urlProducts];
             [request setHTTPMethod:@"POST"];
             [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-            [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+            [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
             [request setHTTPBody:postData];
             [request setHTTPShouldHandleCookies:NO];
             NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -355,19 +356,19 @@
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
     
-//    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
-//    loadingLabel.backgroundColor = [UIColor clearColor];
-//    loadingLabel.textColor = [UIColor whiteColor];
-//    loadingLabel.adjustsFontSizeToFitWidth = YES;
-//    loadingLabel.textAlignment = NSTextAlignmentCenter;
-//    loadingLabel.text = @"Loading...";
-//    
-//    [VW_overlay addSubview:loadingLabel];
+    //    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
+    //    loadingLabel.backgroundColor = [UIColor clearColor];
+    //    loadingLabel.textColor = [UIColor whiteColor];
+    //    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    //    loadingLabel.textAlignment = NSTextAlignmentCenter;
+    //    loadingLabel.text = @"Loading...";
+    //
+    //    [VW_overlay addSubview:loadingLabel];
     activityIndicatorView.center = VW_overlay.center;
     [VW_overlay addSubview:activityIndicatorView];
     VW_overlay.center = self.view.center;
@@ -613,7 +614,7 @@
 //- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 //    UIView *customSectionHeaderView;
 //    UILabel *titleLabel;
-//    
+//
 //    customSectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(20, 0, tableView.frame.size.width, 24)];
 //    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, tableView.frame.size.width, 24)];
 //    titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -621,9 +622,9 @@
 //    [titleLabel setBackgroundColor:[UIColor clearColor]];
 //    titleLabel.font = [UIFont boldSystemFontOfSize:15];
 //    titleLabel.text =  @"Add Recipients";
-//    
+//
 //    [customSectionHeaderView addSubview:titleLabel];
-//    
+//
 //    return customSectionHeaderView;
 //}
 
@@ -650,31 +651,31 @@
         
         if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
         {
-//            float new_Y = _tbl_content.frame.origin.y;
-//            if (new_Y < 0)
-//            {
-//                _scroll_TBL.frame = CGRectMake(_scroll_TBL.frame.origin.x, _scroll_TBL.frame.origin.y + 310,_scroll_TBL.frame.size.width,self.view.frame.size.height);
-//            }
-//            
-//            _scroll_TBL.frame = CGRectMake(_scroll_TBL.frame.origin.x, _scroll_TBL.frame.origin.y - 310,_scroll_TBL.frame.size.width,self.view.frame.size.height);
+            //            float new_Y = _tbl_content.frame.origin.y;
+            //            if (new_Y < 0)
+            //            {
+            //                _scroll_TBL.frame = CGRectMake(_scroll_TBL.frame.origin.x, _scroll_TBL.frame.origin.y + 310,_scroll_TBL.frame.size.width,self.view.frame.size.height);
+            //            }
+            //
+            //            _scroll_TBL.frame = CGRectMake(_scroll_TBL.frame.origin.x, _scroll_TBL.frame.origin.y - 310,_scroll_TBL.frame.size.width,self.view.frame.size.height);
             
             [UIView beginAnimations:nil context:NULL];
             // [UIView setAnimationDuration:0.25];
             self.navigationController.view.frame = CGRectMake(0,- 310,self.view.frame.size.width,self.view.frame.size.height);
-//            [UIView commitAnimations];
+            //            [UIView commitAnimations];
         }
         else
         {
-//            float new_Y = _scroll_TBL.frame.origin.y;
-//            if (new_Y < 0)
-//            {
-//                _scroll_TBL.frame = CGRectMake(_scroll_TBL.frame.origin.x, _scroll_TBL.frame.origin.y + 310,_scroll_TBL.frame.size.width,self.view.frame.size.height);
-//            }
-//            _scroll_TBL.frame = CGRectMake(_scroll_TBL.frame.origin.x, _scroll_TBL.frame.origin.y - 250,_tbl_content.frame.size.width,self.view.frame.size.height);
+            //            float new_Y = _scroll_TBL.frame.origin.y;
+            //            if (new_Y < 0)
+            //            {
+            //                _scroll_TBL.frame = CGRectMake(_scroll_TBL.frame.origin.x, _scroll_TBL.frame.origin.y + 310,_scroll_TBL.frame.size.width,self.view.frame.size.height);
+            //            }
+            //            _scroll_TBL.frame = CGRectMake(_scroll_TBL.frame.origin.x, _scroll_TBL.frame.origin.y - 250,_tbl_content.frame.size.width,self.view.frame.size.height);
             [UIView beginAnimations:nil context:NULL];
             // [UIView setAnimationDuration:0.25];
             self.navigationController.view.frame = CGRectMake(0,- 212,self.view.frame.size.width,self.view.frame.size.height);
-//            [UIView commitAnimations];
+            //            [UIView commitAnimations];
         }
         [UIView commitAnimations];
     }
@@ -688,26 +689,26 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-   /* purchase_Cell *pu_cell;
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-        // Load resources for iOS 6.1 or earlier
-        pu_cell = (purchase_Cell *) textField.superview.superview;
-        
-    } else {
-        // Load resources for iOS 7 or later
-        pu_cell = (purchase_Cell *) textField.superview.superview.superview;
-        // TextField -> UITableVieCellContentView -> (in iOS 7!)ScrollView -> Cell!
-    }
-    
-    NSIndexPath *index_NN = [_tbl_content indexPathForCell:pu_cell];
-    NSInteger row = index_NN.row;
-    if (row == t - 2 && row != 0)
-    {
-        _scroll_TBL.frame = main_Frame;
-        [UIView commitAnimations];
-    }*/
-//    _scroll_TBL.frame = main_Frame;
-//    [UIView commitAnimations];
+    /* purchase_Cell *pu_cell;
+     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+     // Load resources for iOS 6.1 or earlier
+     pu_cell = (purchase_Cell *) textField.superview.superview;
+     
+     } else {
+     // Load resources for iOS 7 or later
+     pu_cell = (purchase_Cell *) textField.superview.superview.superview;
+     // TextField -> UITableVieCellContentView -> (in iOS 7!)ScrollView -> Cell!
+     }
+     
+     NSIndexPath *index_NN = [_tbl_content indexPathForCell:pu_cell];
+     NSInteger row = index_NN.row;
+     if (row == t - 2 && row != 0)
+     {
+     _scroll_TBL.frame = main_Frame;
+     [UIView commitAnimations];
+     }*/
+    //    _scroll_TBL.frame = main_Frame;
+    //    [UIView commitAnimations];
     
     [UIView beginAnimations:nil context:NULL];
     // [UIView setAnimationDuration:0.25];
@@ -778,36 +779,36 @@
     frame_NN.size.height = [_tbl_content contentSize].height;
     _tbl_content.frame = frame_NN;
     
-//    main_Frame = _scroll_TBL.frame;
+    //    main_Frame = _scroll_TBL.frame;
     
     _scroll_TBL.contentSize = CGSizeMake(_scroll_TBL.frame.size.width, _VW_main.frame.size.height + 10 + [_tbl_content contentSize].height + 10);
     
-//    [self.scroll_TBL setContentInset:UIEdgeInsetsMake(0.f, 0.f, 0.f, 0.f)];
-//    [self.scroll_TBL scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
-//    
-//    float headerImageYOffset = origin_Y;
-//    CGRect headerImageFrame = _VW_main.frame;
-//    headerImageFrame.origin.y = headerImageYOffset;
+    //    [self.scroll_TBL setContentInset:UIEdgeInsetsMake(0.f, 0.f, 0.f, 0.f)];
+    //    [self.scroll_TBL scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
+    //
+    //    float headerImageYOffset = origin_Y;
+    //    CGRect headerImageFrame = _VW_main.frame;
+    //    headerImageFrame.origin.y = headerImageYOffset;
     
-//    [self.scroll_TBL setContentInset:UIEdgeInsetsMake(self.VW_main.bounds.size.height, 0.f, 0.f, 0.f)];
-//    [self.scroll_TBL scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
+    //    [self.scroll_TBL setContentInset:UIEdgeInsetsMake(self.VW_main.bounds.size.height, 0.f, 0.f, 0.f)];
+    //    [self.scroll_TBL scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
     
-//    float headerImageYOffset = self.VW_main.bounds.size.height - self.scroll_TBL.bounds.size.height;
-//    CGRect headerImageFrame = _VW_main.frame;
-//    headerImageFrame.origin.y = headerImageYOffset;
+    //    float headerImageYOffset = self.VW_main.bounds.size.height - self.scroll_TBL.bounds.size.height;
+    //    CGRect headerImageFrame = _VW_main.frame;
+    //    headerImageFrame.origin.y = headerImageYOffset;
     
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-//    CGFloat scrollOffset = -scrollView.contentOffset.y;
-//    CGFloat yPos = scrollOffset -_VW_main.bounds.size.height;
-//    _VW_main.frame = CGRectMake(0, yPos, _VW_main.frame.size.width, _VW_main.frame.size.height);
-//    float alpha=1.0-(-yPos/ _VW_main.frame.size.height);
-//    _lbl_total.alpha=alpha;
-//    _lbl_total_amount.alpha=alpha;
-//    float fontSize=24-(-yPos/20);
-//    _lbl_total.font=[UIFont systemFontOfSize:fontSize];
-//    _lbl_total_amount.font=[UIFont systemFontOfSize:fontSize];
+    //    CGFloat scrollOffset = -scrollView.contentOffset.y;
+    //    CGFloat yPos = scrollOffset -_VW_main.bounds.size.height;
+    //    _VW_main.frame = CGRectMake(0, yPos, _VW_main.frame.size.width, _VW_main.frame.size.height);
+    //    float alpha=1.0-(-yPos/ _VW_main.frame.size.height);
+    //    _lbl_total.alpha=alpha;
+    //    _lbl_total_amount.alpha=alpha;
+    //    float fontSize=24-(-yPos/20);
+    //    _lbl_total.font=[UIFont systemFontOfSize:fontSize];
+    //    _lbl_total_amount.font=[UIFont systemFontOfSize:fontSize];
     
     CGRect frame = _VW_main.frame;
     frame.size.height = 0;
@@ -826,18 +827,18 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
     {
         [activityIndicatorView stopAnimating];
         VW_overlay.hidden = YES;
-
+        
         [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"User_data"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         //        NSLog(@" THe user data is :%@",[[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"User_data"]);
-//        [self performSegueWithIdentifier:@"accountstoeditprofileidentifier" sender:self];
+        //        [self performSegueWithIdentifier:@"accountstoeditprofileidentifier" sender:self];
         
     }
     else
@@ -853,7 +854,7 @@
 
 - (void) dealloc
 {
-//    [_tbl_content release];
+    //    [_tbl_content release];
     [self.tbl_content setDelegate:nil];
     [self.tbl_content setDataSource:nil];
     [super dealloc];
@@ -874,3 +875,4 @@
 }
 
 @end
+

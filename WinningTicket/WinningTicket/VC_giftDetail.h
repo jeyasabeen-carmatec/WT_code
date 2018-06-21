@@ -14,4 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbl_nav_title;
 
+@property (weak, nonatomic) IBOutlet UIButton *BTN_back;
+
+
 @end
+

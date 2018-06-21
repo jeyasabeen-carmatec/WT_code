@@ -34,8 +34,15 @@
 
 //@property (weak, nonatomic) IBOutlet UITableView *tbl_search;
 @property (weak, nonatomic) IBOutlet UIButton *apply;
+@property (weak, nonatomic) IBOutlet UIButton *BTN_back;
+@property (weak, nonatomic) IBOutlet UIButton *BTN_filter;
+@property (weak, nonatomic) IBOutlet UILabel *LBL_navigation_titl;
+
+
 
 @property (weak, nonatomic) IBOutlet UILabel *lbl_nav_Font;
 
 
+
 @end
+
