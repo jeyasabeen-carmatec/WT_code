@@ -31,10 +31,10 @@
 @interface VC_editRefferel ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,FrameObservingViewDelegate1, UITableViewDragLoadDelegate>
 {
     
-        UIView *VW_overlay;
-        UIActivityIndicatorView *activityIndicatorView;
-        NSMutableDictionary *temp_dict;
-        int k;
+    UIView *VW_overlay;
+    UIActivityIndicatorView *activityIndicatorView;
+    NSMutableDictionary *temp_dict;
+    int k;
     UILabel *search_label;//,*loadingLabel;
     CGRect old_frame;
 }
@@ -64,19 +64,19 @@
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
     
-//    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
-//    loadingLabel.backgroundColor = [UIColor clearColor];
-//    loadingLabel.textColor = [UIColor whiteColor];
-//    loadingLabel.adjustsFontSizeToFitWidth = YES;
-//    loadingLabel.textAlignment = NSTextAlignmentCenter;
-//    loadingLabel.text = @"Loading...";
-//    
-//    [VW_overlay addSubview:loadingLabel];
+    //    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
+    //    loadingLabel.backgroundColor = [UIColor clearColor];
+    //    loadingLabel.textColor = [UIColor whiteColor];
+    //    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    //    loadingLabel.textAlignment = NSTextAlignmentCenter;
+    //    loadingLabel.text = @"Loading...";
+    //
+    //    [VW_overlay addSubview:loadingLabel];
     activityIndicatorView.center = VW_overlay.center;
     [VW_overlay addSubview:activityIndicatorView];
     VW_overlay.center = self.view.center;
@@ -96,9 +96,9 @@
     {
         [self performSelector:@selector(getdata) withObject:activityIndicatorView afterDelay:0.01];
     }
-
     
-
+    
+    
     
     //    [self performSelector:@selector(API_AffiliateHome) withObject:activityIndicatorView afterDelay:0.01];
     
@@ -135,7 +135,7 @@
         [alert show];
     }
     
-
+    
 }
 
 
@@ -152,21 +152,21 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - Uiview Customisation
 -(void) setupView
 {
     self.search_bar.delegate=self;
     [_search_bar setBarStyle:UIBarStyleBlack];
-
+    
     old_frame = _search_bar.frame;
     
     _search_bar.delegate=self;
@@ -175,37 +175,37 @@
     search_label.hidden = YES;
     _vw_LINe.hidden = YES;
     
-//    NSDate *date= [NSDate date];
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-//    [dateFormatter setDateFormat:@"yyyy-MM-dd,HH:MM:SS"];
-//    NSString *dateString = [dateFormatter stringFromDate:date];
-//    NSLog(@"Current date is %@",dateString);
-//    _ARR_sec_one=[[NSMutableArray alloc]init];
-//    
-//    NSDictionary *temp_dictin;
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Golf ball with cerficate of authenticityJordanspeith Auographed Golf ball with cerficate of authenticityJordanspeith Auographed Golf ball with cerficate of authenticity",@"key1",dateString,@"key2", nil];
-//    [_ARR_sec_one addObject:temp_dictin];
-//    
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Tiltlelist",@"key1",dateString,@"key2", nil];
-//    [_ARR_sec_one addObject:temp_dictin];
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Towel From the mastersJordanspeith Auographed Golf ball with cerficate of authenticity   Jordanspeith Auographed Golf ball with cerficate of authenticity Jordanspeith Auographed Golf ball with cerficate of ",@"key1",dateString,@"key2", nil];
-//    [_ARR_sec_one addObject:temp_dictin];
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Under Armor GolfShoes",@"key1",dateString,@"key2", nil];
-//    [_ARR_sec_one addObject:temp_dictin];temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"TigerWoods Auographed Towel From the masters",@"key1",dateString,@"key2",nil];
-//    [_ARR_sec_one addObject:temp_dictin];
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"TigerWoods Auographed Under Armor GolfShoes",@"key1",dateString,@"key2", nil];
-//    [_ARR_sec_one addObject:temp_dictin];
-//    UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-//    numberToolbar.barStyle = UIBarStyleBlackTranslucent;
-//    [numberToolbar sizeToFit];
-//    
-//    UIButton *close=[[UIButton alloc]init];
-//    close.frame=CGRectMake(numberToolbar.frame.size.width - 100, 0, 100, numberToolbar.frame.size.height);
-//    [close setTitle:@"close" forState:UIControlStateNormal];
-//    [close addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    [numberToolbar addSubview:close];
-//    _search_bar.inputAccessoryView = numberToolbar;
+    //    NSDate *date= [NSDate date];
+    //    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    //    [dateFormatter setDateFormat:@"yyyy-MM-dd,HH:MM:SS"];
+    //    NSString *dateString = [dateFormatter stringFromDate:date];
+    //    NSLog(@"Current date is %@",dateString);
+    //    _ARR_sec_one=[[NSMutableArray alloc]init];
+    //
+    //    NSDictionary *temp_dictin;
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Golf ball with cerficate of authenticityJordanspeith Auographed Golf ball with cerficate of authenticityJordanspeith Auographed Golf ball with cerficate of authenticity",@"key1",dateString,@"key2", nil];
+    //    [_ARR_sec_one addObject:temp_dictin];
+    //
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Tiltlelist",@"key1",dateString,@"key2", nil];
+    //    [_ARR_sec_one addObject:temp_dictin];
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Towel From the mastersJordanspeith Auographed Golf ball with cerficate of authenticity   Jordanspeith Auographed Golf ball with cerficate of authenticity Jordanspeith Auographed Golf ball with cerficate of ",@"key1",dateString,@"key2", nil];
+    //    [_ARR_sec_one addObject:temp_dictin];
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Under Armor GolfShoes",@"key1",dateString,@"key2", nil];
+    //    [_ARR_sec_one addObject:temp_dictin];temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"TigerWoods Auographed Towel From the masters",@"key1",dateString,@"key2",nil];
+    //    [_ARR_sec_one addObject:temp_dictin];
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"TigerWoods Auographed Under Armor GolfShoes",@"key1",dateString,@"key2", nil];
+    //    [_ARR_sec_one addObject:temp_dictin];
+    //    UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+    //    numberToolbar.barStyle = UIBarStyleBlackTranslucent;
+    //    [numberToolbar sizeToFit];
+    //
+    //    UIButton *close=[[UIButton alloc]init];
+    //    close.frame=CGRectMake(numberToolbar.frame.size.width - 100, 0, 100, numberToolbar.frame.size.height);
+    //    [close setTitle:@"close" forState:UIControlStateNormal];
+    //    [close addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
+    //
+    //    [numberToolbar addSubview:close];
+    //    _search_bar.inputAccessoryView = numberToolbar;
 }
 
 #pragma mark - Custom Methords
@@ -292,29 +292,29 @@
     }
 }
 /*- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSDictionary *dict=[_ARR_sec_one objectAtIndex:indexPath.row];
-    NSString *str = [dict objectForKey:@"key1"];
-    CGSize labelWidth;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        labelWidth = CGSizeMake(_tbl_edit_referral.frame.size.width - 140, CGFLOAT_MAX);
-    }
-    else
-    {
-        labelWidth = CGSizeMake(_tbl_edit_referral.frame.size.width - 420, CGFLOAT_MAX);
-    }
-    CGRect textRect = [str boundingRectWithSize:labelWidth options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-Book" size:19.0]} context:nil];
-    int calculatedHeight = textRect.size.height;
-    if(calculatedHeight+10 < 70)
-    {
-        return 70;
-        
-    }
-    else{
-        return calculatedHeight;
-    }
-}
-*/
+ {
+ NSDictionary *dict=[_ARR_sec_one objectAtIndex:indexPath.row];
+ NSString *str = [dict objectForKey:@"key1"];
+ CGSize labelWidth;
+ if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+ labelWidth = CGSizeMake(_tbl_edit_referral.frame.size.width - 140, CGFLOAT_MAX);
+ }
+ else
+ {
+ labelWidth = CGSizeMake(_tbl_edit_referral.frame.size.width - 420, CGFLOAT_MAX);
+ }
+ CGRect textRect = [str boundingRectWithSize:labelWidth options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-Book" size:19.0]} context:nil];
+ int calculatedHeight = textRect.size.height;
+ if(calculatedHeight+10 < 70)
+ {
+ return 70;
+ 
+ }
+ else{
+ return calculatedHeight;
+ }
+ }
+ */
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.row % 2 == 0){
@@ -356,7 +356,7 @@
     NSString *index_str = [NSString stringWithFormat:@"%ld",(long)buttonIndexPath.row];
     
     NSLog(@"Index path of All Event %@",index_str);
-  [self performSegueWithIdentifier:@"update_identifier" sender:self];
+    [self performSegueWithIdentifier:@"update_identifier" sender:self];
 }
 
 
@@ -406,7 +406,7 @@
         search_label.textColor = [UIColor blackColor];
         
         
-//        NSString *str = _search_bar.text;
+        //        NSString *str = _search_bar.text;
         search_label.text = @"Searching ' '";//[NSString stringWithFormat:@" %lu Results for' %@ '",(unsigned long)[_ARR_sec_one count],str];
         
         _VW_title.frame = CGRectMake(_VW_title.frame.origin.x, search_label.frame.origin.y + search_label.frame.size.height + 5, _VW_title.frame.size.width, _VW_title.frame.size.height);
@@ -424,7 +424,7 @@
     
     _VW_nav_top.backgroundColor = [UIColor blackColor];
     _tilte_label.hidden = NO;
-       _search_bar.text = @"";
+    _search_bar.text = @"";
     _vw_LINe.hidden = YES;
     
     [UIView beginAnimations:@"" context:nil];
@@ -444,7 +444,7 @@
         _search_bar.frame =  old_frame;
         [searchBar setShowsCancelButton:NO animated:YES];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        [_search_bar setSearchBarStyle:UISearchBarStyleMinimal];        
+        [_search_bar setSearchBarStyle:UISearchBarStyleMinimal];
         
         _VW_title.frame = CGRectMake(_VW_title.frame.origin.x, _search_bar.frame.origin.y + _search_bar.frame.size.height, _VW_title.frame.size.width, _VW_title.frame.size.height);
         _tbl_edit_referral.frame = CGRectMake(_tbl_edit_referral.frame.origin.x, _VW_title.frame.origin.y + _VW_title.frame.size.height , _tbl_edit_referral.frame.size.width, _tbl_edit_referral.frame.size.height);
@@ -462,7 +462,7 @@
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-//    NSString *search_text = _search_bar.text;
+    //    NSString *search_text = _search_bar.text;
     search_label.text = @"";//[NSString stringWithFormat:@"%@",search_text];
     
     UITextField *searchBarTextField = [self findTextFieldFromControl:_search_bar];
@@ -532,7 +532,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -589,24 +589,24 @@
 - (void)dragTableDidTriggerRefresh:(UITableView *)tableView
 {
     //Pull up go to First Page
-  /*  NSDictionary *metadict=[temp_dict valueForKey:@"meta"];
-    NSString *prev_PAGE = [NSString stringWithFormat:@"%@",[metadict valueForKey:@"prev_page"]];
-    if ([prev_PAGE isEqualToString:@"0"])
-    {
-        //        [activityIndicatorView stopAnimating];
-        //        VW_overlay.hidden = YES;
-        //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Already in First Page" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-        //        [alert show];
-        [self performSelector:@selector(finishRefresh) withObject:nil afterDelay:0.01];
-    }
-    else{
-        
-        NSString *url_STR = [NSString stringWithFormat:@"%@&page=%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"URL_SAVED_af_home"],[metadict valueForKey:@"prev_page"]];
-        [[NSUserDefaults standardUserDefaults] setObject:url_STR forKey:@"URL_SAVED_tranprev"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        [self performSelector:@selector(firstpage_API) withObject:nil afterDelay:0.01];
-    }*/
+    /*  NSDictionary *metadict=[temp_dict valueForKey:@"meta"];
+     NSString *prev_PAGE = [NSString stringWithFormat:@"%@",[metadict valueForKey:@"prev_page"]];
+     if ([prev_PAGE isEqualToString:@"0"])
+     {
+     //        [activityIndicatorView stopAnimating];
+     //        VW_overlay.hidden = YES;
+     //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Already in First Page" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+     //        [alert show];
+     [self performSelector:@selector(finishRefresh) withObject:nil afterDelay:0.01];
+     }
+     else{
+     
+     NSString *url_STR = [NSString stringWithFormat:@"%@&page=%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"URL_SAVED_af_home"],[metadict valueForKey:@"prev_page"]];
+     [[NSUserDefaults standardUserDefaults] setObject:url_STR forKey:@"URL_SAVED_tranprev"];
+     [[NSUserDefaults standardUserDefaults] synchronize];
+     
+     [self performSelector:@selector(firstpage_API) withObject:nil afterDelay:0.01];
+     }*/
     [self performSelector:@selector(finishRefresh) withObject:nil afterDelay:0.01];
 }
 
@@ -663,7 +663,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSMutableDictionary *dict;
     if (aData)
@@ -730,7 +730,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
     {
@@ -762,3 +762,4 @@
 
 
 @end
+

@@ -25,6 +25,9 @@
 		735AB933206BA391002C5FF7 /* WNW.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB923206BA391002C5FF7 /* WNW.png */; };
 		735AB934206BA391002C5FF7 /* WSW.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB924206BA391002C5FF7 /* WSW.png */; };
 		735AB936206BA65B002C5FF7 /* e1_thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 735AB935206BA65B002C5FF7 /* e1_thumb.png */; };
+		7399776620DB7CC500CD8469 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7399776520DB7CC500CD8469 /* Main.storyboard */; };
+		7399776920DB7DE100CD8469 /* CELL_leader~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7399776720DB7DE100CD8469 /* CELL_leader~iPad.xib */; };
+		7399776A20DB7DE100CD8469 /* CELL_leader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7399776820DB7DE100CD8469 /* CELL_leader.xib */; };
 		73D0D4031FFCDF6300F7D17B /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D0D3FD1FFCDF6300F7D17B /* 3.png */; };
 		73D0D4041FFCDF6300F7D17B /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D0D3FE1FFCDF6300F7D17B /* 4.png */; };
 		73D0D4051FFCDF6300F7D17B /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D0D3FF1FFCDF6300F7D17B /* 5.png */; };
@@ -166,7 +169,6 @@
 		BE37FC121F592E960070EBB7 /* API_courses.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37FC0D1F592E960070EBB7 /* API_courses.m */; };
 		BE37FC131F592E960070EBB7 /* course_service.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37FC0F1F592E960070EBB7 /* course_service.m */; };
 		BE37FC141F592E960070EBB7 /* selected_course.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37FC111F592E960070EBB7 /* selected_course.m */; };
-		BE37FC371F596C7F0070EBB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE37FC361F596C7F0070EBB7 /* Main.storyboard */; };
 		BE37FC3C1F596CB40070EBB7 /* VC_Auction_CHKOUT.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37FC391F596CB40070EBB7 /* VC_Auction_CHKOUT.m */; };
 		BE37FC3D1F596CB40070EBB7 /* VC_Auction_confirm_order.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37FC3B1F596CB40070EBB7 /* VC_Auction_confirm_order.m */; };
 		BE37FC401F596CDC0070EBB7 /* VC_conf_Ordr.m in Sources */ = {isa = PBXBuildFile; fileRef = BE37FC3F1F596CDC0070EBB7 /* VC_conf_Ordr.m */; };
@@ -395,8 +397,6 @@
 		BEE6449D1F878ECA006D28FD /* cell_player.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEE6449B1F878ECA006D28FD /* cell_player.xib */; };
 		BEE644A21F878EF1006D28FD /* cell_player~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEE644A01F878EF1006D28FD /* cell_player~iPad.xib */; };
 		BEE644FB1F8BA99C006D28FD /* CELL_leader.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE644F91F8BA999006D28FD /* CELL_leader.m */; };
-		BEE644FC1F8BA99C006D28FD /* CELL_leader.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEE644FA1F8BA999006D28FD /* CELL_leader.xib */; };
-		BEE645011F8BAA09006D28FD /* CELL_leader~iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEE644FF1F8BAA09006D28FD /* CELL_leader~iPad.xib */; };
 		BEE6C3941F386BBF0001F00A /* LIve_scoring_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE6C3931F386BBE0001F00A /* LIve_scoring_VC.m */; };
 		BEE6C3981F386C0D0001F00A /* ALScrollViewPaging.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE6C3971F386C0D0001F00A /* ALScrollViewPaging.m */; };
 		BEE6C39B1F386CC80001F00A /* VC_initial_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE6C39A1F386CC80001F00A /* VC_initial_VC.m */; };
@@ -466,6 +466,9 @@
 		735AB923206BA391002C5FF7 /* WNW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WNW.png; sourceTree = "<group>"; };
 		735AB924206BA391002C5FF7 /* WSW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WSW.png; sourceTree = "<group>"; };
 		735AB935206BA65B002C5FF7 /* e1_thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e1_thumb.png; sourceTree = "<group>"; };
+		7399776520DB7CC500CD8469 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		7399776720DB7DE100CD8469 /* CELL_leader~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CELL_leader~iPad.xib"; sourceTree = "<group>"; };
+		7399776820DB7DE100CD8469 /* CELL_leader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CELL_leader.xib; sourceTree = "<group>"; };
 		73D0D3FD1FFCDF6300F7D17B /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		73D0D3FE1FFCDF6300F7D17B /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
 		73D0D3FF1FFCDF6300F7D17B /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
@@ -642,7 +645,6 @@
 		BE37FC0F1F592E960070EBB7 /* course_service.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = course_service.m; sourceTree = "<group>"; };
 		BE37FC101F592E960070EBB7 /* selected_course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = selected_course.h; sourceTree = "<group>"; };
 		BE37FC111F592E960070EBB7 /* selected_course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = selected_course.m; sourceTree = "<group>"; };
-		BE37FC361F596C7F0070EBB7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		BE37FC381F596CB40070EBB7 /* VC_Auction_CHKOUT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VC_Auction_CHKOUT.h; sourceTree = "<group>"; };
 		BE37FC391F596CB40070EBB7 /* VC_Auction_CHKOUT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VC_Auction_CHKOUT.m; sourceTree = "<group>"; };
 		BE37FC3A1F596CB40070EBB7 /* VC_Auction_confirm_order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VC_Auction_confirm_order.h; sourceTree = "<group>"; };
@@ -998,8 +1000,6 @@
 		BEE644A01F878EF1006D28FD /* cell_player~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "cell_player~iPad.xib"; sourceTree = "<group>"; };
 		BEE644F81F8BA999006D28FD /* CELL_leader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CELL_leader.h; sourceTree = "<group>"; };
 		BEE644F91F8BA999006D28FD /* CELL_leader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CELL_leader.m; sourceTree = "<group>"; };
-		BEE644FA1F8BA999006D28FD /* CELL_leader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CELL_leader.xib; sourceTree = "<group>"; };
-		BEE644FF1F8BAA09006D28FD /* CELL_leader~iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CELL_leader~iPad.xib"; sourceTree = "<group>"; };
 		BEE6657F1E5D90EC00DF9235 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BEE665811E5D90EC00DF9235 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BEE665821E5D90EC00DF9235 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -2203,8 +2203,8 @@
 				BEE644A01F878EF1006D28FD /* cell_player~iPad.xib */,
 				BEE644F81F8BA999006D28FD /* CELL_leader.h */,
 				BEE644F91F8BA999006D28FD /* CELL_leader.m */,
-				BEE644FA1F8BA999006D28FD /* CELL_leader.xib */,
-				BEE644FF1F8BAA09006D28FD /* CELL_leader~iPad.xib */,
+				7399776820DB7DE100CD8469 /* CELL_leader.xib */,
+				7399776720DB7DE100CD8469 /* CELL_leader~iPad.xib */,
 			);
 			name = customCell_leaderBoard;
 			sourceTree = "<group>";
@@ -2273,7 +2273,7 @@
 				BEE6C39A1F386CC80001F00A /* VC_initial_VC.m */,
 				BE0055D11EC2DA1100E95941 /* ViewController.h */,
 				BE0055D21EC2DA1100E95941 /* ViewController.m */,
-				BE37FC361F596C7F0070EBB7 /* Main.storyboard */,
+				7399776520DB7CC500CD8469 /* Main.storyboard */,
 				BEB745471F44290100C39359 /* Main~ipad.storyboard */,
 				BE2DC75B1F6FD58E0097443E /* SingleTON_PaymentStat */,
 				BED71F861EEA8C5000492E97 /* Swift_codes */,
@@ -2535,7 +2535,7 @@
 					BEB49DBA1E76B3A900209E63 = {
 						DevelopmentTeam = 4MCGAH3G26;
 						LastSwiftMigration = 0830;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 0;
@@ -2576,7 +2576,6 @@
 				BE3721EE1F17920A001DA70A /* Course_tblCELL.xib in Resources */,
 				BEA875DC1E8CEB5A00EFBB7F /* sec1_8.png in Resources */,
 				BEC3E8641F22160E000ACB97 /* Clock.png in Resources */,
-				BEE645011F8BAA09006D28FD /* CELL_leader~iPad.xib in Resources */,
 				BEA875E01E8CEE6300EFBB7F /* Gotham Bold Regular.ttf in Resources */,
 				BEE6449D1F878ECA006D28FD /* cell_player.xib in Resources */,
 				BE1CFCFF1FC59C2A000EA72A /* cell_view_ticket2~iPad.xib in Resources */,
@@ -2611,6 +2610,7 @@
 				BEFC20591F0619290067717D /* Montserrat-BlackItalic.ttf in Resources */,
 				BE1165921FA748A900A4003C /* ARIZONA.png in Resources */,
 				BEB702F51ECEE6CB004CB729 /* blueArrow.png in Resources */,
+				7399776A20DB7DE100CD8469 /* CELL_leader.xib in Resources */,
 				BE1165A51FA748A900A4003C /* MICHIGAN.png in Resources */,
 				BEA875921E89007B00EFBB7F /* UI_01.png in Resources */,
 				BE37FC511F5E6F9D0070EBB7 /* cell_auction_item_detail~IPad.xib in Resources */,
@@ -2623,12 +2623,14 @@
 				BE1165B81FA748A900A4003C /* SOUTHDAKOTA.png in Resources */,
 				BE0055FE1EC44BF800E95941 /* purchase_Cell.xib in Resources */,
 				BE1165B91FA748A900A4003C /* TENNESSEE.png in Resources */,
+				7399776920DB7DE100CD8469 /* CELL_leader~iPad.xib in Resources */,
 				BE1165A91FA748A900A4003C /* MONTANA.png in Resources */,
 				BE1CFCC31FC55168000EA72A /* CELL_virtualBAG~iPad.xib in Resources */,
 				BEC3E8631F22160E000ACB97 /* Call.png in Resources */,
 				BEB49DCB1E76B3A900209E63 /* fontawesome-webfont.ttf in Resources */,
 				BECD7C811EF141990037A968 /* cell_add_referral~ipad.xib in Resources */,
 				735AB932206BA391002C5FF7 /* W.png in Resources */,
+				7399776620DB7CC500CD8469 /* Main.storyboard in Resources */,
 				73EFC5322021C06D00C35373 /* SPONSER_ENT.png in Resources */,
 				BEB49DE01F3888340087E5BE /* globe.jpg in Resources */,
 				BE1165AD1FA748A900A4003C /* NEWJERSEY.png in Resources */,
@@ -2738,7 +2740,6 @@
 				BE888A361E93639D00656580 /* Cell_notifications.xib in Resources */,
 				BEB745821F4AE47B00C39359 /* Search_cell.xib in Resources */,
 				BE888A271E926EF000656580 /* CELL_trans_hstry.xib in Resources */,
-				BE37FC371F596C7F0070EBB7 /* Main.storyboard in Resources */,
 				BEB49DD41E76B3A900209E63 /* Logo_WT.png in Resources */,
 				BE1CFD061FC7D7F8000EA72A /* Cell_view_ticket3.xib in Resources */,
 				BEC3BDBE1EAA255700AD97E4 /* GothamBook Regular.otf in Resources */,
@@ -2800,7 +2801,6 @@
 				BE4EEEBB1ED2AAB9003C1C24 /* dotInactive.png in Resources */,
 				BE1CFCD21FC57C81000EA72A /* Cell_gift_header~iPad.xib in Resources */,
 				BE1F1DC61F135FFA00B06903 /* referal_cell_ipad.xib in Resources */,
-				BEE644FC1F8BA99C006D28FD /* CELL_leader.xib in Resources */,
 				73EFC52D2021C06D00C35373 /* DOWNLOADAPP.png in Resources */,
 				BE1165B21FA748A900A4003C /* OHIO.png in Resources */,
 				BE1CFD201FC7F01F000EA72A /* Collection_cell_ticketSponser.xib in Resources */,
@@ -3064,7 +3064,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WinningTicket_Universal.entitlements;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4MCGAH3G26;
 				GCC_PREFIX_HEADER = WinningTicket/WinningTicket.pch;
@@ -3073,8 +3074,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.carmatec.WinningTicket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3f16ac69-4b2b-4975-ab14-0afd3d2e9720";
-				PROVISIONING_PROFILE_SPECIFIER = ADHOC_WT;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WinningTicket/WinningTicket_Universal-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -3091,7 +3092,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = WinningTicket_Universal.entitlements;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4MCGAH3G26;
 				GCC_PREFIX_HEADER = WinningTicket/WinningTicket.pch;
@@ -3100,8 +3102,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.carmatec.WinningTicket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3f16ac69-4b2b-4975-ab14-0afd3d2e9720";
-				PROVISIONING_PROFILE_SPECIFIER = ADHOC_WT;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "WinningTicket/WinningTicket_Universal-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

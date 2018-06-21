@@ -28,15 +28,15 @@
     _home_view.frame = CGRectMake(0, 0,_main_view.frame.size.width, _main_view.frame.size.height);
     
     _event_code_view.frame = CGRectMake(0, 0,_main_view.frame.size.width, _main_view.frame.size.height);
-   
+    
     _purchase_view.frame = CGRectMake(0, 0,_main_view.frame.size.width, _main_view.frame.size.height);
     
     _fearuresview.frame = CGRectMake(0, 0,_main_view.frame.size.width, _main_view.frame.size.height);
     
     arr_vws = [NSMutableArray arrayWithObjects:_home_view,_event_code_view,_purchase_view,_fearuresview, nil];
-//    [_main_view addPages:arr_vws];
-//    
-//    [_main_view setHasPageControl:YES];
+    //    [_main_view addPages:arr_vws];
+    //
+    //    [_main_view setHasPageControl:YES];
     
     //add pages to scrollview
     [scrollView addPages:arr_vws];
@@ -45,12 +45,12 @@
     [_main_view addSubview:scrollView];
     
     [scrollView setHasPageControl:YES];
-   
+    
     
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-//    VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.clipsToBounds = YES;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
@@ -89,7 +89,7 @@
         }
     }
     
-     _lbl_titlel.text = [NSString stringWithFormat:@"GET ACCESS TO ALL WINNING\nTICKET FEATURES"];
+    _lbl_titlel.text = [NSString stringWithFormat:@"GET ACCESS TO ALL WINNING\nTICKET FEATURES"];
     _txt1.layer.borderColor = [UIColor whiteColor].CGColor;
     _txt1.layer.borderWidth = 2.0f;
     _txt2.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -105,57 +105,57 @@
 }
 -(void)loadinitialhome
 {
-//    [activityIndicatorView stopAnimating];
-//    VW_overlay.hidden = YES;
-   
-        NSError *error;
-        NSHTTPURLResponse *response = nil;
+    //    [activityIndicatorView stopAnimating];
+    //    VW_overlay.hidden = YES;
+    
+    NSError *error;
+    NSHTTPURLResponse *response = nil;
+    
+    NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+    
+    NSString *urlGetuser =[NSString stringWithFormat:@"%@events",SERVER_URL];
+    NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:urlProducts];
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
+    //    [request setHTTPShouldHandleCookies:NO];
+    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if (aData)
+    {
         
-        NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
-        
-        NSString *urlGetuser =[NSString stringWithFormat:@"%@events",SERVER_URL];
-        NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:urlProducts];
-        [request setHTTPMethod:@"GET"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
-        //    [request setHTTPShouldHandleCookies:NO];
-        NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        if (aData)
+        NSString *dev_TOK = [[NSUserDefaults standardUserDefaults]valueForKey:@"DEV_TOK"];
+        if (dev_TOK)
         {
-            
-            NSString *dev_TOK = [[NSUserDefaults standardUserDefaults]valueForKey:@"DEV_TOK"];
-            if (dev_TOK)
-            {
-                [self send_TOK];
-            }
-            else
-            {
-                [[NSNotificationCenter defaultCenter] addObserver:self
-                                                         selector:@selector(tokenAvailableNotification:)
-                                                             name:@"NEW_TOKEN_AVAILABLE"
-                                                           object:nil];
-            }
-            
-            [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"JsonEventlist"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            
-            [activityIndicatorView stopAnimating];
-            VW_overlay.hidden = YES;
-            
-            [self performSegueWithIdentifier:@"initialtohome" sender:self];
+            [self send_TOK];
         }
         else
         {
-            [activityIndicatorView stopAnimating];
-            VW_overlay.hidden = YES;
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Interrupted" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-            [alert show];
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(tokenAvailableNotification:)
+                                                         name:@"NEW_TOKEN_AVAILABLE"
+                                                       object:nil];
         }
+        
+        [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"JsonEventlist"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [activityIndicatorView stopAnimating];
+        VW_overlay.hidden = YES;
+        
+        [self performSegueWithIdentifier:@"initialtohome" sender:self];
+    }
+    else
+    {
+        [activityIndicatorView stopAnimating];
+        VW_overlay.hidden = YES;
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Interrupted" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [alert show];
+    }
     
-   
+    
 }
 -(void) send_TOK
 {
@@ -212,7 +212,7 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-     [super didReceiveMemoryWarning];
+    [super didReceiveMemoryWarning];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -221,14 +221,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 
 

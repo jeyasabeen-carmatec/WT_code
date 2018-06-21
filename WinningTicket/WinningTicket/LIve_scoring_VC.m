@@ -12,8 +12,8 @@
 
 @interface LIve_scoring_VC () <UICollectionViewDelegate,UICollectionViewDataSource>
 {
-UIView *VW_overlay;
-UIActivityIndicatorView *activityIndicatorView;
+    UIView *VW_overlay;
+    UIActivityIndicatorView *activityIndicatorView;
     NSArray *holes_arr;
 }
 @end
@@ -43,13 +43,13 @@ UIActivityIndicatorView *activityIndicatorView;
     
     VW_overlay.hidden = YES;
     
-
-     _location_view.hidden =YES;
+    
+    _location_view.hidden =YES;
     _BG_vw.layer.borderWidth = 1.0f;
     _BG_vw.layer.borderColor = [UIColor whiteColor].CGColor;
     _event_dtl_lbl.text = [[NSUserDefaults standardUserDefaults] valueForKey:@"event_name"];
     _event_addr_lbl .text = [[NSUserDefaults standardUserDefaults] valueForKey:@"event_address"];
-//    _event_addr_lbl .text = [NSString stringWithFormat:@"Grand central Cypress Club\n1 N Jacaranda Street\nOrlando ,FL32836"];
+    //    _event_addr_lbl .text = [NSString stringWithFormat:@"Grand central Cypress Club\n1 N Jacaranda Street\nOrlando ,FL32836"];
     [_event_dtl_lbl sizeToFit];
     [_event_addr_lbl sizeToFit];
     CGRect newframe = _main_img.frame;
@@ -100,14 +100,14 @@ UIActivityIndicatorView *activityIndicatorView;
         if(result.height <= 480)
         {
             // iPhone Classic
-          [_location_description setFont:[UIFont systemFontOfSize:11]];
-           
+            [_location_description setFont:[UIFont systemFontOfSize:11]];
+            
         }
         else if(result.height <= 568)
         {
             // iPhone 5
-             [_location_description setFont:[UIFont systemFontOfSize:11]];
-           
+            [_location_description setFont:[UIFont systemFontOfSize:11]];
+            
         }
     }
     VW_overlay.hidden = NO;
@@ -127,63 +127,63 @@ UIActivityIndicatorView *activityIndicatorView;
     [_SCRL_contents layoutIfNeeded];
     [_SCRL_contents setContentSize:CGSizeMake(_SCRL_contents.frame.size.width, _VW_contents.frame.origin.y + _VW_contents.frame.size.height)];
     
-   // [_collec_contents setContentSize:CGSizeMake(_collec_contents.frame.size.width, _collec_contents.contentSize.height)];
+    // [_collec_contents setContentSize:CGSizeMake(_collec_contents.frame.size.width, _collec_contents.contentSize.height)];
 }
 #pragma Button Actions
 -(void)show_view
 {
     
-        CGRect viewframe = _location_view.frame;
-        viewframe.origin.x = _BG_vw.frame.origin.x;
-        viewframe.origin.y = _main_img.frame.origin.y ;
-        viewframe.size.width = _BG_vw.frame.size.width;
-        viewframe.size.height = _location_view.frame.size.height;
-        _location_view.frame = viewframe;
-        [self.view addSubview:_location_view];
-        self.location_view.layer.cornerRadius = 4.0f;
-
+    CGRect viewframe = _location_view.frame;
+    viewframe.origin.x = _BG_vw.frame.origin.x;
+    viewframe.origin.y = _main_img.frame.origin.y ;
+    viewframe.size.width = _BG_vw.frame.size.width;
+    viewframe.size.height = _location_view.frame.size.height;
+    _location_view.frame = viewframe;
+    [self.view addSubview:_location_view];
+    self.location_view.layer.cornerRadius = 4.0f;
+    
     
     //[self checkLocationServicesTurnedOn];
     [self checkApplicationHasLocationServicesPermission];
-
+    
 }
 -(void)dismiss_view
 {
-     _location_view.hidden = YES;
+    _location_view.hidden = YES;
 }
 -(void)open_location
 {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-     _location_view.hidden = YES;
-
+    _location_view.hidden = YES;
+    
 }
 - (void) checkLocationServicesTurnedOn {
     if (![CLLocationManager locationServicesEnabled]) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"== Opps! =="
-//                                                        message:@"'Location Services' need to be on."
-//                                                       delegate:nil
-//                                              cancelButtonTitle:@"OK"
-//                                              otherButtonTitles:nil];
-      //  [alert show];
+        //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"== Opps! =="
+        //                                                        message:@"'Location Services' need to be on."
+        //                                                       delegate:nil
+        //                                              cancelButtonTitle:@"OK"
+        //                                              otherButtonTitles:nil];
+        //  [alert show];
         
-    }     
+    }
 }
 -(void) checkApplicationHasLocationServicesPermission {
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-         self.location_view.hidden = NO;
+        self.location_view.hidden = NO;
         
     }
     else{
-//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-//                                                                message:@"Already turned on"
-//                                                               delegate:nil
-//                                                      cancelButtonTitle:@"OK"
-//                                                      otherButtonTitles:nil];
-//                [alert show];
-//        [self performSegueWithIdentifier:@"start_score_segue" sender:self];
+        //                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+        //                                                                message:@"Already turned on"
+        //                                                               delegate:nil
+        //                                                      cancelButtonTitle:@"OK"
+        //                                                      otherButtonTitles:nil];
+        //                [alert show];
+        //        [self performSegueWithIdentifier:@"start_score_segue" sender:self];
         
         _VW_mainCont.hidden = NO;
-
+        
     }
 }
 - (void)didReceiveMemoryWarning {
@@ -191,14 +191,14 @@ UIActivityIndicatorView *activityIndicatorView;
     // Dispose of any resources that can be recreated.
 }
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - Button Actions
 -(IBAction)BTN_back:(id)sender
@@ -228,17 +228,17 @@ UIActivityIndicatorView *activityIndicatorView;
     
     
     
-  //  [_collec_contents layoutIfNeeded];
+    //  [_collec_contents layoutIfNeeded];
     
-//    [_collec_contents.collectionViewLayout prepareLayout];
-//    [_collec_contents.collectionViewLayout invalidateLayout];
-//    [_collec_contents sizeToFit];
+    //    [_collec_contents.collectionViewLayout prepareLayout];
+    //    [_collec_contents.collectionViewLayout invalidateLayout];
+    //    [_collec_contents sizeToFit];
     
     
-//    int divisor = 3, dividend = 25, quotient, remainder, needOUT;
-//    quotient = dividend / divisor;
-//    remainder = dividend % divisor;
-//    needOUT = quotient + remainder;
+    //    int divisor = 3, dividend = 25, quotient, remainder, needOUT;
+    //    quotient = dividend / divisor;
+    //    remainder = dividend % divisor;
+    //    needOUT = quotient + remainder;
     
     CGRect frame_rect = _collec_contents.frame;
     frame_rect.size.width = _scroll_content.contentSize.width - 20;
@@ -310,20 +310,20 @@ UIActivityIndicatorView *activityIndicatorView;
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-//    cell.contentView.backgroundColor = [UIColor colorWithRed:0.87 green:0.87 blue:0.87 alpha:1.0];
+    //    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    //    cell.contentView.backgroundColor = [UIColor colorWithRed:0.87 green:0.87 blue:0.87 alpha:1.0];
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-//    [[NSUserDefaults standardUserDefaults] setObject:[[holes_arr objectAtIndex:indexPath.row] valueForKey:@"hole_num"] forKey:@"hole_number"];
-//    [[NSUserDefaults standardUserDefaults]synchronize];
+    //    [[NSUserDefaults standardUserDefaults] setObject:[[holes_arr objectAtIndex:indexPath.row] valueForKey:@"hole_num"] forKey:@"hole_number"];
+    //    [[NSUserDefaults standardUserDefaults]synchronize];
     cell.layer.borderColor = [UIColor clearColor].CGColor;
 }
 
 #pragma mark - Uibutton Actions
 -(void) ACTIN_continue
 {
-//    [self performSegueWithIdentifier:@"enter_GAME" sender:self];
-     [self select_HOLE];
-      _VW_mainCont.hidden = YES;
+    //    [self performSegueWithIdentifier:@"enter_GAME" sender:self];
+    [self select_HOLE];
+    _VW_mainCont.hidden = YES;
 }
 
 #pragma mark - Holes List
@@ -346,7 +346,7 @@ UIActivityIndicatorView *activityIndicatorView;
     NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
     
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     VW_overlay.hidden = YES;
@@ -358,14 +358,14 @@ UIActivityIndicatorView *activityIndicatorView;
         holes_arr = [dict valueForKey:@"hole_list"];
         NSLog(@"Live scoring VC Json response Hole list API = %@",dict);
         [self setup_VIEW];
-       
+        
     }
     else
     {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection Failed" message:@"Please retry" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
     }
-
+    
 }
 
 
@@ -392,7 +392,7 @@ UIActivityIndicatorView *activityIndicatorView;
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPBody:postData];
     [request setHTTPShouldHandleCookies:NO];
     
@@ -403,7 +403,7 @@ UIActivityIndicatorView *activityIndicatorView;
         NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
         NSLog(@"Live scoring VC Json response Selected hole api = %@",dict);
         [self performSegueWithIdentifier:@"select_hole" sender:self];
-
+        
     }
     else
     {
@@ -414,3 +414,4 @@ UIActivityIndicatorView *activityIndicatorView;
 }
 
 @end
+

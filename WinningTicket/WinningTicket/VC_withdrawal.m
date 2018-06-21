@@ -18,7 +18,7 @@
     float scroll_View_HT;
     UIView *VW_overlay,*BTN_bg;
     UIActivityIndicatorView *activityIndicatorView;
-//    UILabel *loadingLabel;
+    //    UILabel *loadingLabel;
 }
 
 @end
@@ -33,16 +33,16 @@
     tap.delegate = self;
     [self.view addGestureRecognizer:tap];
     
-  /*  [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidShow:)
-                                                 name:UIKeyboardDidShowNotification
-                                               object:nil];
+    /*  [[NSNotificationCenter defaultCenter] addObserver:self
+     selector:@selector(keyboardDidShow:)
+     name:UIKeyboardDidShowNotification
+     object:nil];
+     
+     [[NSNotificationCenter defaultCenter] addObserver:self
+     selector:@selector(keyboardDidHide:)
+     name:UIKeyboardDidHideNotification
+     object:nil]; */
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidHide:)
-                                                 name:UIKeyboardDidHideNotification
-                                               object:nil]; */
-
     [self setup_View];
 }
 
@@ -92,9 +92,9 @@
                     
                     // Red text attributes
                     //            UIColor *redColor = [UIColor redColor];
-//                    NSRange cmp = [text rangeOfString:pricee_STR];// * Notice that usage of rangeOfString in this case may cause some bugs - I use it here only for demonstration
-//                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-Book" size:17.0]}
-//                                            range:cmp];
+                    //                    NSRange cmp = [text rangeOfString:pricee_STR];// * Notice that usage of rangeOfString in this case may cause some bugs - I use it here only for demonstration
+                    //                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-Book" size:17.0]}
+                    //                                            range:cmp];
                     
                     
                     self.lbl_availableBAL.attributedText = attributedText;
@@ -120,14 +120,14 @@
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - Customise UIView
 -(void) setup_View
@@ -137,14 +137,14 @@
     _TXT_amtbank.layer.borderWidth = 2.0f;
     _TXT_amtbank.layer.borderColor = [UIColor colorWithRed:0.43 green:0.48 blue:0.51 alpha:1.0].CGColor;
     _TXT_amtbank.delegate = self;
-
+    
     
     _TXT_amtpaypal.layer.cornerRadius = 5.0f;
     _TXT_amtpaypal.layer.masksToBounds = YES;
     _TXT_amtpaypal.layer.borderWidth = 2.0f;
     _TXT_amtpaypal.layer.borderColor = [UIColor colorWithRed:0.43 green:0.48 blue:0.51 alpha:1.0].CGColor;
     _TXT_amtpaypal.delegate = self;
-
+    
     
     _TXT_accholdername.layer.cornerRadius = 5.0f;
     _TXT_accholdername.layer.masksToBounds = YES;
@@ -173,7 +173,7 @@
     _TXT_email.delegate = self;
     
     
-       NSString *cur = @"$";
+    NSString *cur = @"$";
     NSString *print_TXT = [NSString stringWithFormat:@"Amount  %@",cur];
     
     if ([self.lbl_titleAMT respondsToSelector:@selector(setAttributedText:)]) {
@@ -258,19 +258,19 @@
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
     
-//    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
-//    loadingLabel.backgroundColor = [UIColor clearColor];
-//    loadingLabel.textColor = [UIColor whiteColor];
-//    loadingLabel.adjustsFontSizeToFitWidth = YES;
-//    loadingLabel.textAlignment = NSTextAlignmentCenter;
-//    loadingLabel.text = @"Loading...";
-//    
-//    [VW_overlay addSubview:loadingLabel];
+    //    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
+    //    loadingLabel.backgroundColor = [UIColor clearColor];
+    //    loadingLabel.textColor = [UIColor whiteColor];
+    //    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    //    loadingLabel.textAlignment = NSTextAlignmentCenter;
+    //    loadingLabel.text = @"Loading...";
+    //
+    //    [VW_overlay addSubview:loadingLabel];
     activityIndicatorView.center = VW_overlay.center;
     [VW_overlay addSubview:activityIndicatorView];
     VW_overlay.center = self.view.center;
@@ -278,7 +278,7 @@
     
     VW_overlay.hidden = YES;
     [_BTN_paypal setBackgroundImage:[UIImage imageNamed:@"hh"] forState:UIControlStateHighlighted];
-   
+    
     
 }
 
@@ -326,15 +326,15 @@
     
     
     
-//    CALayer *rightBorder = [CALayer layer];
-//    rightBorder.borderColor = [UIColor greenColor].CGColor;
-//    rightBorder.borderWidth = 1;
-//    rightBorder.frame = CGRectMake(-1, -1, CGRectGetWidth(_BTN_banktransfer.frame) , CGRectGetHeight(_BTN_banktransfer.frame));
-
-//    [_BTN_banktransfer.layer addSublayer:rightBorder];
+    //    CALayer *rightBorder = [CALayer layer];
+    //    rightBorder.borderColor = [UIColor greenColor].CGColor;
+    //    rightBorder.borderWidth = 1;
+    //    rightBorder.frame = CGRectMake(-1, -1, CGRectGetWidth(_BTN_banktransfer.frame) , CGRectGetHeight(_BTN_banktransfer.frame));
     
-   //   [[_BTN_paypal layer] setBorderWidth:0.0f];
-//    _BTN_paypal.layer.sublayers = nil;
+    //    [_BTN_banktransfer.layer addSublayer:rightBorder];
+    
+    //   [[_BTN_paypal layer] setBorderWidth:0.0f];
+    //    _BTN_paypal.layer.sublayers = nil;
 }
 
 -(void) action_Paypal
@@ -350,17 +350,17 @@
     [[_pay_pal_BG layer] setBorderColor:[UIColor greenColor].CGColor];
     [[_bank_transfer_BG layer] setBorderWidth:2.0f];
     [[_bank_transfer_BG layer] setBorderColor:[UIColor whiteColor].CGColor];
-
     
     
-//    CALayer *rightBorder = [CALayer layer];
-//    rightBorder.borderColor = [UIColor greenColor].CGColor;
-//    rightBorder.borderWidth = 1;
-//    rightBorder.frame = CGRectMake(-1, -1, CGRectGetWidth(_BTN_paypal.frame), CGRectGetHeight(_BTN_paypal.frame));
-//    
-//    [_BTN_paypal.layer addSublayer:rightBorder];
     
-//    _BTN_banktransfer.layer.sublayers = nil;
+    //    CALayer *rightBorder = [CALayer layer];
+    //    rightBorder.borderColor = [UIColor greenColor].CGColor;
+    //    rightBorder.borderWidth = 1;
+    //    rightBorder.frame = CGRectMake(-1, -1, CGRectGetWidth(_BTN_paypal.frame), CGRectGetHeight(_BTN_paypal.frame));
+    //
+    //    [_BTN_paypal.layer addSublayer:rightBorder];
+    
+    //    _BTN_banktransfer.layer.sublayers = nil;
 }
 -(void)submitClicked_paypal
 {
@@ -382,31 +382,31 @@
     {
         _TXT_email.text = @"";
         [_TXT_email becomeFirstResponder];
-//        [_TXT_email showError];
-//        [_TXT_email showErrorWithText:@" Please enter Correct Mail"];
+        //        [_TXT_email showError];
+        //        [_TXT_email showErrorWithText:@" Please enter Correct Mail"];
         
         [self.view makeToast:@"Please enter valid Email"
                     duration:2.0
                     position:CSToastPositionCenter];
         
     }
-else if ([_TXT_amtpaypal.text isEqualToString:@"0.00"] || [_TXT_amtpaypal.text isEqualToString:@" 0.00"])
-        {
-//            [_TXT_amtpaypal becomeFirstResponder];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please enter Amount" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
-        }
+    else if ([_TXT_amtpaypal.text isEqualToString:@"0.00"] || [_TXT_amtpaypal.text isEqualToString:@" 0.00"])
+    {
+        //            [_TXT_amtpaypal becomeFirstResponder];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please enter Amount" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
     
     else
-        {
-            [self.view endEditing:YES];
-            [_TXT_amtpaypal resignFirstResponder];
-            VW_overlay.hidden = NO;
-            [activityIndicatorView startAnimating];
-            [self performSelector:@selector(api_amount_paypal) withObject:activityIndicatorView afterDelay:0.01];
-
-        }
-      
+    {
+        [self.view endEditing:YES];
+        [_TXT_amtpaypal resignFirstResponder];
+        VW_overlay.hidden = NO;
+        [activityIndicatorView startAnimating];
+        [self performSelector:@selector(api_amount_paypal) withObject:activityIndicatorView afterDelay:0.01];
+        
+    }
+    
 }
 
 -(void)api_amount_paypal
@@ -440,7 +440,7 @@ else if ([_TXT_amtpaypal.text isEqualToString:@"0.00"] || [_TXT_amtpaypal.text i
     [request setURL:urlProducts];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     [request setHTTPBody:postData];
     
     [request setHTTPShouldHandleCookies:NO];
@@ -468,8 +468,8 @@ else if ([_TXT_amtpaypal.text isEqualToString:@"0.00"] || [_TXT_amtpaypal.text i
                 
                 if([status isEqualToString:@"Success"])
                 {
-//                    [activityIndicatorView stopAnimating];
-//                    VW_overlay.hidden=YES;
+                    //                    [activityIndicatorView stopAnimating];
+                    //                    VW_overlay.hidden=YES;
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
                     alert.tag = 1;
                     alert.delegate = self;
@@ -479,16 +479,16 @@ else if ([_TXT_amtpaypal.text isEqualToString:@"0.00"] || [_TXT_amtpaypal.text i
                 else if(error)
                 {
                     _TXT_amtpaypal.text = @"0.00";
-//                    [activityIndicatorView stopAnimating];
-//                    VW_overlay.hidden=YES;
+                    //                    [activityIndicatorView stopAnimating];
+                    //                    VW_overlay.hidden=YES;
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"You do not have enough funds in your account to withdraw that amount." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                     [alert show];
                 }
                 
                 else
                 {
-//                    [activityIndicatorView stopAnimating];
-//                    VW_overlay.hidden=YES;
+                    //                    [activityIndicatorView stopAnimating];
+                    //                    VW_overlay.hidden=YES;
                     
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                     [alert show];
@@ -500,15 +500,15 @@ else if ([_TXT_amtpaypal.text isEqualToString:@"0.00"] || [_TXT_amtpaypal.text i
             [self sessionOUT];
         }
         
-     }
+    }
     else
     {
-//        [activityIndicatorView stopAnimating];
-//        VW_overlay.hidden=YES;
-
+        //        [activityIndicatorView stopAnimating];
+        //        VW_overlay.hidden=YES;
+        
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
-
+        
     }
     [activityIndicatorView stopAnimating];
     VW_overlay.hidden=YES;
@@ -516,9 +516,9 @@ else if ([_TXT_amtpaypal.text isEqualToString:@"0.00"] || [_TXT_amtpaypal.text i
 #pragma Alertview Methods
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == 1) {
-//        [self myaccount_API_calling];
-//        [activityIndicatorView stopAnimating];
-//        VW_overlay.hidden = YES;
+        //        [self myaccount_API_calling];
+        //        [activityIndicatorView stopAnimating];
+        //        VW_overlay.hidden = YES;
         [_TXT_amtpaypal resignFirstResponder];
         [self performSelector:@selector(dismiss_VC) withObject:nil afterDelay:1.0];
     }
@@ -539,7 +539,7 @@ else if ([_TXT_amtpaypal.text isEqualToString:@"0.00"] || [_TXT_amtpaypal.text i
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -576,7 +576,7 @@ else if ([_TXT_amtpaypal.text isEqualToString:@"0.00"] || [_TXT_amtpaypal.text i
 -(void)submitClicked_account
 {
     NSLog(@"Tappd order detail");
-//    [self.view endEditing:YES];
+    //    [self.view endEditing:YES];
     [_TXT_amtpaypal resignFirstResponder];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"This option will be available in next version" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
     [alert show];
@@ -597,20 +597,21 @@ else if ([_TXT_amtpaypal.text isEqualToString:@"0.00"] || [_TXT_amtpaypal.text i
 }
 
 /*#pragma mark - Keyboard handling
-- (void)keyboardDidShow: (NSNotification *) notif{
-    //Keyboard becomes visible
-    self.view.frame = CGRectMake(self.view.frame.origin.x,
-                                  self.view.frame.origin.y - 220,
-                                  self.view.frame.size.width,
-                                  self.view.frame.size.height);   //move up
-}
-
-- (void)keyboardDidHide: (NSNotification *) notif{
-    //keyboard will hide
-    self.view.frame = CGRectMake(self.view.frame.origin.x,
-                                  self.view.frame.origin.y + 220,
-                                  self.view.frame.size.width,
-                                  self.view.frame.size.height);   //move down
-}*/
+ - (void)keyboardDidShow: (NSNotification *) notif{
+ //Keyboard becomes visible
+ self.view.frame = CGRectMake(self.view.frame.origin.x,
+ self.view.frame.origin.y - 220,
+ self.view.frame.size.width,
+ self.view.frame.size.height);   //move up
+ }
+ 
+ - (void)keyboardDidHide: (NSNotification *) notif{
+ //keyboard will hide
+ self.view.frame = CGRectMake(self.view.frame.origin.x,
+ self.view.frame.origin.y + 220,
+ self.view.frame.size.width,
+ self.view.frame.size.height);   //move down
+ }*/
 
 @end
+

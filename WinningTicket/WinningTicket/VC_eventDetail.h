@@ -27,8 +27,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbl_ticketdescription;
 @property (weak, nonatomic) IBOutlet UIButton *BTN_purchasetkt;
+@property (weak, nonatomic) IBOutlet UIButton *BTN_back;
+
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll_contents;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_nav_font;
 
 @end
+

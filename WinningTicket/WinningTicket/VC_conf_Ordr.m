@@ -17,7 +17,7 @@
     NSString *wallet_text,*total_text;
     NSMutableDictionary *states,*countrys,*checkout_data;
     float price_deduct;
-     NSArray *sorted_STAES,*sorted_Contry;
+    NSArray *sorted_STAES,*sorted_Contry;
     
     //    UILabel *loadingLabel;
 }
@@ -29,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [_BTN_back addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [self setup_FRAME];
 }
 
@@ -38,14 +39,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -151,15 +152,15 @@
         }
         else
         {
-          //  NSDictionary *temp_dict=[dict valueForKey:@"event"];
+            //  NSDictionary *temp_dict=[dict valueForKey:@"event"];
             
             
-//            [_scroll_contents addSubview:_VW_qtycontent];
+            //            [_scroll_contents addSubview:_VW_qtycontent];
             [_scroll_contents addSubview:_VW_line1];
             [_scroll_contents addSubview:_VW_line3];
             
-           
-//            _TXT_qty.text = @"1";
+            
+            //            _TXT_qty.text = @"1";
             NSString *show = @"Silent Auction";
             NSString *place = [NSString stringWithFormat:@"%@",[checkout_data valueForKey:@"item_name"]];
             NSString *organization_name = [NSString stringWithFormat:@"%@",[checkout_data valueForKey:@"organization_name"]];
@@ -168,12 +169,12 @@
             
             place = [place stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
             organization_name = [organization_name stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
-
             
-          //  NSString *location=[NSString stringWithFormat:@"%@",[checkout_data valueForKey:@"location"]];
-           // location = [location stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
-
-           // NSString *STR_tkt_num_club = [NSString stringWithFormat:@"%@ ",location];
+            
+            //  NSString *location=[NSString stringWithFormat:@"%@",[checkout_data valueForKey:@"location"]];
+            // location = [location stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
+            
+            // NSString *STR_tkt_num_club = [NSString stringWithFormat:@"%@ ",location];
             
             NSString *str_price = [NSString stringWithFormat:@"$%.2f",[[checkout_data valueForKey:@"price"] floatValue]];
             
@@ -227,7 +228,7 @@
                     NSRange palce = [text rangeOfString:organization_name];// * Notice that usage of rangeOfString in this case may cause some bugs - I use it here only for demonstration
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:15.0],NSParagraphStyleAttributeName:paragraphStyle2}
                                             range:palce];
-
+                    
                     
                     NSMutableParagraphStyle *paragraphStyle3  = [[NSMutableParagraphStyle alloc] init];
                     paragraphStyle2.lineSpacing = 2;
@@ -239,10 +240,10 @@
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:15.0],NSParagraphStyleAttributeName:paragraphStyle3}
                                             range:plce1];
                     
-//                    NSMutableParagraphStyle *paragraphStyle4  = [[NSMutableParagraphStyle alloc] init];
-//                    paragraphStyle3.lineSpacing = 0;
-//                    NSRange tkt_num_range = [text rangeOfString:STR_tkt_num_club];
-//                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:15.0],NSParagraphStyleAttributeName:paragraphStyle4} range:tkt_num_range];
+                    //                    NSMutableParagraphStyle *paragraphStyle4  = [[NSMutableParagraphStyle alloc] init];
+                    //                    paragraphStyle3.lineSpacing = 0;
+                    //                    NSRange tkt_num_range = [text rangeOfString:STR_tkt_num_club];
+                    //                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:15.0],NSParagraphStyleAttributeName:paragraphStyle4} range:tkt_num_range];
                 }
                 else
                 {
@@ -269,10 +270,10 @@
                     [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:15.0],NSParagraphStyleAttributeName:paragraphStyle3}
                                             range:plce1];
                     
-//                    NSMutableParagraphStyle *paragraphStyle4  = [[NSMutableParagraphStyle alloc] init];
-//                    paragraphStyle3.lineSpacing = 0;
-//                    NSRange tkt_num_range = [text rangeOfString:STR_tkt_num_club];
-//                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:15.0],NSParagraphStyleAttributeName:paragraphStyle4} range:tkt_num_range];
+                    //                    NSMutableParagraphStyle *paragraphStyle4  = [[NSMutableParagraphStyle alloc] init];
+                    //                    paragraphStyle3.lineSpacing = 0;
+                    //                    NSRange tkt_num_range = [text rangeOfString:STR_tkt_num_club];
+                    //                    [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBook" size:15.0],NSParagraphStyleAttributeName:paragraphStyle4} range:tkt_num_range];
                 }
                 
                 self.lbl_ticketdetail.attributedText = attributedText;
@@ -319,30 +320,30 @@
             float qty_frame_Y = _lbl_ticketdetail.frame.size.height;
             
             CGRect frame_ST;
-//            = _VW_qtycontent.frame;
-//            frame_ST.origin.y = _lbl_ticketdetail.frame.origin.y + qty_frame_Y + 10;
-//            _VW_qtycontent.frame = frame_ST;
+            //            = _VW_qtycontent.frame;
+            //            frame_ST.origin.y = _lbl_ticketdetail.frame.origin.y + qty_frame_Y + 10;
+            //            _VW_qtycontent.frame = frame_ST;
             
-//            frame_ST = _lbl_arrowpromocode.frame;
-//            frame_ST.origin.y = _lbl_ticketdetail.frame.origin.y + qty_frame_Y + 10;
-//            _lbl_arrowpromocode.frame = frame_ST;
+            //            frame_ST = _lbl_arrowpromocode.frame;
+            //            frame_ST.origin.y = _lbl_ticketdetail.frame.origin.y + qty_frame_Y + 10;
+            //            _lbl_arrowpromocode.frame = frame_ST;
             
-//            frame_ST = _BTN_promocode.frame;
-//            frame_ST.origin.y = _lbl_ticketdetail.frame.origin.y + qty_frame_Y + 10;
-//            _BTN_promocode.frame = frame_ST;
+            //            frame_ST = _BTN_promocode.frame;
+            //            frame_ST.origin.y = _lbl_ticketdetail.frame.origin.y + qty_frame_Y + 10;
+            //            _BTN_promocode.frame = frame_ST;
             
-//            [_BTN_promocode addTarget:self action:@selector(BTN_promocode_TAP) forControlEvents:UIControlEventTouchUpInside];
+            //            [_BTN_promocode addTarget:self action:@selector(BTN_promocode_TAP) forControlEvents:UIControlEventTouchUpInside];
             
-//            frame_ST = _VW_promo.frame;
-//            frame_ST.origin.y = _BTN_promocode.frame.origin.y + _BTN_promocode.frame.size.height + 10;
-//            _VW_promo.frame = frame_ST;
+            //            frame_ST = _VW_promo.frame;
+            //            frame_ST.origin.y = _BTN_promocode.frame.origin.y + _BTN_promocode.frame.size.height + 10;
+            //            _VW_promo.frame = frame_ST;
             
             frame_ST = _VW_line.frame;
             frame_ST.origin.y = _lbl_ticketdetail.frame.origin.y + qty_frame_Y + 10;
             _VW_line.frame = frame_ST;
             
             frame_ST = _lbl_arrowaccount.frame;
-//            frame_ST.origin.x = _lbl_arrowpromocode.frame.origin.x;
+            //            frame_ST.origin.x = _lbl_arrowpromocode.frame.origin.x;
             frame_ST.origin.y = _VW_line.frame.origin.y + _VW_line.frame.size.height + 10;
             _lbl_arrowaccount.frame = frame_ST;
             
@@ -410,7 +411,7 @@
             
             //    _VW_promo.layer.borderWidth = 2.0f;
             //    _VW_promo.layer.borderColor = [UIColor colorWithRed:0.56 green:0.56 blue:0.57 alpha:1.0].CGColor;
-//            _VW_promo.hidden = YES;
+            //            _VW_promo.hidden = YES;
             _lbl_current_bal.hidden = YES;
             _VW_Account.hidden = YES;
             
@@ -450,202 +451,202 @@
 //        [[NSUserDefaults standardUserDefaults] synchronize];
 //    }
 
-    
+
 //        VW_overlay.hidden = NO;
 //        [activityIndicatorView startAnimating];
 //        [self performSelector:@selector(update_QTY_api) withObject:activityIndicatorView afterDelay:0.01];
-        //        BOOL stat =
-        //        if (stat)
-        //        {
-    
+//        BOOL stat =
+//        if (stat)
+//        {
+
 //}
 
 
 
 /*#pragma mark - UIButton Actions
--(void) BTN_promocode_TAP
-{
-    if (_VW_promo.hidden == YES) {
-        //    _BTN_promocode.hidden = YES;
-        float btn_ht = _BTN_promocode.frame.size.height + 10;
-        CGRect promoFRAME = _VW_promo.frame;
-        promoFRAME.origin.y = _BTN_promocode.frame.origin.y + btn_ht;
-        _VW_promo.frame = promoFRAME;
-        
-        _lbl_arrowpromocode.text = @"";
-        
-        
-        [UIView animateWithDuration:0.5 animations:^{
-            
-            _VW_line.frame = CGRectMake(_VW_line.frame.origin.x, _VW_promo.frame.origin.y + _VW_promo.frame.size.height +10, _VW_line.frame.size.width, _VW_line.frame.size.height);
-            _lbl_arrowaccount.frame = CGRectMake(_lbl_arrowpromocode.frame.origin.x, _VW_line.frame.origin.y + _VW_line.frame.size.height + 10, _lbl_arrowaccount.frame.size.width, _lbl_arrowaccount.frame.size.height);
-            
-            _BTN_Account.frame = CGRectMake(_BTN_Account.frame.origin.x, _VW_line.frame.origin.y + _VW_line.frame.size.height +10, _BTN_Account.frame.size.width, _BTN_Account.frame.size.height);
-            if(_lbl_current_bal.hidden == NO)
-            {
-                _lbl_current_bal.frame = CGRectMake(_lbl_current_bal.frame.origin.x, _BTN_Account.frame.origin.y + _BTN_Account.frame.size.height , _lbl_current_bal.frame.size.width, _lbl_current_bal.frame.size.height);
-                _VW_Account.frame = CGRectMake(_VW_Account.frame.origin.x, _lbl_current_bal.frame.origin.y + _lbl_current_bal.frame.size.height + 10, _VW_Account.frame.size.width, _VW_Account.frame.size.height);
-                _VW_line1.frame = CGRectMake(_VW_line1.frame.origin.x, _VW_Account.frame.origin.y + _VW_Account.frame.size.height + 10, _VW_line1.frame.size.width, _VW_line1.frame.size.height);
-                
-                _lbl_titleSubtotal.frame = CGRectMake(_lbl_titleSubtotal.frame.origin.x, _VW_line1.frame.origin.y + _VW_line1.frame.size.height + 10, _lbl_titleSubtotal.frame.size.width, _lbl_titleSubtotal.frame.size.height);
-                _lbl_datasubtotal.frame = CGRectMake(_lbl_datasubtotal.frame.origin.x, _VW_line1.frame.origin.y + _VW_line1.frame.size.height + 10, _lbl_datasubtotal.frame.size.width, _lbl_datasubtotal.frame.size.height);
-                
-                if(_Switch_Ac.on)
-                {
-                    _VW_line2.frame = CGRectMake(_VW_line2.frame.origin.x, _lbl_titleSubtotal.frame.origin.y + _lbl_titleSubtotal.frame.size.height + 10, _VW_line2.frame.size.width, _VW_line2.frame.size.height);
-                    _lbl_acbalance.frame = CGRectMake(_lbl_acbalance.frame.origin.x, _VW_line2.frame.origin.y + _VW_line2.frame.size.height + 10, _lbl_acbalance.frame.size.width, _lbl_acbalance.frame.size.height);
-                    _lbl_acbalance_amount.frame = CGRectMake(_lbl_acbalance_amount.frame.origin.x, _VW_line2.frame.origin.y + _VW_line2.frame.size.height + 10, _lbl_acbalance_amount.frame.size.width, _lbl_acbalance_amount.frame.size.height);
-                    
-                    _VW_line3.frame = CGRectMake(_VW_line3.frame.origin.x, _lbl_acbalance.frame.origin.y + _lbl_acbalance.frame.size.height + 10, _VW_line3.frame.size.width, _VW_line3.frame.size.height);
-                    
-                    _lbl_titleTotal.frame = CGRectMake(_lbl_titleTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_titleTotal.frame.size.width, _lbl_titleTotal.frame.size.height);
-                    
-                    _lbl_dataTotal.frame = CGRectMake(_lbl_dataTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_dataTotal.frame.size.width, _lbl_dataTotal.frame.size.height);
-                    
-                    _BTN_checkout.frame = CGRectMake(_BTN_checkout.frame.origin.x, _lbl_titleTotal.frame.origin.y + _lbl_titleTotal.frame.size.height + 10, _BTN_checkout.frame.size.width, _BTN_checkout.frame.size.height);
-                    
-                    
-                }
-                else
-                {
-                    
-                    _VW_line2.hidden = YES;
-                    _lbl_acbalance.hidden = YES;
-                    _lbl_acbalance_amount.hidden = YES;
-                    
-                    _VW_line3.frame = CGRectMake(_VW_line3.frame.origin.x, _lbl_titleSubtotal.frame.origin.y + _lbl_titleSubtotal.frame.size.height + 10, _VW_line3.frame.size.width, _VW_line3.frame.size.height);
-                    
-                    _lbl_titleTotal.frame = CGRectMake(_lbl_titleTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_titleTotal.frame.size.width, _lbl_titleTotal.frame.size.height);
-                    
-                    _lbl_dataTotal.frame = CGRectMake(_lbl_dataTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_dataTotal.frame.size.width, _lbl_dataTotal.frame.size.height);
-                    
-                    _BTN_checkout.frame = CGRectMake(_BTN_checkout.frame.origin.x, _lbl_titleTotal.frame.origin.y + _lbl_titleTotal.frame.size.height + 10, _BTN_checkout.frame.size.width, _BTN_checkout.frame.size.height);
-                }
-                
-                
-            }
-            else
-            {
-                
-                
-                _VW_line1.frame = CGRectMake(_VW_line1.frame.origin.x, _BTN_Account.frame.origin.y + _BTN_Account.frame.size.height + 10, _VW_line1.frame.size.width, _VW_line1.frame.size.height);
-                
-                _lbl_titleSubtotal.frame = CGRectMake(_lbl_titleSubtotal.frame.origin.x, _VW_line1.frame.origin.y + _VW_line1.frame.size.height + 10, _lbl_titleSubtotal.frame.size.width, _lbl_titleSubtotal.frame.size.height);
-                _lbl_datasubtotal.frame = CGRectMake(_lbl_datasubtotal.frame.origin.x, _VW_line1.frame.origin.y + _VW_line1.frame.size.height + 10, _lbl_datasubtotal.frame.size.width, _lbl_datasubtotal.frame.size.height);
-                
-                
-                
-                _VW_line3.frame = CGRectMake(_VW_line3.frame.origin.x, _lbl_titleSubtotal.frame.origin.y + _lbl_titleSubtotal.frame.size.height + 10, _VW_line3.frame.size.width, _VW_line3.frame.size.height);
-                
-                _lbl_titleTotal.frame = CGRectMake(_lbl_titleTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_titleTotal.frame.size.width, _lbl_titleTotal.frame.size.height);
-                
-                _lbl_dataTotal.frame = CGRectMake(_lbl_dataTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_dataTotal.frame.size.width, _lbl_dataTotal.frame.size.height);
-                
-                _BTN_checkout.frame = CGRectMake(_BTN_checkout.frame.origin.x, _lbl_titleTotal.frame.origin.y + _lbl_titleTotal.frame.size.height + 10, _BTN_checkout.frame.size.width, _BTN_checkout.frame.size.height);
-            }
-            
-        }];
-        
-        
-        [UIView beginAnimations:@"LeftFlip" context:nil];
-        [UIView setAnimationDuration:0.8];
-        _VW_promo.hidden = NO;
-        [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-        [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:_VW_promo cache:YES];
-        [UIView commitAnimations];
-        
-        original_height = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 40;
-        [self viewDidLayoutSubviews];
-    }
-    else
-    {
-        [self hide_PROMO];
-        original_height = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 40;
-        [self viewDidLayoutSubviews];
-    }
-}
--(void) hide_PROMO
-{
-    [UIView transitionWithView:_VW_promo
-                      duration:0.4
-                       options:UIViewAnimationOptionTransitionCurlUp
-                    animations:NULL
-                    completion:NULL];
-    [_VW_promo  setHidden:YES];
-    
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        
-        _VW_line.frame = CGRectMake(_VW_line.frame.origin.x, _BTN_promocode.frame.origin.y + _BTN_promocode.frame.size.height +10, _VW_line.frame.size.width, _VW_line.frame.size.height);
-        _lbl_arrowaccount.frame = CGRectMake(_lbl_arrowaccount.frame.origin.x, _VW_line.frame.origin.y + _VW_line.frame.size.height +10, _lbl_arrowaccount.frame.size.width, _lbl_arrowaccount.frame.size.height);
-        
-        _BTN_Account.frame = CGRectMake(_BTN_Account.frame.origin.x, _VW_line.frame.origin.y + _VW_line.frame.size.height +10, _BTN_Account.frame.size.width, _BTN_Account.frame.size.height);
-        if(_lbl_current_bal.hidden == NO)
-        {
-            _lbl_current_bal.frame = CGRectMake(_lbl_current_bal.frame.origin.x, _BTN_Account.frame.origin.y + _BTN_Account.frame.size.height, _lbl_current_bal.frame.size.width, _lbl_current_bal.frame.size.height);
-            _VW_Account.frame = CGRectMake(_VW_Account.frame.origin.x, _lbl_current_bal.frame.origin.y + _lbl_current_bal.frame.size.height , _VW_Account.frame.size.width, _VW_Account.frame.size.height);
-            _VW_line1.frame = CGRectMake(_VW_line1.frame.origin.x, _VW_Account.frame.origin.y + _VW_Account.frame.size.height + 10, _VW_line1.frame.size.width, _VW_line1.frame.size.height);
-            
-            _lbl_titleSubtotal.frame = CGRectMake(_lbl_titleSubtotal.frame.origin.x, _VW_line1.frame.origin.y + _VW_line1.frame.size.height + 10, _lbl_titleSubtotal.frame.size.width, _lbl_titleSubtotal.frame.size.height);
-            _lbl_datasubtotal.frame = CGRectMake(_lbl_datasubtotal.frame.origin.x, _VW_line1.frame.origin.y + _VW_line1.frame.size.height + 10, _lbl_datasubtotal.frame.size.width, _lbl_datasubtotal.frame.size.height);
-            
-            if(_Switch_Ac.on)
-            {
-                _VW_line2.frame = CGRectMake(_VW_line2.frame.origin.x, _lbl_titleSubtotal.frame.origin.y + _lbl_titleSubtotal.frame.size.height + 10, _VW_line2.frame.size.width, _VW_line2.frame.size.height);
-                _lbl_acbalance.frame = CGRectMake(_lbl_acbalance.frame.origin.x, _VW_line2.frame.origin.y + _VW_line2.frame.size.height + 10, _lbl_acbalance.frame.size.width, _lbl_acbalance.frame.size.height);
-                _lbl_acbalance_amount.frame = CGRectMake(_lbl_acbalance_amount.frame.origin.x, _VW_line2.frame.origin.y + _VW_line2.frame.size.height + 10, _lbl_acbalance_amount.frame.size.width, _lbl_acbalance_amount.frame.size.height);
-                
-                _VW_line3.frame = CGRectMake(_VW_line3.frame.origin.x, _lbl_acbalance.frame.origin.y + _lbl_acbalance.frame.size.height + 10, _VW_line3.frame.size.width, _VW_line3.frame.size.height);
-                
-                _lbl_titleTotal.frame = CGRectMake(_lbl_titleTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_titleTotal.frame.size.width, _lbl_titleTotal.frame.size.height);
-                
-                _lbl_dataTotal.frame = CGRectMake(_lbl_dataTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_dataTotal.frame.size.width, _lbl_dataTotal.frame.size.height);
-                
-                _BTN_checkout.frame = CGRectMake(_BTN_checkout.frame.origin.x, _lbl_titleTotal.frame.origin.y + _lbl_titleTotal.frame.size.height + 10, _BTN_checkout.frame.size.width, _BTN_checkout.frame.size.height);
-                
-                
-            }
-            else
-            {
-                _VW_line2.hidden = YES;
-                _lbl_acbalance.hidden = YES;
-                _lbl_acbalance_amount.hidden = YES;
-                
-                
-                _VW_line3.frame = CGRectMake(_VW_line3.frame.origin.x, _lbl_titleSubtotal.frame.origin.y + _lbl_titleSubtotal.frame.size.height + 10, _VW_line3.frame.size.width, _VW_line3.frame.size.height);
-                
-                _lbl_titleTotal.frame = CGRectMake(_lbl_titleTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_titleTotal.frame.size.width, _lbl_titleTotal.frame.size.height);
-                
-                _lbl_dataTotal.frame = CGRectMake(_lbl_dataTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_dataTotal.frame.size.width, _lbl_dataTotal.frame.size.height);
-                
-                _BTN_checkout.frame = CGRectMake(_BTN_checkout.frame.origin.x, _lbl_titleTotal.frame.origin.y + _lbl_titleTotal.frame.size.height + 10, _BTN_checkout.frame.size.width, _BTN_checkout.frame.size.height);
-            }
-            
-            
-            
-            
-        }
-        else
-        {
-            _VW_line1.frame = CGRectMake(_VW_line1.frame.origin.x, _BTN_Account.frame.origin.y + _BTN_Account.frame.size.height + 10, _VW_line1.frame.size.width, _VW_line1.frame.size.height);
-            
-            _lbl_titleSubtotal.frame = CGRectMake(_lbl_titleSubtotal.frame.origin.x, _VW_line1.frame.origin.y + _VW_line1.frame.size.height + 10, _lbl_titleSubtotal.frame.size.width, _lbl_titleSubtotal.frame.size.height);
-            _lbl_datasubtotal.frame = CGRectMake(_lbl_datasubtotal.frame.origin.x, _VW_line1.frame.origin.y + _VW_line1.frame.size.height + 10, _lbl_datasubtotal.frame.size.width, _lbl_datasubtotal.frame.size.height);
-            
-            
-            _VW_line3.frame = CGRectMake(_VW_line3.frame.origin.x, _lbl_titleSubtotal.frame.origin.y + _lbl_titleSubtotal.frame.size.height + 10, _VW_line3.frame.size.width, _VW_line3.frame.size.height);
-            
-            _lbl_titleTotal.frame = CGRectMake(_lbl_titleTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_titleTotal.frame.size.width, _lbl_titleTotal.frame.size.height);
-            
-            _lbl_dataTotal.frame = CGRectMake(_lbl_dataTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_dataTotal.frame.size.width, _lbl_dataTotal.frame.size.height);
-            
-            _BTN_checkout.frame = CGRectMake(_BTN_checkout.frame.origin.x, _lbl_titleTotal.frame.origin.y + _lbl_titleTotal.frame.size.height + 10, _BTN_checkout.frame.size.width, _BTN_checkout.frame.size.height);
-        }
-        
-        
-    }];
-    _lbl_arrowpromocode.text = @"";
-}
+ -(void) BTN_promocode_TAP
+ {
+ if (_VW_promo.hidden == YES) {
+ //    _BTN_promocode.hidden = YES;
+ float btn_ht = _BTN_promocode.frame.size.height + 10;
+ CGRect promoFRAME = _VW_promo.frame;
+ promoFRAME.origin.y = _BTN_promocode.frame.origin.y + btn_ht;
+ _VW_promo.frame = promoFRAME;
+ 
+ _lbl_arrowpromocode.text = @"";
+ 
+ 
+ [UIView animateWithDuration:0.5 animations:^{
+ 
+ _VW_line.frame = CGRectMake(_VW_line.frame.origin.x, _VW_promo.frame.origin.y + _VW_promo.frame.size.height +10, _VW_line.frame.size.width, _VW_line.frame.size.height);
+ _lbl_arrowaccount.frame = CGRectMake(_lbl_arrowpromocode.frame.origin.x, _VW_line.frame.origin.y + _VW_line.frame.size.height + 10, _lbl_arrowaccount.frame.size.width, _lbl_arrowaccount.frame.size.height);
+ 
+ _BTN_Account.frame = CGRectMake(_BTN_Account.frame.origin.x, _VW_line.frame.origin.y + _VW_line.frame.size.height +10, _BTN_Account.frame.size.width, _BTN_Account.frame.size.height);
+ if(_lbl_current_bal.hidden == NO)
+ {
+ _lbl_current_bal.frame = CGRectMake(_lbl_current_bal.frame.origin.x, _BTN_Account.frame.origin.y + _BTN_Account.frame.size.height , _lbl_current_bal.frame.size.width, _lbl_current_bal.frame.size.height);
+ _VW_Account.frame = CGRectMake(_VW_Account.frame.origin.x, _lbl_current_bal.frame.origin.y + _lbl_current_bal.frame.size.height + 10, _VW_Account.frame.size.width, _VW_Account.frame.size.height);
+ _VW_line1.frame = CGRectMake(_VW_line1.frame.origin.x, _VW_Account.frame.origin.y + _VW_Account.frame.size.height + 10, _VW_line1.frame.size.width, _VW_line1.frame.size.height);
+ 
+ _lbl_titleSubtotal.frame = CGRectMake(_lbl_titleSubtotal.frame.origin.x, _VW_line1.frame.origin.y + _VW_line1.frame.size.height + 10, _lbl_titleSubtotal.frame.size.width, _lbl_titleSubtotal.frame.size.height);
+ _lbl_datasubtotal.frame = CGRectMake(_lbl_datasubtotal.frame.origin.x, _VW_line1.frame.origin.y + _VW_line1.frame.size.height + 10, _lbl_datasubtotal.frame.size.width, _lbl_datasubtotal.frame.size.height);
+ 
+ if(_Switch_Ac.on)
+ {
+ _VW_line2.frame = CGRectMake(_VW_line2.frame.origin.x, _lbl_titleSubtotal.frame.origin.y + _lbl_titleSubtotal.frame.size.height + 10, _VW_line2.frame.size.width, _VW_line2.frame.size.height);
+ _lbl_acbalance.frame = CGRectMake(_lbl_acbalance.frame.origin.x, _VW_line2.frame.origin.y + _VW_line2.frame.size.height + 10, _lbl_acbalance.frame.size.width, _lbl_acbalance.frame.size.height);
+ _lbl_acbalance_amount.frame = CGRectMake(_lbl_acbalance_amount.frame.origin.x, _VW_line2.frame.origin.y + _VW_line2.frame.size.height + 10, _lbl_acbalance_amount.frame.size.width, _lbl_acbalance_amount.frame.size.height);
+ 
+ _VW_line3.frame = CGRectMake(_VW_line3.frame.origin.x, _lbl_acbalance.frame.origin.y + _lbl_acbalance.frame.size.height + 10, _VW_line3.frame.size.width, _VW_line3.frame.size.height);
+ 
+ _lbl_titleTotal.frame = CGRectMake(_lbl_titleTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_titleTotal.frame.size.width, _lbl_titleTotal.frame.size.height);
+ 
+ _lbl_dataTotal.frame = CGRectMake(_lbl_dataTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_dataTotal.frame.size.width, _lbl_dataTotal.frame.size.height);
+ 
+ _BTN_checkout.frame = CGRectMake(_BTN_checkout.frame.origin.x, _lbl_titleTotal.frame.origin.y + _lbl_titleTotal.frame.size.height + 10, _BTN_checkout.frame.size.width, _BTN_checkout.frame.size.height);
+ 
+ 
+ }
+ else
+ {
+ 
+ _VW_line2.hidden = YES;
+ _lbl_acbalance.hidden = YES;
+ _lbl_acbalance_amount.hidden = YES;
+ 
+ _VW_line3.frame = CGRectMake(_VW_line3.frame.origin.x, _lbl_titleSubtotal.frame.origin.y + _lbl_titleSubtotal.frame.size.height + 10, _VW_line3.frame.size.width, _VW_line3.frame.size.height);
+ 
+ _lbl_titleTotal.frame = CGRectMake(_lbl_titleTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_titleTotal.frame.size.width, _lbl_titleTotal.frame.size.height);
+ 
+ _lbl_dataTotal.frame = CGRectMake(_lbl_dataTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_dataTotal.frame.size.width, _lbl_dataTotal.frame.size.height);
+ 
+ _BTN_checkout.frame = CGRectMake(_BTN_checkout.frame.origin.x, _lbl_titleTotal.frame.origin.y + _lbl_titleTotal.frame.size.height + 10, _BTN_checkout.frame.size.width, _BTN_checkout.frame.size.height);
+ }
+ 
+ 
+ }
+ else
+ {
+ 
+ 
+ _VW_line1.frame = CGRectMake(_VW_line1.frame.origin.x, _BTN_Account.frame.origin.y + _BTN_Account.frame.size.height + 10, _VW_line1.frame.size.width, _VW_line1.frame.size.height);
+ 
+ _lbl_titleSubtotal.frame = CGRectMake(_lbl_titleSubtotal.frame.origin.x, _VW_line1.frame.origin.y + _VW_line1.frame.size.height + 10, _lbl_titleSubtotal.frame.size.width, _lbl_titleSubtotal.frame.size.height);
+ _lbl_datasubtotal.frame = CGRectMake(_lbl_datasubtotal.frame.origin.x, _VW_line1.frame.origin.y + _VW_line1.frame.size.height + 10, _lbl_datasubtotal.frame.size.width, _lbl_datasubtotal.frame.size.height);
+ 
+ 
+ 
+ _VW_line3.frame = CGRectMake(_VW_line3.frame.origin.x, _lbl_titleSubtotal.frame.origin.y + _lbl_titleSubtotal.frame.size.height + 10, _VW_line3.frame.size.width, _VW_line3.frame.size.height);
+ 
+ _lbl_titleTotal.frame = CGRectMake(_lbl_titleTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_titleTotal.frame.size.width, _lbl_titleTotal.frame.size.height);
+ 
+ _lbl_dataTotal.frame = CGRectMake(_lbl_dataTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_dataTotal.frame.size.width, _lbl_dataTotal.frame.size.height);
+ 
+ _BTN_checkout.frame = CGRectMake(_BTN_checkout.frame.origin.x, _lbl_titleTotal.frame.origin.y + _lbl_titleTotal.frame.size.height + 10, _BTN_checkout.frame.size.width, _BTN_checkout.frame.size.height);
+ }
+ 
+ }];
+ 
+ 
+ [UIView beginAnimations:@"LeftFlip" context:nil];
+ [UIView setAnimationDuration:0.8];
+ _VW_promo.hidden = NO;
+ [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+ [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:_VW_promo cache:YES];
+ [UIView commitAnimations];
+ 
+ original_height = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 40;
+ [self viewDidLayoutSubviews];
+ }
+ else
+ {
+ [self hide_PROMO];
+ original_height = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 40;
+ [self viewDidLayoutSubviews];
+ }
+ }
+ -(void) hide_PROMO
+ {
+ [UIView transitionWithView:_VW_promo
+ duration:0.4
+ options:UIViewAnimationOptionTransitionCurlUp
+ animations:NULL
+ completion:NULL];
+ [_VW_promo  setHidden:YES];
+ 
+ 
+ [UIView animateWithDuration:0.5 animations:^{
+ 
+ _VW_line.frame = CGRectMake(_VW_line.frame.origin.x, _BTN_promocode.frame.origin.y + _BTN_promocode.frame.size.height +10, _VW_line.frame.size.width, _VW_line.frame.size.height);
+ _lbl_arrowaccount.frame = CGRectMake(_lbl_arrowaccount.frame.origin.x, _VW_line.frame.origin.y + _VW_line.frame.size.height +10, _lbl_arrowaccount.frame.size.width, _lbl_arrowaccount.frame.size.height);
+ 
+ _BTN_Account.frame = CGRectMake(_BTN_Account.frame.origin.x, _VW_line.frame.origin.y + _VW_line.frame.size.height +10, _BTN_Account.frame.size.width, _BTN_Account.frame.size.height);
+ if(_lbl_current_bal.hidden == NO)
+ {
+ _lbl_current_bal.frame = CGRectMake(_lbl_current_bal.frame.origin.x, _BTN_Account.frame.origin.y + _BTN_Account.frame.size.height, _lbl_current_bal.frame.size.width, _lbl_current_bal.frame.size.height);
+ _VW_Account.frame = CGRectMake(_VW_Account.frame.origin.x, _lbl_current_bal.frame.origin.y + _lbl_current_bal.frame.size.height , _VW_Account.frame.size.width, _VW_Account.frame.size.height);
+ _VW_line1.frame = CGRectMake(_VW_line1.frame.origin.x, _VW_Account.frame.origin.y + _VW_Account.frame.size.height + 10, _VW_line1.frame.size.width, _VW_line1.frame.size.height);
+ 
+ _lbl_titleSubtotal.frame = CGRectMake(_lbl_titleSubtotal.frame.origin.x, _VW_line1.frame.origin.y + _VW_line1.frame.size.height + 10, _lbl_titleSubtotal.frame.size.width, _lbl_titleSubtotal.frame.size.height);
+ _lbl_datasubtotal.frame = CGRectMake(_lbl_datasubtotal.frame.origin.x, _VW_line1.frame.origin.y + _VW_line1.frame.size.height + 10, _lbl_datasubtotal.frame.size.width, _lbl_datasubtotal.frame.size.height);
+ 
+ if(_Switch_Ac.on)
+ {
+ _VW_line2.frame = CGRectMake(_VW_line2.frame.origin.x, _lbl_titleSubtotal.frame.origin.y + _lbl_titleSubtotal.frame.size.height + 10, _VW_line2.frame.size.width, _VW_line2.frame.size.height);
+ _lbl_acbalance.frame = CGRectMake(_lbl_acbalance.frame.origin.x, _VW_line2.frame.origin.y + _VW_line2.frame.size.height + 10, _lbl_acbalance.frame.size.width, _lbl_acbalance.frame.size.height);
+ _lbl_acbalance_amount.frame = CGRectMake(_lbl_acbalance_amount.frame.origin.x, _VW_line2.frame.origin.y + _VW_line2.frame.size.height + 10, _lbl_acbalance_amount.frame.size.width, _lbl_acbalance_amount.frame.size.height);
+ 
+ _VW_line3.frame = CGRectMake(_VW_line3.frame.origin.x, _lbl_acbalance.frame.origin.y + _lbl_acbalance.frame.size.height + 10, _VW_line3.frame.size.width, _VW_line3.frame.size.height);
+ 
+ _lbl_titleTotal.frame = CGRectMake(_lbl_titleTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_titleTotal.frame.size.width, _lbl_titleTotal.frame.size.height);
+ 
+ _lbl_dataTotal.frame = CGRectMake(_lbl_dataTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_dataTotal.frame.size.width, _lbl_dataTotal.frame.size.height);
+ 
+ _BTN_checkout.frame = CGRectMake(_BTN_checkout.frame.origin.x, _lbl_titleTotal.frame.origin.y + _lbl_titleTotal.frame.size.height + 10, _BTN_checkout.frame.size.width, _BTN_checkout.frame.size.height);
+ 
+ 
+ }
+ else
+ {
+ _VW_line2.hidden = YES;
+ _lbl_acbalance.hidden = YES;
+ _lbl_acbalance_amount.hidden = YES;
+ 
+ 
+ _VW_line3.frame = CGRectMake(_VW_line3.frame.origin.x, _lbl_titleSubtotal.frame.origin.y + _lbl_titleSubtotal.frame.size.height + 10, _VW_line3.frame.size.width, _VW_line3.frame.size.height);
+ 
+ _lbl_titleTotal.frame = CGRectMake(_lbl_titleTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_titleTotal.frame.size.width, _lbl_titleTotal.frame.size.height);
+ 
+ _lbl_dataTotal.frame = CGRectMake(_lbl_dataTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_dataTotal.frame.size.width, _lbl_dataTotal.frame.size.height);
+ 
+ _BTN_checkout.frame = CGRectMake(_BTN_checkout.frame.origin.x, _lbl_titleTotal.frame.origin.y + _lbl_titleTotal.frame.size.height + 10, _BTN_checkout.frame.size.width, _BTN_checkout.frame.size.height);
+ }
+ 
+ 
+ 
+ 
+ }
+ else
+ {
+ _VW_line1.frame = CGRectMake(_VW_line1.frame.origin.x, _BTN_Account.frame.origin.y + _BTN_Account.frame.size.height + 10, _VW_line1.frame.size.width, _VW_line1.frame.size.height);
+ 
+ _lbl_titleSubtotal.frame = CGRectMake(_lbl_titleSubtotal.frame.origin.x, _VW_line1.frame.origin.y + _VW_line1.frame.size.height + 10, _lbl_titleSubtotal.frame.size.width, _lbl_titleSubtotal.frame.size.height);
+ _lbl_datasubtotal.frame = CGRectMake(_lbl_datasubtotal.frame.origin.x, _VW_line1.frame.origin.y + _VW_line1.frame.size.height + 10, _lbl_datasubtotal.frame.size.width, _lbl_datasubtotal.frame.size.height);
+ 
+ 
+ _VW_line3.frame = CGRectMake(_VW_line3.frame.origin.x, _lbl_titleSubtotal.frame.origin.y + _lbl_titleSubtotal.frame.size.height + 10, _VW_line3.frame.size.width, _VW_line3.frame.size.height);
+ 
+ _lbl_titleTotal.frame = CGRectMake(_lbl_titleTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_titleTotal.frame.size.width, _lbl_titleTotal.frame.size.height);
+ 
+ _lbl_dataTotal.frame = CGRectMake(_lbl_dataTotal.frame.origin.x, _VW_line3.frame.origin.y + _VW_line3.frame.size.height + 10, _lbl_dataTotal.frame.size.width, _lbl_dataTotal.frame.size.height);
+ 
+ _BTN_checkout.frame = CGRectMake(_BTN_checkout.frame.origin.x, _lbl_titleTotal.frame.origin.y + _lbl_titleTotal.frame.size.height + 10, _BTN_checkout.frame.size.width, _BTN_checkout.frame.size.height);
+ }
+ 
+ 
+ }];
+ _lbl_arrowpromocode.text = @"";
+ }
  */
 -(void) BTN_account_Tap
 {
@@ -814,7 +815,7 @@
         [[NSUserDefaults standardUserDefaults] setValue:@"SWITCH_ON" forKey:@"SWITCHSTAT"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-
+        
         
         [UIView animateWithDuration:0.4 animations:^{
             CGRect switchframe = _VW_line2.frame ;
@@ -929,3 +930,4 @@
 }
 
 @end
+

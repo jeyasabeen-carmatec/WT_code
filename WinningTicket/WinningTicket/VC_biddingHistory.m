@@ -51,7 +51,7 @@
     
 }
 
-    // Do any additional setup after loading the view.
+// Do any additional setup after loading the view.
 
 
 
@@ -61,19 +61,19 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - Uiview Customisation
 -(void) setupVIew
 {
-  
+    
     
     _ARR_sec_one=[[NSMutableArray alloc]init];
     _ARR_sec_one = [jsonReponse valueForKey:@"biddings"];
@@ -86,20 +86,20 @@
     
     
     
-//    NSDictionary *temp_dictin;
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"B******7",@"key1",dateString,@"key2",@"-$200.00",@"key3", nil];
-//    [_ARR_sec_one addObject:temp_dictin];
-//    
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"B******7",@"key1",dateString,@"key2",@"-$200.00",@"key3", nil];
-//    [_ARR_sec_one addObject:temp_dictin];
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"B******7 ",@"key1",dateString,@"key2",@"-$200.00",@"key3", nil];
-//    [_ARR_sec_one addObject:temp_dictin];
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"B******7",@"key1",dateString,@"key2",@"-$200.00",@"key3", nil];
-//    [_ARR_sec_one addObject:temp_dictin];temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"B******7",@"key1",dateString,@"key2",@"-$200.00",@"key3",nil];
-//    [_ARR_sec_one addObject:temp_dictin];
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"B******7",@"key1",dateString,@"key2",@"-$200.00",@"key3", nil];
-//    [_ARR_sec_one addObject:temp_dictin];
-   
+    //    NSDictionary *temp_dictin;
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"B******7",@"key1",dateString,@"key2",@"-$200.00",@"key3", nil];
+    //    [_ARR_sec_one addObject:temp_dictin];
+    //
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"B******7",@"key1",dateString,@"key2",@"-$200.00",@"key3", nil];
+    //    [_ARR_sec_one addObject:temp_dictin];
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"B******7 ",@"key1",dateString,@"key2",@"-$200.00",@"key3", nil];
+    //    [_ARR_sec_one addObject:temp_dictin];
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"B******7",@"key1",dateString,@"key2",@"-$200.00",@"key3", nil];
+    //    [_ARR_sec_one addObject:temp_dictin];temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"B******7",@"key1",dateString,@"key2",@"-$200.00",@"key3",nil];
+    //    [_ARR_sec_one addObject:temp_dictin];
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"B******7",@"key1",dateString,@"key2",@"-$200.00",@"key3", nil];
+    //    [_ARR_sec_one addObject:temp_dictin];
+    
     
 }
 
@@ -181,14 +181,14 @@
         
         NSString *status = [jsonReponse valueForKey:@"status"];
         NSString *winner_status = [NSString stringWithFormat:@"%@",[jsonReponse valueForKey:@"winner_status"]];
-       
+        
         NSString *winning_bid_amount;
         @try
         {
             
-         winning_bid_amount = [NSString stringWithFormat:@"%.2f",[[jsonReponse valueForKey:@"winning_bid_amount"] floatValue]];
+            winning_bid_amount = [NSString stringWithFormat:@"%.2f",[[jsonReponse valueForKey:@"winning_bid_amount"] floatValue]];
         }
-       @catch(NSException *exception)
+        @catch(NSException *exception)
         {
             winning_bid_amount = @"";
         }
@@ -197,7 +197,7 @@
         {
             bidcell.amount.textColor = [UIColor colorWithRed:0.00 green:0.65 blue:0.32 alpha:1.0];
             [bidcell.AC_no setFont:[UIFont fontWithName:@"GothamMedium" size:bidcell.AC_no.font.pointSize]];
-
+            
             status_lbl = @"Winning bid";
             date_lbl = [NSString stringWithFormat:@"%@\n%@",date_TXT,status_lbl];
             
@@ -257,7 +257,7 @@
     }
     @catch (NSException *exception)
     {
-//        [self sessionOUT];
+        //        [self sessionOUT];
         NSLog(@"Exception bidding history %@",exception);
     }
     
@@ -277,7 +277,7 @@
     {
         return 78;
     }
-
+    
 }
 - (IBAction)BTN_back:(id)sender
 {
@@ -288,99 +288,99 @@
 {
     @try
     {
-    NSError *error;
-    NSHTTPURLResponse *response = nil;
-    NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
-  
-   NSString *item_id = [[NSUserDefaults standardUserDefaults] valueForKey:@"auction_item_id"];
-    
-    NSString *urlGetuser =[NSString stringWithFormat:@"%@auction/bidding_history/%@",SERVER_URL,item_id];
-    
-    NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:urlProducts];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
-    
-    
-    [request setHTTPShouldHandleCookies:NO];
-    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    if (aData)
-    {
-        //        self->activityIndicatorView.hidden=YES;
-       jsonReponse = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
-        NSLog(@"The response %@",jsonReponse);
-       
-        @try
+        NSError *error;
+        NSHTTPURLResponse *response = nil;
+        NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+        
+        NSString *item_id = [[NSUserDefaults standardUserDefaults] valueForKey:@"auction_item_id"];
+        
+        NSString *urlGetuser =[NSString stringWithFormat:@"%@auction/bidding_history/%@",SERVER_URL,item_id];
+        
+        NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:urlProducts];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
+        
+        
+        [request setHTTPShouldHandleCookies:NO];
+        NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        if (aData)
         {
-            NSString *STR_error1 = [jsonReponse valueForKey:@"error"];
-            if (STR_error1)
+            //        self->activityIndicatorView.hidden=YES;
+            jsonReponse = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
+            NSLog(@"The response %@",jsonReponse);
+            
+            @try
+            {
+                NSString *STR_error1 = [jsonReponse valueForKey:@"error"];
+                if (STR_error1)
+                {
+                    [self sessionOUT];
+                }
+                else
+                {
+                    NSString *status=[jsonReponse valueForKey:@"status"];
+                    NSString *error=[jsonReponse valueForKey:@"errors"];
+                    NSString *message=[jsonReponse valueForKey:@"message"];
+                    
+                    if([status isEqualToString:@"Success"])
+                    {
+                        [activityIndicatorView stopAnimating];
+                        VW_overlay.hidden=YES;
+                        [self setupVIew];
+                        
+                        //                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:status delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+                        //                    [alert show];
+                        //                    [self GETAuction_Item_details];
+                        //                    [self setup_Values];
+                        
+                        
+                        
+                        
+                    }
+                    else if(error)
+                    {
+                        [activityIndicatorView stopAnimating];
+                        VW_overlay.hidden=YES;
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection failed" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                        [alert show];
+                    }
+                    
+                    else
+                    {
+                        [activityIndicatorView stopAnimating];
+                        VW_overlay.hidden=YES;
+                        
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                        [alert show];
+                    }
+                }
+            }
+            @catch (NSException *exception)
             {
                 [self sessionOUT];
             }
-            else
-            {
-                NSString *status=[jsonReponse valueForKey:@"status"];
-                NSString *error=[jsonReponse valueForKey:@"errors"];
-                NSString *message=[jsonReponse valueForKey:@"message"];
-                
-                if([status isEqualToString:@"Success"])
-                {
-                    [activityIndicatorView stopAnimating];
-                    VW_overlay.hidden=YES;
-                   [self setupVIew];
-                    
-//                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:status delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-//                    [alert show];
-                    //                    [self GETAuction_Item_details];
-                    //                    [self setup_Values];
-                    
-                    
-                    
-                    
-                }
-                else if(error)
-                {
-                    [activityIndicatorView stopAnimating];
-                    VW_overlay.hidden=YES;
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection failed" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                    [alert show];
-                }
-                
-                else
-                {
-                    [activityIndicatorView stopAnimating];
-                    VW_overlay.hidden=YES;
-                    
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                    [alert show];
-                }
-            }
+            
         }
-        @catch (NSException *exception)
+        else
         {
-            [self sessionOUT];
+            [activityIndicatorView stopAnimating];
+            VW_overlay.hidden=YES;
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            
         }
-        
     }
-    else
+    @catch (NSException *exception)
     {
-        [activityIndicatorView stopAnimating];
-        VW_overlay.hidden=YES;
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection error" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-        
+        [self sessionOUT];
     }
-}
-@catch (NSException *exception)
-{
-    [self sessionOUT];
-}
-
-
-
+    
+    
+    
 }
 #pragma mark time_conversion
 -(NSString *)getLocalDateTimeFromUTC:(NSString *)strDate
@@ -413,3 +413,4 @@
 }
 
 @end
+

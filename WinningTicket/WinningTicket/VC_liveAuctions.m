@@ -43,7 +43,7 @@
     UIView *VW_overlay;
     UIActivityIndicatorView *activityIndicatorView;
     UIBarButtonItem *anotherButton;
-//    NSString *titleName;
+    //    NSString *titleName;
     NSMutableDictionary *json_DATA;
     NSArray *ARR_search;
     NSMutableArray *sec_one_ARR;
@@ -70,7 +70,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.auctiontab.tableFooterView = [UIView new];
-    
+    [_BTN_back addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     
     _auctiontab.estimatedRowHeight = 173.0f;
     _auctiontab.rowHeight = UITableViewAutomaticDimension;
@@ -90,9 +90,9 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-//    self.navigationItem.rightBarButtonItem = nil;
-//    self.navigationItem.leftBarButtonItem = nil;
-//    self.navigationItem.title = nil;
+    //    self.navigationItem.rightBarButtonItem = nil;
+    //    self.navigationItem.leftBarButtonItem = nil;
+    //    self.navigationItem.title = nil;
     VW_overlay.hidden = NO;
     [activityIndicatorView startAnimating];
     sec_one_ARR = [[NSMutableArray alloc] init];
@@ -112,14 +112,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 #pragma mark - UIView Customisation
 -(void) setup_VIEW
 {
@@ -129,7 +129,7 @@
        } forState:UIControlStateNormal];
     
     anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain
-                                                                     target:self action:@selector(backAction)];
+                                                    target:self action:@selector(backAction)];
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -158,18 +158,18 @@
     
     
     
-//    UIBarButtonItem *anotherButton1 = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain
-//                                                                     target:self action:@selector(more_ACTION)];
+    //    UIBarButtonItem *anotherButton1 = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain
+    //                                                                     target:self action:@selector(more_ACTION)];
     
     [self.navigationItem setLeftBarButtonItems:@[negativeSpacer, anotherButton ] animated:NO];
-
+    
     self.navigationController.navigationBar.titleTextAttributes=@{NSForegroundColorAttributeName:[UIColor whiteColor]};
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
        NSFontAttributeName:_lbl_nav_font.font}];
     self.navigationItem.title = @"SILENT AUCTIONS";
     
-
+    
     UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     numberToolbar.barStyle = UIBarStyleBlackTranslucent;
     [numberToolbar sizeToFit];
@@ -254,7 +254,7 @@
             cell = [nib objectAtIndex:0];
         }
         
-//        NSDictionary *Dictin_temp = 
+        //        NSDictionary *Dictin_temp =
         cell.lbl_item_name.text = [ARR_search objectAtIndex:indexPath.row];;
         return cell;
     }
@@ -281,7 +281,7 @@
         NSString *url_str = [NSString stringWithFormat:@"%@%@",IMAGE_URL,[cpy_dict valueForKey:@"item_image"]];
         [auc_cell.image_display sd_setImageWithURL:[NSURL URLWithString:url_str]
                                   placeholderImage:[UIImage imageNamed:@"square-2"]];
-//        auc_cell.name_lbl.text = [cpy_dict objectForKey:@"name"];
+        //        auc_cell.name_lbl.text = [cpy_dict objectForKey:@"name"];
         
         auc_cell.image_display.layer.borderWidth = 1.0f;
         auc_cell.image_display.layer.borderColor = [UIColor blackColor].CGColor;
@@ -315,19 +315,19 @@
             NSRange cmp1 = [STR_final rangeOfString:STR_break];
             
             [attributedText1 setAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor]
-                                            }
-                                    range:cmp1];
+                                             }
+                                     range:cmp1];
             
             auc_cell.bid_Lbl.attributedText = attributedText1;
             
         }
         else
         {
-              auc_cell.bid_Lbl.text = STR_Bidcc;
+            auc_cell.bid_Lbl.text = STR_Bidcc;
         }
         
         
-//        [auc_cell.bid_Lbl sizeToFit];
+        //        [auc_cell.bid_Lbl sizeToFit];
         
         auc_cell.bid_Lbl.layer.cornerRadius = 2.5f;
         auc_cell.bid_Lbl.layer.masksToBounds = YES;
@@ -351,7 +351,7 @@
         
         
         if ([[cpy_dict objectForKey:@"payment_status"] isEqualToString:@"paid"] && [STR_Expired isEqualToString:@"1"]) {
-//            auc_cell.bid_Lbl.textColor = [UIColor redColor];
+            //            auc_cell.bid_Lbl.textColor = [UIColor redColor];
             STR_bidSTAT = @"Sold";
             
             @try
@@ -364,7 +364,7 @@
             }
         }
         if ([STR_Expired isEqualToString:@"1"] && [[cpy_dict objectForKey:@"payment_status"] isEqualToString:@"not_paid"]) {
-//            auc_cell.bid_Lbl.textColor = [UIColor redColor];
+            //            auc_cell.bid_Lbl.textColor = [UIColor redColor];
             STR_bidSTAT = @"Auction Closed";
             
             @try
@@ -379,9 +379,9 @@
         
         STR_ItmNUM = [NSString stringWithFormat:@"#%03d",(int) indexPath.row+1 ];
         
-
+        
         STR_prodNAme = [cpy_dict objectForKey:@"name"];
-
+        
         
         NSString *text = [NSString stringWithFormat:@"%@\n%@\n%@\n%@\n.",STR_ItmNUM,STR_prodNAme,STR_amount,STR_bidSTAT];
         
@@ -492,7 +492,7 @@
 {
     if (tableView == _tbl_search)
     {
-//        [ARR_singleTON_Content clearData];
+        //        [ARR_singleTON_Content clearData];
         [sec_one_ARR removeAllObjects];
         [sec_one_ARR dealloc];
         sec_one_ARR = [[NSMutableArray alloc] init];
@@ -505,7 +505,7 @@
         NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"upcoming_events"] options:NSASCIIStringEncoding error:&error];
         NSDictionary *Dictin_event = [dict valueForKey:@"event"];
         NSString *STR_sent_TXT = [NSString stringWithFormat:@"auction/list/%@?query=%@",[Dictin_event valueForKey:@"id"],[ARR_search objectAtIndex:indexPath.row]];
-//        STR_sent_TXT = [STR_sent_TXT stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+        //        STR_sent_TXT = [STR_sent_TXT stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
         tag = 0;
         
         [[NSUserDefaults standardUserDefaults] setValue:STR_sent_TXT forKey:@"URL_SENT"];
@@ -571,7 +571,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -587,19 +587,19 @@
         
         NSLog(@"The response Live auctions %@",jsonReponse);
         
-    
+        
         @try {
-//             initWithArray:[jsonReponse valueForKey:@"auction_items"]];
+            //             initWithArray:[jsonReponse valueForKey:@"auction_items"]];
             
             NSLog(@"the arrayelemts are first:%@",sec_one_ARR);
             if(tag == 0)
             {
-            [sec_one_ARR removeAllObjects];
-            
-            [sec_one_ARR addObjectsFromArray:[jsonReponse valueForKey:@"auction_items"]];
-            [_auctiontab reloadData];
-            
-             NSLog(@"the arrayelemts are last:%@",sec_one_ARR);
+                [sec_one_ARR removeAllObjects];
+                
+                [sec_one_ARR addObjectsFromArray:[jsonReponse valueForKey:@"auction_items"]];
+                [_auctiontab reloadData];
+                
+                NSLog(@"the arrayelemts are last:%@",sec_one_ARR);
             }
             else if(tag == 1)
             {
@@ -610,7 +610,7 @@
                 
                 NSLog(@"the arrayelemts are last:%@",sec_one_ARR);
             }
-           
+            
         } @catch (NSException *exception) {
             _auctiontab.hidden = YES;
             _lbl_NoData.hidden = NO;
@@ -675,8 +675,8 @@
         VW_overlay.hidden = NO;
         [activityIndicatorView startAnimating];
         [self performSelector:@selector(searcH_Qurey) withObject:activityIndicatorView afterDelay:0.01];
-//        VW_overlay.hidden = YES;
-//        [activityIndicatorView stopAnimating];
+        //        VW_overlay.hidden = YES;
+        //        [activityIndicatorView stopAnimating];
     }
     else
     {
@@ -704,67 +704,67 @@
 }
 
 /*#pragma mark - Search API
--(void) searcH_API
-{
-    @try {
-        
-        NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
-        NSString *search_char = _search_bar.text;
-        NSHTTPURLResponse *response = nil;
-        NSError *error;
-        
-        NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"upcoming_events"] options:NSASCIIStringEncoding error:&error];
-        NSDictionary *Dictin_event = [dict valueForKey:@"event"];
-        
-    
-        NSString *urlGetuser =[NSString stringWithFormat:@"%@auction/list/%@?query=%@",SERVER_URL,[Dictin_event valueForKey:@"id"],search_char];
-        urlGetuser = [urlGetuser stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-        NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:urlProducts];
-        [request setHTTPMethod:@"GET"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
-        [request setHTTPShouldHandleCookies:NO];
-        
-        NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-   
-        
-        if (aData)
-        {
-            [activityIndicatorView stopAnimating];
-            VW_overlay.hidden = YES;
-            json_DATA = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
-//            [self get_DATA];
-            NSLog(@"The response %@",json_DATA);
-            
-            if(!json_DATA)
-            {
-                [activityIndicatorView stopAnimating];
-                VW_overlay.hidden = YES;
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Error" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-                [alert show];
-                
-            }
-        }
-        
-    
-        else
-        {
-            [activityIndicatorView stopAnimating];
-            VW_overlay.hidden = YES;
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Error" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-            [alert show];
-        }
-        
-    }
-    @catch (NSException *exception) {
-        [self sessionOUT];
-    }
-    [activityIndicatorView stopAnimating];
-    VW_overlay.hidden = YES;
-}*/
+ -(void) searcH_API
+ {
+ @try {
+ 
+ NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+ NSString *search_char = _search_bar.text;
+ NSHTTPURLResponse *response = nil;
+ NSError *error;
+ 
+ NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"upcoming_events"] options:NSASCIIStringEncoding error:&error];
+ NSDictionary *Dictin_event = [dict valueForKey:@"event"];
+ 
+ 
+ NSString *urlGetuser =[NSString stringWithFormat:@"%@auction/list/%@?query=%@",SERVER_URL,[Dictin_event valueForKey:@"id"],search_char];
+ urlGetuser = [urlGetuser stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+ NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
+ NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+ [request setURL:urlProducts];
+ [request setHTTPMethod:@"GET"];
+ [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+ [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
+ [request setHTTPShouldHandleCookies:NO];
+ 
+ NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+ 
+ 
+ if (aData)
+ {
+ [activityIndicatorView stopAnimating];
+ VW_overlay.hidden = YES;
+ json_DATA = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
+ //            [self get_DATA];
+ NSLog(@"The response %@",json_DATA);
+ 
+ if(!json_DATA)
+ {
+ [activityIndicatorView stopAnimating];
+ VW_overlay.hidden = YES;
+ UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Error" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+ [alert show];
+ 
+ }
+ }
+ 
+ 
+ else
+ {
+ [activityIndicatorView stopAnimating];
+ VW_overlay.hidden = YES;
+ 
+ UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Error" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+ [alert show];
+ }
+ 
+ }
+ @catch (NSException *exception) {
+ [self sessionOUT];
+ }
+ [activityIndicatorView stopAnimating];
+ VW_overlay.hidden = YES;
+ }*/
 
 -(void) searcH_Qurey
 {
@@ -793,7 +793,7 @@
         [request setURL:urlProducts];
         [request setHTTPMethod:@"GET"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+        [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
         [request setHTTPShouldHandleCookies:NO];
         
         NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -818,13 +818,13 @@
             {
                 
                 
-//                NSDictionary *ORiginal_dictin = [temp_dictin valueForKey:@"auction_items"];
+                //                NSDictionary *ORiginal_dictin = [temp_dictin valueForKey:@"auction_items"];
                 
-//                NSMutableDictionary * newDict = [NSMutableDictionary dictionaryWithCapacity:[ORiginal_dictin count]];
-//                for(id item in [ORiginal_dictin allValues]){
-//                    NSArray * keys = [dict allKeysForObject:item];
-//                    [newDict setObject:item forKey:[keys objectAtIndex:0]];
-//                }
+                //                NSMutableDictionary * newDict = [NSMutableDictionary dictionaryWithCapacity:[ORiginal_dictin count]];
+                //                for(id item in [ORiginal_dictin allValues]){
+                //                    NSArray * keys = [dict allKeysForObject:item];
+                //                    [newDict setObject:item forKey:[keys objectAtIndex:0]];
+                //                }
                 NSArray *values = [[temp_dictin valueForKey:@"auction_items"] valueForKeyPath: @"@unionOfArrays.@allValues"];
                 
                 NSCountedSet *namesSet = [[NSCountedSet alloc] initWithArray:values];
@@ -880,16 +880,16 @@
     [self presentViewController:tncView animated:YES completion:NULL];
 }
 /*-(void)get_DATA
-{
-    NSMutableArray *temp_ARR = [json_DATA valueForKey:@"auction_items"];
-    [sec_one_ARR removeAllObjects];
-    [sec_one_ARR dealloc];
-    sec_one_ARR = [[NSMutableArray alloc] init];
-    [sec_one_ARR addObjectsFromArray:temp_ARR];
-//    NSString *str = _search_bar.text;
-//    titleName = [NSString stringWithFormat:@" %lu Results for' %@ '",(unsigned long)[_sec_one_ARR count],str];
-    [_auctiontab reloadData];
-}*/
+ {
+ NSMutableArray *temp_ARR = [json_DATA valueForKey:@"auction_items"];
+ [sec_one_ARR removeAllObjects];
+ [sec_one_ARR dealloc];
+ sec_one_ARR = [[NSMutableArray alloc] init];
+ [sec_one_ARR addObjectsFromArray:temp_ARR];
+ //    NSString *str = _search_bar.text;
+ //    titleName = [NSString stringWithFormat:@" %lu Results for' %@ '",(unsigned long)[_sec_one_ARR count],str];
+ [_auctiontab reloadData];
+ }*/
 
 #pragma mark - Pagination
 #pragma mark - Control datasource
@@ -920,20 +920,20 @@
     {
         
         [self performSelector:@selector(finishRefresh) withObject:nil afterDelay:0.01];
-//        NSError *error;
-//        NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"upcoming_events"] options:NSASCIIStringEncoding error:&error];
-//        NSDictionary *Dictin_event = [dict valueForKey:@"event"];
-//        NSString *STR_sent_TXT = [NSString stringWithFormat:@"auction/list/%@/?page=%@",[Dictin_event valueForKey:@"id"],[metadict valueForKey:@"prev_page"]];
-//        
-//        [self performSelector:@selector(API_liveAuctions:) withObject:STR_sent_TXT afterDelay:0.01];
+        //        NSError *error;
+        //        NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"upcoming_events"] options:NSASCIIStringEncoding error:&error];
+        //        NSDictionary *Dictin_event = [dict valueForKey:@"event"];
+        //        NSString *STR_sent_TXT = [NSString stringWithFormat:@"auction/list/%@/?page=%@",[Dictin_event valueForKey:@"id"],[metadict valueForKey:@"prev_page"]];
+        //
+        //        [self performSelector:@selector(API_liveAuctions:) withObject:STR_sent_TXT afterDelay:0.01];
         
-       /* NSString *url_STR = [NSString stringWithFormat:@"%@?page=%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"URL_SAVED_tran"],[metadict valueForKey:@"prev_page"]];
-        
-        
-        [[NSUserDefaults standardUserDefaults] setValue:url_STR forKey:@"URL_SAVED_tranprev"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        [self performSelector:@selector(firstpage_API) withObject:nil afterDelay:0.01];*/
+        /* NSString *url_STR = [NSString stringWithFormat:@"%@?page=%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"URL_SAVED_tran"],[metadict valueForKey:@"prev_page"]];
+         
+         
+         [[NSUserDefaults standardUserDefaults] setValue:url_STR forKey:@"URL_SAVED_tranprev"];
+         [[NSUserDefaults standardUserDefaults] synchronize];
+         
+         [self performSelector:@selector(firstpage_API) withObject:nil afterDelay:0.01];*/
     }
     [self performSelector:@selector(finishLoadMore) withObject:nil afterDelay:0.01];
 }
@@ -948,7 +948,7 @@
 {
     //Pull up go to NextPage
     //    NSLog(@"The response ALLEvents Pagination Method %@",json_DATA);
-//    NSString *url_STR;
+    //    NSString *url_STR;
     
     NSDictionary *temp_dictinry = [[NSUserDefaults standardUserDefaults] objectForKey:@"META"];
     int i=[[temp_dictinry valueForKey:@"next_page"] intValue];
@@ -964,10 +964,10 @@
     }
     else
     {
-//        url_STR = [NSString stringWithFormat:@"%@?page=%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"URL_SAVED_tran"],nextPAGE];
-//        [[NSUserDefaults standardUserDefaults] setValue:url_STR forKey:@"URL_SAVED_trannext"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-//        [self performSelector:@selector(nextpage_API) withObject:nil afterDelay:0.01];
+        //        url_STR = [NSString stringWithFormat:@"%@?page=%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"URL_SAVED_tran"],nextPAGE];
+        //        [[NSUserDefaults standardUserDefaults] setValue:url_STR forKey:@"URL_SAVED_trannext"];
+        //        [[NSUserDefaults standardUserDefaults] synchronize];
+        //        [self performSelector:@selector(nextpage_API) withObject:nil afterDelay:0.01];
         
         NSError *error;
         NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"upcoming_events"] options:NSASCIIStringEncoding error:&error];
@@ -989,113 +989,114 @@
 }
 
 /*-(void) nextpage_API
-{
-    NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
-    NSError *error;
-    NSHTTPURLResponse *response = nil;
-    
-    NSURL *urlProducts=[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"URL_SAVED_trannext"]]];
-    
-    NSLog(@"Url posted transaction History next page %@",urlProducts);
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:urlProducts];
-    [request setHTTPMethod:@"GET"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
-    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    NSMutableDictionary *dict;
-    if (aData)
-    {
-        
-        NSLog(@"Response Transaction History %@",response);
-        
-        [activityIndicatorView stopAnimating];
-        VW_overlay.hidden = YES;
-        
-        dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:kNilOptions error:&error];
-        NSLog(@"From Transaction_History Next Pagination testing :%@",dict);
-        NSDictionary *temp=[dict valueForKey:@"meta"];
-        int i=[[temp valueForKey:@"total_pages"] intValue];
-        int j=[[temp valueForKey:@"current_page"]intValue];
-        
-        
-        if(i >= j)
-        {
-            
-            k++;
-            if(k >= i)
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Already in Last Page" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-                [alert show];
-                [self performSelector:@selector(finishLoadMore) withObject:nil afterDelay:2];
-                
-                
-            }
-            else{
-                
-                NSArray *ARR_tmp = [dict valueForKey:@"transactions"];
-                [transaction_history addObjectsFromArray:ARR_tmp];
-                
-                [_tbl_contents reloadData];
-            }
-            
-        }
-        
-        
-    }
-    
-    
-    
-    else
-    {
-        [activityIndicatorView stopAnimating];
-        VW_overlay.hidden = YES;
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Error" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-        [alert show];
-    }
-    [self performSelector:@selector(finishLoadMore) withObject:nil afterDelay:0.01];
-}
-
--(void) firstpage_API
-{
-    NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
-    NSError *error;
-    NSHTTPURLResponse *response = nil;
-    
-    NSURL *urlProducts=[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"URL_SAVED_tranprev"]]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:urlProducts];
-    [request setHTTPMethod:@"GET"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
-    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    if (aData)
-    {
-        [activityIndicatorView stopAnimating];
-        VW_overlay.hidden = YES;
-        
-        NSMutableDictionary *json_DATA=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:kNilOptions error:&error];
-        NSLog(@"From VC_all_events  prev Pagination testing :%@",json_DATA);
-        [transaction_history removeAllObjects];
-        NSArray *ARR_tmp = [json_DATA valueForKey:@"transactions"];
-        [transaction_history addObjectsFromArray:ARR_tmp];
-        
-        [_tbl_contents reloadData];
-        
-    }
-    
-    
-    else
-    {
-        [activityIndicatorView stopAnimating];
-        VW_overlay.hidden = YES;
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Error" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-        [alert show];
-    }
-    [self performSelector:@selector(finishRefresh) withObject:nil afterDelay:0.01];
-}
-*/
+ {
+ NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+ NSError *error;
+ NSHTTPURLResponse *response = nil;
+ 
+ NSURL *urlProducts=[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"URL_SAVED_trannext"]]];
+ 
+ NSLog(@"Url posted transaction History next page %@",urlProducts);
+ 
+ NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+ [request setURL:urlProducts];
+ [request setHTTPMethod:@"GET"];
+ [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+ [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
+ NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+ NSMutableDictionary *dict;
+ if (aData)
+ {
+ 
+ NSLog(@"Response Transaction History %@",response);
+ 
+ [activityIndicatorView stopAnimating];
+ VW_overlay.hidden = YES;
+ 
+ dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:kNilOptions error:&error];
+ NSLog(@"From Transaction_History Next Pagination testing :%@",dict);
+ NSDictionary *temp=[dict valueForKey:@"meta"];
+ int i=[[temp valueForKey:@"total_pages"] intValue];
+ int j=[[temp valueForKey:@"current_page"]intValue];
+ 
+ 
+ if(i >= j)
+ {
+ 
+ k++;
+ if(k >= i)
+ {
+ UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Already in Last Page" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+ [alert show];
+ [self performSelector:@selector(finishLoadMore) withObject:nil afterDelay:2];
+ 
+ 
+ }
+ else{
+ 
+ NSArray *ARR_tmp = [dict valueForKey:@"transactions"];
+ [transaction_history addObjectsFromArray:ARR_tmp];
+ 
+ [_tbl_contents reloadData];
+ }
+ 
+ }
+ 
+ 
+ }
+ 
+ 
+ 
+ else
+ {
+ [activityIndicatorView stopAnimating];
+ VW_overlay.hidden = YES;
+ 
+ UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Error" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+ [alert show];
+ }
+ [self performSelector:@selector(finishLoadMore) withObject:nil afterDelay:0.01];
+ }
+ 
+ -(void) firstpage_API
+ {
+ NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+ NSError *error;
+ NSHTTPURLResponse *response = nil;
+ 
+ NSURL *urlProducts=[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"URL_SAVED_tranprev"]]];
+ NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+ [request setURL:urlProducts];
+ [request setHTTPMethod:@"GET"];
+ [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+ [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
+ NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+ if (aData)
+ {
+ [activityIndicatorView stopAnimating];
+ VW_overlay.hidden = YES;
+ 
+ NSMutableDictionary *json_DATA=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:kNilOptions error:&error];
+ NSLog(@"From VC_all_events  prev Pagination testing :%@",json_DATA);
+ [transaction_history removeAllObjects];
+ NSArray *ARR_tmp = [json_DATA valueForKey:@"transactions"];
+ [transaction_history addObjectsFromArray:ARR_tmp];
+ 
+ [_tbl_contents reloadData];
+ 
+ }
+ 
+ 
+ else
+ {
+ [activityIndicatorView stopAnimating];
+ VW_overlay.hidden = YES;
+ 
+ UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Error" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+ [alert show];
+ }
+ [self performSelector:@selector(finishRefresh) withObject:nil afterDelay:0.01];
+ }
+ */
 @end
+

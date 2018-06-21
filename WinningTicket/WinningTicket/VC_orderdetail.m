@@ -28,20 +28,20 @@
     
     [self setup_VIEW];
     
-   /* for (int i=0; i<[self.segment_bottom.subviews count]; i++)
-    {
-        [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:nil];
-        if (![[self.segment_bottom.subviews objectAtIndex:i]isSelected])
-        {
-            UIColor *tintcolor=[UIColor clearColor];
-            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
-        }
-        else
-        {
-            //            UIColor *tintcolor=[UIColor blueColor];
-            //            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
-        }
-    }*/
+    /* for (int i=0; i<[self.segment_bottom.subviews count]; i++)
+     {
+     [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:nil];
+     if (![[self.segment_bottom.subviews objectAtIndex:i]isSelected])
+     {
+     UIColor *tintcolor=[UIColor clearColor];
+     [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
+     }
+     else
+     {
+     //            UIColor *tintcolor=[UIColor blueColor];
+     //            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
+     }
+     }*/
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,60 +57,63 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
-                                                  forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    
-    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:
-     @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:[UIFont fontWithName:@"FontAwesome" size:32.0f]
-       } forState:UIControlStateNormal];
-    
-    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain
-                                                                     target:self action:@selector(backAction)];
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-    {
-        CGSize result = [[UIScreen mainScreen] bounds].size;
-        if(result.height <= 480)
-        {
-            // iPhone Classic
-            negativeSpacer.width = 0;
-        }
-        else if(result.height <= 568)
-        {
-            // iPhone 5
-            negativeSpacer.width = -12;
-        }
-        else
-        {
-            negativeSpacer.width = -16;
-        }
-    }
-    else
-    {
-        negativeSpacer.width = -12;
-    }
-    
-    [self.navigationItem setLeftBarButtonItems:@[negativeSpacer, anotherButton] animated:NO];
-    
-    
-    [self.navigationController.navigationBar setTitleTextAttributes:
-     @{NSForegroundColorAttributeName:[UIColor whiteColor],
-       NSFontAttributeName:_lbl_nav_font.font}];
+    self.navigationController.navigationBar.hidden = YES;
+    //    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+    //                                                  forBarMetrics:UIBarMetricsDefault];
+    //    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    //    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    //
+    //    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:
+    //     @{NSForegroundColorAttributeName:[UIColor whiteColor],
+    //       NSFontAttributeName:[UIFont fontWithName:@"FontAwesome" size:32.0f]
+    //       } forState:UIControlStateNormal];
+    //
+    //    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain
+    //                                                                     target:self action:@selector(backAction)];
+    //    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    //
+    //    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    //    {
+    //        CGSize result = [[UIScreen mainScreen] bounds].size;
+    //        if(result.height <= 480)
+    //        {
+    //            // iPhone Classic
+    //            negativeSpacer.width = 0;
+    //        }
+    //        else if(result.height <= 568)
+    //        {
+    //            // iPhone 5
+    //            negativeSpacer.width = -12;
+    //        }
+    //        else
+    //        {
+    //            negativeSpacer.width = -16;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        negativeSpacer.width = -12;
+    //    }
+    //
+    //    [self.navigationItem setLeftBarButtonItems:@[negativeSpacer, anotherButton] animated:NO];
+    //
+    //
+    //    [self.navigationController.navigationBar setTitleTextAttributes:
+    //     @{NSForegroundColorAttributeName:[UIColor whiteColor],
+    //       NSFontAttributeName:_lbl_nav_font.font}];
+    //
+    [_BTN_back addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.title = @"EVENT DETAIL";
 }
 
@@ -122,21 +125,21 @@
 
 -(void) setup_VIEW
 {
-//    [_tab_HOME setSelectedItem:[_tab_HOME.items objectAtIndex:0]];
-//    [_segment_bottom setSelectedSegmentIndex:0];
+    //    [_tab_HOME setSelectedItem:[_tab_HOME.items objectAtIndex:0]];
+    //    [_segment_bottom setSelectedSegmentIndex:0];
     CGRect content_frame;
     content_frame = _VW_contents.frame;
     content_frame.size.width = _scroll_contents.frame.size.width;
-//    content_frame.size.height = _BTN_liveAUCTN.frame.origin.y + _BTN_liveAUCTN.frame.size.height + 20;
+    //    content_frame.size.height = _BTN_liveAUCTN.frame.origin.y + _BTN_liveAUCTN.frame.size.height + 20;
     _VW_contents.frame = content_frame;
     
     [_scroll_contents addSubview:_VW_contents];
     
     [self set_FRAME];
     
-//    CGRect content_frame;
+    //    CGRect content_frame;
     content_frame = _VW_contents.frame;
-//    content_frame.size.width = _scroll_contents.frame.size.width;
+    //    content_frame.size.width = _scroll_contents.frame.size.width;
     content_frame.size.height = _BTN_liveAUCTN.frame.origin.y + _BTN_liveAUCTN.frame.size.height + 20;
     _VW_contents.frame = content_frame;
     
@@ -313,68 +316,68 @@
 }
 
 /*#pragma mark - Tabbar deligate
--(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
-    if ([item.title isEqualToString:@"EVENTS"])
-    {
-        NSLog(@"Events selected");
-        [_segment_bottom setSelectedSegmentIndex:0];
-        for (int i=0; i<[self.segment_bottom.subviews count]; i++)
-        {
-            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:nil];
-            if (![[self.segment_bottom.subviews objectAtIndex:i]isSelected])
-            {
-                UIColor *tintcolor=[UIColor clearColor];
-                [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
-            }
-            else
-            {
-                //            UIColor *tintcolor=[UIColor blueColor];
-                //            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
-            }
-        }
-    }
-    else if ([item.title isEqualToString:@"COURSES"])
-    {
-        NSLog(@"COURSES selected");
-        [_segment_bottom setSelectedSegmentIndex:1];
-        for (int i=0; i<[self.segment_bottom.subviews count]; i++)
-        {
-            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:nil];
-            if (![[self.segment_bottom.subviews objectAtIndex:i]isSelected])
-            {
-                UIColor *tintcolor=[UIColor clearColor];
-                [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
-            }
-            else
-            {
-                //            UIColor *tintcolor=[UIColor blueColor];
-                //            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
-            }
-        }
-        [self performSegueWithIdentifier:@"ordertocourseidentifier" sender:self];
-    }
-    else
-    {
-        NSLog(@"ACCOUNT selected");
-        [_segment_bottom setSelectedSegmentIndex:2];
-        for (int i=0; i<[self.segment_bottom.subviews count]; i++)
-        {
-            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:nil];
-            if (![[self.segment_bottom.subviews objectAtIndex:i]isSelected])
-            {
-                UIColor *tintcolor=[UIColor clearColor];
-                [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
-            }
-            else
-            {
-                //            UIColor *tintcolor=[UIColor blueColor];
-                //            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
-            }
-        }
-        [self performSegueWithIdentifier:@"orderdetailtoaccountidentifier" sender:self];
-    }
-}*/
+ -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+ {
+ if ([item.title isEqualToString:@"EVENTS"])
+ {
+ NSLog(@"Events selected");
+ [_segment_bottom setSelectedSegmentIndex:0];
+ for (int i=0; i<[self.segment_bottom.subviews count]; i++)
+ {
+ [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:nil];
+ if (![[self.segment_bottom.subviews objectAtIndex:i]isSelected])
+ {
+ UIColor *tintcolor=[UIColor clearColor];
+ [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
+ }
+ else
+ {
+ //            UIColor *tintcolor=[UIColor blueColor];
+ //            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
+ }
+ }
+ }
+ else if ([item.title isEqualToString:@"COURSES"])
+ {
+ NSLog(@"COURSES selected");
+ [_segment_bottom setSelectedSegmentIndex:1];
+ for (int i=0; i<[self.segment_bottom.subviews count]; i++)
+ {
+ [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:nil];
+ if (![[self.segment_bottom.subviews objectAtIndex:i]isSelected])
+ {
+ UIColor *tintcolor=[UIColor clearColor];
+ [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
+ }
+ else
+ {
+ //            UIColor *tintcolor=[UIColor blueColor];
+ //            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
+ }
+ }
+ [self performSegueWithIdentifier:@"ordertocourseidentifier" sender:self];
+ }
+ else
+ {
+ NSLog(@"ACCOUNT selected");
+ [_segment_bottom setSelectedSegmentIndex:2];
+ for (int i=0; i<[self.segment_bottom.subviews count]; i++)
+ {
+ [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:nil];
+ if (![[self.segment_bottom.subviews objectAtIndex:i]isSelected])
+ {
+ UIColor *tintcolor=[UIColor clearColor];
+ [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
+ }
+ else
+ {
+ //            UIColor *tintcolor=[UIColor blueColor];
+ //            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
+ }
+ }
+ [self performSegueWithIdentifier:@"orderdetailtoaccountidentifier" sender:self];
+ }
+ }*/
 
 
 #pragma mark - Date Convert
@@ -447,7 +450,7 @@
 }
 -(void)live_score_page
 {
-
+    
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     
@@ -474,8 +477,8 @@
     
     NSHTTPURLResponse *response = nil;
     
-//    NSDictionary *parameters = @{ @"handicap":  [NSString stringWithFormat:@"%@",_TXT_Handicap.text]};
-//    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
+    //    NSDictionary *parameters = @{ @"handicap":  [NSString stringWithFormat:@"%@",_TXT_Handicap.text]};
+    //    NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
     
     NSURL *urlProducts=[NSURL URLWithString:[NSString stringWithFormat:@"%@hole_info/check_event_live/%@",SERVER_URL,[event valueForKey:@"id"]]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -483,9 +486,9 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPShouldHandleCookies:NO];
     NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
-//    [request setHTTPBody:postData];
+    //    [request setHTTPBody:postData];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSMutableDictionary *dict1;
@@ -547,7 +550,7 @@
     NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
     //    [request setHTTPBody:postData];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSMutableDictionary *dict1;
@@ -560,13 +563,13 @@
         STR_handicap = [STR_handicap stringByReplacingOccurrencesOfString:@"<null>" withString:@"0"];
         STR_handicap = [STR_handicap stringByReplacingOccurrencesOfString:@"(null)" withString:@"0"];
         
-//        @try {
-            [[NSUserDefaults standardUserDefaults] setObject:STR_handicap forKey:@"handicap1"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-//        } @catch (NSException *exception) {
-//            [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"handicap1"];
-//            [[NSUserDefaults standardUserDefaults] synchronize];
-//        }
+        //        @try {
+        [[NSUserDefaults standardUserDefaults] setObject:STR_handicap forKey:@"handicap1"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        //        } @catch (NSException *exception) {
+        //            [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"handicap1"];
+        //            [[NSUserDefaults standardUserDefaults] synchronize];
+        //        }
     }
     else
     {
@@ -598,3 +601,4 @@
 }
 
 @end
+

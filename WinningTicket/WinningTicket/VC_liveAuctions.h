@@ -16,5 +16,7 @@
 
 @property (nonatomic, retain) IBOutlet UILabel *lbl_nav_font;
 @property (nonatomic, retain) IBOutlet UILabel *lbl_font_small;
+@property (nonatomic, retain) IBOutlet UIButton *BTN_back;
 
 @end
+

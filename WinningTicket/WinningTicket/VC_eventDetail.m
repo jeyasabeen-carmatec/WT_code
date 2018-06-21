@@ -21,6 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [_BTN_back addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [self set_FRAME];
 }
 
@@ -31,6 +33,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    self.navigationController.navigationBar.hidden = YES;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
@@ -38,20 +41,20 @@
     
     [self setup_VIEW];
     
-   /* for (int i=0; i<[self.segment_bottom.subviews count]; i++)
-    {
-        [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:nil];
-        if (![[self.segment_bottom.subviews objectAtIndex:i]isSelected])
-        {
-            UIColor *tintcolor=[UIColor clearColor];
-            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
-        }
-        else
-        {
-            //            UIColor *tintcolor=[UIColor blueColor];
-            //            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
-        }
-    }*/
+    /* for (int i=0; i<[self.segment_bottom.subviews count]; i++)
+     {
+     [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:nil];
+     if (![[self.segment_bottom.subviews objectAtIndex:i]isSelected])
+     {
+     UIColor *tintcolor=[UIColor clearColor];
+     [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
+     }
+     else
+     {
+     //            UIColor *tintcolor=[UIColor blueColor];
+     //            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
+     }
+     }*/
 }
 
 -(void)viewDidLayoutSubviews
@@ -65,14 +68,14 @@
 -(void) setup_VIEW
 {
     
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Test date format" message:[self change_date:@"sample"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-//    [alert show];
+    //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Test date format" message:[self change_date:@"sample"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+    //    [alert show];
     
-//    [_tab_HOME setSelectedItem:[_tab_HOME.items objectAtIndex:0]];
-//    [_segment_bottom setSelectedSegmentIndex:0];
+    //    [_tab_HOME setSelectedItem:[_tab_HOME.items objectAtIndex:0]];
+    //    [_segment_bottom setSelectedSegmentIndex:0];
     
-//    self.navigationController.navigationBar.hidden = NO;
-    
+    //    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.hidden = YES;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
@@ -300,79 +303,79 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 /*#pragma mark - Tabbar deligate
--(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
-    if ([item.title isEqualToString:@"EVENTS"])
-    {
-        NSLog(@"Events selected");
-        [_segment_bottom setSelectedSegmentIndex:0];
-        for (int i=0; i<[self.segment_bottom.subviews count]; i++)
-        {
-            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:nil];
-            if (![[self.segment_bottom.subviews objectAtIndex:i]isSelected])
-            {
-                UIColor *tintcolor=[UIColor clearColor];
-                [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
-            }
-            else
-            {
-                //            UIColor *tintcolor=[UIColor blueColor];
-                //            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
-            }
-        }
-    }
-    else if ([item.title isEqualToString:@"COURSES"])
-    {
-        NSLog(@"COURSES selected");
-        [_segment_bottom setSelectedSegmentIndex:1];
-        for (int i=0; i<[self.segment_bottom.subviews count]; i++)
-        {
-            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:nil];
-            if (![[self.segment_bottom.subviews objectAtIndex:i]isSelected])
-            {
-                UIColor *tintcolor=[UIColor clearColor];
-                [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
-            }
-            else
-            {
-                //            UIColor *tintcolor=[UIColor blueColor];
-                //            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
-            }
-        }
-        [self performSegueWithIdentifier:@"eventdetailtocourseidentifier" sender:self];
-    }
-    else
-    {
-        NSLog(@"ACCOUNT selected");
-        [_segment_bottom setSelectedSegmentIndex:2];
-        for (int i=0; i<[self.segment_bottom.subviews count]; i++)
-        {
-            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:nil];
-            if (![[self.segment_bottom.subviews objectAtIndex:i]isSelected])
-            {
-                UIColor *tintcolor=[UIColor clearColor];
-                [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
-            }
-            else
-            {
-                //            UIColor *tintcolor=[UIColor blueColor];
-                //            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
-            }
-        }
-        [self performSegueWithIdentifier:@"eventdetailtoaccount" sender:self];
-    }
-}
-*/
+ -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+ {
+ if ([item.title isEqualToString:@"EVENTS"])
+ {
+ NSLog(@"Events selected");
+ [_segment_bottom setSelectedSegmentIndex:0];
+ for (int i=0; i<[self.segment_bottom.subviews count]; i++)
+ {
+ [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:nil];
+ if (![[self.segment_bottom.subviews objectAtIndex:i]isSelected])
+ {
+ UIColor *tintcolor=[UIColor clearColor];
+ [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
+ }
+ else
+ {
+ //            UIColor *tintcolor=[UIColor blueColor];
+ //            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
+ }
+ }
+ }
+ else if ([item.title isEqualToString:@"COURSES"])
+ {
+ NSLog(@"COURSES selected");
+ [_segment_bottom setSelectedSegmentIndex:1];
+ for (int i=0; i<[self.segment_bottom.subviews count]; i++)
+ {
+ [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:nil];
+ if (![[self.segment_bottom.subviews objectAtIndex:i]isSelected])
+ {
+ UIColor *tintcolor=[UIColor clearColor];
+ [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
+ }
+ else
+ {
+ //            UIColor *tintcolor=[UIColor blueColor];
+ //            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
+ }
+ }
+ [self performSegueWithIdentifier:@"eventdetailtocourseidentifier" sender:self];
+ }
+ else
+ {
+ NSLog(@"ACCOUNT selected");
+ [_segment_bottom setSelectedSegmentIndex:2];
+ for (int i=0; i<[self.segment_bottom.subviews count]; i++)
+ {
+ [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:nil];
+ if (![[self.segment_bottom.subviews objectAtIndex:i]isSelected])
+ {
+ UIColor *tintcolor=[UIColor clearColor];
+ [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
+ }
+ else
+ {
+ //            UIColor *tintcolor=[UIColor blueColor];
+ //            [[self.segment_bottom.subviews objectAtIndex:i] setTintColor:tintcolor];
+ }
+ }
+ [self performSegueWithIdentifier:@"eventdetailtoaccount" sender:self];
+ }
+ }
+ */
 #pragma mark - Button Actions
 -(void) tap_purchaseTKT
 {
@@ -445,3 +448,4 @@
     [self presentViewController:tncView animated:YES completion:NULL];
 }
 @end
+

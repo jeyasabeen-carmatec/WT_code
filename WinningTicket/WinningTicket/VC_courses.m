@@ -54,10 +54,10 @@
     CLLocationManager *locationManager;
     
     UIColor *color_OLD;
-
+    
     NSArray *ARR_map_data;
-//    NSDictionary *Dictin_course;
-//    NSMutableArray *ARR_colection_data,*ARR_list_data;
+    //    NSDictionary *Dictin_course;
+    //    NSMutableArray *ARR_colection_data,*ARR_list_data;
     
 }
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl4;
@@ -93,18 +93,18 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 -(void)viewWillAppear:(BOOL)animated
 {
-  
+    
     
 }
 
@@ -144,7 +144,7 @@
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
@@ -177,13 +177,13 @@
         _tbl_courses.hidden = YES;
         [self ADD_marker];
         
-//        if ([ARR_map_data count] != 0) {
-//            _Collection_course.hidden = NO;
-//        }
-//        else
-//        {
-//            _Collection_course.hidden = YES;
-//        }
+        //        if ([ARR_map_data count] != 0) {
+        //            _Collection_course.hidden = NO;
+        //        }
+        //        else
+        //        {
+        //            _Collection_course.hidden = YES;
+        //        }
     }
     else
     {
@@ -233,22 +233,22 @@
 {
     NSLog(@"Selected index %ld (via UIControlEventValueChanged) aaa", (long)segmentedControl4.selectedSegmentIndex);
     [self ADD_marker];
-//    switch (segmentedControl4.selectedSegmentIndex) {
-//        case 0:
-//            NSLog(@"Index 0");
-//            break;
-//            
-//        case 1:
-//            NSLog(@"Index 1");
-//            break;
-//            
-//        case 2:
-//            NSLog(@"Index 2");
-//            break;
-//            
-//        default:
-//            break;
-//    }
+    //    switch (segmentedControl4.selectedSegmentIndex) {
+    //        case 0:
+    //            NSLog(@"Index 0");
+    //            break;
+    //
+    //        case 1:
+    //            NSLog(@"Index 1");
+    //            break;
+    //
+    //        case 2:
+    //            NSLog(@"Index 2");
+    //            break;
+    //
+    //        default:
+    //            break;
+    //    }
 }
 
 #pragma mark - Tabbar deligate
@@ -332,7 +332,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     //    [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -344,7 +344,7 @@
         NSString *STR_error;
         
         @try {
-             STR_error = [dict valueForKey:@"error"];
+            STR_error = [dict valueForKey:@"error"];
             if (STR_error) {
                 [self sessionOUT];
             }
@@ -352,7 +352,7 @@
             NSLog(@"Exception in courses %@",exception);
             [self sessionOUT];
         }
-            
+        
         [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"JsonEventlist"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
@@ -383,19 +383,19 @@
     [locationManager startUpdatingLocation];
     
     
-   /* if ([CLLocationManager locationServicesEnabled]){
-        
-        NSLog(@"Location Services Enabled");
-        
-        if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied){
-            alert = [[UIAlertView alloc] initWithTitle:@"App Permission Denied"
-                                               message:@"To re-enable, please go to Settings and turn on Location Service for this app."
-                                              delegate:nil
-                                     cancelButtonTitle:@"OK"
-                                     otherButtonTitles:nil];
-            [alert show];
-        }
-    }*/
+    /* if ([CLLocationManager locationServicesEnabled]){
+     
+     NSLog(@"Location Services Enabled");
+     
+     if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied){
+     alert = [[UIAlertView alloc] initWithTitle:@"App Permission Denied"
+     message:@"To re-enable, please go to Settings and turn on Location Service for this app."
+     delegate:nil
+     cancelButtonTitle:@"OK"
+     otherButtonTitles:nil];
+     [alert show];
+     }
+     }*/
 }
 
 #pragma mark - Location Manager
@@ -416,11 +416,11 @@
     [activityIndicatorView startAnimating];
     [self performSelector:@selector(API_getCOURSES) withObject:activityIndicatorView afterDelay:0.01];
     
-   /* GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:newLocation.coordinate.latitude
-                                                            longitude:newLocation.coordinate.longitude
-                                                                 zoom:6];
-//    _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    [self.mapView animateToCameraPosition:camera];*/
+    /* GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:newLocation.coordinate.latitude
+     longitude:newLocation.coordinate.longitude
+     zoom:6];
+     //    _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+     [self.mapView animateToCameraPosition:camera];*/
     
 }
 
@@ -498,43 +498,43 @@
 -(void) MET_serch_TAP
 {
     
-   /* [UIView transitionWithView:_Lbl_navTITLE
-                      duration:0.4
-                       options:UIViewAnimationOptionTransitionCrossDissolve
-                    animations:^{
-                        _Lbl_navTITLE.hidden = YES;
-                    }
-                    completion:NULL];
-    
-    [UIView transitionWithView:_BTN_search
-                      duration:0.4
-                       options:UIViewAnimationOptionTransitionCrossDissolve
-                    animations:^{
-                        _BTN_search.hidden = YES;
-                    }
-                    completion:NULL];
-    
-    
-//    _VW_navBAR.backgroundColor = [UIColor colorWithRed:0.90 green:0.90 blue:0.90 alpha:1.0];
-    [UIView animateWithDuration:0.4 animations:^{
-        _VW_navBAR.layer.backgroundColor = [UIColor colorWithRed:0.90 green:0.90 blue:0.90 alpha:1.0].CGColor;
-    } completion:NULL];
-    
-    [UIView beginAnimations:@"LeftFlip" context:nil];
-    [UIView setAnimationDuration:0.4];
-    _search_BAR.hidden = NO;
-    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:_search_BAR cache:YES];
-    [UIView commitAnimations];
-    
-    [UIView beginAnimations:@"LeftFlip" context:nil];
-    [UIView setAnimationDuration:0.4];
-    _BTN_close.hidden = NO;
-    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:_BTN_close cache:YES];
-    [UIView commitAnimations];
-    
-    [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleDefault];*/
+    /* [UIView transitionWithView:_Lbl_navTITLE
+     duration:0.4
+     options:UIViewAnimationOptionTransitionCrossDissolve
+     animations:^{
+     _Lbl_navTITLE.hidden = YES;
+     }
+     completion:NULL];
+     
+     [UIView transitionWithView:_BTN_search
+     duration:0.4
+     options:UIViewAnimationOptionTransitionCrossDissolve
+     animations:^{
+     _BTN_search.hidden = YES;
+     }
+     completion:NULL];
+     
+     
+     //    _VW_navBAR.backgroundColor = [UIColor colorWithRed:0.90 green:0.90 blue:0.90 alpha:1.0];
+     [UIView animateWithDuration:0.4 animations:^{
+     _VW_navBAR.layer.backgroundColor = [UIColor colorWithRed:0.90 green:0.90 blue:0.90 alpha:1.0].CGColor;
+     } completion:NULL];
+     
+     [UIView beginAnimations:@"LeftFlip" context:nil];
+     [UIView setAnimationDuration:0.4];
+     _search_BAR.hidden = NO;
+     [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+     [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:_search_BAR cache:YES];
+     [UIView commitAnimations];
+     
+     [UIView beginAnimations:@"LeftFlip" context:nil];
+     [UIView setAnimationDuration:0.4];
+     _BTN_close.hidden = NO;
+     [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+     [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:_BTN_close cache:YES];
+     [UIView commitAnimations];
+     
+     [[UIApplication sharedApplication] setStatusBarStyle: UIStatusBarStyleDefault];*/
     
     [self performSegueWithIdentifier:@"coursestosearch" sender:self];
 }
@@ -630,12 +630,12 @@
     c2D_to.latitude = [[temp_dictin valueForKey:@"lat"] doubleValue];
     c2D_to.longitude = [[temp_dictin valueForKey:@"lng"] doubleValue];
     
-
+    
     NSNumber *new_distance = [self calculateDistanceInMetersBetweenCoord:c2D_from coord:c2D_to];
     double disT = ([new_distance doubleValue] * 0.000621371f) - 0.4f;
     
     NSString *miles = [NSString stringWithFormat:@"%.1f MILES",disT];
-   
+    
     NSString *text = [NSString stringWithFormat:@"%@\n%@ %@",course_name,address,miles];
     UIImage *newImage = [UIImage alloc];// = [cell.IMG_privacy.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
@@ -664,11 +664,11 @@
                 [attributedText setAttributes:@{NSFontAttributeName:_Lbl_font_distance.font,NSForegroundColorAttributeName:[UIColor colorWithRed:0.09 green:0.64 blue:0.91 alpha:1.0]}
                                         range:RAN_miles];
                 
-               // UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
-              //  [[UIColor colorWithRed:0.00 green:0.00 blue:1.00 alpha:1.0] set];
-               // [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                // UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+                //  [[UIColor colorWithRed:0.00 green:0.00 blue:1.00 alpha:1.0] set];
+                // [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
                 newImage = [UIImage imageNamed:@"PRIVATE_1.png"];// UIGraphicsGetImageFromCurrentImageContext();
-               // UIGraphicsEndImageContext();
+                // UIGraphicsEndImageContext();
                 
             }
             else if ([course_type isEqualToString:@"public"])
@@ -676,22 +676,22 @@
                 [attributedText setAttributes:@{NSFontAttributeName:_Lbl_font_distance.font,NSForegroundColorAttributeName:[UIColor colorWithRed:0.00 green:0.67 blue:0.20 alpha:1.0]}
                                         range:RAN_miles];
                 
-//                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
-//                [[UIColor colorWithRed:0.00 green:0.65 blue:0.32 alpha:1.0] set];
-//                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+                //                [[UIColor colorWithRed:0.00 green:0.65 blue:0.32 alpha:1.0] set];
+                //                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
                 newImage = [UIImage imageNamed:@"PUBLIC.png"];//UIGraphicsGetImageFromCurrentImageContext();
-//                UIGraphicsEndImageContext();
+                //                UIGraphicsEndImageContext();
             }
             else
             {
                 [attributedText setAttributes:@{NSFontAttributeName:_Lbl_font_distance.font,NSForegroundColorAttributeName:[UIColor colorWithRed:0.74 green:0.74 blue:0.75 alpha:1.0]}
                                         range:RAN_miles];
                 
-//                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
-//                [[UIColor whiteColor] set];
-//                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+                //                [[UIColor whiteColor] set];
+                //                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
                 newImage = [UIImage new];//UIGraphicsGetImageFromCurrentImageContext();
-//                UIGraphicsEndImageContext();
+                //                UIGraphicsEndImageContext();
             }
             [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-MediumItalic" size:15.0]}
                                     range:cmp];
@@ -703,12 +703,12 @@
             {
                 [attributedText setAttributes:@{NSFontAttributeName:_Lbl_font_distance.font,NSForegroundColorAttributeName:[UIColor colorWithRed:0.09 green:0.64 blue:0.91 alpha:1.0]}
                                         range:RAN_miles];
-
-//                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
-//                [[UIColor colorWithRed:0.00 green:0.00 blue:1.00 alpha:1.0] set];
-//                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                
+                //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+                //                [[UIColor colorWithRed:0.00 green:0.00 blue:1.00 alpha:1.0] set];
+                //                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
                 newImage = [UIImage imageNamed:@"PRIVATE_1.png"]; //UIGraphicsGetImageFromCurrentImageContext();
-//                UIGraphicsEndImageContext();
+                //                UIGraphicsEndImageContext();
                 
             }
             else if ([course_type isEqualToString:@"public"])
@@ -716,22 +716,22 @@
                 [attributedText setAttributes:@{NSFontAttributeName:_Lbl_font_distance.font,NSForegroundColorAttributeName:[UIColor colorWithRed:0.00 green:0.67 blue:0.20 alpha:1.0]}
                                         range:RAN_miles];
                 
-//                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
-//                [[UIColor colorWithRed:0.00 green:0.65 blue:0.32 alpha:1.0] set];
-//                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+                //                [[UIColor colorWithRed:0.00 green:0.65 blue:0.32 alpha:1.0] set];
+                //                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
                 newImage = [UIImage imageNamed:@"PUBLIC.png"]; //UIGraphicsGetImageFromCurrentImageContext();
-//                UIGraphicsEndImageContext();
+                //                UIGraphicsEndImageContext();
             }
             else
             {
                 [attributedText setAttributes:@{NSFontAttributeName:_Lbl_font_distance.font,NSForegroundColorAttributeName:[UIColor colorWithRed:0.74 green:0.74 blue:0.75 alpha:1.0]}
                                         range:RAN_miles];
                 
-//                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
-//                [[UIColor whiteColor] set];
-//                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
+                //                UIGraphicsBeginImageContextWithOptions(cell.IMG_privacy.image.size, NO, newImage.scale);
+                //                [[UIColor whiteColor] set];
+                //                [newImage drawInRect:CGRectMake(0, 0, cell.IMG_privacy.image.size.width, newImage.size.height)];
                 newImage = [UIImage new]; //UIGraphicsGetImageFromCurrentImageContext();
-//                UIGraphicsEndImageContext();
+                //                UIGraphicsEndImageContext();
             }
             [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-MediumItalic" size:12.0]}
                                     range:cmp];
@@ -742,7 +742,7 @@
     {
         cell.lbl_courseName.text = text;
     }
-
+    
     
     cell.lbl_courseName.numberOfLines = 0;
     [cell.lbl_courseName sizeToFit];
@@ -965,10 +965,10 @@
     cell.IMG_courseimage.layer.cornerRadius = cell.IMG_courseimage.frame.size.width/2;
     cell.IMG_courseimage.layer.masksToBounds = YES;
     
-//    else
-//    {
-//
-//    }
+    //    else
+    //    {
+    //
+    //    }
     
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -1082,7 +1082,7 @@
         NSRange cmp = [text rangeOfString:address];// * Notice that usage of rangeOfString in this case may cause some bugs - I use it here only for demonstration
         NSRange RAN_miles = [text rangeOfString:miles];
         
-//        NSLog(@"The font = %@",cell.l);
+        //        NSLog(@"The font = %@",cell.l);
         
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
@@ -1176,7 +1176,7 @@
     [cell.lbl_courseName sizeToFit];
     
     cell.IMG_privacy.image = newImage;
-   // cell.lbl_privacy.text = @"";
+    // cell.lbl_privacy.text = @"";
     
     NSString *website_url = [temp_dictin valueForKey:@"course_image"];
     UIImage *IMG_placeholder;
@@ -1464,9 +1464,9 @@
 #pragma mark - API Calling
 -(void) API_getCOURSES
 {
-//    NSHTTPURLResponse *response = nil;
-//    NSError *error; //@"26.7307";// //@"-80.1001";//
-
+    //    NSHTTPURLResponse *response = nil;
+    //    NSError *error; //@"26.7307";// //@"-80.1001";//
+    
     double latitude_val = [[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"lat_STR"]] doubleValue];
     double longitude_val = [[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"long_STR"]] doubleValue];
     
@@ -1481,7 +1481,7 @@
     
     
     course_service *API_course = [[course_service alloc]init];
-//    Dictin_course =
+    //    Dictin_course =
     ARR_singleTON *globals = [ARR_singleTON dictin];
     globals.Dictin_course = [API_course get_ID:urlGetuser];
     NSString *STR_error;
@@ -1500,33 +1500,33 @@
         [self sessionOUT];
     }
     
-//    NSLog(@"Course url = \n%@",urlGetuser);
+    //    NSLog(@"Course url = \n%@",urlGetuser);
     
-   /* NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:urlProducts];
-    [request setHTTPMethod:@"GET"];
-    [request setHTTPShouldHandleCookies:NO];
-    NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
-    
-    NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    if(aData)
-    {
-        [activityIndicatorView stopAnimating];
-        VW_overlay.hidden = YES;
-        
-        NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
-    
-        
-    
-        
-        [[NSUserDefaults standardUserDefaults] setValue:aData forKey:@"COURSESDICTIN"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        [self ADD_marker];
-    }*/
+    /* NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
+     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+     [request setURL:urlProducts];
+     [request setHTTPMethod:@"GET"];
+     [request setHTTPShouldHandleCookies:NO];
+     NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+     [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
+     
+     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+     if(aData)
+     {
+     [activityIndicatorView stopAnimating];
+     VW_overlay.hidden = YES;
+     
+     NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
+     
+     
+     
+     
+     [[NSUserDefaults standardUserDefaults] setValue:aData forKey:@"COURSESDICTIN"];
+     [[NSUserDefaults standardUserDefaults] synchronize];
+     
+     [self ADD_marker];
+     }*/
     
     [activityIndicatorView stopAnimating];
     VW_overlay.hidden = YES;
@@ -1548,7 +1548,7 @@
     [request setHTTPShouldHandleCookies:NO];
     NSString *auth_tok = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if(aData)
@@ -1569,7 +1569,7 @@
             [self sessionOUT];
         }
         
-       // NSMutableDictionary *temp_dictin = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:kNilOptions error:&error];
+        // NSMutableDictionary *temp_dictin = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:kNilOptions error:&error];
         //NSLog(@"Selected course \n%@",temp_dictin); //coursetocousedetail
         [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"CourseDetailcontent"];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -1581,13 +1581,13 @@
 }
 
 #pragma mark - Add Marker on GMAP
--(void) ADD_marker 
+-(void) ADD_marker
 {
-//    NSError *error;
-//    NSMutableDictionary *temp_dictin = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"COURSESDICTIN"] options:kNilOptions error:&error];
-
-//    ARR_colection_data = [[NSMutableArray alloc] init];
-//    ARR_list_data = [[NSMutableArray alloc] init];
+    //    NSError *error;
+    //    NSMutableDictionary *temp_dictin = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"COURSESDICTIN"] options:kNilOptions error:&error];
+    
+    //    ARR_colection_data = [[NSMutableArray alloc] init];
+    //    ARR_list_data = [[NSMutableArray alloc] init];
     
     UIImage *image_icon = [UIImage imageNamed:@"GOlf-Icon"];
     [ARR_singleTON clearData];
@@ -1607,11 +1607,11 @@
         case 1:
             ARR_map_data = [all_course_arr valueForKey:@"public"];
             break;
-        
+            
         case 2:
             ARR_map_data = [all_course_arr valueForKey:@"private"];
             break;
-        
+            
         default:
             break;
     }
@@ -1632,7 +1632,7 @@
             self.mapView.settings.compassButton = YES;
         }
         
-//        NSString *address = [NSString stringWithFormat:@"%@",[temp_dictin valueForKey:@"city"]];
+        //        NSString *address = [NSString stringWithFormat:@"%@",[temp_dictin valueForKey:@"city"]];
         
         NSDictionary *store_val = [NSDictionary dictionaryWithObjectsAndKeys:[temp_dictin valueForKey:@"course_type"],@"course_type",[temp_dictin valueForKey:@"name"],@"name",[temp_dictin valueForKey:@"city"],@"address",[temp_dictin valueForKey:@"course_image"],@"course_image",[temp_dictin valueForKey:@"id"],@"id",[temp_dictin valueForKey:@"lat"],@"lat",[temp_dictin valueForKey:@"lng"],@"lng",[temp_dictin valueForKey:@"state_or_province"],@"state_or_province" ,nil];
         
@@ -1676,7 +1676,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No course found" message:@"" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
     }
-
+    
 }
 
 #pragma mark - Google map Deligate
@@ -1684,7 +1684,7 @@
 {
     NSError *error;
     NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:marker.userData options:NSASCIIStringEncoding error:&error];
-//    NSLog(@"Marker tapped Gmap :%@",dict);
+    //    NSLog(@"Marker tapped Gmap :%@",dict);
     [_Collection_course scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:[[dict valueForKey:@"index"] intValue] inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     return NO;
 }
@@ -1714,3 +1714,4 @@
 }
 
 @end
+

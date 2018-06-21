@@ -25,11 +25,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self API_getVirtualBAG_list];
+    //    [self API_getVirtualBAG_list];
     // Do any additional setup after loading the view.
     
-//    _TBL_listGIFTS.estimatedRowHeight = 109.0f;
-//    _TBL_listGIFTS.rowHeight = UITableViewAutomaticDimension;
+    //    _TBL_listGIFTS.estimatedRowHeight = 109.0f;
+    //    _TBL_listGIFTS.rowHeight = UITableViewAutomaticDimension;
     
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -45,6 +45,7 @@
     VW_overlay.hidden = NO;
     [activityIndicatorView startAnimating];
     [self performSelector:@selector(API_getVirtualBAG_list) withObject:activityIndicatorView afterDelay:0.01];
+    [_BTN_back addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     
     [self setup_VIEW];
     
@@ -56,14 +57,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - Uiview Customisation
 -(void) setup_VIEW
@@ -212,10 +213,10 @@
     
     NSString *STR_url = [NSString stringWithFormat:@"%@%@",IMAGE_URL,[DICTIN_celldata valueForKey:@"image"]];
     [cell.IMG_giftIcon sd_setImageWithURL:[NSURL URLWithString:STR_url]
-                              placeholderImage:[UIImage imageNamed:@"square-2"]];
+                         placeholderImage:[UIImage imageNamed:@"square-2"]];
     
-//    cell.IMG_giftIcon.layer.borderWidth = 1.0f;
-//    cell.IMG_giftIcon.layer.borderColor = [UIColor blackColor].CGColor;
+    //    cell.IMG_giftIcon.layer.borderWidth = 1.0f;
+    //    cell.IMG_giftIcon.layer.borderColor = [UIColor blackColor].CGColor;
     
     [cell.BTN_viewOffer setTag:indexPath.row];
     [cell.BTN_viewOffer addTarget:self action:@selector(viewoffer:) forControlEvents:UIControlEventTouchUpInside];
@@ -272,7 +273,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPBody:postData];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -341,7 +342,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPBody:postData];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -373,3 +374,4 @@
 }
 
 @end
+

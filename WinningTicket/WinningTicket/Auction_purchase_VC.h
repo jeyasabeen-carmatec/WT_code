@@ -27,6 +27,7 @@
 //@property(nonatomic,weak)IBOutlet UIView *content_view;
 //@property (weak, nonatomic) IBOutlet UILabel *descripton_status;
 @property (weak, nonatomic) IBOutlet UILabel *amount;
+@property (nonatomic, retain) IBOutlet UIButton *BTN_back;
 
 @property (weak, nonatomic) IBOutlet UIView *subtotal_vw;
 @property (weak, nonatomic) IBOutlet UIView *total_vw;
@@ -46,3 +47,4 @@
 @property (weak, nonatomic) IBOutlet UIView *VW_line4;
 
 @end
+

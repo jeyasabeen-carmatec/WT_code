@@ -26,13 +26,13 @@
     
     UIView *VW_overlay;
     UIActivityIndicatorView *activityIndicatorView;
-//    UILabel *loadingLabel;
+    //    UILabel *loadingLabel;
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   [self setup_VIEW];
+    [self setup_VIEW];
     // Do any additional setup after loading the view.
 }
 
@@ -106,19 +106,19 @@
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
     
-//    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
-//    loadingLabel.backgroundColor = [UIColor clearColor];
-//    loadingLabel.textColor = [UIColor whiteColor];
-//    loadingLabel.adjustsFontSizeToFitWidth = YES;
-//    loadingLabel.textAlignment = NSTextAlignmentCenter;
-//    loadingLabel.text = @"Loading...";
-//    
-//    [VW_overlay addSubview:loadingLabel];
+    //    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
+    //    loadingLabel.backgroundColor = [UIColor clearColor];
+    //    loadingLabel.textColor = [UIColor whiteColor];
+    //    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    //    loadingLabel.textAlignment = NSTextAlignmentCenter;
+    //    loadingLabel.text = @"Loading...";
+    //
+    //    [VW_overlay addSubview:loadingLabel];
     activityIndicatorView.center = VW_overlay.center;
     [VW_overlay addSubview:activityIndicatorView];
     VW_overlay.center = self.view.center;
@@ -136,7 +136,7 @@
     
     NSLog(@"The Response in Donate Purchase \n%@",temp_resp);
     
-       [_BTN_order2 addTarget:self action:@selector(BTN_order2action) forControlEvents:UIControlEventTouchUpInside];
+    [_BTN_order2 addTarget:self action:@selector(BTN_order2action) forControlEvents:UIControlEventTouchUpInside];
     NSLog(@"Image Url Vc checkout detail %@",[NSString stringWithFormat:@"%@%@",IMAGE_URL,[temp_resp valueForKey:@"avatar_url"]]);
     
     [_img_icon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_URL,[temp_resp valueForKey:@"avatar_url"]]]
@@ -144,7 +144,7 @@
     _img_icon.contentMode = UIViewContentModeScaleAspectFit;
     
     NSLog(@"The response from checkout detail VC \n%@",temp_resp);
-
+    
     CGRect rect_content,frame_rect;
     rect_content = _VW_contents.frame;
     rect_content.size.width = self.View_Nav_Top.frame.size.width;
@@ -170,8 +170,8 @@
     
     
     
-//    NSString *address_str = [NSString stringWithFormat:@"%@ %@\n%@,%@\n%@,%@\n%@,%@.\nPhone:%@",[address_dictin valueForKey:@"first_name"],[address_dictin valueForKey:@"last_name"],[address_dictin valueForKey:@"address_line1"],[address_dictin valueForKey:@"address_line2"],[address_dictin valueForKey:@"city"],state_name,cntry_name,zip_code,[address_dictin valueForKey:@"phone"]];
-//    address_str = [address_str stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
+    //    NSString *address_str = [NSString stringWithFormat:@"%@ %@\n%@,%@\n%@,%@\n%@,%@.\nPhone:%@",[address_dictin valueForKey:@"first_name"],[address_dictin valueForKey:@"last_name"],[address_dictin valueForKey:@"address_line1"],[address_dictin valueForKey:@"address_line2"],[address_dictin valueForKey:@"city"],state_name,cntry_name,zip_code,[address_dictin valueForKey:@"phone"]];
+    //    address_str = [address_str stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
     
     NSString *STR_fname = [NSString stringWithFormat:@"%@",[address_dictin valueForKey:@"first_name"]];
     STR_fname = [STR_fname stringByReplacingOccurrencesOfString:@"<null>" withString:@""];
@@ -294,23 +294,23 @@
     _lbl_address.numberOfLines = 0;
     [_lbl_address sizeToFit];
     
-//    frame_rect = _lbl_email.frame;
-//    frame_rect.size.height = _lbl_email.frame.size.height;
-//    _lbl_email.frame = frame_rect;
+    //    frame_rect = _lbl_email.frame;
+    //    frame_rect.size.height = _lbl_email.frame.size.height;
+    //    _lbl_email.frame = frame_rect;
     
-//    frame_rect = _VW_line0.frame;
-//    frame_rect.origin.y = _lbl_email.frame.origin.y + _lbl_email.frame.size.height + 10;
-//    _VW_line0.frame = frame_rect;
+    //    frame_rect = _VW_line0.frame;
+    //    frame_rect.origin.y = _lbl_email.frame.origin.y + _lbl_email.frame.size.height + 10;
+    //    _VW_line0.frame = frame_rect;
     
-//    frame_rect = _lbl_titlBillingADDR.frame;
-//    frame_rect.origin.y = _VW_line0.frame.origin.y + _VW_line0.frame.size.height + 10;
-//    _lbl_titlBillingADDR.frame = frame_rect;
+    //    frame_rect = _lbl_titlBillingADDR.frame;
+    //    frame_rect.origin.y = _VW_line0.frame.origin.y + _VW_line0.frame.size.height + 10;
+    //    _lbl_titlBillingADDR.frame = frame_rect;
     
-//    frame_rect = 
+    //    frame_rect =
     
-//    frame_rect = _lbl_address.frame;
-//    frame_rect.origin.y = _lbl_titlBillingADDR.frame.origin.y + _lbl_titlBillingADDR.frame.size.height + 10;
-//    _lbl_address.frame = frame_rect;
+    //    frame_rect = _lbl_address.frame;
+    //    frame_rect.origin.y = _lbl_titlBillingADDR.frame.origin.y + _lbl_titlBillingADDR.frame.size.height + 10;
+    //    _lbl_address.frame = frame_rect;
     
     
     frame_rect = _lbl_titl_payment_info.frame;
@@ -331,16 +331,16 @@
     //    NSString *place = @"Make A Wish Foundation of Central Florida’s 4th Annual Golf Event";
     NSString *ticketnumber = [temp_resp valueForKey:@"code"];
     NSString *club_name = [[temp_resp valueForKey:@"event_name"] capitalizedString];
-//    NSString *qty = [NSString stringWithFormat:@"Qty: %@",[temp_resp valueForKey:@"quantity"]];
+    //    NSString *qty = [NSString stringWithFormat:@"Qty: %@",[temp_resp valueForKey:@"quantity"]];
     
     NSString *text = [NSString stringWithFormat:@"%@\n%@ - %@\n",show,ticketnumber,club_name];
     
     text = [text stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
     text = [text stringByReplacingOccurrencesOfString:@"(null)" withString:@"Not Mentioned"];
     _lbl_datasubtotal.text = [NSString stringWithFormat:@"$%.2f",[[temp_resp valueForKey:@"price"] floatValue]];
-//    _lbl_datatotal.text = _lbl_datasubtotal.text;
+    //    _lbl_datatotal.text = _lbl_datasubtotal.text;
     
-
+    
     
     // If attributed text is supported (iOS6+)
     if ([self.lbl_ticketDetail respondsToSelector:@selector(setAttributedText:)]) {
@@ -427,11 +427,11 @@
     frame_rect.origin.y = _lbl_datasubtotal.frame.origin.y + _lbl_datasubtotal.frame.size.height + 10;
     _VW_line3.frame = frame_rect;
     
-   
+    
     
     NSData *aData = [[NSUserDefaults standardUserDefaults]valueForKey:@"User_data"] ;
     NSError *error;
-
+    
     
     if(aData)
     {
@@ -439,7 +439,7 @@
         float wallet = [[user_DICTIN valueForKey:@"wallet"] floatValue];
         NSString *STR_SWITCHSTAT = [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
         if ([STR_SWITCHSTAT isEqualToString:@"SWITCH_ON"] && (wallet > 0.00)) {
-           
+            
             float total;
             float waletMoney = [[user_DICTIN valueForKey:@"wallet"] floatValue];
             
@@ -604,7 +604,7 @@
     NSHTTPURLResponse *response = nil;
     NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
     
-       
+    
     NSString *urlGetuser =[NSString stringWithFormat:@"%@payments/create",SERVER_URL];
     NSLog(@"The url iS:%@",urlGetuser);
     
@@ -612,12 +612,12 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:urlProducts];
     [request setHTTPMethod:@"POST"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     
     NSData *postData = [[NSUserDefaults standardUserDefaults] valueForKey:@"Account_data"];
-   
+    
     [request setHTTPBody:postData];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -659,3 +659,4 @@
 }
 
 @end
+

@@ -16,4 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbl_noSponser;
 
+@property (weak, nonatomic) IBOutlet UIButton *BTN_back;
+
+
 @end
+

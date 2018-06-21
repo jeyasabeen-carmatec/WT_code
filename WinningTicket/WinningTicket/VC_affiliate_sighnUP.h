@@ -37,5 +37,7 @@
 @property (nonatomic, strong) UIPickerView *contry_pickerView;
 @property (nonatomic, strong) UIPickerView *state_pickerView;
 
+@property(nonatomic,weak)IBOutlet UIButton *BTN_back;
 
 @end
+

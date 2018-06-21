@@ -10,14 +10,15 @@
 
 @interface VC_item_deatail : UIViewController <UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIActionSheetDelegate>
 {
-     NSTimer* golfTimer;
+    NSTimer* golfTimer;
 }
 //{
 //    UIScrollView *scrollView;
 //    UIPageControl *pageControl;
-//    
+//
 //    BOOL pageControlBeingUsed;
 //}
+@property (nonatomic, retain) IBOutlet UIButton *BTN_back;
 
 @property (weak, nonatomic) IBOutlet UIView *VW_contents;
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll_contents;
@@ -49,3 +50,4 @@
 @property (retain, nonatomic) IBOutlet UILabel *lbl_font_normal;
 
 @end
+

@@ -31,8 +31,8 @@
     UIActivityIndicatorView *activityIndicatorView;
     int k;
     NSMutableDictionary *temp_dict;
-//    UILabel *loadingLabel;
-
+    //    UILabel *loadingLabel;
+    
 }
 @property(nonatomic,strong)NSMutableArray *sec_one_ARR,*roles_ARR;
 
@@ -57,19 +57,19 @@
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
     
-//    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
-//    loadingLabel.backgroundColor = [UIColor clearColor];
-//    loadingLabel.textColor = [UIColor whiteColor];
-//    loadingLabel.adjustsFontSizeToFitWidth = YES;
-//    loadingLabel.textAlignment = NSTextAlignmentCenter;
-//    loadingLabel.text = @"Loading...";
-//    
-//    [VW_overlay addSubview:loadingLabel];
+    //    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
+    //    loadingLabel.backgroundColor = [UIColor clearColor];
+    //    loadingLabel.textColor = [UIColor whiteColor];
+    //    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    //    loadingLabel.textAlignment = NSTextAlignmentCenter;
+    //    loadingLabel.text = @"Loading...";
+    //
+    //    [VW_overlay addSubview:loadingLabel];
     activityIndicatorView.center = VW_overlay.center;
     [VW_overlay addSubview:activityIndicatorView];
     VW_overlay.center = self.view.center;
@@ -87,8 +87,8 @@
     
     
     [_filter_tab reloadData];
-
-
+    
+    
 }
 
 - (void)frameObservingViewFrameChanged:(FrameObservingViewAffiliate_filter *)view
@@ -107,25 +107,25 @@
     NSLog(@"The response VC affiliate Home %@",temp_dict);
     _sec_one_ARR = [temp_dictin valueForKey:@"referrals"];
     
-
     
-//    _sec_one_ARR=[[NSMutableArray alloc]init];
-//    
-//    NSDictionary *temp_dictin;
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Golf ball with cerficate of authenticity   Jordanspeith Auographed Golf ball with cerficate of authenticity Jordanspeith Auographed Golf ball with cerficate of authenticity",@"key1",@"sponsor",@"key2", nil];
-//    [_sec_one_ARR addObject:temp_dictin];
-//    
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Tiltlelist",@"key1",@"sponsor",@"key2", nil];
-//    [_sec_one_ARR addObject:temp_dictin];
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Towel From the masters Jordanspeith Auographed Golf ball with cerficate of authenticity   Jordanspeith Auographed Golf ball with cerficate of authenticity Jordanspeith Auographed Golf ball with cerficate of ",@"key1",@"Contributor",@"key2", nil];
-//    [_sec_one_ARR addObject:temp_dictin];
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Under Armor GolfShoes",@"key1",@"Contributor",@"key2", nil];
-//    [_sec_one_ARR addObject:temp_dictin];temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"TigerWoods Auographed Towel From the masters",@"key1",@"Contributor",@"key2",nil];
-//    [_sec_one_ARR addObject:temp_dictin];
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"TigerWoods Auographed Under Armor GolfShoes",@"key1",@"Contributor",@"key2", nil];
-//    [_sec_one_ARR addObject:temp_dictin];
-//    
-     _roles_ARR=[NSMutableArray arrayWithObjects:@"organizer",@"contributor",@"affiliate",@"sponsor", nil];
+    
+    //    _sec_one_ARR=[[NSMutableArray alloc]init];
+    //
+    //    NSDictionary *temp_dictin;
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Golf ball with cerficate of authenticity   Jordanspeith Auographed Golf ball with cerficate of authenticity Jordanspeith Auographed Golf ball with cerficate of authenticity",@"key1",@"sponsor",@"key2", nil];
+    //    [_sec_one_ARR addObject:temp_dictin];
+    //
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Tiltlelist",@"key1",@"sponsor",@"key2", nil];
+    //    [_sec_one_ARR addObject:temp_dictin];
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Towel From the masters Jordanspeith Auographed Golf ball with cerficate of authenticity   Jordanspeith Auographed Golf ball with cerficate of authenticity Jordanspeith Auographed Golf ball with cerficate of ",@"key1",@"Contributor",@"key2", nil];
+    //    [_sec_one_ARR addObject:temp_dictin];
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Under Armor GolfShoes",@"key1",@"Contributor",@"key2", nil];
+    //    [_sec_one_ARR addObject:temp_dictin];temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"TigerWoods Auographed Towel From the masters",@"key1",@"Contributor",@"key2",nil];
+    //    [_sec_one_ARR addObject:temp_dictin];
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"TigerWoods Auographed Under Armor GolfShoes",@"key1",@"Contributor",@"key2", nil];
+    //    [_sec_one_ARR addObject:temp_dictin];
+    //
+    _roles_ARR=[NSMutableArray arrayWithObjects:@"organizer",@"contributor",@"affiliate",@"sponsor", nil];
     
     _role_picker = [[UIPickerView alloc]init];
     _role_picker.dataSource=self;
@@ -134,7 +134,7 @@
                                                                                  action:@selector(tappedToSelectRow:)];
     tapToSelect.delegate = self;
     [_role_picker addGestureRecognizer:tapToSelect];
-
+    
     _role_textfield.inputView = _role_picker;
     _role_textfield.layer.cornerRadius = 4.0f;
     _role_textfield.layer.borderWidth = 1.2f;
@@ -161,11 +161,11 @@
     [_filter_tab setDragDelegate:self refreshDatePermanentKey:@"FriendList"];
     _filter_tab.showLoadMoreView = YES;
     
-
+    
     
     [_filter_tab reloadData];
     
-   
+    
     
 }
 -(void)buttonClick
@@ -244,7 +244,7 @@
         [cell.date_time_lbl sizeToFit];
         [cell.BTN_view setTag:indexPath.row];
         [cell.BTN_view addTarget:self action:@selector(BTN_referalDETAIL:) forControlEvents:
-             UIControlEventTouchUpInside];
+         UIControlEventTouchUpInside];
         
         
         
@@ -325,7 +325,7 @@
         VW_overlay.hidden = NO;
         [activityIndicatorView startAnimating];
         [self performSelector:@selector(roles_api_called) withObject:activityIndicatorView afterDelay:0.01];
-
+        
         
         
         
@@ -371,13 +371,13 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
     {
         
-       NSMutableDictionary *temp_dictinry=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
+        NSMutableDictionary *temp_dictinry=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
         if(temp_dictinry)
         {
             [activityIndicatorView stopAnimating];
@@ -385,12 +385,12 @@
             
             [[NSUserDefaults standardUserDefaults] setObject:urlGetuser forKey:@"URL_SAVED_af_filter"];
             [[NSUserDefaults standardUserDefaults] synchronize];
-
-        NSMutableArray *temp_arr = [temp_dictinry valueForKey:@"referrals"];
+            
+            NSMutableArray *temp_arr = [temp_dictinry valueForKey:@"referrals"];
             NSLog(@"The  filter Data is: %@" , temp_arr);
-        [_sec_one_ARR removeAllObjects];
-        [_sec_one_ARR addObjectsFromArray:temp_arr];
-        [_filter_tab reloadData];
+            [_sec_one_ARR removeAllObjects];
+            [_sec_one_ARR addObjectsFromArray:temp_arr];
+            [_filter_tab reloadData];
         }
         
         else
@@ -399,7 +399,7 @@
             VW_overlay.hidden = YES;
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Interrupted" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
             [alert show];
-
+            
         }
         
         
@@ -412,7 +412,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Interrupted" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
     }
-
+    
 }
 
 - (IBAction)BTN_back:(id)sender
@@ -509,7 +509,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSMutableDictionary *dict;
     if (aData)
@@ -576,7 +576,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
     {
@@ -608,13 +608,14 @@
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
+

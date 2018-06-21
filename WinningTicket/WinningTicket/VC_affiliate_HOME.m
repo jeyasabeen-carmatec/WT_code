@@ -59,19 +59,19 @@
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 50.0;
+    //    VW_overlay.layer.cornerRadius = 50.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
     
-//    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
-//    loadingLabel.backgroundColor = [UIColor clearColor];
-//    loadingLabel.textColor = [UIColor whiteColor];
-//    loadingLabel.adjustsFontSizeToFitWidth = YES;
-//    loadingLabel.textAlignment = NSTextAlignmentCenter;
-//    loadingLabel.text = @"Loading...";
-//    
-//    [VW_overlay addSubview:loadingLabel];
+    //    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
+    //    loadingLabel.backgroundColor = [UIColor clearColor];
+    //    loadingLabel.textColor = [UIColor whiteColor];
+    //    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    //    loadingLabel.textAlignment = NSTextAlignmentCenter;
+    //    loadingLabel.text = @"Loading...";
+    //
+    //    [VW_overlay addSubview:loadingLabel];
     activityIndicatorView.center = VW_overlay.center;
     [VW_overlay addSubview:activityIndicatorView];
     VW_overlay.center = self.view.center;
@@ -120,30 +120,30 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - View cutomisation
 -(void) setup_VIEW
 {
     _search_bar.delegate=self;
     [_search_bar setBarStyle:UIBarStyleBlack];
-
-//    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setDefaultTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}];
-
+    
+    //    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setDefaultTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}];
+    
     
     search_label = [[UILabel alloc]init];
- [_search_bar setSearchBarStyle:UISearchBarStyleMinimal];
-//    search_label.frame = CGRectMake(_search_bar.frame.origin.x,_search_bar.frame.size.height+_search_bar.frame.origin.y , _search_bar.frame.size.width, _VW_title.frame.size.height);
-//    search_label.backgroundColor = [UIColor clearColor];
-//    search_label.text = [NSString stringWithFormat:@"%lu Results for" ,(unsigned long)_ARR_sec_one.count];
-   
+    [_search_bar setSearchBarStyle:UISearchBarStyleMinimal];
+    //    search_label.frame = CGRectMake(_search_bar.frame.origin.x,_search_bar.frame.size.height+_search_bar.frame.origin.y , _search_bar.frame.size.width, _VW_title.frame.size.height);
+    //    search_label.backgroundColor = [UIColor clearColor];
+    //    search_label.text = [NSString stringWithFormat:@"%lu Results for" ,(unsigned long)_ARR_sec_one.count];
+    
     search_label.hidden = YES;
     _vw_LINE.hidden = YES;
     
@@ -168,99 +168,99 @@
         return 1;
     }
     return _ARR_sec_one.count;
-
+    
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-//    referal_cell *cell=[tableView dequeueReusableCellWithIdentifier:c forIndexPath:indexPath];
-   if ([_ARR_sec_one count] == 0)
-   {
-       cell_EMPTY_val *cell = (cell_EMPTY_val *)[tableView dequeueReusableCellWithIdentifier:@"cell_EMPTY_val"];
-       if (cell == nil)
-       {
-           NSArray *nib;
-           if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-           {
-               nib = [[NSBundle mainBundle] loadNibNamed:@"cell_EMPTY_val~iPad" owner:self options:nil];
-           }
-           else
-           {
-               nib = [[NSBundle mainBundle] loadNibNamed:@"cell_EMPTY_val" owner:self options:nil];
-           }
-           cell = [nib objectAtIndex:0];
-       }
-       
-       cell.lbl_emptycell.text = @"No records found";
-       cell.lbl_emptycell.numberOfLines = 0;
-       [cell.lbl_emptycell sizeToFit];
-       
-       return cell;
-   }
-   else
-   {
-       referal_cell *cell = (referal_cell *)[tableView dequeueReusableCellWithIdentifier:@"referal_cell"];
-       if (cell == nil)
-       {
-           NSArray *nib;
-           if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
-           {
-               nib = [[NSBundle mainBundle] loadNibNamed:@"referal_cell_ipad" owner:self options:nil];
-           }
-           else
-           {
-               nib = [[NSBundle mainBundle] loadNibNamed:@"referal_cell" owner:self options:nil];
-           }
-           cell = [nib objectAtIndex:0];
-       }
-       NSDictionary *dictdata=[_ARR_sec_one objectAtIndex:indexPath.row];
-       NSDictionary *role = [dictdata valueForKey:@"role"];
-       
-       cell.description_lbl.text = [[dictdata objectForKey:@"first_name"] capitalizedString];
-       cell.description_lbl.numberOfLines=0;
-       [cell.description_lbl sizeToFit];
-       
-       NSString *role_name = [NSString stringWithFormat:@"%@",[role valueForKey:@"name"]];
-       role_name = [role_name stringByReplacingOccurrencesOfString:@"organizer" withString:@"event organizer"];
-       role_name = [role_name stringByReplacingOccurrencesOfString:@"contributor" withString:@"participant"];
-       cell.date_time_lbl.text = [role_name capitalizedString];
-       cell.date_time_lbl.numberOfLines = 0;
-       [cell.date_time_lbl sizeToFit];
-       [cell.BTN_referalDETAIL setTag:indexPath.row];
-       [cell.BTN_referalDETAIL addTarget:self action:@selector(BTN_referalDETAIL:) forControlEvents:
-        UIControlEventTouchUpInside];
-       
-       return cell;
-   }
+    //    referal_cell *cell=[tableView dequeueReusableCellWithIdentifier:c forIndexPath:indexPath];
+    if ([_ARR_sec_one count] == 0)
+    {
+        cell_EMPTY_val *cell = (cell_EMPTY_val *)[tableView dequeueReusableCellWithIdentifier:@"cell_EMPTY_val"];
+        if (cell == nil)
+        {
+            NSArray *nib;
+            if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+            {
+                nib = [[NSBundle mainBundle] loadNibNamed:@"cell_EMPTY_val~iPad" owner:self options:nil];
+            }
+            else
+            {
+                nib = [[NSBundle mainBundle] loadNibNamed:@"cell_EMPTY_val" owner:self options:nil];
+            }
+            cell = [nib objectAtIndex:0];
+        }
+        
+        cell.lbl_emptycell.text = @"No records found";
+        cell.lbl_emptycell.numberOfLines = 0;
+        [cell.lbl_emptycell sizeToFit];
+        
+        return cell;
+    }
+    else
+    {
+        referal_cell *cell = (referal_cell *)[tableView dequeueReusableCellWithIdentifier:@"referal_cell"];
+        if (cell == nil)
+        {
+            NSArray *nib;
+            if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad )
+            {
+                nib = [[NSBundle mainBundle] loadNibNamed:@"referal_cell_ipad" owner:self options:nil];
+            }
+            else
+            {
+                nib = [[NSBundle mainBundle] loadNibNamed:@"referal_cell" owner:self options:nil];
+            }
+            cell = [nib objectAtIndex:0];
+        }
+        NSDictionary *dictdata=[_ARR_sec_one objectAtIndex:indexPath.row];
+        NSDictionary *role = [dictdata valueForKey:@"role"];
+        
+        cell.description_lbl.text = [[dictdata objectForKey:@"first_name"] capitalizedString];
+        cell.description_lbl.numberOfLines=0;
+        [cell.description_lbl sizeToFit];
+        
+        NSString *role_name = [NSString stringWithFormat:@"%@",[role valueForKey:@"name"]];
+        role_name = [role_name stringByReplacingOccurrencesOfString:@"organizer" withString:@"event organizer"];
+        role_name = [role_name stringByReplacingOccurrencesOfString:@"contributor" withString:@"participant"];
+        cell.date_time_lbl.text = [role_name capitalizedString];
+        cell.date_time_lbl.numberOfLines = 0;
+        [cell.date_time_lbl sizeToFit];
+        [cell.BTN_referalDETAIL setTag:indexPath.row];
+        [cell.BTN_referalDETAIL addTarget:self action:@selector(BTN_referalDETAIL:) forControlEvents:
+         UIControlEventTouchUpInside];
+        
+        return cell;
+    }
 }
 
 /*- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSDictionary *dict=[_ARR_sec_one objectAtIndex:indexPath.row];
-    NSString *str = [dict objectForKey:@"key1"];
-    CGSize labelWidth;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        labelWidth = CGSizeMake(_tbl_referal.frame.size.width - 140, CGFLOAT_MAX);
-    }
-    else
-    {
-        labelWidth = CGSizeMake(_tbl_referal.frame.size.width - 420, CGFLOAT_MAX);
-    }
-    
-    CGRect textRect = [str boundingRectWithSize:labelWidth options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-Book" size:19.0]} context:nil];
-    int calculatedHeight = textRect.size.height;
-    if(calculatedHeight+10 < 75)
-    {
-        return 75;
-    }
-    else
-    {
-        return calculatedHeight;
-    }
-}
-*/
+ {
+ NSDictionary *dict=[_ARR_sec_one objectAtIndex:indexPath.row];
+ NSString *str = [dict objectForKey:@"key1"];
+ CGSize labelWidth;
+ if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+ labelWidth = CGSizeMake(_tbl_referal.frame.size.width - 140, CGFLOAT_MAX);
+ }
+ else
+ {
+ labelWidth = CGSizeMake(_tbl_referal.frame.size.width - 420, CGFLOAT_MAX);
+ }
+ 
+ CGRect textRect = [str boundingRectWithSize:labelWidth options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gotham-Book" size:19.0]} context:nil];
+ int calculatedHeight = textRect.size.height;
+ if(calculatedHeight+10 < 75)
+ {
+ return 75;
+ }
+ else
+ {
+ return calculatedHeight;
+ }
+ }
+ */
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -312,7 +312,7 @@
     NSLog(@"BTNFilter");
     
     [self performSegueWithIdentifier:@"affilate_filter_identifier" sender:nil];
-
+    
 }
 
 #pragma mark - Button Action
@@ -372,7 +372,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -403,11 +403,11 @@
 {
     _navigation_titlebar.backgroundColor = [UIColor whiteColor];
     _title_lbl.hidden = YES;
-
+    
     _VW_hldBTN.hidden = YES;
     _BTN_logOUT.hidden = YES;
     
-   // [_search_bar setTranslucent:YES];
+    // [_search_bar setTranslucent:YES];
     _search_bar.barTintColor = [UIColor lightGrayColor];
     [UIView beginAnimations:@"" context:nil];
     [UIView setAnimationDuration:0.5];
@@ -415,54 +415,54 @@
     //    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:_VW_address cache:YES];
     [UIView commitAnimations];
     [UIView animateWithDuration:0.5 animations:^{
-
+        
         /*Frame Change*/
         _navigation_titlebar.backgroundColor = [UIColor colorWithRed:0.92 green:0.92 blue:0.92 alpha:1.0];
         _vw_LINE.hidden = NO;
-       
+        
         _search_bar.frame = CGRectMake(_search_bar.frame.origin.x, self.navigationController.navigationBar.frame.origin.y+self.navigationController.navigationBar.frame.size.height + 20,_search_bar.frame.size.width, _search_bar.frame.size.height);
         _search_bar.backgroundColor = [UIColor clearColor];
         _search_bar.showsCancelButton = YES;
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-
+        
         _search_bar.tintColor = [UIColor clearColor];
         [_search_bar setSearchBarStyle:UISearchBarStyleMinimal];
         [_search_bar setBarStyle:UIBarStyleBlack];
         [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setDefaultTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}];
         [_search_bar setTintColor:[UIColor blackColor]];
-
+        
         search_label.hidden = NO;
         search_label.frame = CGRectMake(_search_bar.frame.origin.x,_search_bar.frame.size.height+_search_bar.frame.origin.y , _search_bar.frame.size.width, _VW_title.frame.size.height);
-         [self.view addSubview:search_label];
+        [self.view addSubview:search_label];
         search_label.textColor = [UIColor blackColor];
-
-
-//        NSString *str = _search_bar.text;
+        
+        
+        //        NSString *str = _search_bar.text;
         search_label.text = @"Searching ' '";//[NSString stringWithFormat:@" %lu Results for' %@ '",(unsigned long)[_ARR_sec_one count],str];
         
         _VW_title.frame = CGRectMake(_VW_title.frame.origin.x, search_label.frame.origin.y + search_label.frame.size.height + 5 , _VW_title.frame.size.width, _VW_title.frame.size.height);
         _tbl_referal.frame = CGRectMake(_tbl_referal.frame.origin.x, _VW_title.frame.origin.y + _VW_title.frame.size.height , _tbl_referal.frame.size.width, _tbl_referal.frame.size.height);
-       
+        
     }];
     [UIView commitAnimations];
-//    [self viewDidLayoutSubviews];
+    //    [self viewDidLayoutSubviews];
     
     return YES;
     
- }
+}
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
-  
+    
     _navigation_titlebar.backgroundColor = [UIColor blackColor];
     _title_lbl.hidden = NO;
-//    _BTN_edit.hidden=NO;
-//    _BTN_filter.hidden=NO;
-//    _BTN_new_refral.hidden=NO;
+    //    _BTN_edit.hidden=NO;
+    //    _BTN_filter.hidden=NO;
+    //    _BTN_new_refral.hidden=NO;
     _BTN_logOUT.hidden = NO;
     _VW_hldBTN.hidden = NO;
     _search_bar.text = @"";
     _vw_LINE.hidden = YES;
-
+    
     [UIView beginAnimations:@"" context:nil];
     [UIView setAnimationDuration:0.5];
     [UIView setAnimationCurve:UIViewAnimationCurveLinear];
@@ -475,12 +475,12 @@
         search_label.text = @"";
         search_label.hidden = YES;
         [_search_bar resignFirstResponder];
-         _search_bar.frame =  old_frame;
+        _search_bar.frame =  old_frame;
         [searchBar setShowsCancelButton:NO animated:YES];
-         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-         [_search_bar setSearchBarStyle:UISearchBarStyleMinimal];
-       
-       
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        [_search_bar setSearchBarStyle:UISearchBarStyleMinimal];
+        
+        
         _VW_title.frame = CGRectMake(_VW_title.frame.origin.x, _search_bar.frame.origin.y + _search_bar.frame.size.height, _VW_title.frame.size.width, _VW_title.frame.size.height);
         _tbl_referal.frame = CGRectMake(_tbl_referal.frame.origin.x, _VW_title.frame.origin.y + _VW_title.frame.size.height , _tbl_referal.frame.size.width, _tbl_referal.frame.size.height);
         [self API_AffiliateHome];
@@ -490,12 +490,12 @@
     [UIView commitAnimations];
     
     NSLog(@"the text is :%@",_search_bar.text);
-
+    
 }
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-//    NSString *search_text = _search_bar.text;
+    //    NSString *search_text = _search_bar.text;
     search_label.text = @"";//[NSString stringWithFormat:@"%@",search_text];
     
     UITextField *searchBarTextField = [self findTextFieldFromControl:_search_bar];
@@ -562,7 +562,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -601,7 +601,7 @@
 }
 
 
-    
+
 
 
 #pragma mark - Control datasource
@@ -694,7 +694,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSMutableDictionary *dict;
     if (aData)
@@ -761,7 +761,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
     {
@@ -792,3 +792,4 @@
 
 
 @end
+

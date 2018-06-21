@@ -19,7 +19,7 @@
     UIActivityIndicatorView *activityIndicatorView;
     NSString *wallet_text,*total_text;
     float price_deduct;
-//    UILabel *loadingLabel;
+    //    UILabel *loadingLabel;
 }
 
 @end
@@ -30,7 +30,7 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
-    
+    [_BTN_back addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [self setup_FRAME];
 }
 
@@ -59,14 +59,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 -(void) setup_VIEW
 {
@@ -76,7 +76,7 @@
        } forState:UIControlStateNormal];
     
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain
-                                                                            target:self action:@selector(backAction)];
+                                                                     target:self action:@selector(backAction)];
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -112,19 +112,19 @@
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
     
-//    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
-//    loadingLabel.backgroundColor = [UIColor clearColor];
-//    loadingLabel.textColor = [UIColor whiteColor];
-//    loadingLabel.adjustsFontSizeToFitWidth = YES;
-//    loadingLabel.textAlignment = NSTextAlignmentCenter;
-//    loadingLabel.text = @"Loading...";
-//    
-//    [VW_overlay addSubview:loadingLabel];
+    //    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
+    //    loadingLabel.backgroundColor = [UIColor clearColor];
+    //    loadingLabel.textColor = [UIColor whiteColor];
+    //    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    //    loadingLabel.textAlignment = NSTextAlignmentCenter;
+    //    loadingLabel.text = @"Loading...";
+    //
+    //    [VW_overlay addSubview:loadingLabel];
     activityIndicatorView.center = VW_overlay.center;
     [VW_overlay addSubview:activityIndicatorView];
     VW_overlay.center = self.view.center;
@@ -158,7 +158,7 @@
             
             [_scroll_contents addSubview:_VW_qtycontent];
             /*[_scroll_contents addSubview:_VW_line1];
-            [_scroll_contents addSubview:_VW_line3];*/
+             [_scroll_contents addSubview:_VW_line3];*/
             /*Change for Apply promocode*/
             
             NSString *location=[NSString stringWithFormat:@"%@",[temp_dict valueForKey:@"location"]];
@@ -185,7 +185,7 @@
             
             [[NSUserDefaults standardUserDefaults] setValue:str forKey:@"total_balance"];
             [[NSUserDefaults standardUserDefaults] synchronize];
-
+            
             
             _lbl_datasubtotal.text = [NSString stringWithFormat:@"$%.02f",[_TXT_qty.text floatValue] * [[arr objectAtIndex:1] floatValue]];
             
@@ -262,35 +262,35 @@
             NSString *pricee_STR = [NSString stringWithFormat:@"%.2f",[[dict valueForKey:@"wallet"] floatValue]];
             wallet_text = [NSString stringWithFormat:@"Current Balance: $%@",pricee_STR];
             
-           /* if ([self.lbl_current_bal respondsToSelector:@selector(setAttributedText:)]) {
-                
-                // Define general attributes for the entire text
-                NSDictionary *attribs = @{
-                                          NSForegroundColorAttributeName: self.lbl_current_bal.textColor,
-                                          NSFontAttributeName: self.lbl_current_bal.font
-                                          };
-                NSMutableAttributedString *attributedText =
-                [[NSMutableAttributedString alloc] initWithString:wallet_text
-                                                       attributes:attribs];
-                
-                // Red text attributes
-                //            UIColor *redColor = [UIColor redColor];
-                NSRange cmp = [wallet_text rangeOfString:pricee_STR];// * Notice that usage of rangeOfString in this case may cause some bugs - I use it here only for demonstration
-                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamMedium" size:17.0]}
-                                        range:cmp];
-                
-                
-                self.lbl_current_bal.attributedText = attributedText;
-            }
-            else
-            {
-                self.lbl_current_bal.text = wallet_text;
-            }*/
+            /* if ([self.lbl_current_bal respondsToSelector:@selector(setAttributedText:)]) {
+             
+             // Define general attributes for the entire text
+             NSDictionary *attribs = @{
+             NSForegroundColorAttributeName: self.lbl_current_bal.textColor,
+             NSFontAttributeName: self.lbl_current_bal.font
+             };
+             NSMutableAttributedString *attributedText =
+             [[NSMutableAttributedString alloc] initWithString:wallet_text
+             attributes:attribs];
+             
+             // Red text attributes
+             //            UIColor *redColor = [UIColor redColor];
+             NSRange cmp = [wallet_text rangeOfString:pricee_STR];// * Notice that usage of rangeOfString in this case may cause some bugs - I use it here only for demonstration
+             [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamMedium" size:17.0]}
+             range:cmp];
+             
+             
+             self.lbl_current_bal.attributedText = attributedText;
+             }
+             else
+             {
+             self.lbl_current_bal.text = wallet_text;
+             }*/
             /*Change for Apply promocode*/
             
-//            _lbl_acbalance_amount.text = [NSString stringWithFormat:@"-$%.2f",[[dict valueForKey:@"price"] floatValue]];
-//            price_deduct = [[dict valueForKey:@"wallet"] floatValue] -[[dict valueForKey:@"price"] floatValue];
-
+            //            _lbl_acbalance_amount.text = [NSString stringWithFormat:@"-$%.2f",[[dict valueForKey:@"price"] floatValue]];
+            //            price_deduct = [[dict valueForKey:@"wallet"] floatValue] -[[dict valueForKey:@"price"] floatValue];
+            
             
             self.lbl_ticketdetail.numberOfLines = 0;
             [self.lbl_ticketdetail sizeToFit];
@@ -301,43 +301,43 @@
             frame_ST.origin.y = _lbl_ticketdetail.frame.origin.y + qty_frame_Y + 10;
             _VW_qtycontent.frame = frame_ST;
             
-           /* frame_ST = _lbl_arrowaccount.frame;
-            frame_ST.origin.y = _VW_qtycontent.frame.origin.y + _VW_qtycontent.frame.size.height + 10;
-            _lbl_arrowaccount.frame = frame_ST;
-            
-            frame_ST = _BTN_Account.frame;
-            frame_ST.origin.y = _VW_qtycontent.frame.origin.y + _VW_qtycontent.frame.size.height + 10;
-            _BTN_Account.frame = frame_ST;
-            
-            [_BTN_Account addTarget:self action:@selector(BTN_account_Tap) forControlEvents:UIControlEventTouchUpInside];
-            
-            frame_ST = _lbl_current_bal.frame;
-            frame_ST.origin.x = _BTN_Account.frame.origin.x + 10;
-            frame_ST.origin.y = _BTN_Account.frame.origin.y + _BTN_Account.frame.size.height;
-            _lbl_current_bal.frame = frame_ST;
-            
-            
-            
-            frame_ST = _VW_Account.frame;
-            frame_ST.origin.y = _lbl_current_bal.frame.origin.y + _lbl_current_bal.frame.size.height + 10;
-            _VW_Account.frame = frame_ST;
-            
-            _VW_line2.hidden = YES;
-            _lbl_acbalance.hidden = YES;
-            _lbl_acbalance_amount.hidden = YES;
-                        
-            frame_ST = _VW_line1.frame;
-            frame_ST.origin.y = _BTN_Account.frame.origin.y + _BTN_Account.frame.size.height +10;
-            _VW_line1.frame = frame_ST;*/
+            /* frame_ST = _lbl_arrowaccount.frame;
+             frame_ST.origin.y = _VW_qtycontent.frame.origin.y + _VW_qtycontent.frame.size.height + 10;
+             _lbl_arrowaccount.frame = frame_ST;
+             
+             frame_ST = _BTN_Account.frame;
+             frame_ST.origin.y = _VW_qtycontent.frame.origin.y + _VW_qtycontent.frame.size.height + 10;
+             _BTN_Account.frame = frame_ST;
+             
+             [_BTN_Account addTarget:self action:@selector(BTN_account_Tap) forControlEvents:UIControlEventTouchUpInside];
+             
+             frame_ST = _lbl_current_bal.frame;
+             frame_ST.origin.x = _BTN_Account.frame.origin.x + 10;
+             frame_ST.origin.y = _BTN_Account.frame.origin.y + _BTN_Account.frame.size.height;
+             _lbl_current_bal.frame = frame_ST;
+             
+             
+             
+             frame_ST = _VW_Account.frame;
+             frame_ST.origin.y = _lbl_current_bal.frame.origin.y + _lbl_current_bal.frame.size.height + 10;
+             _VW_Account.frame = frame_ST;
+             
+             _VW_line2.hidden = YES;
+             _lbl_acbalance.hidden = YES;
+             _lbl_acbalance_amount.hidden = YES;
+             
+             frame_ST = _VW_line1.frame;
+             frame_ST.origin.y = _BTN_Account.frame.origin.y + _BTN_Account.frame.size.height +10;
+             _VW_line1.frame = frame_ST;*/
             /*Change for Apply promocode*/
-
+            
             frame_ST = _lbl_titleSubtotal.frame;
             frame_ST.origin.y = _VW_qtycontent.frame.origin.y + _VW_qtycontent.frame.size.height + 10;
             _lbl_titleSubtotal.frame = frame_ST;
             
             /*frame_ST = _lbl_acbalance.frame;
-            frame_ST.origin.y = _lbl_titleSubtotal.frame.origin.y + _lbl_titleSubtotal.frame.size.height + 10;
-            _lbl_acbalance.frame = frame_ST;*/
+             frame_ST.origin.y = _lbl_titleSubtotal.frame.origin.y + _lbl_titleSubtotal.frame.size.height + 10;
+             _lbl_acbalance.frame = frame_ST;*/
             /*Change for Apply promocode*/
             
             frame_ST = _lbl_datasubtotal.frame;
@@ -345,7 +345,7 @@
             _lbl_datasubtotal.frame = frame_ST;
             
             /*frame_ST = _lbl_datasubtotal.frame;
-            _lbl_acbalance_amount.frame = frame_ST;*/
+             _lbl_acbalance_amount.frame = frame_ST;*/
             
             /*Change for Apply promocode*/
             
@@ -375,7 +375,7 @@
                 frame_ST.origin.y = _lbl_titleTotal.frame.origin.y + _lbl_titleTotal.frame.size.height + 10;
                 _BTN_checkout.frame = frame_ST;
             }
-        
+            
             
             original_height = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 40;
             
@@ -389,7 +389,7 @@
             [self.view addGestureRecognizer:tap];
             
             [self.TXT_qty addTarget:self action:@selector(get_caluculated_text) forControlEvents:UIControlEventEditingChanged];
-
+            
         }
     }
     @catch (NSException *exception)
@@ -402,7 +402,7 @@
 {
     NSString *STR_chk = _TXT_qty.text;
     NSCharacterSet *myCharSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
-        
+    
     int count = 0;
     
     if (STR_chk.length !=0 )
@@ -450,7 +450,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     [request setHTTPBody:postData];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -585,7 +585,7 @@
             [request setURL:urlProducts];
             [request setHTTPMethod:@"POST"];
             [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-            [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+            [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
             [request setHTTPBody:postData];
             [request setHTTPShouldHandleCookies:NO];
             NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -660,3 +660,4 @@
 }
 
 @end
+

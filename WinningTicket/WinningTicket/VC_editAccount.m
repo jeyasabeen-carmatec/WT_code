@@ -18,7 +18,7 @@
     UIActivityIndicatorView *activityIndicatorView;
     NSMutableDictionary *states,*countryS;
     NSArray *sorted_STAES,*sorted_Contry;
-//    UILabel *loadingLabel;
+    //    UILabel *loadingLabel;
 }
 @property (nonatomic, strong) NSArray *countrypicker,*statepicker;
 @property(nonatomic,strong)NSMutableDictionary *json_DATA;/*for getting the JSON data  */
@@ -36,10 +36,10 @@
     [self.view addGestureRecognizer:tap];
     // Do any additional setup after loading the view.
     
-//    NSError *error;
-//    NSMutableDictionary *json_DAT = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"state_response"] options:NSASCIIStringEncoding error:&error];
-//    NSLog(@"The response %@",json_DAT);
-//    self.ARR_states=[json_DAT allKeys];
+    //    NSError *error;
+    //    NSMutableDictionary *json_DAT = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"state_response"] options:NSASCIIStringEncoding error:&error];
+    //    NSLog(@"The response %@",json_DAT);
+    //    self.ARR_states=[json_DAT allKeys];
     
     [self setup_VIEW];
 }
@@ -56,20 +56,20 @@
     _scroll_contents.contentSize = CGSizeMake(_scroll_contents.frame.size.width, _VW_contents.frame.size.height + 50);
 }
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 #pragma mark - UIView Customize
 -(void) setup_VIEW
 {
-   NSError *error;
-   
-   NSMutableDictionary *temp_dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"User_data"] options:NSASCIIStringEncoding error:&error];
+    NSError *error;
+    
+    NSMutableDictionary *temp_dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"User_data"] options:NSASCIIStringEncoding error:&error];
     
     @try
     {
@@ -227,7 +227,7 @@
             //    loadingLabel.adjustsFontSizeToFitWidth = YES;
             //    loadingLabel.textAlignment = NSTextAlignmentCenter;
             //    loadingLabel.text = @"Loading...";
-            //    
+            //
             //    [VW_overlay addSubview:loadingLabel];
             activityIndicatorView.center = VW_overlay.center;
             [VW_overlay addSubview:activityIndicatorView];
@@ -365,19 +365,19 @@
     }
     if(textField.tag==7)
     {
-    NSInteger inte = textField.text.length;
-    if(inte >= 8)
-    {
-    if ([string isEqualToString:@""])
-    {
-    return YES;
-    }
-    else
-    {
-    return NO;
-    }
-    }
-    return YES;
+        NSInteger inte = textField.text.length;
+        if(inte >= 8)
+        {
+            if ([string isEqualToString:@""])
+            {
+                return YES;
+            }
+            else
+            {
+                return NO;
+            }
+        }
+        return YES;
     }
     return YES;
     
@@ -389,134 +389,134 @@
     if([_TXT_fname.text isEqualToString:@""])
     {
         [_TXT_fname becomeFirstResponder];
-//        [_TXT_fname showError];
-//        [_TXT_fname showErrorWithText:@" Plese enter first name "];
+        //        [_TXT_fname showError];
+        //        [_TXT_fname showErrorWithText:@" Plese enter first name "];
         
         [self.view makeToast:@"Please enter First Name"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
     
     else if(_TXT_fname.text.length < 2)
     {
         [_TXT_fname becomeFirstResponder];
-//        [_TXT_fname showError];
-//        [_TXT_fname showErrorWithText:@" First name minimum 2 characters"];
+        //        [_TXT_fname showError];
+        //        [_TXT_fname showErrorWithText:@" First name minimum 2 characters"];
         
         [self.view makeToast:@"First Name minimum 2 characters"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
         
     }
     else if([_TXT_addr1.text isEqualToString:@""])
     {
         [_TXT_addr1 becomeFirstResponder];
-//        [_TXT_username showError];
-//        [_TXT_username showErrorWithText:@" Please enter address line 1"];
+        //        [_TXT_username showError];
+        //        [_TXT_username showErrorWithText:@" Please enter address line 1"];
         
         [self.view makeToast:@"Please enter Address Line1"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
         
     }
     else if (_TXT_addr1.text.length < 2)
     {
         [_TXT_addr1 becomeFirstResponder];
-//        [_TXT_username showError];
-//        [_TXT_username showErrorWithText:@" Address line 1 minimum 2 characters"];
+        //        [_TXT_username showError];
+        //        [_TXT_username showErrorWithText:@" Address line 1 minimum 2 characters"];
         
         [self.view makeToast:@"Address Line1 minimum 2 characters"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
         
     }
-
+    
     else if (![_TXT_addr2.text isEqualToString:@""] && _TXT_addr2.text.length < 2)
     {
         [_TXT_addr2 becomeFirstResponder];
-//        [_TXT_addr1 showError];
-//        [_TXT_addr1 showErrorWithText:@" Address line 2 minimum 2 characters"];
+        //        [_TXT_addr1 showError];
+        //        [_TXT_addr1 showErrorWithText:@" Address line 2 minimum 2 characters"];
         
         [self.view makeToast:@"Address Line2 minimum 2 characters"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
         
     }
-       else if([_TXT_city.text isEqualToString:@""])
+    else if([_TXT_city.text isEqualToString:@""])
     {
         [_TXT_city becomeFirstResponder];
-//        [_TXT_city showError];
-//        [_TXT_city showErrorWithText:@" Please enter city"];
+        //        [_TXT_city showError];
+        //        [_TXT_city showErrorWithText:@" Please enter city"];
         
         [self.view makeToast:@"Please enter City"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
         
     }
     else if(_TXT_city.text.length < 2)
     {
         [_TXT_city becomeFirstResponder];
-//        [_TXT_city showError];
-//        [_TXT_city showErrorWithText:@" City minimum 2 characters"];
+        //        [_TXT_city showError];
+        //        [_TXT_city showErrorWithText:@" City minimum 2 characters"];
         
         [self.view makeToast:@"City minimum 2 characters"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
         
     }
-      else if([_TXT_zip.text isEqualToString:@""])
+    else if([_TXT_zip.text isEqualToString:@""])
     {
         [_TXT_zip becomeFirstResponder];
-//        [_TXT_zip showError];
-//        [_TXT_zip showErrorWithText:@" Please enter zipcode"];
+        //        [_TXT_zip showError];
+        //        [_TXT_zip showErrorWithText:@" Please enter zipcode"];
         
         [self.view makeToast:@"Please enter Zip Code"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
         
     }
     else if(_TXT_zip.text.length < 4)
     {
         [_TXT_zip becomeFirstResponder];
-//        [_TXT_zip showError];
-//        [_TXT_zip showErrorWithText:@" Zipcode minimum 3 characters"];
+        //        [_TXT_zip showError];
+        //        [_TXT_zip showErrorWithText:@" Zipcode minimum 3 characters"];
         
         [self.view makeToast:@"Zip Code minimum 3 characters"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
         
     }
     else if([_TXT_phone.text isEqualToString:@""])
     {
         [_TXT_phone becomeFirstResponder];
-//        [_TXT_phone showError];
-//        [_TXT_phone showErrorWithText:@" Please enter phone number"];
+        //        [_TXT_phone showError];
+        //        [_TXT_phone showErrorWithText:@" Please enter phone number"];
         
         [self.view makeToast:@"Please enter Phone Number"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
         
     }
     else if (_TXT_phone.text.length < 5)
     {
         [_TXT_phone becomeFirstResponder];
-//        [_TXT_phone showError];
-//        [_TXT_phone showErrorWithText:@" Phone number minimum 5 numbers"];
+        //        [_TXT_phone showError];
+        //        [_TXT_phone showErrorWithText:@" Phone number minimum 5 numbers"];
         [self.view makeToast:@"Phone Number minimum 5 numbers"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
     else if([_TXT_country.text isEqualToString:@""])
     {
         [_TXT_country becomeFirstResponder];
-//        [_TXT_country showError];
-//        [_TXT_country showErrorWithText:@" Please select country"];
+        //        [_TXT_country showError];
+        //        [_TXT_country showErrorWithText:@" Please select country"];
         
         [self.view makeToast:@"Please select Country"
-                                         duration:2.0
-                                         position:CSToastPositionCenter];
+                    duration:2.0
+                    position:CSToastPositionCenter];
     }
-
+    
     else
     {
         //        [self api_integration];
@@ -524,7 +524,7 @@
         [activityIndicatorView startAnimating];
         [self performSelector:@selector(save_api) withObject:activityIndicatorView afterDelay:0.01];
     }
-   }
+}
 
 #pragma mark - UIPickerViewDataSource
 
@@ -622,7 +622,7 @@
         [alert show];
     }
     
-
+    
     
     
 }
@@ -669,7 +669,7 @@
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (pickerView == _contry_pickerView) {
         
-//        [self handleRowBeingViewed:[pickerView selectedRowInComponent:component]];
+        //        [self handleRowBeingViewed:[pickerView selectedRowInComponent:component]];
         
         self.TXT_country.text = self.countrypicker[row];
         [self State_api];
@@ -686,7 +686,7 @@
 //{
 //    // Printing for debugging.
 //    NSLog(@"String Being Viewed: %@", self.countrypicker[rowBeingViewed]);
-//    
+//
 //    // DO YOUR STUFF HERE
 //    // ...
 //}
@@ -697,26 +697,26 @@
 #pragma mark - BTN Actions
 -(void)save_api
 {
-        NSString *fname = _TXT_fname.text;
-        NSString *lname = _TXT_lname.text;
-       
-        NSString *addressone = _TXT_addr1.text;
-        NSString *addresstwo = _TXT_addr2.text;
-        NSString *city = _TXT_city.text;
-        NSString *country=_TXT_country.text;
-        NSString *state = _TXT_state.text;
-        
-        NSString *phone_num = _TXT_phone.text;
-        NSString *Zip_code=_TXT_zip.text;
-        
-        
+    NSString *fname = _TXT_fname.text;
+    NSString *lname = _TXT_lname.text;
+    
+    NSString *addressone = _TXT_addr1.text;
+    NSString *addresstwo = _TXT_addr2.text;
+    NSString *city = _TXT_city.text;
+    NSString *country=_TXT_country.text;
+    NSString *state = _TXT_state.text;
+    
+    NSString *phone_num = _TXT_phone.text;
+    NSString *Zip_code=_TXT_zip.text;
+    
+    
     NSError *error;
     NSHTTPURLResponse *response = nil;
     NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
     NSDictionary *parameters = @{ @"user": @{ @"first_name":fname , @"last_name":lname , @"phone":phone_num, @"address1":addressone , @"address2":addresstwo ,@"country":country ,@"state":state, @"city":city , @"zipcode": Zip_code } };
     
-
-   
+    
+    
     NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&error];
     
     
@@ -727,7 +727,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     [request setHTTPBody:postData];
     
     [request setHTTPShouldHandleCookies:NO];
@@ -776,20 +776,20 @@
             [self sessionOUT];
         }
     }
-
-        else
-        {
-            [activityIndicatorView stopAnimating];
-            VW_overlay.hidden = YES;
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Please check your connection." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
-
-        
-          }
-                      
-}
-        
     
+    else
+    {
+        [activityIndicatorView stopAnimating];
+        VW_overlay.hidden = YES;
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Please check your connection." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+        
+        
+    }
+    
+}
+
+
 -(void) dismiss_VC
 {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -867,3 +867,4 @@
 }
 
 @end
+

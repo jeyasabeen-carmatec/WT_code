@@ -40,7 +40,7 @@
     NSMutableArray *ARR_contents;
     UIView *VW_overlay;
     UIActivityIndicatorView *activityIndicatorView;
-//    UILabel *loadingLabel;
+    //    UILabel *loadingLabel;
     NSMutableDictionary *temp_dict;
     int k;
 }
@@ -67,26 +67,26 @@
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
     
-//    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
-//    loadingLabel.backgroundColor = [UIColor clearColor];
-//    loadingLabel.textColor = [UIColor whiteColor];
-//    loadingLabel.adjustsFontSizeToFitWidth = YES;
-//    loadingLabel.textAlignment = NSTextAlignmentCenter;
-//    loadingLabel.text = @"Loading...";
-//    
-//    [VW_overlay addSubview:loadingLabel];
+    //    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
+    //    loadingLabel.backgroundColor = [UIColor clearColor];
+    //    loadingLabel.textColor = [UIColor whiteColor];
+    //    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    //    loadingLabel.textAlignment = NSTextAlignmentCenter;
+    //    loadingLabel.text = @"Loading...";
+    //
+    //    [VW_overlay addSubview:loadingLabel];
     activityIndicatorView.center = VW_overlay.center;
     [VW_overlay addSubview:activityIndicatorView];
     VW_overlay.center = self.view.center;
     [self.view addSubview:VW_overlay];
     
     VW_overlay.hidden = YES;
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -95,14 +95,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - View customisation
 -(void) setup_VIEW
@@ -122,7 +122,7 @@
         {
             transaction_history=[temp_dict valueForKey:@"transactions"];
             NSLog(@"the user Transaction data is:%@",transaction_history);
-          
+            
             [_tbl_contents setDragDelegate:self refreshDatePermanentKey:@"FriendList"];
             _tbl_contents.showLoadMoreView = YES;
             
@@ -151,7 +151,7 @@
 {
     
     
-   
+    
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
     
     CELL_trans_hstry *cell = (CELL_trans_hstry *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
@@ -174,16 +174,16 @@
         cell = [nib objectAtIndex:0];
     }
     
-//    [NSDictionary dictionaryWithObjectsAndKeys:@"#0003125",@"ticket_number",@"Nov 29, 2016 5:12pm EST",@"date",@"Donation",@"purpose",@"-200.00",@"amount", nil];
+    //    [NSDictionary dictionaryWithObjectsAndKeys:@"#0003125",@"ticket_number",@"Nov 29, 2016 5:12pm EST",@"date",@"Donation",@"purpose",@"-200.00",@"amount", nil];
     
     
     NSString *ticket_number = [NSString stringWithFormat:@"#%@",[temp_dictin valueForKey:@"id"]];
     NSString *date = [self getLocalDateTimeFromUTC:[temp_dictin valueForKey:@"created_at"]];
     NSString *purpose = [temp_dictin valueForKey:@"transaction_type"];
     
-//    if ([purpose isEqualToString:@"donation"]) {
-//        purpose = @"Donation";
-//    }
+    //    if ([purpose isEqualToString:@"donation"]) {
+    //        purpose = @"Donation";
+    //    }
     
     if ([purpose isEqualToString:@"add_funds"]) {
         purpose = @"Add Funds";
@@ -206,21 +206,21 @@
         cell.lbl_amount.text = [NSString stringWithFormat:@"$%@",amount];
     }
     
-//    if ([purpose isEqualToString:@"withdrawal"])
-//    {
-//        ticket_number = [NSString stringWithFormat:@"#%@",[temp_dictin valueForKey:@"id"]];
-//    }
+    //    if ([purpose isEqualToString:@"withdrawal"])
+    //    {
+    //        ticket_number = [NSString stringWithFormat:@"#%@",[temp_dictin valueForKey:@"id"]];
+    //    }
     
     ticket_number = [ticket_number stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
     date = [date stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
     purpose = [purpose stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
     amount = [amount stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
-
+    
     cell.lbl_ticket_ID.text = ticket_number;
     cell.lbl_datetime.text = date;
     cell.lbl_ticketreson.text = [purpose capitalizedString];
-//    NSString *credit=[temp_dictin valueForKey:@"credit"];
-//    NSString *debit=[temp_dictin valueForKey:@"debit"];
+    //    NSString *credit=[temp_dictin valueForKey:@"credit"];
+    //    NSString *debit=[temp_dictin valueForKey:@"debit"];
     if(temp_dictin[@"value" ] !=(id)[NSNull null])
     {
         NSLog(@"dict is having null");
@@ -229,27 +229,27 @@
         NSLog(@"Not NUll");
     }
     
-//    if([credit isEqualToString:@"<null>"])
-//    {
-//        credit=@"No amount";
-//    }
-//    if([debit isEqualToString:@"<null>"])
-//    {
-//        debit=@"-you are debited";
-//    }
+    //    if([credit isEqualToString:@"<null>"])
+    //    {
+    //        credit=@"No amount";
+    //    }
+    //    if([debit isEqualToString:@"<null>"])
+    //    {
+    //        debit=@"-you are debited";
+    //    }
     
-//    float new_val = [amount floatValue];
-//    if (new_val < 0) {
-//        cell.lbl_amount.textColor = [UIColor redColor];
-//        NSArray *arr = [amount componentsSeparatedByString:@"-"];
-//        cell.lbl_amount.text = [arr objectAtIndex:1];
-//        cell.lbl_amount.text = [NSString stringWithFormat:@"-%@$%@",[arr objectAtIndex:0],[arr objectAtIndex:1]];
-//    }
-//    else
-//    {
-//        cell.lbl_amount.textColor = [UIColor greenColor];
-//        cell.lbl_amount.text = [NSString stringWithFormat:@"$%@",amount];
-//    }
+    //    float new_val = [amount floatValue];
+    //    if (new_val < 0) {
+    //        cell.lbl_amount.textColor = [UIColor redColor];
+    //        NSArray *arr = [amount componentsSeparatedByString:@"-"];
+    //        cell.lbl_amount.text = [arr objectAtIndex:1];
+    //        cell.lbl_amount.text = [NSString stringWithFormat:@"-%@$%@",[arr objectAtIndex:0],[arr objectAtIndex:1]];
+    //    }
+    //    else
+    //    {
+    //        cell.lbl_amount.textColor = [UIColor greenColor];
+    //        cell.lbl_amount.text = [NSString stringWithFormat:@"$%@",amount];
+    //    }
     
     cell.preservesSuperviewLayoutMargins = false;
     cell.separatorInset = UIEdgeInsetsZero;
@@ -325,19 +325,19 @@
     NSString *prev_PAGE = [NSString stringWithFormat:@"%@",[metadict valueForKey:@"prev_page"]];
     if ([prev_PAGE isEqualToString:@"0"])
     {
-//        [activityIndicatorView stopAnimating];
-//        VW_overlay.hidden = YES;
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Already in First Page" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-//        [alert show];
+        //        [activityIndicatorView stopAnimating];
+        //        VW_overlay.hidden = YES;
+        //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Already in First Page" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        //        [alert show];
         [self performSelector:@selector(finishRefresh) withObject:nil afterDelay:0.01];
     }
     else{
-
-    NSString *url_STR = [NSString stringWithFormat:@"%@?page=%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"URL_SAVED_tran"],[metadict valueForKey:@"prev_page"]];
-    [[NSUserDefaults standardUserDefaults] setValue:url_STR forKey:@"URL_SAVED_tranprev"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    [self performSelector:@selector(firstpage_API) withObject:nil afterDelay:0.01];
+        
+        NSString *url_STR = [NSString stringWithFormat:@"%@?page=%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"URL_SAVED_tran"],[metadict valueForKey:@"prev_page"]];
+        [[NSUserDefaults standardUserDefaults] setValue:url_STR forKey:@"URL_SAVED_tranprev"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [self performSelector:@selector(firstpage_API) withObject:nil afterDelay:0.01];
     }
 }
 
@@ -350,17 +350,17 @@
 - (void)dragTableDidTriggerLoadMore:(UITableView *)tableView
 {
     //Pull up go to NextPage
-        //    NSLog(@"The response ALLEvents Pagination Method %@",json_DATA);
+    //    NSLog(@"The response ALLEvents Pagination Method %@",json_DATA);
     NSString *url_STR;
     
     NSDictionary *temp_dictinry = [temp_dict valueForKey:@"meta"];
-   int i=[[temp_dictinry valueForKey:@"next_page"] intValue];
+    int i=[[temp_dictinry valueForKey:@"next_page"] intValue];
     NSString *nextPAGE = [NSString stringWithFormat:@"%i",i];
     if ([nextPAGE isEqualToString:@"0"])
     {
-//        [activityIndicatorView stopAnimating];
-//        VW_overlay.hidden = YES;
-
+        //        [activityIndicatorView stopAnimating];
+        //        VW_overlay.hidden = YES;
+        
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Already in Last Page" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
         [self performSelector:@selector(finishLoadMore) withObject:nil afterDelay:2];
@@ -394,7 +394,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSMutableDictionary *dict;
     if (aData)
@@ -405,12 +405,12 @@
         [activityIndicatorView stopAnimating];
         VW_overlay.hidden = YES;
         
-         dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:kNilOptions error:&error];
+        dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:kNilOptions error:&error];
         NSLog(@"From Transaction_History Next Pagination testing :%@",dict);
         NSDictionary *temp=[dict valueForKey:@"meta"];
         int i=[[temp valueForKey:@"total_pages"] intValue];
         int j=[[temp valueForKey:@"current_page"]intValue];
-       
+        
         
         if(i >= j)
         {
@@ -425,17 +425,17 @@
                 
             }
             else{
-
-            NSArray *ARR_tmp = [dict valueForKey:@"transactions"];
-            [transaction_history addObjectsFromArray:ARR_tmp];
-            
-            [_tbl_contents reloadData];
+                
+                NSArray *ARR_tmp = [dict valueForKey:@"transactions"];
+                [transaction_history addObjectsFromArray:ARR_tmp];
+                
+                [_tbl_contents reloadData];
             }
             
-            }
+        }
         
         
-            }
+    }
     
     
     
@@ -461,7 +461,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
     {
@@ -470,14 +470,14 @@
         
         NSMutableDictionary *json_DATA=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:kNilOptions error:&error];
         NSLog(@"From VC_all_events  prev Pagination testing :%@",json_DATA);
-          [transaction_history removeAllObjects];
-           NSArray *ARR_tmp = [json_DATA valueForKey:@"transactions"];
-            [transaction_history addObjectsFromArray:ARR_tmp];
-            
-            [_tbl_contents reloadData];
-            
-                   }
-
+        [transaction_history removeAllObjects];
+        NSArray *ARR_tmp = [json_DATA valueForKey:@"transactions"];
+        [transaction_history addObjectsFromArray:ARR_tmp];
+        
+        [_tbl_contents reloadData];
+        
+    }
+    
     
     else
     {
@@ -506,3 +506,4 @@
 
 
 @end
+

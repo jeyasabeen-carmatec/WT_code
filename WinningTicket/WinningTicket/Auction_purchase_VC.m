@@ -27,6 +27,7 @@
     [super viewDidLoad];
     //    [self.view addSubview:self.scroll];
     
+    [_BTN_back addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
@@ -122,14 +123,14 @@
                 frame_rect.origin.y = _first_VW.frame.origin.y + _first_VW.frame.size.height + 10;
                 _name_ticket.frame = frame_rect;
                 
-//                self.qty.text=[NSString stringWithFormat:@"Qty:%@",[dict valueForKey:@"quantity"]];
-//                frame_rect = _qty.frame;
-//                frame_rect.origin.y = _first_VW.frame.origin.y + _first_VW.frame.size.height + 10;
-//                _qty.frame = frame_rect;
+                //                self.qty.text=[NSString stringWithFormat:@"Qty:%@",[dict valueForKey:@"quantity"]];
+                //                frame_rect = _qty.frame;
+                //                frame_rect.origin.y = _first_VW.frame.origin.y + _first_VW.frame.size.height + 10;
+                //                _qty.frame = frame_rect;
                 
                 
                 
-//                NSString *STR_title = @"Silent Auction";
+                //                NSString *STR_title = @"Silent Auction";
                 NSString *STR_orgname = [NSString stringWithFormat:@"%@",[[dict valueForKey:@"organization_name"] capitalizedString]];
                 NSString *des = [NSString stringWithFormat:@"%@",[[dict valueForKey:@"name"] capitalizedString]];
                 NSString *code = [NSString stringWithFormat:@"%@",[NSString stringWithFormat:@"%@",[dict valueForKey:@"code"]]];
@@ -154,8 +155,8 @@
                 NSRange rangeCODE = [text rangeOfString:STR_orgname];
                 [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:17]} range:rangeCODE];
                 
-//                NSRange rangetitl = [text rangeOfString:STR_title];
-//                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:17]} range:rangetitl];
+                //                NSRange rangetitl = [text rangeOfString:STR_title];
+                //                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamBold" size:17]} range:rangetitl];
                 
                 orginal_width = _des_cription.frame.size.width;
                 
@@ -229,7 +230,7 @@
                     frame_rect.origin.y = _sec_vw.frame.origin.y + _sec_vw.frame.size.height + 5;
                     _total.frame = frame_rect;
                     
-//                    _total_amount.text = [NSString stringWithFormat:@"$%.2f",[amount floatValue]];
+                    //                    _total_amount.text = [NSString stringWithFormat:@"$%.2f",[amount floatValue]];
                     frame_rect = _total_amount.frame;
                     frame_rect.origin.y = _sec_vw.frame.origin.y + _sec_vw.frame.size.height + 5;
                     _total_amount.frame = frame_rect;
@@ -338,7 +339,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     //    [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -390,13 +391,14 @@
     [self presentViewController:tncView animated:YES completion:NULL];
 }
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
+

@@ -22,12 +22,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    [self.view addSubview:self.scroll];
+    //    [self.view addSubview:self.scroll];
+    
+    [_BTN_back addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
@@ -303,7 +305,7 @@
     
     [super viewDidLayoutSubviews];
     [_scroll layoutIfNeeded];
-     _scroll.contentSize = CGSizeMake(_scroll.frame.size.width, _start_View.frame.size.height + 10);
+    _scroll.contentSize = CGSizeMake(_scroll.frame.size.width, _start_View.frame.size.height + 10);
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -318,34 +320,34 @@
        } forState:UIControlStateNormal];
     
     //    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"cross"] style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
- /*   UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain
-                                                                     target:self action:@selector(backAction)];
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-    {
-        CGSize result = [[UIScreen mainScreen] bounds].size;
-        if(result.height <= 480)
-        {
-            // iPhone Classic
-            negativeSpacer.width = 0;
-        }
-        else if(result.height <= 568)
-        {
-            // iPhone 5
-            negativeSpacer.width = -12;
-        }
-        else
-        {
-            negativeSpacer.width = -16;
-        }
-    }
-    else
-    {
-        negativeSpacer.width = -12;
-    }
-    
-    [self.navigationItem setLeftBarButtonItems:@[negativeSpacer, anotherButton ] animated:NO];*/
+    /*   UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain
+     target:self action:@selector(backAction)];
+     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+     
+     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+     {
+     CGSize result = [[UIScreen mainScreen] bounds].size;
+     if(result.height <= 480)
+     {
+     // iPhone Classic
+     negativeSpacer.width = 0;
+     }
+     else if(result.height <= 568)
+     {
+     // iPhone 5
+     negativeSpacer.width = -12;
+     }
+     else
+     {
+     negativeSpacer.width = -16;
+     }
+     }
+     else
+     {
+     negativeSpacer.width = -12;
+     }
+     
+     [self.navigationItem setLeftBarButtonItems:@[negativeSpacer, anotherButton ] animated:NO];*/
     
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor whiteColor],
@@ -356,8 +358,8 @@
 }
 -(void) backAction
 {
-//    [self.navigationController popViewControllerAnimated:NO];
-     [self performSegueWithIdentifier:@"orderdetailidentifier" sender:self];
+    //    [self.navigationController popViewControllerAnimated:NO];
+    [self performSegueWithIdentifier:@"orderdetailidentifier" sender:self];
 }
 -(void)Ok_Clicked
 {
@@ -379,7 +381,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     //    [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -408,14 +410,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - Session OUT
 - (void) sessionOUT
@@ -432,3 +434,4 @@
 }
 
 @end
+

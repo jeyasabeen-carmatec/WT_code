@@ -28,7 +28,7 @@
     NSMutableDictionary *states,*countryS;
     UIView *VW_overlay;
     UIActivityIndicatorView *activityIndicatorView;
-//    UILabel *loadingLabel;
+    //    UILabel *loadingLabel;
     NSArray *sorted_STAES,*sorted_Contry;
     
     float discount;
@@ -43,36 +43,38 @@
     [super viewDidLoad];
     discount = 0.0f;
     // Do any additional setup after loading the view.
-//    NSError *error;
-//    NSMutableDictionary *json_DAT = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"state_response"] options:NSASCIIStringEncoding error:&error];
-//    NSLog(@"The response %@",json_DAT);
-//    self.ARR_states=[json_DAT allKeys];
+    //    NSError *error;
+    //    NSMutableDictionary *json_DAT = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"state_response"] options:NSASCIIStringEncoding error:&error];
+    //    NSLog(@"The response %@",json_DAT);
+    //    self.ARR_states=[json_DAT allKeys];
     
-   /* NSURL *clientTokenURL = [NSURL URLWithString:@"https://braintree-sample-merchant.herokuapp.com/client_token"];
-    NSMutableURLRequest *clientTokenRequest = [NSMutableURLRequest requestWithURL:clientTokenURL];
-    [clientTokenRequest setValue:@"text/plain" forHTTPHeaderField:@"Accept"];
+    /* NSURL *clientTokenURL = [NSURL URLWithString:@"https://braintree-sample-merchant.herokuapp.com/client_token"];
+     NSMutableURLRequest *clientTokenRequest = [NSMutableURLRequest requestWithURL:clientTokenURL];
+     [clientTokenRequest setValue:@"text/plain" forHTTPHeaderField:@"Accept"];
+     
+     [[[NSURLSession sharedSession] dataTaskWithRequest:clientTokenRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+     // TODO: Handle errors
+     NSString *clientToken = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+     tok = clientToken;
+     
+     NSLog(@"Client Tok = %@",tok);
+     
+     // Initialize `Braintree` once per checkout session
+     self.braintree = [Braintree braintreeWithClientToken:clientToken];
+     
+     NSLog(@"dddd = %@",self.braintree);
+     
+     
+     // As an example, you may wish to present our Drop-in UI at this point.
+     // Continue to the next section to learn more...
+     }] resume];*/
     
-    [[[NSURLSession sharedSession] dataTaskWithRequest:clientTokenRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        // TODO: Handle errors
-        NSString *clientToken = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        tok = clientToken;
-        
-        NSLog(@"Client Tok = %@",tok);
-        
-        // Initialize `Braintree` once per checkout session
-        self.braintree = [Braintree braintreeWithClientToken:clientToken];
-        
-        NSLog(@"dddd = %@",self.braintree);
-        
-        
-        // As an example, you may wish to present our Drop-in UI at this point.
-        // Continue to the next section to learn more...
-    }] resume];*/
+    //    [self get_client_TOKEN];
     
-//    [self get_client_TOKEN];
-  [self setup_VIEW];
+    [_BTN_back addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    [self setup_VIEW];
     
-        
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,7 +90,7 @@
                                                   forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-
+    
 }
 
 -(void)viewDidLayoutSubviews
@@ -99,14 +101,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - Uiview Customisation
 -(void) setup_VIEW
@@ -114,19 +116,19 @@
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
     
-//    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
-//    loadingLabel.backgroundColor = [UIColor clearColor];
-//    loadingLabel.textColor = [UIColor whiteColor];
-//    loadingLabel.adjustsFontSizeToFitWidth = YES;
-//    loadingLabel.textAlignment = NSTextAlignmentCenter;
-//    loadingLabel.text = @"Loading...";
-//    
-//    [VW_overlay addSubview:loadingLabel];
+    //    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
+    //    loadingLabel.backgroundColor = [UIColor clearColor];
+    //    loadingLabel.textColor = [UIColor whiteColor];
+    //    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    //    loadingLabel.textAlignment = NSTextAlignmentCenter;
+    //    loadingLabel.text = @"Loading...";
+    //
+    //    [VW_overlay addSubview:loadingLabel];
     activityIndicatorView.center = VW_overlay.center;
     [VW_overlay addSubview:activityIndicatorView];
     VW_overlay.center = self.view.center;
@@ -185,7 +187,7 @@
     //_TXT_country.backgroundColor = [UIColor whiteColor];
     _TXT_country.tag=6;
     _TXT_country.delegate=self;
-
+    
     
     _TXT_state.layer.cornerRadius = 5.0f;
     _TXT_state.layer.masksToBounds = YES;
@@ -208,12 +210,12 @@
     _TXT_phonenumber.layer.masksToBounds = YES;
     _TXT_phonenumber.layer.borderWidth = 2.0f;
     _TXT_phonenumber.layer.borderColor = [UIColor grayColor].CGColor;
-   // _TXT_phonenumber.backgroundColor = [UIColor whiteColor];
+    // _TXT_phonenumber.backgroundColor = [UIColor whiteColor];
     _TXT_phonenumber.tag = 9;
-      _TXT_phonenumber.tintColor = self.TXT_city.tintColor;
+    _TXT_phonenumber.tintColor = self.TXT_city.tintColor;
     _TXT_phonenumber.delegate=self;
     
-
+    
     NSError *error;
     NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"upcoming_events"] options:NSASCIIStringEncoding error:&error];
     
@@ -514,9 +516,9 @@
             [_BTN_checkout addTarget:self action:@selector(chckout_ACtin:) forControlEvents:UIControlEventTouchUpInside];
             
             
-//            frame_NEW = _VW_account.frame;
-//            frame_NEW.origin.y = _lbl_address.frame.origin.y + _lbl_address.frame.size.height + 10;
-//            _VW_account.frame = frame_NEW;
+            //            frame_NEW = _VW_account.frame;
+            //            frame_NEW.origin.y = _lbl_address.frame.origin.y + _lbl_address.frame.size.height + 10;
+            //            _VW_account.frame = frame_NEW;
             
             _VW_account.hidden = YES;
             _VW_useAccountt.hidden = YES;
@@ -695,8 +697,8 @@
         [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:_VW_address cache:YES];
         [UIView commitAnimations];
         [UIView animateWithDuration:0.5 animations:^{
-
-//            _VW_account.frame = CGRectMake(_VW_account.frame.origin.x, _VW_address.frame.origin.y+_VW_address.frame.size.height+10, _VW_account.frame.size.width, _VW_account.frame.size.height);
+            
+            //            _VW_account.frame = CGRectMake(_VW_account.frame.origin.x, _VW_address.frame.origin.y+_VW_address.frame.size.height+10, _VW_account.frame.size.width, _VW_account.frame.size.height);
             
             CGRect frame_SET = _BTN_addPromo.frame;
             frame_SET.origin.y = _VW_address.frame.origin.y + _VW_address.frame.size.height;
@@ -758,9 +760,9 @@
     {
         [self showViewAddress];
         [_TXT_firstname becomeFirstResponder];
-//        [_TXT_firstname showError];
-//        [_TXT_firstname showErrorWithText:@" Please enter first name"];
-//        [self showViewAddress];
+        //        [_TXT_firstname showError];
+        //        [_TXT_firstname showErrorWithText:@" Please enter first name"];
+        //        [self showViewAddress];
         [self.navigationController.view makeToast:@"Please enter First Name"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -769,30 +771,30 @@
     {
         [self showViewAddress];
         [_TXT_firstname becomeFirstResponder];
-//        [_TXT_firstname showError];
-//        [_TXT_firstname showErrorWithText:@" First name minimum 2 characters"];
-//        [self showViewAddress];
+        //        [_TXT_firstname showError];
+        //        [_TXT_firstname showErrorWithText:@" First name minimum 2 characters"];
+        //        [self showViewAddress];
         [self.navigationController.view makeToast:@"First Name minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
-//    else  if([_TXT_lastname.text isEqualToString:@""])
-//    {
-//        [_TXT_lastname becomeFirstResponder];
-//        [_TXT_lastname showError];
-//        [_TXT_lastname showErrorWithText:@" Please enter More than  2 Chracters"];
-//    }
-//    else if (_TXT_lastname.text.length < 2)
-//    {
-//        
-//    }
+    //    else  if([_TXT_lastname.text isEqualToString:@""])
+    //    {
+    //        [_TXT_lastname becomeFirstResponder];
+    //        [_TXT_lastname showError];
+    //        [_TXT_lastname showErrorWithText:@" Please enter More than  2 Chracters"];
+    //    }
+    //    else if (_TXT_lastname.text.length < 2)
+    //    {
+    //
+    //    }
     else if([_TXT_address1.text isEqualToString:@""])
     {
         [self showViewAddress];
         [_TXT_address1 becomeFirstResponder];
-//        [_TXT_address1 showError];
-//        [_TXT_address1 showErrorWithText:@" Please enter address line 1"];
-//        [self showViewAddress];
+        //        [_TXT_address1 showError];
+        //        [_TXT_address1 showErrorWithText:@" Please enter address line 1"];
+        //        [self showViewAddress];
         [self.navigationController.view makeToast:@"Please enter Address Line1"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -801,27 +803,27 @@
     {
         [self showViewAddress];
         [_TXT_address1 becomeFirstResponder];
-//        [_TXT_address1 showError];
-//        [_TXT_address1 showErrorWithText:@" Address line 1 minimum 2 characters"];
-//        [self showViewAddress];
+        //        [_TXT_address1 showError];
+        //        [_TXT_address1 showErrorWithText:@" Address line 1 minimum 2 characters"];
+        //        [self showViewAddress];
         [self.navigationController.view makeToast:@"Address Line1 minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
-//    else  if([_TXT_address2.text isEqualToString:@""] || _TXT_address2.text.length <= 2 || _TXT_address2.text.length > 30)
-//    {
-//        [_TXT_address2 becomeFirstResponder];
-//        [_TXT_address2 showError];
-//        [_TXT_address2 showErrorWithText:@" Please enter More than  2 Chracters"];
-//        
-//    }
+    //    else  if([_TXT_address2.text isEqualToString:@""] || _TXT_address2.text.length <= 2 || _TXT_address2.text.length > 30)
+    //    {
+    //        [_TXT_address2 becomeFirstResponder];
+    //        [_TXT_address2 showError];
+    //        [_TXT_address2 showErrorWithText:@" Please enter More than  2 Chracters"];
+    //
+    //    }
     else if([_TXT_city.text isEqualToString:@""])
     {
         [self showViewAddress];
         [_TXT_city becomeFirstResponder];
-//        [_TXT_city showError];
-//        [_TXT_city showErrorWithText:@" Please enter city"];
-//        [self showViewAddress];
+        //        [_TXT_city showError];
+        //        [_TXT_city showErrorWithText:@" Please enter city"];
+        //        [self showViewAddress];
         [self.navigationController.view makeToast:@"Please enter City"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -830,9 +832,9 @@
     {
         [self showViewAddress];
         [_TXT_city becomeFirstResponder];
-//        [_TXT_city showError];
-//        [_TXT_city showErrorWithText:@" City minimum 2 characters"];
-//        [self showViewAddress];
+        //        [_TXT_city showError];
+        //        [_TXT_city showErrorWithText:@" City minimum 2 characters"];
+        //        [self showViewAddress];
         [self.navigationController.view makeToast:@"City minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -842,26 +844,26 @@
     {
         [self showViewAddress];
         [_TXT_country becomeFirstResponder];
-//        [_TXT_country showError];
-//        [_TXT_country showErrorWithText:@" Please select country"];
+        //        [_TXT_country showError];
+        //        [_TXT_country showErrorWithText:@" Please select country"];
         [self.navigationController.view makeToast:@"Please select Country"
                                          duration:2.0
                                          position:CSToastPositionCenter];
         
     }
-//    else if([_TXT_state.text isEqualToString:@""])
-//    {
-//        [_TXT_state becomeFirstResponder];
-//        [_TXT_state showError];
-//        [_TXT_state showErrorWithText:@" Please Select State"];
-//        
-//    }
+    //    else if([_TXT_state.text isEqualToString:@""])
+    //    {
+    //        [_TXT_state becomeFirstResponder];
+    //        [_TXT_state showError];
+    //        [_TXT_state showErrorWithText:@" Please Select State"];
+    //
+    //    }
     else if([_TXT_zip.text isEqualToString:@""])
     {
         [self showViewAddress];
         [_TXT_zip becomeFirstResponder];
-//        [_TXT_zip showError];
-//        [_TXT_zip showErrorWithText:@" Please enter zipcode code"];
+        //        [_TXT_zip showError];
+        //        [_TXT_zip showErrorWithText:@" Please enter zipcode code"];
         [self.navigationController.view makeToast:@"Please enter Zip Code"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -870,8 +872,8 @@
     {
         [self showViewAddress];
         [_TXT_zip becomeFirstResponder];
-//        [_TXT_zip showError];
-//        [_TXT_zip showErrorWithText:@" Zipcode minimum 4 characters"];
+        //        [_TXT_zip showError];
+        //        [_TXT_zip showErrorWithText:@" Zipcode minimum 4 characters"];
         [self.navigationController.view makeToast:@"Zip Code minimum 4 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -890,33 +892,33 @@
     {
         [self showViewAddress];
         [_TXT_phonenumber becomeFirstResponder];
-//        [_TXT_phonenumber showError];
-//        [_TXT_phonenumber showErrorWithText:@" Please enter more than 5 numbers"];
+        //        [_TXT_phonenumber showError];
+        //        [_TXT_phonenumber showErrorWithText:@" Please enter more than 5 numbers"];
         [self.navigationController.view makeToast:@"Please enter more than 5 numbers"
                                          duration:2.0
                                          position:CSToastPositionCenter];
     }
     
-
-//    else if([_TXT_email.text isEqualToString:@""] || [emailTest evaluateWithObject:text_to_compare_email] == NO)
-//    {
-//        [_TXT_email becomeFirstResponder];
-//        [_TXT_email showError];
-//        [_TXT_email showErrorWithText:@" Please Enter Correct Email"];
-//    }
+    
+    //    else if([_TXT_email.text isEqualToString:@""] || [emailTest evaluateWithObject:text_to_compare_email] == NO)
+    //    {
+    //        [_TXT_email becomeFirstResponder];
+    //        [_TXT_email showError];
+    //        [_TXT_email showErrorWithText:@" Please Enter Correct Email"];
+    //    }
     else
     {
         [self.view endEditing:TRUE];
         
-    
+        
         NSError *error;
         NSMutableDictionary *user=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"User_data"] options:NSASCIIStringEncoding error:&error];
         VW_overlay.hidden = NO;
         [activityIndicatorView startAnimating];
         
-//       total = [[[NSUserDefaults standardUserDefaults] valueForKey:@"total_balance"] floatValue];
-//       NSString *switch_STAT = @"";// [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
-//        NSError *error;
+        //       total = [[[NSUserDefaults standardUserDefaults] valueForKey:@"total_balance"] floatValue];
+        //       NSString *switch_STAT = @"";// [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
+        //        NSError *error;
         
         NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"upcoming_events"] options:NSASCIIStringEncoding error:&error];
         float val_total = 0.0;
@@ -974,7 +976,7 @@
                 {
                     NSLog(@"Money Need to pay");
                     float temp_tot = wallet_money;
-                                      
+                    
                     
                     [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%.2f",temp_tot] forKey:@"WALLETMONEY"];
                     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -990,7 +992,7 @@
                 [self performSelector:@selector(get_client_TOKEN) withObject:activityIndicatorView afterDelay:0.01];
                 
             }
-        
+            
         }
     }
 }
@@ -1008,7 +1010,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -1045,39 +1047,39 @@
 
 -(void) braintree_Dropin_UI :(NSString *) client_TOK
 {
-   /* BTDropInViewController *dropInViewController = [self.braintree dropInViewControllerWithDelegate:self];
-    // This is where you might want to customize your Drop in. (See below.)
-    
-    // The way you present your BTDropInViewController instance is up to you.
-    // In this example, we wrap it in a new, modally presented navigation controller:
-    dropInViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                                          target:self
-                                                                                                          action:@selector(userDidCancelPayment)];
-    dropInViewController.view.tintColor = _BTN_checkout.backgroundColor;
-    
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:dropInViewController];
-    UIImage *new_image = [UIImage imageNamed:@"UI_01"];
-    UIImageView *temp_IMG = [[UIImageView alloc]initWithFrame:navigationController.navigationBar.frame];
-    temp_IMG.image = new_image;
-    
-    UIImage *newImage = [temp_IMG.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    UIGraphicsBeginImageContextWithOptions(temp_IMG.image.size, NO, newImage.scale);
-    [[UIColor blackColor] set];
-    [newImage drawInRect:CGRectMake(0, 0, temp_IMG.image.size.width, newImage.size.height)];
-    newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    temp_IMG.image = newImage;
-    
-    [navigationController.navigationBar setBackgroundImage:temp_IMG.image
-                                             forBarMetrics:UIBarMetricsDefault];
-    navigationController.navigationBar.shadowImage = [UIImage new];
-    navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    
-    [activityIndicatorView stopAnimating];
-    VW_overlay.hidden = YES;
-    
-    [self presentViewController:navigationController animated:YES completion:nil];*/
+    /* BTDropInViewController *dropInViewController = [self.braintree dropInViewControllerWithDelegate:self];
+     // This is where you might want to customize your Drop in. (See below.)
+     
+     // The way you present your BTDropInViewController instance is up to you.
+     // In this example, we wrap it in a new, modally presented navigation controller:
+     dropInViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+     target:self
+     action:@selector(userDidCancelPayment)];
+     dropInViewController.view.tintColor = _BTN_checkout.backgroundColor;
+     
+     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:dropInViewController];
+     UIImage *new_image = [UIImage imageNamed:@"UI_01"];
+     UIImageView *temp_IMG = [[UIImageView alloc]initWithFrame:navigationController.navigationBar.frame];
+     temp_IMG.image = new_image;
+     
+     UIImage *newImage = [temp_IMG.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+     UIGraphicsBeginImageContextWithOptions(temp_IMG.image.size, NO, newImage.scale);
+     [[UIColor blackColor] set];
+     [newImage drawInRect:CGRectMake(0, 0, temp_IMG.image.size.width, newImage.size.height)];
+     newImage = UIGraphicsGetImageFromCurrentImageContext();
+     UIGraphicsEndImageContext();
+     
+     temp_IMG.image = newImage;
+     
+     [navigationController.navigationBar setBackgroundImage:temp_IMG.image
+     forBarMetrics:UIBarMetricsDefault];
+     navigationController.navigationBar.shadowImage = [UIImage new];
+     navigationController.navigationBar.tintColor = [UIColor whiteColor];
+     
+     [activityIndicatorView stopAnimating];
+     VW_overlay.hidden = YES;
+     
+     [self presentViewController:navigationController animated:YES completion:nil];*/
     
     @try
     {
@@ -1090,24 +1092,24 @@
                 NSLog(@"CANCELLED");
                 [self dismissViewControllerAnimated:YES completion:NULL];
             } else {
-//                [self performSelector:@selector(dismiss_BT)
-//                           withObject:nil
-//                           afterDelay:0.0];
-//                BTUIKViewUtil
+                //                [self performSelector:@selector(dismiss_BT)
+                //                           withObject:nil
+                //                           afterDelay:0.0];
+                //                BTUIKViewUtil
                 
-//                bool Credit = [BTUIKViewUtil isPaymentOptionTypeACreditCard:result.paymentOptionType];
+                //                bool Credit = [BTUIKViewUtil isPaymentOptionTypeACreditCard:result.paymentOptionType];
                 
-//                NSLog(@"Payment methord type %@",result.paymentDescription); //Credit
+                //                NSLog(@"Payment methord type %@",result.paymentDescription); //Credit
                 
-//                NSArray *temp = [result.paymentDescription componentsSeparatedByString:@" "];
+                //                NSArray *temp = [result.paymentDescription componentsSeparatedByString:@" "];
                 
                 //[NSString stringWithFormat:@"%@ %@", ,result.paymentDescription]
                 //[NSString stringWithFormat:@"%ld",(long)result.paymentOptionType]
-//                [[NSUserDefaults standardUserDefaults] setValue:result.paymentMethod.type forKey:@"paymentTYPE"];
-//                [[NSUserDefaults standardUserDefaults] synchronize];
+                //                [[NSUserDefaults standardUserDefaults] setValue:result.paymentMethod.type forKey:@"paymentTYPE"];
+                //                [[NSUserDefaults standardUserDefaults] synchronize];
                 
                 STR_payment_mode *payment_mode = [STR_payment_mode PaymentTYPE];
-//                NSString *switch_STAT = @"";// [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
+                //                NSString *switch_STAT = @"";// [[NSUserDefaults standardUserDefaults] valueForKey:@"SWITCHSTAT"];
                 
                 NSError *error;
                 NSMutableDictionary *user=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"User_data"] options:NSASCIIStringEncoding error:&error];
@@ -1121,7 +1123,7 @@
                 NSString *STR_disp,*STR_wallet,*STR_discount;
                 if([[user valueForKey:@"wallet"] floatValue] != 0.00 && [_SWITCH_useAccount isOn])
                 {
-                     wallet_money = [[user valueForKey:@"wallet"] floatValue];
+                    wallet_money = [[user valueForKey:@"wallet"] floatValue];
                 }
                 
                 if(wallet_money > 0)
@@ -1143,7 +1145,7 @@
                 }
                 
                 STR_disp = [NSString stringWithFormat:@"%@%@%@",result.paymentMethod.type,STR_discount,STR_wallet];
-               
+                
                 
                 payment_mode.STR_paymentTYPE = STR_disp;
                 
@@ -1170,7 +1172,7 @@
 #pragma mark textfieldDelegates
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-       [textField resignFirstResponder];
+    [textField resignFirstResponder];
     return YES;
 }
 
@@ -1192,8 +1194,8 @@
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-//    if(textField.tag==8)
-//    {
+    //    if(textField.tag==8)
+    //    {
     if (textField == _TXT_getpromocode) {
         [textField resignFirstResponder];
         [UIView beginAnimations:nil context:NULL];
@@ -1217,7 +1219,7 @@
         [UIView commitAnimations];
     }
     
-//    }
+    //    }
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
@@ -1310,36 +1312,36 @@
         return [string isEqualToString:filtered];
     }
     
-//    if(textField.tag==6)
-//    {
-//        NSInteger inte = textField.text.length;
-//        if(inte >= 12)
-//        {
-//            if ([string isEqualToString:@""]) {
-//                return YES;
-//            }
-//            else
-//            {
-//                return NO;
-//            }
-//        }
-//        return YES;
-//    }
-//    if(textField.tag==7)
-//    {
-//        NSInteger inte = textField.text.length;
-//        if(inte >= 60)
-//        {
-//            if ([string isEqualToString:@""]) {
-//                return YES;
-//            }
-//            else
-//            {
-//                return NO;
-//            }
-//        }
-//        return YES;
-//    }
+    //    if(textField.tag==6)
+    //    {
+    //        NSInteger inte = textField.text.length;
+    //        if(inte >= 12)
+    //        {
+    //            if ([string isEqualToString:@""]) {
+    //                return YES;
+    //            }
+    //            else
+    //            {
+    //                return NO;
+    //            }
+    //        }
+    //        return YES;
+    //    }
+    //    if(textField.tag==7)
+    //    {
+    //        NSInteger inte = textField.text.length;
+    //        if(inte >= 60)
+    //        {
+    //            if ([string isEqualToString:@""]) {
+    //                return YES;
+    //            }
+    //            else
+    //            {
+    //                return NO;
+    //            }
+    //        }
+    //        return YES;
+    //    }
     if(textField.tag==8)
     {
         NSInteger inte = textField.text.length;
@@ -1359,32 +1361,32 @@
     }
     if(textField.tag==9)
     {
-            NSInteger inte = textField.text.length;
-            if(inte >= 15)
-            {
-                if ([string isEqualToString:@""]) {
-                    return YES;
-                }
-                else
-                {
-                    return NO;
-                }
+        NSInteger inte = textField.text.length;
+        if(inte >= 15)
+        {
+            if ([string isEqualToString:@""]) {
+                return YES;
             }
-            NSCharacterSet *invalidCharSet = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789()+- "] invertedSet];
-            NSString *filtered = [[string componentsSeparatedByCharactersInSet:invalidCharSet] componentsJoinedByString:@""];
-            return [string isEqualToString:filtered];
-//            if (inte <= 2)
-//            {
-//                return YES;
-//    
-//            }
-//            else if(inte >= 12)
-//            {
-//                return NO;
-//            }
-//    
-//    
-//            return YES;
+            else
+            {
+                return NO;
+            }
+        }
+        NSCharacterSet *invalidCharSet = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789()+- "] invertedSet];
+        NSString *filtered = [[string componentsSeparatedByCharactersInSet:invalidCharSet] componentsJoinedByString:@""];
+        return [string isEqualToString:filtered];
+        //            if (inte <= 2)
+        //            {
+        //                return YES;
+        //
+        //            }
+        //            else if(inte >= 12)
+        //            {
+        //                return NO;
+        //            }
+        //
+        //
+        //            return YES;
     }
     return YES;
 }
@@ -1476,7 +1478,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Failed" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
     }
-
+    
 }
 
 #pragma mark - UIPickerViewDelegate
@@ -1503,7 +1505,7 @@
     if (pickerView == _state_pickerView) {
         
         self.TXT_state.text=self.statepicker[row];
-//        self.TXT_email.enabled=YES;
+        //        self.TXT_email.enabled=YES;
     }
 }
 - (IBAction)tappedToSelectRow:(UITapGestureRecognizer *)tapRecognizer
@@ -1587,19 +1589,19 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
 -(void) postNonceToServer :(NSString *)str
 {
     NSLog(@"Post %@",str);
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nonce" message:str delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-//    [alert show];
+    //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nonce" message:str delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+    //    [alert show];
     
     if (str)
     {
         [[NSUserDefaults standardUserDefaults] setValue:str forKey:@"NAUNCETOK"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-//        [self billing_Address];
+        //        [self billing_Address];
         VW_overlay.hidden = NO;
         [activityIndicatorView startAnimating];
         [self performSelector:@selector(billing_Address) withObject:activityIndicatorView afterDelay:0.01];
-//         [self dismissViewControllerAnimated:YES completion:NULL];
-
+        //         [self dismissViewControllerAnimated:YES completion:NULL];
+        
     }
     else
     {
@@ -1610,7 +1612,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
 
 -(void) billing_Address
 {
-   // [self dismissViewControllerAnimated:YES completion:NULL];
+    // [self dismissViewControllerAnimated:YES completion:NULL];
     
     NSError *error;
     NSMutableDictionary *dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"QUANTITY"] options:NSASCIIStringEncoding error:&error];
@@ -1649,7 +1651,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
             
             if(!naunce_TOK)
             {
-                 parameters = @{@"billing_address":@{ @"first_name": first_name,@"last_name": last_name,@"address_line1": address_line1,@"address_line2": address_line2,@"city": city,@"country": contry_Code,@"zip_code": zip_code,@"state": state_code,@"order_id": order_ID,@"phone": phone},@"fund_amount":@"yes"};
+                parameters = @{@"billing_address":@{ @"first_name": first_name,@"last_name": last_name,@"address_line1": address_line1,@"address_line2": address_line2,@"city": city,@"country": contry_Code,@"zip_code": zip_code,@"state": state_code,@"order_id": order_ID,@"phone": phone},@"fund_amount":@"yes"};
             }
             else if ([_SWITCH_useAccount isOn])
             {
@@ -1657,7 +1659,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
             }
             else
             {
-                 parameters = @{@"billing_address":@{ @"first_name": first_name,@"last_name": last_name,@"address_line1": address_line1,@"address_line2": address_line2,@"city": city,@"country": contry_Code,@"zip_code": zip_code,@"state": state_code,@"order_id": order_ID,@"phone": phone }};
+                parameters = @{@"billing_address":@{ @"first_name": first_name,@"last_name": last_name,@"address_line1": address_line1,@"address_line2": address_line2,@"city": city,@"country": contry_Code,@"zip_code": zip_code,@"state": state_code,@"order_id": order_ID,@"phone": phone }};
             }
             
             NSLog(@"Post contents VC Billing Address %@",parameters);
@@ -1670,7 +1672,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
             [request setURL:urlProducts];
             [request setHTTPMethod:@"POST"];
             [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-            [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+            [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
             [request setHTTPBody:postData];
             [request setHTTPShouldHandleCookies:NO];
             NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -1679,33 +1681,33 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
                 [activityIndicatorView stopAnimating];
                 VW_overlay.hidden = YES;
                 
-//                @try
-//                {
-//                    NSString *STR_error1 = [aData valueForKey:@"error"];
-//                    if (STR_error1)
-//                    {
-//                        [self sessionOUT];
-//                    }
-//                    else
-//                    {
-                        [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"CHKOUTDETAIL"];
+                //                @try
+                //                {
+                //                    NSString *STR_error1 = [aData valueForKey:@"error"];
+                //                    if (STR_error1)
+                //                    {
+                //                        [self sessionOUT];
+                //                    }
+                //                    else
+                //                    {
+                [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"CHKOUTDETAIL"];
                 
-//                if ([_SWITCH_useAccount isOn]) {
-//                     [[NSUserDefaults standardUserDefaults] setObject:@"SWITCH_ON" forKey:@"SWITCHSTAT"];
-//                }
+                //                if ([_SWITCH_useAccount isOn]) {
+                //                     [[NSUserDefaults standardUserDefaults] setObject:@"SWITCH_ON" forKey:@"SWITCHSTAT"];
+                //                }
                 
                 
                 
-                        [[NSUserDefaults standardUserDefaults] synchronize];
-                        
-                        [self performSegueWithIdentifier:@"billaddretocheckoutdetail" sender:self];
-                        [self  parse_listEvents_api];
-//                    }
-//                }
-//                @catch (NSException *exception)
-//                {
-//                    [self sessionOUT];
-//                }
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                
+                [self performSegueWithIdentifier:@"billaddretocheckoutdetail" sender:self];
+                [self  parse_listEvents_api];
+                //                    }
+                //                }
+                //                @catch (NSException *exception)
+                //                {
+                //                    [self sessionOUT];
+                //                }
             }
             else
             {
@@ -1737,7 +1739,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     //    [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -1748,7 +1750,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
         [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"JsonEventlist"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-//        [self performSegueWithIdentifier:@"logintohomeidentifier" sender:self];
+        //        [self performSegueWithIdentifier:@"logintohomeidentifier" sender:self];
     }
     else
     {
@@ -1968,156 +1970,156 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
     NSLog(@"Order dictin = %@",dictn_Order);
     
     NSString *STR_error = [dict valueForKey:@"error"];
-        if (STR_error)
+    if (STR_error)
+    {
+        [self sessionOUT];
+    }
+    else
+    {
+        NSDictionary *temp_dict=[dict valueForKey:@"event"];
+        
+        NSDictionary *parameters = @{ @"event_id":  [temp_dict valueForKey:@"id"], @"promo_code": STR_promo,@"order_id":[dictn_Order valueForKey:@"order_id"]};
+        NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+        
+        NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&err];
+        NSString *urlGetuser = [NSString stringWithFormat:@"%@events/apply_promo_code",SERVER_URL];
+        NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:urlProducts];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
+        [request setHTTPBody:postData];
+        [request setHTTPShouldHandleCookies:NO];
+        NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        if (aData)
         {
-            [self sessionOUT];
-        }
-        else
-        {
-            NSDictionary *temp_dict=[dict valueForKey:@"event"];
+            [activityIndicatorView stopAnimating];
+            VW_overlay.hidden = YES;
             
-            NSDictionary *parameters = @{ @"event_id":  [temp_dict valueForKey:@"id"], @"promo_code": STR_promo,@"order_id":[dictn_Order valueForKey:@"order_id"]};
-            NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
+            NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
             
-            NSData *postData = [NSJSONSerialization dataWithJSONObject:parameters options:NSASCIIStringEncoding error:&err];
-            NSString *urlGetuser = [NSString stringWithFormat:@"%@events/apply_promo_code",SERVER_URL];
-            NSURL *urlProducts=[NSURL URLWithString:urlGetuser];
-            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-            [request setURL:urlProducts];
-            [request setHTTPMethod:@"POST"];
-            [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-            [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
-            [request setHTTPBody:postData];
-            [request setHTTPShouldHandleCookies:NO];
-            NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-            if (aData)
+            NSLog(@"Dictin promo code %@",dict);
+            
+            @try
             {
-                [activityIndicatorView stopAnimating];
-                VW_overlay.hidden = YES;
-                
-                NSMutableDictionary *dict = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
-                
-                NSLog(@"Dictin promo code %@",dict);
-                
-                @try
+                NSString *STR_error1 = [dict valueForKey:@"error"];
+                if (STR_error1)
                 {
-                    NSString *STR_error1 = [dict valueForKey:@"error"];
-                    if (STR_error1)
+                    [self sessionOUT];
+                }
+                else
+                {
+                    if ([[dict valueForKey:@"status"]isEqualToString:@"Failure"])
                     {
-                        [self sessionOUT];
+                        [self.view endEditing:YES];
+                        [activityIndicatorView stopAnimating];
+                        VW_overlay.hidden = YES;
+                        
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Code" message:[dict valueForKey:@"message"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+                        [alert show];
                     }
                     else
                     {
-                        if ([[dict valueForKey:@"status"]isEqualToString:@"Failure"])
+                        
+                        _BTN_apply.hidden = YES;
+                        _TXT_getpromocode.hidden = YES;
+                        
+                        _LBL_coupanCode.hidden = NO;
+                        _LBL_coupanCode.text = [NSString stringWithFormat:@"A $%@ discount has been applied to this event",[dict valueForKey:@"discount"]];
+                        
+                        //                            NSString *STR_discount_VAL = [NSString stringWithFormat:@"%@",[dict valueForKey:@"discount"]];
+                        discount = [[NSString stringWithFormat:@"%@",[dict valueForKey:@"discount"]] floatValue];
+                        
+                        _LBL_coupanCode.numberOfLines = 0;
+                        [_LBL_coupanCode sizeToFit];
+                        _BTN_close.hidden = NO;
+                        
+                        CGRect frame_NEW;
+                        NSMutableDictionary *user = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"User_data"] options:NSASCIIStringEncoding error:&error];
+                        if ([[user valueForKey:@"wallet"] floatValue] > 0)
                         {
-                            [self.view endEditing:YES];
-                            [activityIndicatorView stopAnimating];
-                            VW_overlay.hidden = YES;
+                            _BTN_useAccount.hidden = YES;
+                            _LBL_arrowAccount.hidden = YES;
+                            _VW_useAccountt.hidden = YES;
+                            [_SWITCH_useAccount setOn:NO animated:YES];
+                            //
+                            //                                frame_NEW = _VW_useAccountt.frame;
+                            //                                frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height;
+                            //                                _VW_useAccountt.frame = frame_NEW;
+                            //
+                            frame_NEW = _BTN_checkout.frame;
+                            frame_NEW.origin.y = _VW_line_promo.frame.origin.y + _VW_line_promo.frame.size.height + 10;
+                            _BTN_checkout.frame = frame_NEW;
                             
-                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Code" message:[dict valueForKey:@"message"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-                            [alert show];
-                        }
-                        else
-                        {
-          
-                            _BTN_apply.hidden = YES;
-                            _TXT_getpromocode.hidden = YES;
-                            
-                            _LBL_coupanCode.hidden = NO;
-                            _LBL_coupanCode.text = [NSString stringWithFormat:@"A $%@ discount has been applied to this event",[dict valueForKey:@"discount"]];
-                            
-//                            NSString *STR_discount_VAL = [NSString stringWithFormat:@"%@",[dict valueForKey:@"discount"]];
-                            discount = [[NSString stringWithFormat:@"%@",[dict valueForKey:@"discount"]] floatValue];
-                            
-                            _LBL_coupanCode.numberOfLines = 0;
-                            [_LBL_coupanCode sizeToFit];
-                            _BTN_close.hidden = NO;
-                            
-                            CGRect frame_NEW;
-                            NSMutableDictionary *user = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults]valueForKey:@"User_data"] options:NSASCIIStringEncoding error:&error];
-                            if ([[user valueForKey:@"wallet"] floatValue] > 0)
-                            {
-                                _BTN_useAccount.hidden = YES;
-                                _LBL_arrowAccount.hidden = YES;
-                                _VW_useAccountt.hidden = YES;
-                                [_SWITCH_useAccount setOn:NO animated:YES];
-//
-//                                frame_NEW = _VW_useAccountt.frame;
-//                                frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height;
-//                                _VW_useAccountt.frame = frame_NEW;
-//                                
-                                frame_NEW = _BTN_checkout.frame;
-                                frame_NEW.origin.y = _VW_line_promo.frame.origin.y + _VW_line_promo.frame.size.height + 10;
-                                _BTN_checkout.frame = frame_NEW;
-                                
-//                                frame_NEW =
-                                
-                                frame_NEW = _lbl_agree.frame;
-                                frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
-                                _lbl_agree.frame = frame_NEW;
-                                
-                                original_height= _lbl_agree.frame.origin.y + _lbl_agree.frame.size.height;
-                                [self viewDidLayoutSubviews];
-                            }
-                            else
-                            {
-                                if (_VW_useAccountt.hidden == YES) {
-                                    
-                                    frame_NEW = _BTN_checkout.frame;
-                                    frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height + 10;
-                                    _BTN_checkout.frame = frame_NEW;
-                                    
-                                    frame_NEW = _lbl_agree.frame;
-                                    frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
-                                    _lbl_agree.frame = frame_NEW;
-                                }
-                                else
-                                {
-                                    frame_NEW = _VW_useAccountt.frame;
-                                    frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height;
-                                    _VW_useAccountt.frame = frame_NEW;
-                                    
-                                    frame_NEW = _BTN_checkout.frame;
-                                    frame_NEW.origin.y = _VW_useAccountt.frame.origin.y + _VW_useAccountt.frame.size.height + 10;
-                                    _BTN_checkout.frame = frame_NEW;
-                                    
-                                    frame_NEW = _lbl_agree.frame;
-                                    frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
-                                    _lbl_agree.frame = frame_NEW;
-                                }
-                                
-                                original_height= _lbl_agree.frame.origin.y + _lbl_agree.frame.size.height;
-                                [self viewDidLayoutSubviews];
-                            }
+                            //                                frame_NEW =
                             
                             frame_NEW = _lbl_agree.frame;
-                            frame_NEW.size.width = lbl_origin_FRAME.size.width;
-                            _lbl_agree.frame = frame_NEW;
-                            
                             frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
                             _lbl_agree.frame = frame_NEW;
                             
                             original_height= _lbl_agree.frame.origin.y + _lbl_agree.frame.size.height;
                             [self viewDidLayoutSubviews];
                         }
+                        else
+                        {
+                            if (_VW_useAccountt.hidden == YES) {
+                                
+                                frame_NEW = _BTN_checkout.frame;
+                                frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height + 10;
+                                _BTN_checkout.frame = frame_NEW;
+                                
+                                frame_NEW = _lbl_agree.frame;
+                                frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
+                                _lbl_agree.frame = frame_NEW;
+                            }
+                            else
+                            {
+                                frame_NEW = _VW_useAccountt.frame;
+                                frame_NEW.origin.y = _BTN_useAccount.frame.origin.y + _BTN_useAccount.frame.size.height;
+                                _VW_useAccountt.frame = frame_NEW;
+                                
+                                frame_NEW = _BTN_checkout.frame;
+                                frame_NEW.origin.y = _VW_useAccountt.frame.origin.y + _VW_useAccountt.frame.size.height + 10;
+                                _BTN_checkout.frame = frame_NEW;
+                                
+                                frame_NEW = _lbl_agree.frame;
+                                frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
+                                _lbl_agree.frame = frame_NEW;
+                            }
+                            
+                            original_height= _lbl_agree.frame.origin.y + _lbl_agree.frame.size.height;
+                            [self viewDidLayoutSubviews];
+                        }
+                        
+                        frame_NEW = _lbl_agree.frame;
+                        frame_NEW.size.width = lbl_origin_FRAME.size.width;
+                        _lbl_agree.frame = frame_NEW;
+                        
+                        frame_NEW.origin.y = _BTN_checkout.frame.origin.y + _BTN_checkout.frame.size.height + 10;
+                        _lbl_agree.frame = frame_NEW;
+                        
+                        original_height= _lbl_agree.frame.origin.y + _lbl_agree.frame.size.height;
+                        [self viewDidLayoutSubviews];
                     }
                 }
-                @catch (NSException *exception)
-                {
-                    [self sessionOUT];
-                }
             }
-            else
+            @catch (NSException *exception)
             {
-                [activityIndicatorView stopAnimating];
-                VW_overlay.hidden = YES;
-                
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Error" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-                [alert show];
+                [self sessionOUT];
             }
-            
-            
         }
+        else
+        {
+            [activityIndicatorView stopAnimating];
+            VW_overlay.hidden = YES;
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Error" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+            [alert show];
+        }
+        
+        
+    }
     
 }
 -(void) API_remove_Promocode
@@ -2151,7 +2153,7 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
         [request setURL:urlProducts];
         [request setHTTPMethod:@"POST"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+        [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
         [request setHTTPBody:postData];
         [request setHTTPShouldHandleCookies:NO];
         NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -2248,3 +2250,4 @@ requestsDismissalOfViewController:(UIViewController *)viewController {
 }
 
 @end
+

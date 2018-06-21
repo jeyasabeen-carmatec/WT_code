@@ -35,7 +35,7 @@
     NSDictionary *referal_detail_dict;
     int k;
     
-//    UILabel *loadingLabel;
+    //    UILabel *loadingLabel;
 }
 @property(nonatomic,strong)NSMutableArray *ARR_sec_one;
 @property (weak, nonatomic) IBOutlet UITableView *TBL_referal;
@@ -76,19 +76,19 @@
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
     
-//    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
-//    loadingLabel.backgroundColor = [UIColor clearColor];
-//    loadingLabel.textColor = [UIColor whiteColor];
-//    loadingLabel.adjustsFontSizeToFitWidth = YES;
-//    loadingLabel.textAlignment = NSTextAlignmentCenter;
-//    loadingLabel.text = @"Loading...";
-//    
-//    [VW_overlay addSubview:loadingLabel];
+    //    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
+    //    loadingLabel.backgroundColor = [UIColor clearColor];
+    //    loadingLabel.textColor = [UIColor whiteColor];
+    //    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    //    loadingLabel.textAlignment = NSTextAlignmentCenter;
+    //    loadingLabel.text = @"Loading...";
+    //
+    //    [VW_overlay addSubview:loadingLabel];
     activityIndicatorView.center = VW_overlay.center;
     [VW_overlay addSubview:activityIndicatorView];
     VW_overlay.center = self.view.center;
@@ -107,7 +107,7 @@
     [_TBL_referal setDragDelegate:self refreshDatePermanentKey:@"FriendList"];
     _TBL_referal.showLoadMoreView = YES;
     k = 0;
- 
+    
     
     
     
@@ -115,63 +115,63 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - UIView Customisation
 -(void) setupView
 {
-//    NSDate *date= [NSDate date];
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-//    [dateFormatter setDateFormat:@"yyyy-MM-dd,HH:MM:SS"];
-//    NSString *dateString = [dateFormatter stringFromDate:date];
-//    NSLog(@"Current date is %@",dateString);
-//    _ARR_sec_one=[[NSMutableArray alloc]init];
-//    
-//    NSDictionary *temp_dictin;
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Golf ball with cerficate of authenticity   Jordanspeith Auographed Golf ball with cerficate of authenticity Jordanspeith Auographed Golf ball with cerficate of authenticity",@"key1",dateString,@"key2", nil];
-//    [_ARR_sec_one addObject:temp_dictin];
-//    
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Tiltlelist",@"key1",dateString,@"key2", nil];
-//    [_ARR_sec_one addObject:temp_dictin];
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Towel From the masters Jordanspeith Auographed Golf ball with cerficate of authenticity   Jordanspeith Auographed Golf ball with cerficate of authenticity Jordanspeith Auographed Golf ball with cerficate of ",@"key1",dateString,@"key2", nil];
-//    [_ARR_sec_one addObject:temp_dictin];
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Under Armor GolfShoes",@"key1",dateString,@"key2", nil];
-//    [_ARR_sec_one addObject:temp_dictin];temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"TigerWoods Auographed Towel From the masters",@"key1",dateString,@"key2",nil];
-//    [_ARR_sec_one addObject:temp_dictin];
-//    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"TigerWoods Auographed Under Armor GolfShoes",@"key1",dateString,@"key2", nil];
-//    [_ARR_sec_one addObject:temp_dictin];
-//    
-//    _TXT_phone.layer.cornerRadius = 2.0f;
+    //    NSDate *date= [NSDate date];
+    //    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    //    [dateFormatter setDateFormat:@"yyyy-MM-dd,HH:MM:SS"];
+    //    NSString *dateString = [dateFormatter stringFromDate:date];
+    //    NSLog(@"Current date is %@",dateString);
+    //    _ARR_sec_one=[[NSMutableArray alloc]init];
+    //
+    //    NSDictionary *temp_dictin;
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Golf ball with cerficate of authenticity   Jordanspeith Auographed Golf ball with cerficate of authenticity Jordanspeith Auographed Golf ball with cerficate of authenticity",@"key1",dateString,@"key2", nil];
+    //    [_ARR_sec_one addObject:temp_dictin];
+    //
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Tiltlelist",@"key1",dateString,@"key2", nil];
+    //    [_ARR_sec_one addObject:temp_dictin];
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Towel From the masters Jordanspeith Auographed Golf ball with cerficate of authenticity   Jordanspeith Auographed Golf ball with cerficate of authenticity Jordanspeith Auographed Golf ball with cerficate of ",@"key1",dateString,@"key2", nil];
+    //    [_ARR_sec_one addObject:temp_dictin];
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"Jordanspeith Auographed Under Armor GolfShoes",@"key1",dateString,@"key2", nil];
+    //    [_ARR_sec_one addObject:temp_dictin];temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"TigerWoods Auographed Towel From the masters",@"key1",dateString,@"key2",nil];
+    //    [_ARR_sec_one addObject:temp_dictin];
+    //    temp_dictin = [NSDictionary dictionaryWithObjectsAndKeys:@"TigerWoods Auographed Under Armor GolfShoes",@"key1",dateString,@"key2", nil];
+    //    [_ARR_sec_one addObject:temp_dictin];
+    //
+    //    _TXT_phone.layer.cornerRadius = 2.0f;
     _TXT_phone.layer.borderWidth = 2.0f;
     _TXT_phone.layer.borderColor = [UIColor blackColor].CGColor;
-//    _TXT_email.layer.cornerRadius = 2.0f;
+    //    _TXT_email.layer.cornerRadius = 2.0f;
     _TXT_email.layer.borderWidth = 2.0f;
     _TXT_email.layer.borderColor = [UIColor blackColor].CGColor;
-
+    
     
     
     referal_detail_dict=[[NSUserDefaults standardUserDefaults] valueForKey:@"referral_dict"];
     
     NSString *des = [[referal_detail_dict valueForKey:@"first_name"] capitalizedString];
-
+    
     NSDictionary *temp_dictin = [referal_detail_dict valueForKey:@"role"];
     _TXT_phone.text = [referal_detail_dict valueForKey:@"phone"];
     _TXT_email.text = [referal_detail_dict valueForKey:@"email"];
     
-   
+    
     NSString *role =  [temp_dictin valueForKey:@"name"];
     role = [role stringByReplacingOccurrencesOfString:@"organizer" withString:@"event organizer"];
     role = [role stringByReplacingOccurrencesOfString:@"contributor" withString:@"participant"];
-//     _TXT_detils.text = role;
-//    _TXT_detils.textColor = [UIColor grayColor];
-//    _TXT_detils.placeholder = des;
+    //     _TXT_detils.text = role;
+    //    _TXT_detils.textColor = [UIColor grayColor];
+    //    _TXT_detils.placeholder = des;
     
     _lbl_sub_TITL.text = [NSString stringWithFormat:@"All %@ Donations",[role capitalizedString]];
     
@@ -188,9 +188,9 @@
     NSRange range = [text rangeOfString:des];
     [attributedText setAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor],
                                     NSFontAttributeName:boldFont} range:range];
-
     
-   UIFont *unboldFont = [UIFont fontWithName:@"Gotham-LightItalic" size:17]; //
+    
+    UIFont *unboldFont = [UIFont fontWithName:@"Gotham-LightItalic" size:17]; //
     NSRange greenTextRange = [text rangeOfString:role];
     [attributedText setAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor],
                                     NSFontAttributeName:unboldFont} range:greenTextRange];
@@ -296,7 +296,7 @@
     
     NSLog(@"Index path of All Event %@",index_str);
     
-   // [self performSegueWithIdentifier:@"affliatehmetorefdetailidentifier" sender:self];
+    // [self performSegueWithIdentifier:@"affliatehmetorefdetailidentifier" sender:self];
 }
 
 
@@ -312,8 +312,8 @@
     _ARR_sec_one = [temp_dict valueForKey:@"events"];
     if(!_ARR_sec_one)
     {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"No data Found" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-//        [alert show];
+        //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"No data Found" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        //        [alert show];
         [_TBL_referal reloadData];
     }
     [_TBL_referal reloadData];
@@ -336,7 +336,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -351,7 +351,7 @@
         
         
         [self get_DATA];
-//        [self setup_VIEW];
+        //        [self setup_VIEW];
     }
     else
     {
@@ -469,7 +469,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSMutableDictionary *dict;
     if (aData)
@@ -536,7 +536,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
     {
@@ -568,3 +568,4 @@
 
 
 @end
+

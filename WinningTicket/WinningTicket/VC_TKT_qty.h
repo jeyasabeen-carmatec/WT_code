@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbl_datasubtotal;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_titleTotal;
 @property (weak, nonatomic) IBOutlet UILabel *lbl_dataTotal;
+@property (weak, nonatomic) IBOutlet UIButton *BTN_back;
 
 @property (weak, nonatomic) IBOutlet UITextField *TXT_qty;
 
@@ -32,18 +33,19 @@
 
 #pragma account view
 /*@property (weak, nonatomic) IBOutlet UIView *VW_line1;
-@property (weak, nonatomic) IBOutlet UIView *VW_line3;
-@property (weak, nonatomic) IBOutlet UILabel *lbl_current_bal;
-@property (weak, nonatomic) IBOutlet UILabel *lbl_acbalance;
-@property (weak, nonatomic) IBOutlet UILabel *lbl_acbalance_amount;
-@property (weak, nonatomic) IBOutlet UILabel *lbl_arrowaccount;
-@property (weak, nonatomic) IBOutlet UIButton *BTN_Account;
-@property (weak, nonatomic) IBOutlet UIView *VW_Account;
-@property (weak, nonatomic) IBOutlet UILabel *TXT_account;
-@property (weak, nonatomic) IBOutlet UISwitch *Switch_Ac;*/
+ @property (weak, nonatomic) IBOutlet UIView *VW_line3;
+ @property (weak, nonatomic) IBOutlet UILabel *lbl_current_bal;
+ @property (weak, nonatomic) IBOutlet UILabel *lbl_acbalance;
+ @property (weak, nonatomic) IBOutlet UILabel *lbl_acbalance_amount;
+ @property (weak, nonatomic) IBOutlet UILabel *lbl_arrowaccount;
+ @property (weak, nonatomic) IBOutlet UIButton *BTN_Account;
+ @property (weak, nonatomic) IBOutlet UIView *VW_Account;
+ @property (weak, nonatomic) IBOutlet UILabel *TXT_account;
+ @property (weak, nonatomic) IBOutlet UISwitch *Switch_Ac;*/
 /*Change for Apply promocode*/
 
 @property (weak, nonatomic) IBOutlet UILabel *lbl_navFont;
 
 
 @end
+

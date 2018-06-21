@@ -33,9 +33,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-   _lbl_noSponser.hidden = YES;
+    _lbl_noSponser.hidden = YES;
     [self.collection_sponser registerNib:[UINib nibWithNibName:@"Collection_cell_ticketSponser" bundle:nil]  forCellWithReuseIdentifier:@"courseceldentifier"];
-   
+    
     
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -51,6 +51,7 @@
     VW_overlay.hidden = YES;
     [activityIndicatorView startAnimating];
     [self performSelector:@selector(get_TicketDetail) withObject:activityIndicatorView afterDelay:0.01];
+    [_BTN_back addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     
     [self setup_VIEW];
 }
@@ -118,14 +119,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - API Ticket detail
 -(void) get_TicketDetail
@@ -143,7 +144,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPBody:postData];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -225,7 +226,7 @@
         }
         
         [cell.IMG_logo sd_setImageWithURL:[NSURL URLWithString:STR_IMG_url]
-                             placeholderImage:[UIImage imageNamed:@"square-2"]];
+                         placeholderImage:[UIImage imageNamed:@"square-2"]];
         cell.lbl_event_name.text = [STR_event_name capitalizedString];
         
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -276,7 +277,7 @@
         
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         cell.separatorInset = UIEdgeInsetsMake(0, self.view.frame.size.width, 0, 0);
-            
+        
         return cell;
     }
     else if(indexPath.row == 3)
@@ -389,7 +390,7 @@
     Collection_cell_ticketSponser *cell = (Collection_cell_ticketSponser*)[self.collection_sponser dequeueReusableCellWithReuseIdentifier:@"courseceldentifier" forIndexPath:indexPath];
     
     [cell.IMG_sponser sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_URL,[[ARR_sponser_USer objectAtIndex:indexPath.row] valueForKey:@"company_logo_avatar"]]]
-                     placeholderImage:[UIImage imageNamed:@"square-2"]];
+                        placeholderImage:[UIImage imageNamed:@"square-2"]];
     
     NSLog(@"Img url = %@",[NSString stringWithFormat:@"%@%@",IMAGE_URL,[[ARR_sponser_USer objectAtIndex:indexPath.row] valueForKey:@"company_logo_avatar"]]);
     
@@ -402,3 +403,4 @@
 }
 
 @end
+

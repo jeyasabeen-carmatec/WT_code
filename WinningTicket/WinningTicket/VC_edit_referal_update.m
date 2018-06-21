@@ -16,7 +16,7 @@
     UIView *VW_overlay;
     UIActivityIndicatorView *activityIndicatorView;
     NSMutableDictionary  *referal_dict;
-//    UILabel *loadingLabel;
+    //    UILabel *loadingLabel;
 }
 @end
 
@@ -33,26 +33,26 @@
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
     
-//    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
-//    loadingLabel.backgroundColor = [UIColor clearColor];
-//    loadingLabel.textColor = [UIColor whiteColor];
-//    loadingLabel.adjustsFontSizeToFitWidth = YES;
-//    loadingLabel.textAlignment = NSTextAlignmentCenter;
-//    loadingLabel.text = @"Loading...";
-//    
-//    [VW_overlay addSubview:loadingLabel];
+    //    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
+    //    loadingLabel.backgroundColor = [UIColor clearColor];
+    //    loadingLabel.textColor = [UIColor whiteColor];
+    //    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    //    loadingLabel.textAlignment = NSTextAlignmentCenter;
+    //    loadingLabel.text = @"Loading...";
+    //
+    //    [VW_overlay addSubview:loadingLabel];
     activityIndicatorView.center = VW_overlay.center;
     [VW_overlay addSubview:activityIndicatorView];
     VW_overlay.center = self.view.center;
     [self.view addSubview:VW_overlay];
     
     VW_overlay.hidden = YES;
-
+    
     
     
     referal_dict=[[NSUserDefaults standardUserDefaults] valueForKey:@"referral_dict"];
@@ -103,8 +103,8 @@
     _TXT_referal_role.layer.cornerRadius=5;
     _TXT_referal_role.layer.borderWidth=1;
     [_BTN_addRefeerel addTarget:self action:@selector(add_referel_TAP) forControlEvents:UIControlEventTouchUpInside];
-
-
+    
+    
 }
 #pragma mark - UItextfield Deligate
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -162,8 +162,8 @@
 }
 -(void) add_referel_TAP
 {
-//    NSString *text_to_compare = _TXT_referal_email.text;
-//    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
+    //    NSString *text_to_compare = _TXT_referal_email.text;
+    //    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
     
     
     
@@ -179,10 +179,10 @@
         [_TXT_referal_name showError];
         [_TXT_referal_name showErrorWithText:@" Referral name minimum 2 characters"];
     }
-//    else if ([emailTest evaluateWithObject:text_to_compare] == NO)
-//    {
-//        [_TXT_referal_email becomeFirstResponder];
-//    }
+    //    else if ([emailTest evaluateWithObject:text_to_compare] == NO)
+    //    {
+    //        [_TXT_referal_email becomeFirstResponder];
+    //    }
     else if ([_TXT_referal_phone.text isEqualToString:@""])
     {
         [_TXT_referal_phone becomeFirstResponder];
@@ -206,11 +206,11 @@
 -(void) update_AFFILIATE
 {
     NSString *referalName =_TXT_referal_name.text;
-//    NSString *email = _TXT_referal_email.text;
+    //    NSString *email = _TXT_referal_email.text;
     NSString *phone = _TXT_referal_phone.text;
-//    NSString *role;
+    //    NSString *role;
     
-      NSError *error;
+    NSError *error;
     NSError *err;
     NSString *auth_TOK = [[NSUserDefaults standardUserDefaults] valueForKey:@"auth_token"];
     NSHTTPURLResponse *response = nil;
@@ -223,7 +223,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"PUT"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_TOK forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_TOK forHTTPHeaderField:@"auth-token"];
     [request setHTTPBody:postData];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -238,8 +238,8 @@
         
         if([status isEqualToString:@"Success"])
         {
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:[json_DATA valueForKey:@"message"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-//            [alert show];
+            //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:[json_DATA valueForKey:@"message"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+            //            [alert show];
             UIAlertController * alert=[UIAlertController alertControllerWithTitle:@""
                                                                           message:[json_DATA valueForKey:@"message"]
                                                                    preferredStyle:UIAlertControllerStyleAlert];
@@ -247,27 +247,27 @@
             UIAlertAction* yesButton = [UIAlertAction actionWithTitle:@"Ok"
                                                                 style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * action)
-            {
-                
-                [self affiliate_api_call];
-            }];
+                                        {
+                                            
+                                            [self affiliate_api_call];
+                                        }];
             
             [alert addAction:yesButton];
             
             [self presentViewController:alert animated:YES completion:nil];
-//            
+            //
         }
         if(!json_DATA)
         {
             [activityIndicatorView stopAnimating];
             VW_overlay.hidden = YES;
             
-
+            
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Failed" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
             [alert show];
             
         }
-            
+        
     }
     else
     {
@@ -290,7 +290,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if (aData)
@@ -300,7 +300,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:aData forKey:@"AffiliateReferrel"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self dismissViewControllerAnimated:YES completion:nil];
-       
+        
     }
     else
     {
@@ -310,7 +310,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Connection Interrupted" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
         [alert show];
     }
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -319,17 +319,18 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (IBAction)cancelBTN:(id)sender
 {
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 @end
+

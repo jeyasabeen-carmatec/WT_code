@@ -17,7 +17,7 @@
     
     UIView *VW_overlay;
     UIActivityIndicatorView *activityIndicatorView;
-//    UILabel *loadingLabel;
+    //    UILabel *loadingLabel;
     NSArray *sorted_STAES,*sorted_Contry;
 }
 @property (nonatomic, strong) NSArray *countrypicker,*statepicker;
@@ -31,7 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
+    [_BTN_back addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [self setup_VIEW];
 }
 
@@ -91,14 +91,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 -(void) backAction
 {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -110,19 +110,19 @@
     VW_overlay = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     VW_overlay.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     VW_overlay.clipsToBounds = YES;
-//    VW_overlay.layer.cornerRadius = 10.0;
+    //    VW_overlay.layer.cornerRadius = 10.0;
     
     activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityIndicatorView.frame = CGRectMake(0, 0, activityIndicatorView.bounds.size.width, activityIndicatorView.bounds.size.height);
     
-//    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
-//    loadingLabel.backgroundColor = [UIColor clearColor];
-//    loadingLabel.textColor = [UIColor whiteColor];
-//    loadingLabel.adjustsFontSizeToFitWidth = YES;
-//    loadingLabel.textAlignment = NSTextAlignmentCenter;
-//    loadingLabel.text = @"Loading...";
-//    
-//    [VW_overlay addSubview:loadingLabel];
+    //    loadingLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 170, 200, 22)];
+    //    loadingLabel.backgroundColor = [UIColor clearColor];
+    //    loadingLabel.textColor = [UIColor whiteColor];
+    //    loadingLabel.adjustsFontSizeToFitWidth = YES;
+    //    loadingLabel.textAlignment = NSTextAlignmentCenter;
+    //    loadingLabel.text = @"Loading...";
+    //
+    //    [VW_overlay addSubview:loadingLabel];
     activityIndicatorView.center = VW_overlay.center;
     [VW_overlay addSubview:activityIndicatorView];
     VW_overlay.center = self.view.center;
@@ -152,11 +152,11 @@
     
     [_scroll_contents addSubview:_VW_contents];
     
-//    _TXT_phone_num.layer.cornerRadius = 5.0f;
-//    _TXT_phone_num.layer.masksToBounds = YES;
-//    _TXT_phone_num.layer.borderWidth = 1.0f;
-//    _TXT_phone_num.layer.borderColor = [UIColor whiteColor].CGColor;
-//
+    //    _TXT_phone_num.layer.cornerRadius = 5.0f;
+    //    _TXT_phone_num.layer.masksToBounds = YES;
+    //    _TXT_phone_num.layer.borderWidth = 1.0f;
+    //    _TXT_phone_num.layer.borderColor = [UIColor whiteColor].CGColor;
+    //
     
     _VW_back.layer.borderWidth = 1.0f;
     _VW_back.layer.cornerRadius = 5;
@@ -175,35 +175,35 @@
     _TXT_F_name.layer.borderColor = [UIColor whiteColor].CGColor;
     _TXT_F_name.tag=2;
     _TXT_F_name.delegate=self;
-//    _TXT_F_name.enabled=NO;
-
-
+    //    _TXT_F_name.enabled=NO;
+    
+    
     _TXT_L_name.layer.cornerRadius = 5.0f;
     _TXT_L_name.layer.masksToBounds = YES;
     _TXT_L_name.layer.borderWidth = 1.0f;
     _TXT_L_name.layer.borderColor = [UIColor whiteColor].CGColor;
     _TXT_L_name.tag=3;
     _TXT_L_name.delegate=self;
-//    _TXT_L_name.enabled=NO;
-
-
+    //    _TXT_L_name.enabled=NO;
+    
+    
     _TXT_titl.layer.cornerRadius = 5.0f;
     _TXT_titl.layer.masksToBounds = YES;
     _TXT_titl.layer.borderWidth = 1.0f;
     _TXT_titl.layer.borderColor = [UIColor whiteColor].CGColor;
     _TXT_titl.tag=4;
     _TXT_titl.delegate=self;
-//    _TXT_titl.enabled=NO;
-
-
+    //    _TXT_titl.enabled=NO;
+    
+    
     _TXT_addr1.layer.cornerRadius = 5.0f;
     _TXT_addr1.layer.masksToBounds = YES;
     _TXT_addr1.layer.borderWidth = 1.0f;
     _TXT_addr1.layer.borderColor = [UIColor whiteColor].CGColor;
     _TXT_addr1.tag=5;
     _TXT_addr1.delegate=self;
-//    _TXT_addr1.enabled=NO;
-
+    //    _TXT_addr1.enabled=NO;
+    
     
     _TXT_addr2.layer.cornerRadius = 5.0f;
     _TXT_addr2.layer.masksToBounds = YES;
@@ -211,8 +211,8 @@
     _TXT_addr2.layer.borderColor = [UIColor whiteColor].CGColor;
     _TXT_addr2.tag=6;
     _TXT_addr2.delegate=self;
-//    _TXT_addr2.enabled=NO;
-
+    //    _TXT_addr2.enabled=NO;
+    
     
     _TXT_city.layer.cornerRadius = 5.0f;
     _TXT_city.layer.masksToBounds = YES;
@@ -220,9 +220,9 @@
     _TXT_city.layer.borderColor = [UIColor whiteColor].CGColor;
     _TXT_city.tag=7;
     _TXT_city.delegate=self;
-//    _TXT_city.enabled=NO;
-
-
+    //    _TXT_city.enabled=NO;
+    
+    
     
     _TXT_phone_num.layer.cornerRadius = 5.0f;
     _TXT_phone_num.layer.masksToBounds = YES;
@@ -230,18 +230,18 @@
     _TXT_phone_num.layer.borderColor = [UIColor whiteColor].CGColor;
     _TXT_phone_num.tag=8;
     _TXT_phone_num.delegate=self;
-//    _TXT_phone_num.enabled=NO;
-
-
+    //    _TXT_phone_num.enabled=NO;
+    
+    
     _TXT_country.layer.cornerRadius = 5.0f;
     _TXT_country.layer.masksToBounds = YES;
     _TXT_country.layer.borderWidth = 1.0f;
     _TXT_country.layer.borderColor = [UIColor whiteColor].CGColor;
     _TXT_country.tag=9;
     _TXT_country.delegate=self;
-//    _TXT_country.enabled=NO;
-
-
+    //    _TXT_country.enabled=NO;
+    
+    
     
     _TXT_state.layer.cornerRadius = 5.0f;
     _TXT_state.layer.masksToBounds = YES;
@@ -249,26 +249,26 @@
     _TXT_state.layer.borderColor = [UIColor whiteColor].CGColor;
     _TXT_state.tag=10;
     _TXT_state.delegate=self;
-//    _TXT_state.enabled=NO;
-
-
+    //    _TXT_state.enabled=NO;
+    
+    
     _TXT_zip.layer.cornerRadius = 5.0f;
     _TXT_zip.layer.masksToBounds = YES;
     _TXT_zip.layer.borderWidth = 1.0f;
     _TXT_zip.layer.borderColor = [UIColor whiteColor].CGColor;
     _TXT_zip.tag=11;
     _TXT_zip.delegate=self;
-//    _TXT_zip.enabled=NO;
-
-
+    //    _TXT_zip.enabled=NO;
+    
+    
     _TXT_email.layer.cornerRadius = 5.0f;
     _TXT_email.layer.masksToBounds = YES;
     _TXT_email.layer.borderWidth = 1.0f;
     _TXT_email.layer.borderColor = [UIColor whiteColor].CGColor;
     _TXT_email.tag=12;
     _TXT_email.delegate=self;
-//    _TXT_email.enabled=NO;
-
+    //    _TXT_email.enabled=NO;
+    
     
     [_BTN_sighnUP addTarget:self action:@selector(btn_sign_up) forControlEvents:UIControlEventTouchUpInside];
     
@@ -293,7 +293,7 @@
                                                                              action:@selector(tappedToSelectRowstate:)];
     satetap.delegate = self;
     [_state_pickerView addGestureRecognizer:satetap];
-
+    
     
     UIToolbar* conutry_close = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     conutry_close.barStyle = UIBarStyleBlackTranslucent;
@@ -307,19 +307,19 @@
     [conutry_close addSubview:close];
     _TXT_country.inputAccessoryView=conutry_close;
     _TXT_state.inputAccessoryView=conutry_close;
-
+    
     
     self.TXT_country.inputView = _contry_pickerView;
     self.TXT_state.inputView=_state_pickerView;
-   
-
-
+    
+    
+    
     _TXT_country.tintColor=[UIColor clearColor];
     _TXT_state.tintColor=[UIColor clearColor];
     
-//    self.pickerNames = @[ @"Objective-C", @"Swift", @"Java", @"C", @"C++", @"Other"];
+    //    self.pickerNames = @[ @"Objective-C", @"Swift", @"Java", @"C", @"C++", @"Other"];
     [self Country_api];
-//    [self State_api];
+    //    [self State_api];
     
 }
 
@@ -332,14 +332,14 @@
 
 #pragma mark-TextField Delegates
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-//    [_TXT_addr1 resignFirstResponder];
-//    [_TXT_addr2 resignFirstResponder];
-//    [_TXT_zip resignFirstResponder];
-//    [_TXT_city resignFirstResponder];
-//    [_TXT_phone_num resignFirstResponder];
-//    [_TXT_country resignFirstResponder];
-//    [_TXT_state resignFirstResponder];
-//    [_TXT_email resignFirstResponder];
+    //    [_TXT_addr1 resignFirstResponder];
+    //    [_TXT_addr2 resignFirstResponder];
+    //    [_TXT_zip resignFirstResponder];
+    //    [_TXT_city resignFirstResponder];
+    //    [_TXT_phone_num resignFirstResponder];
+    //    [_TXT_country resignFirstResponder];
+    //    [_TXT_state resignFirstResponder];
+    //    [_TXT_email resignFirstResponder];
     [textField resignFirstResponder];
     return YES;
 }
@@ -368,7 +368,7 @@
         self.view.frame = CGRectMake(0,-110,self.view.frame.size.width,self.view.frame.size.height);
         [UIView commitAnimations];
         //}
-
+        
         
     }
     if(textField.tag==12)
@@ -519,36 +519,36 @@
         NSString *filtered = [[string componentsSeparatedByCharactersInSet:invalidCharSet] componentsJoinedByString:@""];
         return [string isEqualToString:filtered];
     }
-//    if(textField.tag==9)
-//    {
-//        NSInteger inte = textField.text.length;
-//        if(inte >= 30)
-//        {
-//            if ([string isEqualToString:@""]) {
-//                return YES;
-//            }
-//            else
-//            {
-//                return NO;
-//            }
-//        }
-//        return YES;
-//    }
-//    if(textField.tag==10)
-//    {
-//        NSInteger inte = textField.text.length;
-//        if(inte >= 30)
-//        {
-//            if ([string isEqualToString:@""]) {
-//                return YES;
-//            }
-//            else
-//            {
-//                return NO;
-//            }
-//        }
-//        return YES;
-//    }
+    //    if(textField.tag==9)
+    //    {
+    //        NSInteger inte = textField.text.length;
+    //        if(inte >= 30)
+    //        {
+    //            if ([string isEqualToString:@""]) {
+    //                return YES;
+    //            }
+    //            else
+    //            {
+    //                return NO;
+    //            }
+    //        }
+    //        return YES;
+    //    }
+    //    if(textField.tag==10)
+    //    {
+    //        NSInteger inte = textField.text.length;
+    //        if(inte >= 30)
+    //        {
+    //            if ([string isEqualToString:@""]) {
+    //                return YES;
+    //            }
+    //            else
+    //            {
+    //                return NO;
+    //            }
+    //        }
+    //        return YES;
+    //    }
     if(textField.tag == 11)
     {
         NSInteger inte = textField.text.length;
@@ -596,8 +596,8 @@
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
     NSLog(@"Sighn UP");
     
-//    NSString *text_to_compare=_TXT_phone_num.text;
-//    NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
+    //    NSString *text_to_compare=_TXT_phone_num.text;
+    //    NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
     
     NSString *L_name_STR = _TXT_L_name.text;
     NSString *addr_line_two = _TXT_addr2.text;
@@ -605,8 +605,8 @@
     if([_TXT_golfcoursename.text isEqualToString:@""])
     {
         [_TXT_golfcoursename becomeFirstResponder];
-//        [_TXT_golfcoursename showError];
-//        [_TXT_golfcoursename showErrorWithText:@" Please enter course name"];
+        //        [_TXT_golfcoursename showError];
+        //        [_TXT_golfcoursename showErrorWithText:@" Please enter course name"];
         [self.navigationController.view makeToast:@"Please enter Course Name"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -614,8 +614,8 @@
     else if(_TXT_golfcoursename.text.length < 2)
     {
         [_TXT_golfcoursename becomeFirstResponder];
-//        [_TXT_golfcoursename showError];
-//        [_TXT_golfcoursename showErrorWithText:@" Course name minimum 2 characters"];
+        //        [_TXT_golfcoursename showError];
+        //        [_TXT_golfcoursename showErrorWithText:@" Course name minimum 2 characters"];
         [self.navigationController.view makeToast:@"Course Name minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -623,8 +623,8 @@
     else if([_TXT_F_name.text isEqualToString:@""])
     {
         [_TXT_F_name becomeFirstResponder];
-//        [_TXT_F_name showError];
-//        [_TXT_F_name showErrorWithText:@" Please enter first name"];
+        //        [_TXT_F_name showError];
+        //        [_TXT_F_name showErrorWithText:@" Please enter first name"];
         [self.navigationController.view makeToast:@"Please enter First Name"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -632,8 +632,8 @@
     else if(_TXT_F_name.text.length < 2)
     {
         [_TXT_F_name becomeFirstResponder];
-//        [_TXT_F_name showError];
-//        [_TXT_F_name showErrorWithText:@" First name minimum 2 characters"];
+        //        [_TXT_F_name showError];
+        //        [_TXT_F_name showErrorWithText:@" First name minimum 2 characters"];
         [self.navigationController.view makeToast:@"First Name minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -641,8 +641,8 @@
     else  if(L_name_STR.length != 0 && _TXT_L_name.text.length < 2)
     {
         [_TXT_L_name becomeFirstResponder];
-//        [_TXT_L_name showError];
-//        [_TXT_L_name showErrorWithText:@" Last name minimum 2 characters"];
+        //        [_TXT_L_name showError];
+        //        [_TXT_L_name showErrorWithText:@" Last name minimum 2 characters"];
         [self.navigationController.view makeToast:@"Last Name minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -650,8 +650,8 @@
     else if([_TXT_titl.text isEqualToString:@""])
     {
         [_TXT_titl becomeFirstResponder];
-//        [_TXT_titl showError];
-//        [_TXT_titl showErrorWithText:@" Please enter contact title"];
+        //        [_TXT_titl showError];
+        //        [_TXT_titl showErrorWithText:@" Please enter contact title"];
         [self.navigationController.view makeToast:@"Please enter Contact Title"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -659,8 +659,8 @@
     else if(_TXT_titl.text.length < 2)
     {
         [_TXT_titl becomeFirstResponder];
-//        [_TXT_titl showError];
-//        [_TXT_titl showErrorWithText:@" Contact title minimum 2 characters"];
+        //        [_TXT_titl showError];
+        //        [_TXT_titl showErrorWithText:@" Contact title minimum 2 characters"];
         [self.navigationController.view makeToast:@"Contact Title minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -668,8 +668,8 @@
     else if([_TXT_addr1.text isEqualToString:@""])
     {
         [_TXT_addr1 becomeFirstResponder];
-//        [_TXT_addr1 showError];
-//        [_TXT_addr1 showErrorWithText:@" Please enter address line 1"];
+        //        [_TXT_addr1 showError];
+        //        [_TXT_addr1 showErrorWithText:@" Please enter address line 1"];
         [self.navigationController.view makeToast:@"Please enter Address Line1"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -677,8 +677,8 @@
     else  if(_TXT_addr1.text.length < 2)
     {
         [_TXT_addr1 becomeFirstResponder];
-//        [_TXT_addr1 showError];
-//        [_TXT_addr1 showErrorWithText:@" Address line 1 minimum 2 characters"];
+        //        [_TXT_addr1 showError];
+        //        [_TXT_addr1 showErrorWithText:@" Address line 1 minimum 2 characters"];
         [self.navigationController.view makeToast:@"Address Line1 minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -686,8 +686,8 @@
     else  if(addr_line_two.length != 0 && _TXT_addr2.text.length < 2)
     {
         [_TXT_addr2 becomeFirstResponder];
-//        [_TXT_addr2 showError];
-//        [_TXT_addr2 showErrorWithText:@" Address line 2 minimum 2 characters"];
+        //        [_TXT_addr2 showError];
+        //        [_TXT_addr2 showErrorWithText:@" Address line 2 minimum 2 characters"];
         [self.navigationController.view makeToast:@"Address Line2 minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -695,8 +695,8 @@
     else if([_TXT_city.text isEqualToString:@""])
     {
         [_TXT_city becomeFirstResponder];
-//        [_TXT_city showError];
-//        [_TXT_city showErrorWithText:@" Please enter city"];
+        //        [_TXT_city showError];
+        //        [_TXT_city showErrorWithText:@" Please enter city"];
         [self.navigationController.view makeToast:@"Please enter City"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -704,8 +704,8 @@
     else if(_TXT_city.text.length < 2)
     {
         [_TXT_city becomeFirstResponder];
-//        [_TXT_city showError];
-//        [_TXT_city showErrorWithText:@" City minimum 2 characters"];
+        //        [_TXT_city showError];
+        //        [_TXT_city showErrorWithText:@" City minimum 2 characters"];
         [self.navigationController.view makeToast:@"City minimum 2 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -713,8 +713,8 @@
     else if([_TXT_phone_num.text isEqualToString:@""])
     {
         [_TXT_phone_num becomeFirstResponder];
-//        [_TXT_phone_num showError];
-//        [_TXT_phone_num showErrorWithText:@" Please enter phone number"];
+        //        [_TXT_phone_num showError];
+        //        [_TXT_phone_num showErrorWithText:@" Please enter phone number"];
         [self.navigationController.view makeToast:@"Please enter Phone Number"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -722,8 +722,8 @@
     else if (_TXT_phone_num.text.length < 5)
     {
         [_TXT_phone_num becomeFirstResponder];
-//        [_TXT_phone_num showError];
-//        [_TXT_phone_num showErrorWithText:@" Phone number minimum 5 numbers"];
+        //        [_TXT_phone_num showError];
+        //        [_TXT_phone_num showErrorWithText:@" Phone number minimum 5 numbers"];
         [self.navigationController.view makeToast:@"Phone Number minimum 5 numbers"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -731,8 +731,8 @@
     else if([_TXT_country.text isEqualToString:@""])
     {
         [_TXT_country becomeFirstResponder];
-//        [_TXT_country showError];
-//        [_TXT_country showErrorWithText:@" Please select country"];
+        //        [_TXT_country showError];
+        //        [_TXT_country showErrorWithText:@" Please select country"];
         [self.navigationController.view makeToast:@"Please select Country"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -740,8 +740,8 @@
     else if([_TXT_zip.text isEqualToString:@""])
     {
         [_TXT_zip becomeFirstResponder];
-//        [_TXT_zip showError];
-//        [_TXT_zip showErrorWithText:@" Please enter zipcode"];
+        //        [_TXT_zip showError];
+        //        [_TXT_zip showErrorWithText:@" Please enter zipcode"];
         [self.navigationController.view makeToast:@"Please enter Zip Code"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -749,8 +749,8 @@
     else if(_TXT_zip.text.length < 4)
     {
         [_TXT_zip becomeFirstResponder];
-//        [_TXT_zip showError];
-//        [_TXT_zip showErrorWithText:@" Zipcode minimum 4 characters"];
+        //        [_TXT_zip showError];
+        //        [_TXT_zip showErrorWithText:@" Zipcode minimum 4 characters"];
         [self.navigationController.view makeToast:@"Zip Code minimum 4 characters"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -767,8 +767,8 @@
     else if([emailTest evaluateWithObject:text_to_compare_email] == NO)
     {
         [_TXT_email becomeFirstResponder];
-//        [_TXT_email showError];
-//        [_TXT_email showErrorWithText:@" Please enter valid email address"];
+        //        [_TXT_email showError];
+        //        [_TXT_email showErrorWithText:@" Please enter valid email address"];
         [self.navigationController.view makeToast:@"Please enter valid Email"
                                          duration:2.0
                                          position:CSToastPositionCenter];
@@ -975,38 +975,39 @@
     [request setHTTPShouldHandleCookies:NO];
     
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-       if (aData)
-          {
-              
-              [activityIndicatorView stopAnimating];
-              VW_overlay.hidden = YES;
-
-            NSMutableDictionary *json_DATA = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
-            NSLog(@"The response %@",json_DATA);
-            NSString *status = [json_DATA valueForKey:@"status"];
-            NSString *msg = [json_DATA valueForKey:@"message"];
-              if([status isEqualToString:@"Success"])
-                {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Thank you for your submission. Check your email for login credentials. Please allow 24-48 hours for your account to be verified" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-                    [alert show];
-                    [self performSegueWithIdentifier:@"affiliatetologin" sender:self];
-                }
-              else
-                {
-                    if ([msg isEqualToString:@"User already exists"])
-                    {
-                        msg = @"Email address already in use, Please try with different email.";
-                    }
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-                    [alert show];
-                }
-          }
-       else
-       {
-           [activityIndicatorView stopAnimating];
-           VW_overlay.hidden = YES;
-           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please Check your Connection." delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-           [alert show];
-       }
+    if (aData)
+    {
+        
+        [activityIndicatorView stopAnimating];
+        VW_overlay.hidden = YES;
+        
+        NSMutableDictionary *json_DATA = (NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:aData options:NSASCIIStringEncoding error:&error];
+        NSLog(@"The response %@",json_DATA);
+        NSString *status = [json_DATA valueForKey:@"status"];
+        NSString *msg = [json_DATA valueForKey:@"message"];
+        if([status isEqualToString:@"Success"])
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Thank you for your submission. Check your email for login credentials. Please allow 24-48 hours for your account to be verified" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+            [alert show];
+            [self performSegueWithIdentifier:@"affiliatetologin" sender:self];
+        }
+        else
+        {
+            if ([msg isEqualToString:@"User already exists"])
+            {
+                msg = @"Email address already in use, Please try with different email.";
+            }
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:msg delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+            [alert show];
+        }
+    }
+    else
+    {
+        [activityIndicatorView stopAnimating];
+        VW_overlay.hidden = YES;
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please Check your Connection." delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+        [alert show];
+    }
 }
 @end
+

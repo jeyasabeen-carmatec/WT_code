@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [_BTN_back addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [self setup_VIEW];
 }
 
@@ -160,7 +160,7 @@
             NSLog(@"The response from checkout detail VC \n%@",temp_resp);
             
             _lbl_datasubtotal.text = [NSString stringWithFormat:@"$%.2f",[[temp_resp valueForKey:@"price"] floatValue]];
-//            _lbl_datatotal.text = _lbl_datasubtotal.text;
+            //            _lbl_datatotal.text = _lbl_datasubtotal.text;
             
             [_BTN_order2 addTarget:self action:@selector(BTN_order2action) forControlEvents:UIControlEventTouchUpInside];
             
@@ -322,16 +322,16 @@
             
             NSString *show = @"Silent Auction";
             //    NSString *place = @"Make A Wish Foundation of Central Florida’s 4th Annual Golf Event";
-          //  NSString *ticketnumber = [temp_resp valueForKey:@"code"];
+            //  NSString *ticketnumber = [temp_resp valueForKey:@"code"];
             NSString *club_name = [[temp_resp valueForKey:@"event_name"] capitalizedString];
             NSString *org_name = [[temp_resp valueForKey:@"organization_name"] capitalizedString];
-           // NSString *qty = [NSString stringWithFormat:@"Qty : 1"];
+            // NSString *qty = [NSString stringWithFormat:@"Qty : 1"];
             
             NSString *STR_code = [NSString stringWithFormat:@"%@",[temp_resp valueForKey:@"code"]];
             STR_code = [STR_code stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
             
-//            NSString *text = [NSString stringWithFormat:@"%@\n%@ - %@\n",show,org_name,club_name];
-//             NSString *text = [NSString stringWithFormat:@"%@\n%@ - %@",organization_name,STR_code,item_name];
+            //            NSString *text = [NSString stringWithFormat:@"%@\n%@ - %@\n",show,org_name,club_name];
+            //             NSString *text = [NSString stringWithFormat:@"%@\n%@ - %@",organization_name,STR_code,item_name];
             NSString *text = [NSString stringWithFormat:@"%@\n%@\n%@ - %@",show,org_name,STR_code,club_name];
             
             text = [text stringByReplacingOccurrencesOfString:@"<null>" withString:@"Not Mentioned"];
@@ -367,13 +367,13 @@
                 [attributedText setAttributes:@{NSFontAttributeName:_lbl_address.font}
                                         range:qt];
                 
-//                NSRange tkt_num = [text rangeOfString:ticketnumber];
-//                [attributedText setAttributes:@{NSFontAttributeName:_lbl_address.font}
-//                                        range:tkt_num];
+                //                NSRange tkt_num = [text rangeOfString:ticketnumber];
+                //                [attributedText setAttributes:@{NSFontAttributeName:_lbl_address.font}
+                //                                        range:tkt_num];
                 
-//                NSRange qty_range = [text rangeOfString:qty];
-//                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamMedium" size:15.0]}
-//                                        range:qty_range];
+                //                NSRange qty_range = [text rangeOfString:qty];
+                //                [attributedText setAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"GothamMedium" size:15.0]}
+                //                                        range:qty_range];
                 
                 self.lbl_ticketDetail.attributedText = attributedText;
             }
@@ -511,44 +511,44 @@
 {
     [self.navigationController popViewControllerAnimated:NO];
     //    checkoutTohome
-   /* NSError *error;
-    NSMutableDictionary *dict;
-    @try {
-        dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"PurchaseRESPONSE"] options:NSJSONReadingAllowFragments error:&error];
-        
-        
-        @try
-        {
-            NSString *STR_error = [dict valueForKey:@"error"];
-            if (STR_error)
-            {
-                [self sessionOUT];
-            }
-            else
-            {
-                NSLog(@"Response from purchase controller :%@",dict);
-            }
-        }
-        @catch (NSException *exception)
-        {
-            [self sessionOUT];
-        }
-        
-    }
-    @catch (NSException *exception)
-    {
-        //        [self performSegueWithIdentifier:@"checkoutTohome" sender:self];
-        [self.navigationController popViewControllerAnimated:NO];
-    }
-    
-    if (dict)
-    {
-        [self performSegueWithIdentifier:@"checkoutTohome" sender:self];
-    }
-    else
-    {
-        [self performSegueWithIdentifier:@"checkoutTohome" sender:self];
-    }*/
+    /* NSError *error;
+     NSMutableDictionary *dict;
+     @try {
+     dict=(NSMutableDictionary *)[NSJSONSerialization JSONObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"PurchaseRESPONSE"] options:NSJSONReadingAllowFragments error:&error];
+     
+     
+     @try
+     {
+     NSString *STR_error = [dict valueForKey:@"error"];
+     if (STR_error)
+     {
+     [self sessionOUT];
+     }
+     else
+     {
+     NSLog(@"Response from purchase controller :%@",dict);
+     }
+     }
+     @catch (NSException *exception)
+     {
+     [self sessionOUT];
+     }
+     
+     }
+     @catch (NSException *exception)
+     {
+     //        [self performSegueWithIdentifier:@"checkoutTohome" sender:self];
+     [self.navigationController popViewControllerAnimated:NO];
+     }
+     
+     if (dict)
+     {
+     [self performSegueWithIdentifier:@"checkoutTohome" sender:self];
+     }
+     else
+     {
+     [self performSegueWithIdentifier:@"checkoutTohome" sender:self];
+     }*/
     
 }
 
@@ -564,8 +564,8 @@
     //    [self pay_AMOUNT];
     VW_overlay.hidden = NO;
     [activityIndicatorView startAnimating];
-
-[self performSelector:@selector(pay_AMOUNT) withObject:activityIndicatorView afterDelay:0.01];
+    
+    [self performSelector:@selector(pay_AMOUNT) withObject:activityIndicatorView afterDelay:0.01];
 }
 
 #pragma mark - States and Country
@@ -650,7 +650,7 @@
     [request setURL:urlProducts];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:auth_tok forHTTPHeaderField:@"auth_token"];
+    [request setValue:auth_tok forHTTPHeaderField:@"auth-token"];
     [request setHTTPBody:postData];
     [request setHTTPShouldHandleCookies:NO];
     NSData *aData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -686,11 +686,11 @@
                     }
                     else
                     {
-//                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Payment successful" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-//                        [alert show];
-//                        [self.navigationController popToRootViewControllerAnimated:YES];
-
-                       [self performSegueWithIdentifier:@"place_order_to_purchse" sender:self];
+                        //                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Payment successful" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+                        //                        [alert show];
+                        //                        [self.navigationController popToRootViewControllerAnimated:YES];
+                        
+                        [self performSegueWithIdentifier:@"place_order_to_purchse" sender:self];
                     }
                 }
             }
@@ -729,3 +729,4 @@
     [self presentViewController:tncView animated:YES completion:NULL];
 }
 @end
+

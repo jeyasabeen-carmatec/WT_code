@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *TXT_zip;
 @property (nonatomic, weak) IBOutlet ACFloatingTextField *TXT_country;
 @property (weak, nonatomic) IBOutlet ACFloatingTextField *TXT_phonenumber;
+@property (nonatomic, retain) IBOutlet UIButton *BTN_back;
 
 @property (nonatomic, strong) UIPickerView *state_pickerView;
 @property (weak, nonatomic) IBOutlet UIView *VW_line1;
@@ -79,3 +80,4 @@
 
 
 @end
+
